@@ -1,0 +1,67 @@
+/* ./src/index.css */
+
+/* 這是提供給tailwind的 css 資料夾 如果沒有這個 使用tailwind 全都不會跑 */
+/* 但我同時使用了 style-component  style-comp 他會吃樣式比 tailwind 優先 我使用style來組件 然後原子用tailwind */
+
+/* 以前一開始學網頁是用 CSS reset ，後來就都用 Nomalize 了
+https://ithelp.ithome.com.tw/articles/10269123?sc=iThelpR 增加 Base 樣式 */
+
+/* [Tailwind CSS] 自訂元件(component) */
+/* https://tools.wingzero.tw/article/sn/936 */
+/* ------------------------------------------------------ */
+
+/* base 預設有css reset Nomalize 還有一些自訂的樣式 */
+/* base 全站樣式 - 基本標籤樣式(綁在html上的樣式,改這危險 設定為boder-box 才不讓padding影響寬度 )  我應該可以另外加上防止x軸出現的 */
+
+/* 網頁基本上都會使用 CSS reset，消除跨瀏覽器的不一致性，有寫過網頁一段時間都不陌生，而 Tailwind 有提供一組基底樣式，稱為 Preflight，基本上就是採用 modern-normalize 啦！ */
+
+/* 我要載入這個功能 */
+/* index.css 這邊類似於整體body版面基礎設定 css reset 及 基本樣式 Base 設定都在裡面歸零 而 App.css 則是一個wrap範圍 */
+
+/* ------------------------------------------------------ */
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* ------------------------------------------------------ */
+
+/* 修改一個預設class這麼寫 基本標籤的樣式設定 h1的 基本樣式就變成我設定的 我希望什麼 預設是什麼大小或顏色 */
+
+/* 我想使用 @layer 圖層樣式語法，把 base 的 h1 樣式改掉 用寫好的這個 覆蓋原本base元件 並且使用 @apply 允許修改整個 h1 的內容， 
+@apply 像是把想要的樣式自己拼湊，組一個壓縮模組 去新增或改基本 */
+
+/* 改變 h1 的預設大小 從下面看 基本上和自訂class類似 只是從layer裡面寫的話是 某某標籤或class apply繼承我所寫的樣式 */
+@layer base {
+  /* h1 {
+    @apply my-5 text-6xl text-red-500;
+  }
+  h2 {
+    @apply my-5 text-6xl text-blue-500;
+  } */
+  /* 設定類也建議寫在 tailwind config plugin上 addbase蓋掉 , 雖然寫在css比較直覺 如果很常使用就做設定比較好 比起塞在css */
+  /* html {
+    font-family: Proxima Nova, system-ui, sans-serif;
+  } */
+}
+
+/* 不想像這樣 一個按鈕後面接了20幾個class 看起來煩躁  <button class="py-2 px-4 bg-blue-500 text-white....">
+Tailwind CSS 有提供自訂 class name 把內建樣式組合方法，像如果我們最後想要用一個 class name 來設定樣式 */
+/* 未來有要修改整體 class的部份 某個class 可以從這裡一次性修改 */
+
+/* 設計差不多樣式的按鈕 可以把重複性的 class 包在一起 做一個.btn之類的 其他額外樣式再寫上給予就好 */
+
+/* ------------------------------------------------------ */
+
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */

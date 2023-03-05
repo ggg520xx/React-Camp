@@ -1,0 +1,1566 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "梁嘉",
+            "nickname": "Kaya",
+            "email": "ggg520xx@gmail.com",
+            "password": "123456"
+        },
+        {
+            "id": 2,
+            "name": "可可",
+            "nickname": "Coco",
+            "email": "god520xx@gmail.com",
+            "password": "123456"
+        }
+    ],
+    "owners": [
+        {
+            "id": 1,
+            "name": "金貝貝",
+            "nickname": "Kim",
+            "email": "Kim@gmail.com",
+            "password": "123456"
+        },
+        {
+            "id": 2,
+            "name": "烏咪",
+            "nickname": "Umi",
+            "email": "Umi@gmail.com",
+            "password": "123456"
+        },
+        {
+            "id": 3,
+            "name": "糖糖",
+            "nickname": "Sugar",
+            "email": "Sugar@gmail.com",
+            "password": "123456"
+        }
+    ],
+    "camps": [
+        {
+            "id": 1,
+            "name": "喵喵露營區",
+            "areaId": 1,
+            "keyword": [
+                "北部",
+                "喵喵",
+                "鬼滅"
+            ],
+            "hotday": 40,
+            "locationId": 1,
+            "tag": {
+                "小木屋營區類": true,
+                "露營車營區類": false,
+                "其他遮蔽建物": false,
+                "僅提供營地類": false,
+                "盥洗淋浴設施": true,
+                "遊樂器材設施": true,
+                "提供租借裝備": false,
+                "供早或晚餐點": true,
+                "供導覽或活動": true,
+                "戲水區": false,
+                "可泡湯": false,
+                "遮雨棚": true,
+                "停車位": true,
+                "高海拔": true,
+                "森林內": false,
+                "大草皮": false,
+                "近溪流": true,
+                "觀雲海": true,
+                "看日出": true
+            },
+            "ownerId": 1,
+            "pet": false,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "highId": 4,
+            "showLogo": "camp1.jpg",
+            "showLowPrice": 1300,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "台北市內湖區"
+        },
+        {
+            "id": 2,
+            "name": "汪汪露營區",
+            "areaId": 2,
+            "keyword": [
+                "中部",
+                "汪汪"
+            ],
+            "hotday": 0,
+            "locationId": 5,
+            "ownerId": 1,
+            "tag": {
+                "小木屋營區類": false,
+                "露營車營區類": true,
+                "其他遮蔽建物": false,
+                "僅提供營地類": false,
+                "盥洗淋浴設施": true,
+                "遊樂器材設施": true,
+                "提供租借裝備": false,
+                "供早或晚餐點": false,
+                "供導覽或活動": true,
+                "戲水區": false,
+                "可泡湯": false,
+                "遮雨棚": false,
+                "停車位": true,
+                "高海拔": false,
+                "森林內": false,
+                "大草皮": true,
+                "近溪流": true,
+                "觀雲海": false,
+                "看日出": false
+            },
+            "pet": false,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "highId": 2,
+            "showLogo": "camp2.jpg",
+            "showLowPrice": 1200,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "苗栗縣大湖鄉"
+        },
+        {
+            "id": 3,
+            "name": "咩咩露營區",
+            "areaId": 3,
+            "keyword": [
+                "南部",
+                "咩咩"
+            ],
+            "hotday": 0,
+            "locationId": 9,
+            "ownerId": 1,
+            "tag": {
+                "小木屋營區類": false,
+                "露營車營區類": false,
+                "其他遮蔽建物": false,
+                "僅提供營地類": true,
+                "盥洗淋浴設施": false,
+                "遊樂器材設施": false,
+                "提供租借裝備": false,
+                "供早或晚餐點": false,
+                "供導覽或活動": false,
+                "戲水區": true,
+                "可泡湯": false,
+                "遮雨棚": true,
+                "停車位": true,
+                "高海拔": false,
+                "森林內": false,
+                "大草皮": false,
+                "近溪流": true,
+                "觀雲海": false,
+                "看日出": true
+            },
+            "pet": false,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "highId": 6,
+            "showLogo": "camp3.jpg",
+            "showLowPrice": 800,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "嘉義縣阿里山鄉"
+        },
+        {
+            "id": 4,
+            "name": "呣呣露營區",
+            "areaId": 4,
+            "keyword": [
+                "東部",
+                "呣呣"
+            ],
+            "hotday": 80,
+            "locationId": 13,
+            "ownerId": 1,
+            "tag": {
+                "小木屋營區類": true,
+                "露營車營區類": false,
+                "其他遮蔽建物": false,
+                "僅提供營地類": false,
+                "盥洗淋浴設施": true,
+                "遊樂器材設施": true,
+                "提供租借裝備": true,
+                "供早或晚餐點": true,
+                "供導覽或活動": true,
+                "戲水區": false,
+                "可泡湯": true,
+                "遮雨棚": false,
+                "停車位": true,
+                "高海拔": false,
+                "森林內": true,
+                "大草皮": false,
+                "近溪流": false,
+                "觀雲海": false,
+                "看日出": true
+            },
+            "pet": false,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "highId": 1,
+            "showLogo": "camp4.png",
+            "showLowPrice": 1200,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "花蓮縣壽豐鄉"
+        },
+        {
+            "id": 5,
+            "name": "啾啾露營區",
+            "areaId": 5,
+            "keyword": [
+                "外島",
+                "啾啾",
+                "浮潛"
+            ],
+            "hotday": 49,
+            "locationId": 15,
+            "ownerId": 2,
+            "tag": {
+                "小木屋營區類": false,
+                "露營車營區類": false,
+                "其他遮蔽建物": true,
+                "僅提供營地類": false,
+                "盥洗淋浴設施": true,
+                "遊樂器材設施": true,
+                "提供租借裝備": true,
+                "供早或晚餐點": false,
+                "供導覽或活動": true,
+                "戲水區": false,
+                "可泡湯": true,
+                "遮雨棚": true,
+                "停車位": false,
+                "高海拔": false,
+                "森林內": true,
+                "大草皮": true,
+                "近溪流": true,
+                "觀雲海": false,
+                "看日出": false
+            },
+            "pet": true,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": true,
+                "不接待訪客": false
+            },
+            "highId": 1,
+            "showLogo": "camp5.png",
+            "showLowPrice": 1000,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "澎湖縣白沙鄉"
+        },
+        {
+            "id": 6,
+            "name": "夢想露營區",
+            "areaId": 1,
+            "keyword": [
+                "北部",
+                "夢想"
+            ],
+            "hotday": 80,
+            "locationId": 2,
+            "ownerId": 2,
+            "tag": {
+                "小木屋營區類": false,
+                "露營車營區類": false,
+                "其他遮蔽建物": false,
+                "僅提供營地類": true,
+                "盥洗淋浴設施": false,
+                "遊樂器材設施": false,
+                "提供租借裝備": true,
+                "供早或晚餐點": false,
+                "供導覽或活動": true,
+                "戲水區": true,
+                "可泡湯": false,
+                "遮雨棚": true,
+                "停車位": true,
+                "高海拔": false,
+                "森林內": false,
+                "大草皮": true,
+                "近溪流": false,
+                "觀雲海": false,
+                "看日出": false
+            },
+            "pet": true,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "highId": 2,
+            "showLogo": "camp6.png",
+            "showLowPrice": 800,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "基隆市暖暖區"
+        },
+        {
+            "id": 7,
+            "name": "心願露營區",
+            "areaId": 2,
+            "keyword": [
+                "中部",
+                "心願"
+            ],
+            "hotday": 90,
+            "locationId": 6,
+            "ownerId": 2,
+            "tag": {
+                "小木屋營區類": true,
+                "露營車營區類": false,
+                "其他遮蔽建物": false,
+                "僅提供營地類": false,
+                "盥洗淋浴設施": true,
+                "遊樂器材設施": true,
+                "提供租借裝備": false,
+                "供早或晚餐點": false,
+                "供導覽或活動": false,
+                "戲水區": false,
+                "可泡湯": false,
+                "遮雨棚": true,
+                "停車位": true,
+                "高海拔": true,
+                "森林內": false,
+                "大草皮": true,
+                "近溪流": false,
+                "觀雲海": false,
+                "看日出": true
+            },
+            "pet": false,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "台中市霧峰區",
+            "highId": 5,
+          "showLogo": "camp7.png",
+            "showLowPrice": 1200,
+            "viewPic": "/path/to/image.jpg"
+        },
+        {
+            "id": 8,
+            "name": "海灣露營區",
+            "areaId": 3,
+            "keyword": [
+                "南部",
+                "海灣"
+            ],
+            "hotday": 0,
+            "locationId": 10,
+            "ownerId": 2,
+            "tag": {
+                "小木屋營區類": false,
+                "露營車營區類": false,
+                "其他遮蔽建物": false,
+                "僅提供營地類": true,
+                "盥洗淋浴設施": true,
+                "遊樂器材設施": true,
+                "提供租借裝備": true,
+                "供早或晚餐點": false,
+                "供導覽或活動": false,
+                "戲水區": false,
+                "可泡湯": true,
+                "遮雨棚": false,
+                "停車位": false,
+                "高海拔": false,
+                "森林內": true,
+                "大草皮": true,
+                "近溪流": false,
+                "觀雲海": false,
+                "看日出": false
+            },
+            "pet": false,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "highId": 2,
+            "showLogo": "camp8.png",
+            "showLowPrice": 800,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "台南市左鎮區"
+        },
+        {
+            "id": 9,
+            "name": "燈塔露營區",
+            "areaId": 4,
+            "keyword": [
+                "東部",
+                "燈塔"
+            ],
+            "hotday": 0,
+            "locationId": 14,
+            "ownerId": 3,
+            "tag": {
+                "小木屋營區類": false,
+                "露營車營區類": false,
+                "其他遮蔽建物": true,
+                "僅提供營地類": false,
+                "盥洗淋浴設施": true,
+                "遊樂器材設施": true,
+                "提供租借裝備": true,
+                "供早或晚餐點": false,
+                "供導覽或活動": true,
+                "戲水區": true,
+                "可泡湯": false,
+                "遮雨棚": true,
+                "停車位": false,
+                "高海拔": false,
+                "森林內": false,
+                "大草皮": true,
+                "近溪流": true,
+                "觀雲海": true,
+                "看日出": true
+            },
+            "pet": true,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "highId": 4,
+            "showLogo": "camp9.png",
+            "showLowPrice": 800,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "台東縣卑南鄉"
+        },
+        {
+            "id": 10,
+            "name": "哄哄露營區",
+            "areaId": 5,
+            "keyword": [
+                "外島",
+                "前線"
+            ],
+            "hotday": 0,
+            "locationId": 16,
+            "ownerId": 3,
+            "tag": {
+                "小木屋營區類": false,
+                "露營車營區類": true,
+                "其他遮蔽建物": false,
+                "僅提供營地類": false,
+                "盥洗淋浴設施": true,
+                "遊樂器材設施": true,
+                "提供租借裝備": false,
+                "供早或晚餐點": false,
+                "供導覽或活動": true,
+                "戲水區": false,
+                "可泡湯": false,
+                "遮雨棚": false,
+                "停車位": true,
+                "高海拔": false,
+                "森林內": false,
+                "大草皮": true,
+                "近溪流": true,
+                "觀雲海": false,
+                "看日出": false
+            },
+            "pet": false,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "highId": 1,
+            "showLogo": "camp10.jpg",
+            "showLowPrice": 1300,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "金門縣金寧鄉"
+        },
+        {
+            "id": 11,
+            "name": "喵喵卡露營區",
+            "areaId": 1,
+            "keyword": [
+                "北部",
+                "基隆"
+            ],
+            "hotday": 0,
+            "locationId": 2,
+            "ownerId": 3,
+            "tag": {
+                "小木屋營區類": true,
+                "露營車營區類": false,
+                "其他遮蔽建物": false,
+                "僅提供營地類": false,
+                "盥洗淋浴設施": true,
+                "遊樂器材設施": true,
+                "提供租借裝備": true,
+                "供早或晚餐點": true,
+                "供導覽或活動": true,
+                "戲水區": false,
+                "可泡湯": true,
+                "遮雨棚": false,
+                "停車位": true,
+                "高海拔": false,
+                "森林內": true,
+                "大草皮": false,
+                "近溪流": true,
+                "觀雲海": false,
+                "看日出": true
+            },
+            "pet": false,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "highId": 4,
+            "showLogo": "camp11.jpg",
+            "showLowPrice": 1300,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "基隆市暖暖區"
+        },
+        {
+            "id": 12,
+            "name": "象山露營場",
+            "areaId": 1,
+            "keyword": [
+                "北部",
+                "喵喵",
+                "象山"
+            ],
+            "hotday": 50,
+            "locationId": 1,
+            "tag": {
+                "小木屋營區類": true,
+                "露營車營區類": false,
+                "其他遮蔽建物": false,
+                "僅提供營地類": false,
+                "盥洗淋浴設施": true,
+                "遊樂器材設施": true,
+                "提供租借裝備": false,
+                "供早或晚餐點": true,
+                "供導覽或活動": true,
+                "戲水區": false,
+                "可泡湯": true,
+                "遮雨棚": true,
+                "停車位": true,
+                "高海拔": false,
+                "森林內": false,
+                "大草皮": false,
+                "近溪流": true,
+                "觀雲海": false,
+                "看日出": false
+            },
+            "ownerId": 1,
+            "pet": false,
+            "open": {
+                "平日": true,
+                "假日": true,
+                "可一日遊": false,
+                "不接受一日遊": true,
+                "接待訪客": false,
+                "不接待訪客": true
+            },
+            "highId": 1,
+            "showLogo": "camp12.png",
+            "showLowPrice": 1300,
+            "viewPic": "/path/to/image.jpg",
+            "tel": [
+                "02-2222222",
+                "0912345678"
+            ],
+            "address": "台北市內湖區碧山路"
+        }
+    ],
+    "photos": [
+        {
+            "id": 1,
+            "image": "p1.jpg",
+            "campId": 1
+        },
+        {
+            "id": 2,
+            "image": "p2.png",
+            "campId": 1
+        },
+        {
+            "id": 3,
+            "image": "p3.png",
+            "campId": 1
+        },
+        {
+            "id": 4,
+            "image": "p4.png",
+            "campId": 1
+        },
+        {
+            "id": 5,
+            "image": "p5.png",
+            "campId": 1
+        },
+        {
+            "id": 6,
+            "image": "p1.jpg",
+            "campId": 2
+        },
+        {
+            "id": 7,
+            "image": "p2.png",
+            "campId": 2
+        },
+        {
+            "id": 8,
+            "image": "p3.jpg",
+            "campId": 2
+        },
+        {
+            "id": 9,
+            "image": "p4.png",
+            "campId": 2
+        },
+        {
+            "id": 10,
+            "image": "p5.png",
+            "campId": 2
+        },
+        {
+            "id": 11,
+            "image": "p1.jpg",
+            "campId": 3
+        },
+        {
+            "id": 12,
+            "image": "p2.jpg",
+            "campId": 3
+        },
+        {
+            "id": 13,
+            "image": "p3.png",
+            "campId": 3
+        },
+        {
+            "id": 14,
+            "image": "p4.png",
+            "campId": 3
+        },
+        {
+            "id": 15,
+            "image": "p5.png",
+            "campId": 3
+        },
+        {
+            "id": 16,
+            "image": "p1.jpg",
+            "campId": 4
+        },
+        {
+            "id": 17,
+            "image": "p2.png",
+            "campId": 4
+        },
+        {
+            "id": 18,
+            "image": "p3.jpg",
+            "campId": 4
+        },
+        {
+            "id": 19,
+            "image": "p4.png",
+            "campId": 4
+        },
+        {
+            "id": 20,
+            "image": "p5.png",
+            "campId": 4
+        },
+        {
+            "id": 21,
+            "image": "p1.jpg",
+            "campId": 5
+        },
+        {
+            "id": 22,
+            "image": "p2.png",
+            "campId": 5
+        },
+        {
+            "id": 23,
+            "image": "p3.png",
+            "campId": 5
+        },
+        {
+            "id": 24,
+            "image": "p4.png",
+            "campId": 5
+        },
+        {
+            "id": 25,
+            "image": "p5.png",
+            "campId": 5
+        },
+        {
+            "id": 26,
+            "image": "p1.jpg",
+            "campId": 6
+        },
+        {
+            "id": 27,
+            "image": "p2.jpg",
+            "campId": 6
+        },
+        {
+            "id": 28,
+            "image": "p3.png",
+            "campId": 6
+        },
+        {
+            "id": 29,
+            "image": "p4.png",
+            "campId": 6
+        },
+        {
+            "id": 30,
+            "image": "p5.png",
+            "campId": 6
+        },
+        {
+            "id": 31,
+            "image": "p1.jpg",
+            "campId": 7
+        },
+        {
+            "id": 32,
+            "image": "p2.png",
+            "campId": 7
+        },
+        {
+            "id": 33,
+            "image": "p3.png",
+            "campId": 7
+        },
+        {
+            "id": 34,
+            "image": "p4.png",
+            "campId": 7
+        },
+        {
+            "id": 35,
+            "image": "p5.jpg",
+            "campId": 7
+        },
+        {
+            "id": 36,
+            "image": "p1.jpg",
+            "campId": 8
+        },
+        {
+            "id": 37,
+            "image": "p2.jpg",
+            "campId": 8
+        },
+        {
+            "id": 38,
+            "image": "p3.png",
+            "campId": 8
+        },
+        {
+            "id": 39,
+            "image": "p4.png",
+            "campId": 8
+        },
+        {
+            "id": 40,
+            "image": "p5.png",
+            "campId": 8
+        },
+        {
+            "id": 41,
+            "image": "p1.jpg",
+            "campId": 9
+        },
+        {
+            "id": 42,
+            "image": "p2.jpg",
+            "campId": 9
+        },
+        {
+            "id": 43,
+            "image": "p3.png",
+            "campId": 9
+        },
+        {
+            "id": 44,
+            "image": "p4.png",
+            "campId": 9
+        },
+        {
+            "id": 45,
+            "image": "p5.jpg",
+            "campId": 9
+        },
+        {
+            "id": 46,
+            "image": "p1.jpg",
+            "campId": 10
+        },
+        {
+            "id": 47,
+            "image": "p2.png",
+            "campId": 10
+        },
+        {
+            "id": 48,
+            "image": "p3.jpg",
+            "campId": 10
+        },
+        {
+            "id": 49,
+            "image": "p4.jpg",
+            "campId": 10
+        },
+        {
+            "id": 50,
+            "image": "p5.png",
+            "campId": 10
+        },
+        {
+            "id": 51,
+            "image": "p1.jpg",
+            "campId": 11
+        },
+        {
+            "id": 52,
+            "image": "p2.png",
+            "campId": 11
+        },
+        {
+            "id": 53,
+            "image": "p3.jpg",
+            "campId": 11
+        },
+        {
+            "id": 54,
+            "image": "p4.png",
+            "campId": 11
+        },
+        {
+            "id": 55,
+            "image": "p5.png",
+            "campId": 11
+        },
+        {
+            "id": 56,
+            "image": "p1.jpg",
+            "campId": 12
+        },
+        {
+            "id": 57,
+            "image": "p2.jpg",
+            "campId": 12
+        },
+        {
+            "id": 58,
+            "image": "p3.png",
+            "campId": 12
+        },
+        {
+            "id": 59,
+            "image": "p4.png",
+            "campId": 12
+        },
+        {
+            "id": 60,
+            "image": "p5.png",
+            "campId": 12
+        }
+    ],
+    "highs": [
+        {
+            "id": 1,
+            "name": "低於 300m"
+        },
+        {
+            "id": 2,
+            "name": "301-500m"
+        },
+        {
+            "id": 3,
+            "name": "501-800m"
+        },
+        {
+            "id": 4,
+            "name": "801-1000m"
+        },
+        {
+            "id": 5,
+            "name": "1001-1200m"
+        },
+        {
+            "id": 6,
+            "name": "1201-1500m"
+        },
+        {
+            "id": 7,
+            "name": "高於 1500m"
+        }
+    ],
+    "campinfos": [
+        {
+            "id": 1,
+            "name": "小木屋星空",
+            "price": 1300,
+            "holiday": 1500,
+            "campId": 1,
+            "available": true,
+            "typeId": 1,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 2,
+            "name": "小木屋夜空",
+            "price": 1500,
+            "holiday": 1700,
+            "campId": 1,
+            "available": true,
+            "typeId": 1,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 3,
+            "name": "舒適露營車",
+            "price": 1200,
+            "holiday": 1500,
+            "campId": 2,
+            "available": true,
+            "typeId": 2,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 4,
+            "name": "寬敞露營車",
+            "price": 1600,
+            "holiday": 1900,
+            "campId": 2,
+            "available": true,
+            "typeId": 2,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 5,
+            "name": "草皮A區",
+            "price": 800,
+            "holiday": 1000,
+            "campId": 3,
+            "available": true,
+            "typeId": 6,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 6,
+            "name": "草皮B區",
+            "price": 900,
+            "holiday": 1100,
+            "campId": 3,
+            "available": true,
+            "typeId": 6,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 7,
+            "name": "木屋雲海",
+            "price": 1200,
+            "holiday": 1400,
+            "campId": 4,
+            "available": true,
+            "typeId": 1,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 8,
+            "name": "木屋蟲鳴",
+            "price": 1300,
+            "holiday": 1500,
+            "campId": 4,
+            "available": true,
+            "typeId": 1,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 9,
+            "name": "水泥管露營1區",
+            "price": 1000,
+            "holiday": 1100,
+            "campId": 5,
+            "available": true,
+            "typeId": 4,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 10,
+            "name": "水泥管露營2區",
+            "price": 1100,
+            "holiday": 1200,
+            "campId": 5,
+            "available": true,
+            "typeId": 4,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 11,
+            "name": "雨棚寧靜A區",
+            "price": 800,
+            "holiday": 1000,
+            "campId": 6,
+            "available": true,
+            "typeId": 5,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 12,
+            "name": "木屋溫暖館",
+            "price": 1200,
+            "holiday": 1500,
+            "campId": 7,
+            "available": true,
+            "typeId": 1,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 13,
+            "name": "夜裡觀星草地區",
+            "price": 800,
+            "holiday": 1000,
+            "campId": 8,
+            "available": true,
+            "typeId": 1,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 14,
+            "name": "向海那漾帳棚",
+            "price": 1600,
+            "holiday": 1900,
+            "campId": 9,
+            "available": true,
+            "typeId": 3,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        },
+        {
+            "id": 15,
+            "name": "戰地露營車",
+            "price": 1300,
+            "holiday": 1500,
+            "campId": 10,
+            "available": true,
+            "typeId": 2,
+            "num": 10,
+            "reserveNum": 0,
+            "zonePic": "/path/to/image.jpg"
+        }
+    ],
+    "feedbacks": [
+        {
+            "id": 1,
+            "campId": 1,
+            "userId": 2,
+            "useNickname": true,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 2,
+            "campId": 2,
+            "userId": 1,
+            "useNickname": true,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 3,
+            "campId": 3,
+            "userId": 2,
+            "useNickname": true,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 4,
+            "campId": 4,
+            "userId": 1,
+            "useNickname": true,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 5,
+            "campId": 5,
+            "userId": 2,
+            "useNickname": true,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 6,
+            "campId": 6,
+            "userId": 1,
+            "useNickname": true,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 7,
+            "campId": 7,
+            "userId": 2,
+            "useNickname": true,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 8,
+            "campId": 8,
+            "userId": 1,
+            "useNickname": true,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 9,
+            "campId": 9,
+            "userId": 2,
+            "useNickname": true,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 10,
+            "campId": 10,
+            "userId": 1,
+            "useNickname": true,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 11,
+            "campId": 1,
+            "userId": 1,
+            "useNickname": false,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        },
+        {
+            "id": 12,
+            "campId": 2,
+            "userId": 2,
+            "useNickname": false,
+            "giveclean": 4.5,
+            "giveservice": 4.5,
+            "giveview": 4.5,
+            "givedevice": 4.5,
+            "givetraffic": 4.5,
+            "comment": "很好玩",
+            "commentDate": "2022-12-02"
+        }
+    ],
+    "stars": [
+        {
+            "id": 1,
+            "campId": 1,
+            "totalStar": 4.5,
+            "clean": 4.5,
+            "service": 4.5,
+            "view": 4.5,
+            "device": 4.5,
+            "traffic": 4.5
+        },
+        {
+            "id": 2,
+            "campId": 2,
+            "totalStar": 4.6,
+            "clean": 4.6,
+            "service": 4.6,
+            "view": 4.6,
+            "device": 4.6,
+            "traffic": 4.6
+        },
+        {
+            "id": 3,
+            "campId": 3,
+            "totalStar": 3.7,
+            "clean": 3.7,
+            "service": 3.7,
+            "view": 3.7,
+            "device": 3.7,
+            "traffic": 3.7
+        },
+        {
+            "id": 4,
+            "campId": 4,
+            "totalStar": 3.7,
+            "clean": 3.7,
+            "service": 3.7,
+            "view": 3.7,
+            "device": 3.7,
+            "traffic": 3.7
+        },
+        {
+            "id": 5,
+            "campId": 5,
+            "totalStar": 4.2,
+            "clean": 4.2,
+            "service": 4.2,
+            "view": 4.2,
+            "device": 4.2,
+            "traffic": 4.2
+        },
+        {
+            "id": 6,
+            "campId": 6,
+            "totalStar": 4.5,
+            "clean": 4.5,
+            "service": 4.5,
+            "view": 4.5,
+            "device": 4.5,
+            "traffic": 4.5
+        },
+        {
+            "id": 7,
+            "campId": 7,
+            "totalStar": 3.6,
+            "clean": 3.6,
+            "service": 3.6,
+            "view": 3.6,
+            "device": 3.6,
+            "traffic": 3.6
+        },
+        {
+            "id": 8,
+            "campId": 8,
+            "totalStar": 3.5,
+            "clean": 3.5,
+            "service": 3.5,
+            "view": 3.5,
+            "device": 3.5,
+            "traffic": 3.5
+        },
+        {
+            "id": 9,
+            "campId": 9,
+            "totalStar": 3.8,
+            "clean": 3.8,
+            "service": 3.8,
+            "view": 3.8,
+            "device": 3.8,
+            "traffic": 3.8
+        },
+        {
+            "id": 10,
+            "campId": 10,
+            "totalStar": 4.3,
+            "clean": 4.3,
+            "service": 4.3,
+            "view": 4.3,
+            "device": 4.3,
+            "traffic": 4.3
+        }
+    ],
+    "types": [
+        {
+            "id": 1,
+            "name": "小木屋"
+        },
+        {
+            "id": 2,
+            "name": "露營車"
+        },
+        {
+            "id": 3,
+            "name": "帳棚"
+        },
+        {
+            "id": 4,
+            "name": "其他建築物"
+        },
+        {
+            "id": 5,
+            "name": "其他遮蔽物"
+        },
+        {
+            "id": 6,
+            "name": "草皮"
+        },
+        {
+            "id": 7,
+            "name": "泥地"
+        }
+    ],
+    "areas": [
+        {
+            "id": 1,
+            "name": "北部營區"
+        },
+        {
+            "id": 2,
+            "name": "中部營區"
+        },
+        {
+            "id": 3,
+            "name": "南部營區"
+        },
+        {
+            "id": 4,
+            "name": "東部營區"
+        },
+        {
+            "id": 5,
+            "name": "外島營區"
+        }
+    ],
+    "locations": [
+        {
+            "id": 1,
+            "name": "雙北",
+            "areaId": 1
+        },
+        {
+            "id": 2,
+            "name": "基隆",
+            "areaId": 1
+        },
+        {
+            "id": 3,
+            "name": "宜蘭",
+            "areaId": 1
+        },
+        {
+            "id": 4,
+            "name": "桃竹",
+            "areaId": 1
+        },
+        {
+            "id": 5,
+            "name": "苗栗",
+            "areaId": 2
+        },
+        {
+            "id": 6,
+            "name": "中彰",
+            "areaId": 2
+        },
+        {
+            "id": 7,
+            "name": "南投",
+            "areaId": 2
+        },
+        {
+            "id": 8,
+            "name": "雲林",
+            "areaId": 2
+        },
+        {
+            "id": 9,
+            "name": "嘉義",
+            "areaId": 3
+        },
+        {
+            "id": 10,
+            "name": "台南",
+            "areaId": 3
+        },
+        {
+            "id": 11,
+            "name": "高雄",
+            "areaId": 3
+        },
+        {
+            "id": 12,
+            "name": "屏東",
+            "areaId": 3
+        },
+        {
+            "id": 13,
+            "name": "花蓮",
+            "areaId": 4
+        },
+        {
+            "id": 14,
+            "name": "台東",
+            "areaId": 4
+        },
+        {
+            "id": 15,
+            "name": "澎湖",
+            "areaId": 5
+        },
+        {
+            "id": 16,
+            "name": "金馬",
+            "areaId": 5
+        }
+    ]
+}

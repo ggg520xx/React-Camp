@@ -1,0 +1,9 @@
+.rdrDateDisplayWrapper {
+    display:none;
+}
+
+
+.rdrCalendarWrapper {
+  transform: translate(-65%, 15%);
+    border: solid #B4E0C5;
+}

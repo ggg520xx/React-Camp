@@ -1,0 +1,59 @@
+// 產出的設定檔包含幾個常用設定，如下
+module.exports = {
+  mode: "jit",
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
+// 上面其中一個指令會生成 postcss.config.js 這個檔案是用來載入 postcss 插件用的
+// 這邊預設會載入 tailwindcss 與 autoprefixer 想要載入其他的插件或設定才會用到這個檔案
+
+  // 預設沒顯示但可使用的設定
+  // prefix: '',
+  // important: false,
+  // separator: ':',
+  // presets: [],
+  // variantOrder: [],
+  // corePlugins: [],
+
+
+// https://ithelp.ithome.com.tw/articles/10254921
+
+// presets 可使用其他預設值替換 Tailwind 的預設值，如果團隊內有自己常用的預設值就可以使用此功能，設定一次之後開新專案時就可以節省許多時間，詳細設定方式可以參考官方
+
+// prefix 會將撰寫的 class 加上自定義的前綴，可防止樣式的衝突，在撰寫插件時常會使用到該功能
+
+// important 控制 css 後方是否加入!important
+// 因為!important 有可能會導致 inline style 無效，或者引發其他權重問題，所以這邊 important 也可設定一個 ID 或 class，編譯時 Tailwind 會加入該選擇器前綴，而不是加上!important
+
+// important 對自定義的 class 無效  也就是防止其他權重問題 但自己定義規則則可以使用
+
+// 照官網提供的方法把 CSS reset 拿掉，在 corePlugins 內新增 preflight: false。
+// 但後續在切版的時候發現設定單邊的 border 時會無法正常設定，
+// 因此最後還是把 CSS reset 給加回來，不僅可以讓 border 正常設定，也讓網頁能夠統一各家瀏覽器的樣式
+
+
+// @apply
+// 是目前比較常用的功能，可以組合多個 CSS 在一個 class 內，類似 funciton 把東西都包好，方便使用。
+
+// 範例
+// 加在 class 裡可以直接讓 div 吃到 @apply 後面的 CSS，讓 HTML 的 code 看起來更簡潔。
+// 記得要在 JS 檔 import 你寫的scss 檔，不然會吃不到你寫的樣式
+
+//   .commentinnerbg {
+//   @apply flex flex - col justify - center items - center bg - white w - 20 h - 20 shadow - md
+// }
+
+
+
+
+
+
+// https://ithelp.ithome.com.tw/articles/10244180
+// 快速了解 Tailwind CSS 的 JIT 模式
