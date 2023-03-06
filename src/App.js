@@ -240,125 +240,125 @@ function App() {
   useEffect(() => {
 
     // 這是立即執行一次 馬上看到成果 可以拔掉 
-    // const updateReservationDate = () => {
+    const updateReservationDate = () => {
 
-    //   const today = new Date();
-    //   const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
-    //   const oneWeekLaterReduce1 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 6);
-    //   const oneWeekLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+      const today = new Date();
+      const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+      const oneWeekLaterReduce1 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 6);
+      const oneWeekLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
 
-    //   // 轉換格式  目前時間 及顯示等
-    //   const todayDate = format(today, 'yyyy-MM-dd');
-    //   const tomorrowDate = format(tomorrow, 'yyyy-MM-dd');
-    //   const oneWeekDate = format(oneWeekLater, 'yyyy-MM-dd');
-    //   const oneWeekDateReduce1 = format(oneWeekLaterReduce1, 'yyyy-MM-dd');
+      // 轉換格式  目前時間 及顯示等
+      const todayDate = format(today, 'yyyy-MM-dd');
+      const tomorrowDate = format(tomorrow, 'yyyy-MM-dd');
+      const oneWeekDate = format(oneWeekLater, 'yyyy-MM-dd');
+      const oneWeekDateReduce1 = format(oneWeekLaterReduce1, 'yyyy-MM-dd');
 
-    //   const todayString = todayDate.toString();  // 標準的日期字串
-    //   const tomorrowString = tomorrowDate.toString();
-    //   const oneWeekString = oneWeekDate.toString();  // 標準的日期字串
-    //   const oneWeekStringReduce1 = oneWeekDateReduce1.toString();  // 標準的日期字串
-
-
-
-    //   // const tomorrowString = tomorrowDate.toISOString();  // 標準的日期字串
-    //   // toISOString() 和 toString() 都是 JavaScript 中 Date 物件的方法，但它們的行為略有不同
+      const todayString = todayDate.toString();  // 標準的日期字串
+      const tomorrowString = tomorrowDate.toString();
+      const oneWeekString = oneWeekDate.toString();  // 標準的日期字串
+      const oneWeekStringReduce1 = oneWeekDateReduce1.toString();  // 標準的日期字串
 
 
 
-    //   // 取得 reservation 資料
-    //   axios.get('http://localhost:3000/campinfos')
-    //     .then((response) => {
-
-    //       const campinfos = response.data;
-    //       // console.log(campinfos)
+      // const tomorrowString = tomorrowDate.toISOString();  // 標準的日期字串
+      // toISOString() 和 toString() 都是 JavaScript 中 Date 物件的方法，但它們的行為略有不同
 
 
 
-    //       campinfos.forEach((campinfo, index) => {
+      // 取得 reservation 資料
+      axios.get('http://localhost:3000/campinfos')
+        .then((response) => {
 
-    //         // console.log(campinfo.reservation)
-    //         // console.log(todayString)
-
-    //         const reservation = campinfo.reservation;
-    //         // console.log(reservation)
-    //         if (reservation[0].date !== todayString) {
-    //           if (reservation[1].date == todayString) {
-    //             reservation.shift()  // 不是今日的拔除
-    //             reservation.push({    // 增添一個新日期的都拔除直到沒有
-    //               "date": oneWeekString,
-    //               "num": 10
-    //             })
-    //             axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
-    //               reservation
-    //             });
-    //           }
-    //           if (reservation[2].date == todayString) {
-
-    //             reservation.shift()  // 不是今日的拔除
-    //             reservation.shift()  // 不是今日的拔除
-
-    //             reservation.push({    // 增添一個新日期的都拔除直到沒有
-    //               "date": oneWeekStringReduce1,
-    //               "num": 10
-    //             })
-
-    //             reservation.push({    // 增添一個新日期的都拔除直到沒有
-    //               "date": oneWeekString,
-    //               "num": 10
-    //             })
+          const campinfos = response.data;
+          // console.log(campinfos)
 
 
-    //             axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
-    //               reservation
-    //             });
-    //           }
-    //           else {
 
-    //             for (let i = 0; i < 8; i++) {
-    //               console.log(i);  // 會跑8次 01234567
-    //               reservation.shift()
+          campinfos.forEach((campinfo, index) => {
 
-    //               const datePush = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
-    //               const datePushFormat = format(datePush, 'yyyy-MM-dd');
-    //               const datePushString = datePushFormat.toString();
+            // console.log(campinfo.reservation)
+            // console.log(todayString)
 
-    //               reservation.push({    // 增添一個新日期的都拔除直到沒有
-    //                 "date": datePushString,
-    //                 "num": 10
-    //               })
-    //             }
-    //             axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
-    //               reservation
-    //             });
-    //           }
-    //         }
-    //         else {
-    //           return
-    //         }
+            const reservation = campinfo.reservation;
+            // console.log(reservation)
+            if (reservation[0].date !== todayString) {
+              if (reservation[1].date == todayString) {
+                reservation.shift()  // 不是今日的拔除
+                reservation.push({    // 增添一個新日期的都拔除直到沒有
+                  "date": oneWeekString,
+                  "num": 10
+                })
+                axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+                  reservation
+                });
+              }
+              if (reservation[2].date == todayString) {
 
-    //       })
+                reservation.shift()  // 不是今日的拔除
+                reservation.shift()  // 不是今日的拔除
 
-    //     })
+                reservation.push({    // 增添一個新日期的都拔除直到沒有
+                  "date": oneWeekStringReduce1,
+                  "num": 10
+                })
+
+                reservation.push({    // 增添一個新日期的都拔除直到沒有
+                  "date": oneWeekString,
+                  "num": 10
+                })
 
 
-    //     // 跑一個重複檢測 沒有更改到日期就再執行篩選到更改完畢
-    //     .then(function () {
-    //       axios.get('http://localhost:3000/campinfos')
-    //         .then((response) => {
+                axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+                  reservation
+                });
+              }
+              else {
+
+                for (let i = 0; i < 8; i++) {
+                  console.log(i);  // 會跑8次 01234567
+                  reservation.shift()
+
+                  const datePush = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+                  const datePushFormat = format(datePush, 'yyyy-MM-dd');
+                  const datePushString = datePushFormat.toString();
+
+                  reservation.push({    // 增添一個新日期的都拔除直到沒有
+                    "date": datePushString,
+                    "num": 10
+                  })
+                }
+                axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+                  reservation
+                });
+              }
+            }
+            else {
+              return
+            }
+
+          })
+
+        })
+
+
+        // 跑一個重複檢測 沒有更改到日期就再執行篩選到更改完畢
+        .then(function () {
+          axios.get('http://localhost:3000/campinfos')
+            .then((response) => {
              
-    //           // console.log(response.data)
-    //           const campinfosTwo = response.data;
-    //           campinfosTwo.forEach((campinfo, index) => {
-    //             const reservationTwo = campinfo.reservation;
-    //             if (reservationTwo[0].date !== todayString) {
-    //               updateReservationDate()
-    //             }
-    //           })
-    //         })
-    //     })
+              // console.log(response.data)
+              const campinfosTwo = response.data;
+              campinfosTwo.forEach((campinfo, index) => {
+                const reservationTwo = campinfo.reservation;
+                if (reservationTwo[0].date !== todayString) {
+                  updateReservationDate()
+                }
+              })
+            })
+        })
 
-    // }
-    // updateReservationDate();
+    }
+    updateReservationDate();
 
 
 
