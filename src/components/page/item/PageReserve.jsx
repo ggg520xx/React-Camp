@@ -148,6 +148,22 @@ const PageReserve = (props) => {
 
 
 
+
+    // ${item.zonePic} 一定有欄位 因此他不會跑 ：後面的false段落 ,他一定跑前面那段 true段落
+    // 我要怎麼做才能在API JSON資料夾 跑true該欄位 卻不會因沒有該檔名檔案 而造成一片空白
+    // 可以在 import 圖片時加上 try-catch，如果找不到該圖片，就讓它 import 預設圖片（例如 ga1）
+    function getImage() {
+        try {
+            const img = require(`../../../../assets/campPhoto/${id}/zone/${item.zonePic}`);
+            return <img className='h-[160px] w-full object-cover' src={img} alt="" />;
+        } catch (err) {
+            return <img className='h-[160px] w-full object-cover' src={ga1} alt="" />;
+        }
+    }
+
+
+
+
     return (
         <>
             <div className='mt-5 relative bg-gray-100 w-full px-8 py-5  h-full shadow-xl rounded-md border-gray-200 border' id="section-reserve">
@@ -174,10 +190,22 @@ const PageReserve = (props) => {
                                 <div className="col-3 pl-0">
 
 
-                                    {/* 原本的架構路徑 */}
+                                    {/* 原本的html jsx架構路徑 */}
                                     {/* <img className='h-[160px] w-full object-cover' src={ga1} alt="" /> */}
 
-                                    
+
+
+                                    {/* 原本讓他跑true或false但一定有此欄位會造成空白一片 改成函式getImage()引入  */}
+                                    <div>{getImage()}</div>
+
+
+                                    {/* 這段是我一直常用的寫法 但資料夾會沒有同檔名圖片就一片空白 因此捨棄此寫那種ㄋ法 */}
+                                    {/* {item?.zonePic ? <img className='h-[160px] w-full object-cover' src={require(`../../../../assets/campPhoto/${id}/zone/${item.zonePic}`)} alt="" /> : null} */}
+
+
+
+
+
                                 </div>
 
                                 <div className="col-3  relative ">
