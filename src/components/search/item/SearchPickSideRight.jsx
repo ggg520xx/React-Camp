@@ -55,7 +55,10 @@ const SearchPickSideRight = (props) => {
         setviewSunrise(false);
 
         setTagValues([]);
-        setcampDataResult(campDataFilter)
+        
+        // 原本按清空會跳回預設 因為我寫了改變數值 會去 執行搜尋的useEffect 
+        // 但我要讓使用者回到原本所選的排序 才是正常的
+        // setcampDataResult(campDataFilter)
 
         setcampDataNum(campDataFilter?.length)
 

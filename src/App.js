@@ -161,6 +161,7 @@ function App() {
   const startFilters = () => {
 
 
+    console.log('執行一次了')
 
     // console.log(campDataFilter)
     // console.log(result)
@@ -227,8 +228,15 @@ function App() {
     }
 
   }
-  useEffect(startFilters, [campDataFilter, campDataPrice]);
 
+  useEffect(startFilters, [campDataFilter, campDataPrice, campDataNum]);
+  // 原本有個問題是 我篩選搜尋 按清空後他會跳回 預設排序 我要讓使用者回到他原本的排序不變
+  // 因此我在 SearchPickSideRight的jsx清空按鈕 註解了某一段會改變數值的set
+
+  // 這邊是點擊畫面上 就會立刻執行追蹤點擊的 若是我在這寫了 tagvalues 他就會跳過點擊執行
+  // 不符合我寫在那的 因此我改為 搜尋結果數目 因為那是我點擊 清空才會改變的數值 由這邊來監控
+
+  // 我可以測試點擊 基隆 再用價格排序
 
 
 
@@ -237,285 +245,380 @@ function App() {
 
 
   // 進行db.json的當日更新
-  useEffect(() => {
 
-    // 這是立即執行一次 馬上看到成果 可以拔掉 
-    const updateReservationDate = () => {
+  // useEffect(() => {
 
-      const today = new Date();
-      const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
-      const oneWeekLaterReduce1 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 6);
-      const oneWeekLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+  //   // 這是立即執行一次 馬上看到成果 可以拔掉 
+  //   const updateReservationDate = () => {
 
-      // 轉換格式  目前時間 及顯示等
-      const todayDate = format(today, 'yyyy-MM-dd');
-      const tomorrowDate = format(tomorrow, 'yyyy-MM-dd');
-      const oneWeekDate = format(oneWeekLater, 'yyyy-MM-dd');
-      const oneWeekDateReduce1 = format(oneWeekLaterReduce1, 'yyyy-MM-dd');
-
-      const todayString = todayDate.toString();  // 標準的日期字串
-      const tomorrowString = tomorrowDate.toString();
-      const oneWeekString = oneWeekDate.toString();  // 標準的日期字串
-      const oneWeekStringReduce1 = oneWeekDateReduce1.toString();  // 標準的日期字串
-
-
-
-      // const tomorrowString = tomorrowDate.toISOString();  // 標準的日期字串
-      // toISOString() 和 toString() 都是 JavaScript 中 Date 物件的方法，但它們的行為略有不同
+  //     const today = new Date();
+  //     const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+  //     const oneWeekLaterReduce1 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 6);
+  //     const oneWeekLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
 
+  //     // 轉換格式  目前時間 及顯示等
+  //     const todayDate = format(today, 'yyyy-MM-dd');
+  //     const tomorrowDate = format(tomorrow, 'yyyy-MM-dd');
+  //     const oneWeekDate = format(oneWeekLater, 'yyyy-MM-dd');
+  //     const oneWeekDateReduce1 = format(oneWeekLaterReduce1, 'yyyy-MM-dd');
 
+  //     const todayString = todayDate.toString();  // 標準的日期字串
+  //     const tomorrowString = tomorrowDate.toString();
+  //     const oneWeekString = oneWeekDate.toString();  // 標準的日期字串
+  //     const oneWeekStringReduce1 = oneWeekDateReduce1.toString();  // 標準的日期字串
 
-      // 取得 reservation 資料
-      axios.get('http://localhost:3000/campinfos')
-        .then((response) => {
 
-          const campinfos = response.data;
-          // console.log(campinfos)
 
+  //     // const tomorrowString = tomorrowDate.toISOString();  // 標準的日期字串
+  //     // toISOString() 和 toString() 都是 JavaScript 中 Date 物件的方法，但它們的行為略有不同
 
 
-          campinfos.forEach((campinfo, index) => {
 
-            // console.log(campinfo.reservation)
-            // console.log(todayString)
+  //     // 取得 reservation 資料
+  //     axios.get('http://localhost:3000/campinfos')
+  //       .then((response) => {
 
-            const reservation = campinfo.reservation;
-            // console.log(reservation)
-            if (reservation[0].date !== todayString) {
-              if (reservation[1].date == todayString) {
-                reservation.shift()  // 不是今日的拔除
-                reservation.push({    // 增添一個新日期的都拔除直到沒有
-                  "date": oneWeekString,
-                  "num": 10
-                })
-                axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
-                  reservation
-                });
-              }
-              if (reservation[2].date == todayString) {
+  //         const campinfos = response.data;
+  //         // console.log(campinfos)
 
-                reservation.shift()  // 不是今日的拔除
-                reservation.shift()  // 不是今日的拔除
 
-                reservation.push({    // 增添一個新日期的都拔除直到沒有
-                  "date": oneWeekStringReduce1,
-                  "num": 10
-                })
 
-                reservation.push({    // 增添一個新日期的都拔除直到沒有
-                  "date": oneWeekString,
-                  "num": 10
-                })
+  //         campinfos.forEach((campinfo, index) => {
 
+  //           // console.log(campinfo.reservation)
+  //           // console.log(todayString)
 
-                axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
-                  reservation
-                });
-              }
-              else {
+  //           const reservation = campinfo.reservation;
+  //           // console.log(reservation)
+  //           if (reservation[0].date !== todayString) {
 
-                for (let i = 0; i < 8; i++) {
-                  console.log(i);  // 會跑8次 01234567
-                  reservation.shift()
 
-                  const datePush = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
-                  const datePushFormat = format(datePush, 'yyyy-MM-dd');
-                  const datePushString = datePushFormat.toString();
+  //             if (reservation[1].date == todayString) {
+  //               reservation.shift()  // 不是今日的拔除
+  //               reservation.push({    // 增添一個新日期的都拔除直到沒有
+  //                 "date": oneWeekString,
+  //                 "num": 10
+  //               })
+  //               axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+  //                 reservation
+  //               });
+  //             }
+  //             if (reservation[2].date == todayString) {
 
-                  reservation.push({    // 增添一個新日期的都拔除直到沒有
-                    "date": datePushString,
-                    "num": 10
-                  })
-                }
-                axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
-                  reservation
-                });
-              }
-            }
-            else {
-              return
-            }
+  //               reservation.shift()  // 不是今日的拔除
+  //               reservation.shift()  // 不是今日的拔除
 
-          })
+  //               reservation.push({    // 增添一個新日期的都拔除直到沒有
+  //                 "date": oneWeekStringReduce1,
+  //                 "num": 10
+  //               })
 
-        })
+  //               reservation.push({    // 增添一個新日期的都拔除直到沒有
+  //                 "date": oneWeekString,
+  //                 "num": 10
+  //               })
 
 
-        // 跑一個重複檢測 沒有更改到日期就再執行篩選到更改完畢
-        .then(function () {
-          axios.get('http://localhost:3000/campinfos')
-            .then((response) => {
-             
-              // console.log(response.data)
-              const campinfosTwo = response.data;
-              campinfosTwo.forEach((campinfo, index) => {
-                const reservationTwo = campinfo.reservation;
-                if (reservationTwo[0].date !== todayString) {
-                  updateReservationDate()
-                }
-              })
-            })
-        })
+  //               axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+  //                 reservation
+  //               });
+  //             }
+  //             else {
 
-    }
-    updateReservationDate();
+  //               for (let i = 0; i < 8; i++) {
+  //                 console.log(i);  // 會跑8次 01234567
+  //                 reservation.shift()
 
+  //                 const datePush = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+  //                 const datePushFormat = format(datePush, 'yyyy-MM-dd');
+  //                 const datePushString = datePushFormat.toString();
 
-
-
-
-    // -----------------------------------------------------------------------
-    // 設定每天 00:00 執行一次
-    const now = new Date();
-    const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
-    const timeout = nextMidnight.getTime() - now.getTime();
-
-    setTimeout(() => {
-      const intervalId = setInterval(() => {
-
-        // 這邊和上面立即執行一樣 是設定成每日更新一次
-        // ----------------------
-        const updateReservationDate = () => {
-
-          const today = new Date();
-          const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
-          const oneWeekLaterReduce1 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 6);
-          const oneWeekLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
-
-          // 轉換格式  目前時間 及顯示等
-          const todayDate = format(today, 'yyyy-MM-dd');
-          const tomorrowDate = format(tomorrow, 'yyyy-MM-dd');
-          const oneWeekDate = format(oneWeekLater, 'yyyy-MM-dd');
-          const oneWeekDateReduce1 = format(oneWeekLaterReduce1, 'yyyy-MM-dd');
-
-          const todayString = todayDate.toString();  // 標準的日期字串
-          const tomorrowString = tomorrowDate.toString();
-          const oneWeekString = oneWeekDate.toString();  // 標準的日期字串
-          const oneWeekStringReduce1 = oneWeekDateReduce1.toString();  // 標準的日期字串
-
-
-
-          // const tomorrowString = tomorrowDate.toISOString();  // 標準的日期字串
-          // toISOString() 和 toString() 都是 JavaScript 中 Date 物件的方法，但它們的行為略有不同
-
-
-
-          // 取得 reservation 資料
-          axios.get('http://localhost:3000/campinfos')
-            .then((response) => {
-
-              const campinfos = response.data;
-              // console.log(campinfos)
-
-
-
-              campinfos.forEach((campinfo, index) => {
-
-                // console.log(campinfo.reservation)
-                // console.log(todayString)
-
-                const reservation = campinfo.reservation;
-                // console.log(reservation)
-                if (reservation[0].date !== todayString) {
-                  if (reservation[1].date == todayString) {
-                    reservation.shift()  // 不是今日的拔除
-                    reservation.push({    // 增添一個新日期的都拔除直到沒有
-                      "date": oneWeekString,
-                      "num": 10
-                    })
-                    axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
-                      reservation
-                    });
-                  }
-                  if (reservation[2].date == todayString) {
-
-                    reservation.shift()  // 不是今日的拔除
-                    reservation.shift()  // 不是今日的拔除
-
-                    reservation.push({    // 增添一個新日期的都拔除直到沒有
-                      "date": oneWeekStringReduce1,
-                      "num": 10
-                    })
-
-                    reservation.push({    // 增添一個新日期的都拔除直到沒有
-                      "date": oneWeekString,
-                      "num": 10
-                    })
-
-
-                    axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
-                      reservation
-                    });
-                  }
-                  else {
-
-                    for (let i = 0; i < 8; i++) {
-                      console.log(i);  // 會跑8次 01234567
-                      reservation.shift()
-
-                      const datePush = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
-                      const datePushFormat = format(datePush, 'yyyy-MM-dd');
-                      const datePushString = datePushFormat.toString();
-
-                      reservation.push({    // 增添一個新日期的都拔除直到沒有
-                        "date": datePushString,
-                        "num": 10
-                      })
-                    }
-                    axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
-                      reservation
-                    });
-                  }
-                }
-                else {
-                  return
-                }
-
-              })
-
-            })
-
-
-            // 跑一個重複檢測 沒有更改到日期就再執行篩選到更改完畢
-            .then(function () {
-              axios.get('http://localhost:3000/campinfos')
-                .then((response) => {
-
-                  // console.log(response.data)
-                  const campinfosTwo = response.data;
-                  campinfosTwo.forEach((campinfo, index) => {
-                    const reservationTwo = campinfo.reservation;
-                    if (reservationTwo[0].date !== todayString) {
-                      updateReservationDate()
-                    }
-                  })
-                })
-            })
-
-        }
-        updateReservationDate();
-        // ----------------------
-
-      }, 24 * 60 * 60 * 1000); // 24小時 * 60分鐘 * 60秒 * 1000毫秒
-
-      // 返回清除函數以停止interval計時器
-      return () => {
-        clearInterval(intervalId);
-      };
-    }, timeout);
-    // -----------------------------------------------------------------------
-
-    // 返回清除函數以停止setTimeout計時器
-    return () => {
-      clearTimeout(timeout);
-    };
-
-  }, []);
+  //                 reservation.push({    // 增添一個新日期的都拔除直到沒有
+  //                   "date": datePushString,
+  //                   "num": 10
+  //                 })
+  //               }
+  //               axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+  //                 reservation
+  //               });
+  //             }
+  //           }
+  //           else {
+  //             return
+  //           }
+
+  //         })
+
+  //       })
+
+
+  //       // 跑一個重複檢測 沒有更改到日期就再執行篩選到更改完畢
+  //       .then(function () {
+  //         axios.get('http://localhost:3000/campinfos')
+  //           .then((response) => {
+
+  //             // console.log(response.data)
+  //             const campinfosTwo = response.data;
+  //             campinfosTwo.forEach((campinfo, index) => {
+  //               const reservationTwo = campinfo.reservation;
+  //               if (reservationTwo[0].date !== todayString) {
+  //                 updateReservationDate()
+  //               }
+  //             })
+  //           })
+  //       })
+
+  //   }
+  //   updateReservationDate();
+
+
+  //   // -----------------------------------------------------------------------
+  //   // 設定每天 00:00 執行一次
+  //   const now = new Date();
+  //   const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+  //   const timeout = nextMidnight.getTime() - now.getTime();
+
+  //   setTimeout(() => {
+  //     const intervalId = setInterval(() => {
+
+  //       // 這邊和上面立即執行一樣 是設定成每日更新一次
+  //       // ----------------------
+  //       const updateReservationDate = () => {
+
+  //         const today = new Date();
+  //         const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+  //         const oneWeekLaterReduce1 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 6);
+  //         const oneWeekLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+
+  //         // 轉換格式  目前時間 及顯示等
+  //         const todayDate = format(today, 'yyyy-MM-dd');
+  //         const tomorrowDate = format(tomorrow, 'yyyy-MM-dd');
+  //         const oneWeekDate = format(oneWeekLater, 'yyyy-MM-dd');
+  //         const oneWeekDateReduce1 = format(oneWeekLaterReduce1, 'yyyy-MM-dd');
+
+  //         const todayString = todayDate.toString();  // 標準的日期字串
+  //         const tomorrowString = tomorrowDate.toString();
+  //         const oneWeekString = oneWeekDate.toString();  // 標準的日期字串
+  //         const oneWeekStringReduce1 = oneWeekDateReduce1.toString();  // 標準的日期字串
+
+  //         // const tomorrowString = tomorrowDate.toISOString();  // 標準的日期字串
+  //         // toISOString() 和 toString() 都是 JavaScript 中 Date 物件的方法，但它們的行為略有不同
+
+  //         // 取得 reservation 資料
+  //         axios.get('http://localhost:3000/campinfos')
+  //           .then((response) => {
+
+  //             const campinfos = response.data;
+  //             // console.log(campinfos)
+
+
+
+  //             campinfos.forEach((campinfo, index) => {
+
+  //               // console.log(campinfo.reservation)
+  //               // console.log(todayString)
+
+  //               const reservation = campinfo.reservation;
+  //               // console.log(reservation)
+  //               if (reservation[0].date !== todayString) {
+  //                 if (reservation[1].date == todayString) {
+  //                   reservation.shift()  // 不是今日的拔除
+  //                   reservation.push({    // 增添一個新日期的都拔除直到沒有
+  //                     "date": oneWeekString,
+  //                     "num": 10
+  //                   })
+  //                   axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+  //                     reservation
+  //                   });
+  //                 }
+  //                 if (reservation[2].date == todayString) {
+
+  //                   reservation.shift()  // 不是今日的拔除
+  //                   reservation.shift()  // 不是今日的拔除
+
+  //                   reservation.push({    // 增添一個新日期的都拔除直到沒有
+  //                     "date": oneWeekStringReduce1,
+  //                     "num": 10
+  //                   })
+
+  //                   reservation.push({    // 增添一個新日期的都拔除直到沒有
+  //                     "date": oneWeekString,
+  //                     "num": 10
+  //                   })
+
+  //                   axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+  //                     reservation
+  //                   });
+  //                 }
+  //                 else {
+
+  //                   for (let i = 0; i < 8; i++) {
+  //                     console.log(i);  // 會跑8次 01234567
+  //                     reservation.shift()
+
+  //                     const datePush = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+  //                     const datePushFormat = format(datePush, 'yyyy-MM-dd');
+  //                     const datePushString = datePushFormat.toString();
+
+  //                     reservation.push({    // 增添一個新日期的都拔除直到沒有
+  //                       "date": datePushString,
+  //                       "num": 10
+  //                     })
+  //                   }
+  //                   axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+  //                     reservation
+  //                   });
+  //                 }
+  //               }
+  //               else {
+  //                 return
+  //               }
+  //             })
+  //           })
+
+  //           // 跑一個重複檢測 沒有更改到日期就再執行篩選到更改完畢
+  //           .then(function () {
+  //             axios.get('http://localhost:3000/campinfos')
+  //               .then((response) => {
+
+  //                 // console.log(response.data)
+  //                 const campinfosTwo = response.data;
+  //                 campinfosTwo.forEach((campinfo, index) => {
+  //                   const reservationTwo = campinfo.reservation;
+  //                   if (reservationTwo[0].date !== todayString) {
+  //                     updateReservationDate()
+  //                   }
+  //                 })
+  //               })
+  //           })
+
+  //       }
+  //       updateReservationDate();
+  //       // ----------------------
+
+  //     }, 24 * 60 * 60 * 1000); // 24小時 * 60分鐘 * 60秒 * 1000毫秒
+
+  //     // 返回清除函數以停止interval計時器
+  //     return () => {
+  //       clearInterval(intervalId);
+  //     };
+  //   }, timeout);
+  //   // -----------------------------------------------------------------------
+
+  //   // 返回清除函數以停止setTimeout計時器
+  //   return () => {
+  //     clearTimeout(timeout);
+  //   };
+
+  // }, []);
 
 
   // clearTimeout 和 clearInterval 是 JavaScript 原生的函數，用於停止分別使用 setTimeout 和 setInterval 創建的計時器。這兩個函數可以清除指定的計時器
   // return () => { clearInterval(intervalId); };：這個函式是在元件卸載時會被呼叫，用來清除之前設定的 setInterval 定時器。clearInterval(intervalId) 會停止定時器的執行。
   // return () => { clearTimeout(timeout); };：這個函式是在元件卸載時會被呼叫，用來清除之前設定的 setTimeout 定時器。clearTimeout(timeout) 會取消已經排程但尚未執行的定時器。
+
+
+
+
+
+
+  // 跟上面一樣 只是修改過使用async/await和setTimeout函數來使forEach延遲執行下一筆延遲每次的 forEach，讓每個元素之間有一些間隔時間
+  // 將 campinfos.forEach() 包裝在一個 async 函數中，然後在迭代過程中使用 await new Promise(resolve => setTimeout(resolve, 1000))，讓每次迭代之間暫停 1 秒鐘。這樣可以確保每個 axios.patch 請求完成之後再進行下一次迭代
+
+  // 使用了 for...of 迴圈來替代 forEach，因為 for...of 可以在每次迭代之間暫停等待，而 forEach 不行。同時，我們使用 await 等待每次 axios.get 請求完成後再進行下一步操作。最後，我們在 useEffect 中調用 updateReservationDate 函數，以便在組件加載時立即啟動它
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const updateReservationDate = async () => {
+    const today = new Date();
+    const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    const oneWeekLaterReduce1 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 6);
+    const oneWeekLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+
+    const todayDate = format(today, 'yyyy-MM-dd');
+    const tomorrowDate = format(tomorrow, 'yyyy-MM-dd');
+    const oneWeekDate = format(oneWeekLater, 'yyyy-MM-dd');
+    const oneWeekDateReduce1 = format(oneWeekLaterReduce1, 'yyyy-MM-dd');
+
+    const todayString = todayDate.toString();
+    const tomorrowString = tomorrowDate.toString();
+    const oneWeekString = oneWeekDate.toString();
+    const oneWeekStringReduce1 = oneWeekDateReduce1.toString();
+
+    const response = await axios.get('http://localhost:3000/campinfos');
+    const campinfos = response.data;
+
+    for (const campinfo of campinfos) {
+      const reservation = campinfo.reservation;
+
+      if (reservation[0].date !== todayString) {
+        if (reservation[1].date === todayString) {
+          reservation.shift();
+          reservation.push({
+            "date": oneWeekString,
+            "num": 10
+          });
+          await axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+            reservation
+          });
+        } else if (reservation[2].date === todayString) {
+          reservation.shift();
+          reservation.shift();
+
+          reservation.push({
+            "date": oneWeekStringReduce1,
+            "num": 10
+          });
+
+          reservation.push({
+            "date": oneWeekString,
+            "num": 10
+          });
+
+          await axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+            reservation
+          });
+        } else {
+          for (let i = 0; i < 8; i++) {
+            console.log(i);
+            reservation.shift();
+
+            const datePush = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+            const datePushFormat = format(datePush, 'yyyy-MM-dd');
+            const datePushString = datePushFormat.toString();
+
+            reservation.push({
+              "date": datePushString,
+              "num": 10
+            });
+
+            await delay(500); // 每次延遲 500ms
+          }
+
+          await axios.patch(`http://localhost:3000/campinfos/${campinfo.id}`, {
+            reservation
+          });
+        }
+      }
+    }
+
+    const responseTwo = await axios.get('http://localhost:3000/campinfos');
+    const campinfosTwo = responseTwo.data;
+
+    for (const campinfo of campinfosTwo) {
+      const reservationTwo = campinfo.reservation;
+
+      if (reservationTwo[0].date !== todayString) {
+        await updateReservationDate();
+        break;
+      }
+    }
+  }
+
+  useEffect(() => {
+    updateReservationDate();
+  }, []);
+
 
 
 

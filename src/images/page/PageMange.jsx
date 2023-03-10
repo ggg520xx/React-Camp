@@ -16,8 +16,9 @@ import view from './collect/view.png';
 
 import ga1 from './collect/ga1.jpg';
 import ga2 from './collect/ga2.jpg';
+import pic404 from './collect/pic404.png';
 
 
 
 
-export { p1, p2, p3, p4, p5, solidstar, halfstar, emptystar, view, ga1, ga2 } 
+export { p1, p2, p3, p4, p5, solidstar, halfstar, emptystar, view, ga1, ga2, pic404 } 
