@@ -83,16 +83,10 @@ const SearchPickSideRight = (props) => {
 
 
 
-    // 點擊排序讀取出來的值
+    // 點擊排序讀取出來的值 點擊到的value set出去
     const handleChange = (e) => {
 
         console.log(e.target.value)
-
-
-
-
-
-
  
         if (e.target.value === 'hotFilter') {
             setcampDataPrice('hotFilter')

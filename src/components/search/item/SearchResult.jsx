@@ -172,7 +172,8 @@ const SearchResult = (props) => {
     // 結果 藉由執行搜尋 傳過來了
 
 
-    
+    console.log(campData)
+    console.log(campDataResult)
 
 
 
@@ -300,7 +301,7 @@ const SearchResult = (props) => {
 
                                             <h6 className="">
                                                 <span className='text-p_color text-3xl font-bold'>${item.showLowPrice}</span>
-                                                <span className='font-bold'>/ 晚</span>
+                                                <span className='font-bold'> 起  /  每晚</span>
                                             </h6>
 
                                         </div>

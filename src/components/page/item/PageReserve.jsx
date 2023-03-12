@@ -279,8 +279,8 @@ const PageReserve = (props) => {
 
 
 
-
-
+    const today = new Date().getDay();
+    const isWeekday = today > 0 && today < 6; // 0 是星期日，6 是星期六
 
 
 
@@ -425,8 +425,10 @@ const PageReserve = (props) => {
 
 
                                         <h6 className="flex flex-col">
-                                            <span className='text-p_color text-3xl font-bold'>$1300</span>
-                                            <span className='font-bold'>/ (平日價)1晚</span>
+
+                                            {isWeekday ? <span className='text-p_color text-3xl font-bold'>${item.price}</span> : <span className='text-p_color text-3xl font-bold'>${item.holiday}</span>}
+
+                                            <span className='font-bold'>/ 1晚 ({isWeekday ? '平日' : '假日'}價) </span>
                                         </h6>
 
                                         {/* disabled={pageReserveDisable === true} */}

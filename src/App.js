@@ -5,7 +5,7 @@
 
 import './style/App.css';
 // import { Link, useNavigate } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Layout from './components/layout/Layout'
 import Home from './components/home/Home'
@@ -37,7 +37,7 @@ import NotFound from './components/NotFound'
 
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 import { format, eachDayOfInterval } from 'date-fns';
@@ -50,6 +50,8 @@ import { MyTagShowHide } from './hooks/useContext/TagShowHide';
 
 function App() {
 
+  // 一定要這段
+  const navigate = useNavigate();
 
 
   // 全露營地Get
@@ -140,19 +142,84 @@ function App() {
 
 
 
-  let token = localStorage.getItem('token');
+  // let token = localStorage.getItem('token');
   // 登入狀態
   const [loginStatus, setLoginStatus] = useState(false);
+  const token = localStorage.getItem('token');
+  const timeoutRef = useRef(null);
+
+
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      // localStorage 中存在名为 'token' 的项
-      console.log('登入了')
+    // 绑定事件监听器
+    document.addEventListener('mousemove', handleUserActivity);
+    document.addEventListener('keypress', handleUserActivity);
+
+    return () => {
+      // 卸载组件时移除事件监听器
+      document.removeEventListener('mousemove', handleUserActivity);
+      document.removeEventListener('keypress', handleUserActivity);
+      clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+
+
+  // token 的值發生變化時，我們會先檢查 localStorage 中是否有名為 'token' 的項。如果有的話，我們將 loginStatus 狀態設置為 true，表示用戶已經登錄了
+
+  useEffect(() => {
+    // /當 token 的值發生改變時，我們會檢查 localStorage 中是否存在名為 'token' 的項。如果存在，我們將 loginStatus 狀態設置為 true，表示用戶已經登錄
+    if (token && typeof token === 'string') {
+      setLoginStatus(true);
+
+      // 同時執行這個 重置計時器 檢查用戶有沒有持續進行動作 沒有動作會倒數
+      handleUserActivity();
+
     } else {
-      // localStorage 中不存在名为 'token' 的项
-      setLoginStatus(false)
+      // 如果在 useEffect中token的值沒有改變，我們只需將 loginStatus 狀態設為 false表示用戶未登錄
+      setLoginStatus(false);
     }
+
+    // 最後，我們使用 return 語句返回一個清除計時器的函數，以確保在元件卸載時清除計時器。
+    // 這樣做可以避免出現內存泄漏的問題
+    // 元件卸載指的是當React組件被從畫面中卸載並從DOM樹中刪除時發生的事件
+    return () => clearTimeout(timeoutRef.current);
   }, [token]);
+
+  // 用户進行動作會重置計時給予10分鐘 在上面有寫一個執行重置計時  沒動靜就執行下列移除token
+  function handleUserActivity() {
+
+
+    // 偵測10秒沒有動作 進行移除token, 是因為token 還在才監測用戶有沒有在持續動作, 若已經移除token, 但計時器還是每10秒alert 一次 就很奇怪 應該是 token 不存在時就不需要監測倒數10秒的計時器 ,直到下次登入才需要計時器監測用戶有沒有持續動作
+    if (!token || typeof token !== 'string') {
+      return;
+    }
+
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      localStorage.removeItem('token');
+      localStorage.clear()
+      setLoginStatus(false);
+
+
+      navigate("/");
+      setTimeout(() => {
+        alert('長時間未動作,保護行程隱私,已進行登出');
+      }, 500);
+
+    }, 10000);
+  }
+  // 600000   10分鐘 為了測試 登出入 我改成10秒就登出
+  // 某些頁面如果 token 消失 例如10分鐘時間到 setToken 為false 等同用戶10分鐘沒操作了
+  // 此時token被我移除 畫面也要馬上執行刷新頁面 變成未登陸狀態 而我的頁面也要寫token存在與否是否可以查看
+  // 未帶有token禁止訪問頁面
+
+
+
 
 
 
@@ -160,9 +227,7 @@ function App() {
   // 這裡的問題是 campfilter 導出的資料 和 我進行篩選的資料會有讀取過程差異
   const startFilters = () => {
 
-
-    console.log('執行一次了')
-
+    // console.log('執行一次了')
     // console.log(campDataFilter)
     // console.log(result)
 

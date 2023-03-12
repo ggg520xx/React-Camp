@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/React-Camp/static/css/main.77c9a964.css",
-    "main.js": "/React-Camp/static/js/main.aa61b2f6.js",
+    "main.js": "/React-Camp/static/js/main.4fc504ea.js",
     "static/js/787.5480e000.chunk.js": "/React-Camp/static/js/787.5480e000.chunk.js",
     "static/media/p1.jpg": "/React-Camp/static/media/p1.aec1162c53d1bb2d7c0f.jpg",
     "static/media/p2.jpg": "/React-Camp/static/media/p2.e8423a8c1116c1fcbe2b.jpg",
@@ -17,6 +17,8 @@
     "static/media/camp2.jpg": "/React-Camp/static/media/camp2.a0206fe9997c5cf08316.jpg",
     "static/media/p4.jpg": "/React-Camp/static/media/p4.dc6c5e34f3e7059c0db1.jpg",
     "static/media/2.jpg": "/React-Camp/static/media/2.0d65be5929c89cc6f3f9.jpg",
+    "static/media/zone1.jpg": "/React-Camp/static/media/zone1.514744018652e25b71f2.jpg",
+    "static/media/zone2.jpg": "/React-Camp/static/media/zone2.eefa71ddc6049d778af0.jpg",
     "static/media/ga2.jpg": "/React-Camp/static/media/ga2.e6582c4f8acb0c1da483.jpg",
     "static/media/index3.jpg": "/React-Camp/static/media/index3.f84363ff9bf052158e18.jpg",
     "static/media/3.jpg": "/React-Camp/static/media/3.a2305edb6afde0796c50.jpg",
@@ -52,6 +54,7 @@
     "static/media/logo.png": "/React-Camp/static/media/logo.5cc38610a4c0d3745411.png",
     "static/media/404.png": "/React-Camp/static/media/404.4cdd60d0dc1713511bf5.png",
     "static/media/indexIcon.png": "/React-Camp/static/media/indexIcon.1841a45355cc1655d7ce.png",
+    "static/media/pic404.png": "/React-Camp/static/media/pic404.bd444999fd8546f854fb.png",
     "static/media/ins.svg": "/React-Camp/static/media/ins.e848687c5541975cc5d4cbf265d5c608.svg",
     "static/media/line.svg": "/React-Camp/static/media/line.3575401d19c284e68d2ad245e49b6cf7.svg",
     "static/media/twi.svg": "/React-Camp/static/media/twi.288ff5b17942003f7ae8df307d3c5246.svg",
@@ -62,11 +65,11 @@
     "static/media/star-solid.svg": "/React-Camp/static/media/star-solid.b3b862741db241e07bbe92949e0eb2da.svg",
     "index.html": "/React-Camp/index.html",
     "main.77c9a964.css.map": "/React-Camp/static/css/main.77c9a964.css.map",
-    "main.aa61b2f6.js.map": "/React-Camp/static/js/main.aa61b2f6.js.map",
+    "main.4fc504ea.js.map": "/React-Camp/static/js/main.4fc504ea.js.map",
     "787.5480e000.chunk.js.map": "/React-Camp/static/js/787.5480e000.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.77c9a964.css",
-    "static/js/main.aa61b2f6.js"
+    "static/js/main.4fc504ea.js"
   ]
 }

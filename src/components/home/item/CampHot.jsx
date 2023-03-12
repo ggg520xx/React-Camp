@@ -29,7 +29,7 @@ const CampHot = (props) => {
 
     // api get 的時間差會有延遲 且做時間較長放前面的排序
     const hotCamps = AllCampGet?.filter(item => item.hotday > 0).sort((a, b) => b.hotday - a.hotday);;
-    console.log(hotCamps)
+    // console.log(hotCamps)
 
 
 
