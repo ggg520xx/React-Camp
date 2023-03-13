@@ -129,7 +129,6 @@ function App() {
   // 特點產出 最後變成結果 導出陣列的結果狀態
   const [campDataResult, setcampDataResult] = useState([]);
 
-
   // 計算數量的 改成全域
   const [campDataNum, setcampDataNum] = useState(0);
 
@@ -141,14 +140,11 @@ function App() {
 
 
 
-
-  // let token = localStorage.getItem('token');
+  // -----------------------------------------
   // 登入狀態
   const [loginStatus, setLoginStatus] = useState(false);
   const token = localStorage.getItem('token');
   const timeoutRef = useRef(null);
-
-
 
   useEffect(() => {
     // 绑定事件监听器
@@ -162,7 +158,6 @@ function App() {
       clearTimeout(timeoutRef.current);
     };
   }, []);
-
 
 
   // token 的值發生變化時，我們會先檢查 localStorage 中是否有名為 'token' 的項。如果有的話，我們將 loginStatus 狀態設置為 true，表示用戶已經登錄了
@@ -179,7 +174,6 @@ function App() {
       // 如果在 useEffect中token的值沒有改變，我們只需將 loginStatus 狀態設為 false表示用戶未登錄
       setLoginStatus(false);
     }
-
     // 最後，我們使用 return 語句返回一個清除計時器的函數，以確保在元件卸載時清除計時器。
     // 這樣做可以避免出現內存泄漏的問題
     // 元件卸載指的是當React組件被從畫面中卸載並從DOM樹中刪除時發生的事件
@@ -187,14 +181,12 @@ function App() {
   }, [token]);
 
   // 用户進行動作會重置計時給予10分鐘 在上面有寫一個執行重置計時  沒動靜就執行下列移除token
+  // 下面 return 有綁一個 onClick 進行偵測
   function handleUserActivity() {
-
-
     // 偵測10秒沒有動作 進行移除token, 是因為token 還在才監測用戶有沒有在持續動作, 若已經移除token, 但計時器還是每10秒alert 一次 就很奇怪 應該是 token 不存在時就不需要監測倒數10秒的計時器 ,直到下次登入才需要計時器監測用戶有沒有持續動作
     if (!token || typeof token !== 'string') {
       return;
     }
-
 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -217,7 +209,7 @@ function App() {
   // 某些頁面如果 token 消失 例如10分鐘時間到 setToken 為false 等同用戶10分鐘沒操作了
   // 此時token被我移除 畫面也要馬上執行刷新頁面 變成未登陸狀態 而我的頁面也要寫token存在與否是否可以查看
   // 未帶有token禁止訪問頁面
-
+  // -----------------------------------------
 
 
 
@@ -236,8 +228,6 @@ function App() {
     // });
     // 不知道為何 寫進去 幫判斷式才不會報錯
 
-
-
     // if (campDataPrice === 'default_filter') {
 
     //   const result = campDataFilter?.filter(item => {
@@ -245,9 +235,7 @@ function App() {
     //   });
     //   setcampDataNum(result?.length);
     //   setcampDataResult(result)
-
     // }
-
 
     // hot true false 使用在首頁  hotday購買時間越多越新的擺在越前面
     if (campDataPrice === 'hotFilter') {
@@ -257,7 +245,6 @@ function App() {
       }).sort((a, b) => b.hotday - a.hotday);
       setcampDataNum(result?.length);
       setcampDataResult(result)
-
     }
 
     else if (campDataPrice === 'price_hightolow') {
@@ -280,18 +267,14 @@ function App() {
       setcampDataResult(result)
     }
 
-
     else {
-
       // 這裡會是剛進來跑的 但我想過誰會想看預設id順序 剛好都用熱門來跑就好
       const result = campDataFilter?.filter(item => {
         return tagvalues?.every(tag => item.tag[tag] === true);
       }).sort((a, b) => b.hotday - a.hotday);
       setcampDataNum(result?.length);
       setcampDataResult(result)
-
     }
-
   }
 
   useEffect(startFilters, [campDataFilter, campDataPrice, campDataNum]);
@@ -691,7 +674,7 @@ function App() {
 
 
   return (
-    <div className="App wrapper">
+    <div onClick={handleUserActivity} className="App wrapper">
       {/* <div className="header_public">App這邊可以設計一處共用全路由共用的表頭表尾 或是純粹用Layout階層去設計也可以</div> */}
 
       <MyContextSearch.Provider value={{ inputGlobal, setInputGlobal, AllCampGet, loginStatus, setLoginStatus }}>
