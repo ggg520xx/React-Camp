@@ -14,7 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "date-fns": "^2.29.3",
-    "flowbite-react": "^0.3.5",
+    "flowbite-react": "^0.4.2",
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-credit-cards-2": "^0.9.0",
@@ -58,7 +58,6 @@
       "last 1 safari version"
     ]
   },
- 
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.19",

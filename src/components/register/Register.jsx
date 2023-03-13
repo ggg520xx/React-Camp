@@ -189,9 +189,9 @@ const Register = (props) => {
 
 
             {/* <!-- login_page --> */}
-            <div class="h-screen container relative">
+            <div className="h-screen container relative">
 
-                <div class='h-full flex justify-center items-center'>
+                <div className='h-full flex justify-center items-center'>
 
 
                     <div className="bg-soft_color w-7/12 p-0 rounded shadow-lg py-5  " >

@@ -55,7 +55,7 @@ const SearchPickSideRight = (props) => {
         setviewSunrise(false);
 
         setTagValues([]);
-        
+
         // 原本按清空會跳回預設 因為我寫了改變數值 會去 執行搜尋的useEffect 
         // 但我要讓使用者回到原本所選的排序 才是正常的
         // setcampDataResult(campDataFilter)
@@ -87,14 +87,14 @@ const SearchPickSideRight = (props) => {
     const handleChange = (e) => {
 
         console.log(e.target.value)
- 
+
         if (e.target.value === 'hotFilter') {
             setcampDataPrice('hotFilter')
         }
         if (e.target.value === 'price_hightolow') {
             setcampDataPrice('price_hightolow')
         }
-        
+
         if (e.target.value === 'price_lowtohigh') {
             setcampDataPrice('price_lowtohigh')
         }
@@ -218,20 +218,26 @@ const SearchPickSideRight = (props) => {
 
 
 
-                    <label for="underline_filter" class="sr-only">Underline select</label>
+                    <label htmlFor="underline_filter" className="sr-only">Underline select</label>
 
-                    <select onChange={(e) => { handleChange(e) }} id="underline_filter" class="text-center block py-2.5 px-0 w-1/4 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                    <select defaultValue="hotFilter" onChange={(e) => { handleChange(e) }} id="underline_filter" className="text-center block py-2.5 px-0 w-1/4 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
 
                         {/* 我想想一點也不需要預設 誰會看預設id的 */}
                         {/* <option selected value="default_filter">預設推薦</option> */}
-                        <option selected value="hotFilter">熱門推薦</option>
-                        <hr />
-                        <option value="like_hightolow">評價-高到低</option>
-                        <option value="like_lowtohigh">評價-低到高</option>
-                        <hr />
-                        <option value="price_hightolow">價格-高到低</option>
-                        <option value="price_lowtohigh">價格-低到高</option>
 
+                        <optgroup label="預設推薦">
+                            <option value="hotFilter">熱門推薦</option>
+                        </optgroup>
+
+                        <optgroup label="評價排序">
+                            <option value="like_hightolow">評價-高到低</option>
+                            <option value="like_lowtohigh">評價-低到高</option>
+                        </optgroup>
+
+                        <optgroup label="價格排序">
+                            <option value="price_hightolow">價格-高到低</option>
+                            <option value="price_lowtohigh">價格-低到高</option>
+                        </optgroup>
 
                     </select>
 

@@ -67,11 +67,11 @@ const CampHot = (props) => {
 
                     {hotCamps ? hotCamps.map((item, index) => (
 
-                        <div className="relative col-span-1 mt-5 bg-white" onClick={() => { }}>
+                        <div key={item.id} className="relative col-span-1 mt-5 bg-white" onClick={() => { }}>
 
 
                             {/* <Link to="/about">About</Link> */}
-                            <Link to={`/page/${item.id}`} key={item.id} className="block  ">
+                            <Link to={`/page/${item.id}`} className="block  ">
 
                                 {/* 包裹img和文字欄 */}
                                 <div>

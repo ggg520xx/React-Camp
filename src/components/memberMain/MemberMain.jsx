@@ -614,44 +614,44 @@ function MemberMain() {
 
 
                                     {/* <div >
-                                    <div class="">
+                                    <div className="">
 
                                         <div className="col-6">
-                                            <p class="pl-1 mb-0">浴廁</p>
-                                            <div class="rating">
+                                            <p className="pl-1 mb-0">浴廁</p>
+                                            <div className="rating">
                                                 <ReactStars {...bathroomRankingStar} />
                                             </div>
                                         </div>
 
                                         <div className="col-6">
-                                            <p class="pl-1 mb-0">設施</p>
-                                            <div class="rating">
+                                            <p className="pl-1 mb-0">設施</p>
+                                            <div className="rating">
                                                 <ReactStars {...facilityRankingStar} />
                                             </div>
                                         </div>
                                     </div>
 
 
-                                    <div class="row d-flex justify-content-between">
+                                    <div className="row d-flex justify-content-between">
                                         <div className="col-6">
-                                            <p class="pl-1 mb-0">服務</p>
-                                            <div class="rating">
+                                            <p className="pl-1 mb-0">服務</p>
+                                            <div className="rating">
                                                 <ReactStars {...serviceRankingStar} />
                                             </div>
                                         </div>
 
                                         <div className="col-6">
-                                            <p class="pl-1 mb-0">交通</p>
-                                            <div class="rating">
+                                            <p className="pl-1 mb-0">交通</p>
+                                            <div className="rating">
                                                 <ReactStars {...transportRankingStar} />
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row d-flex justify-content-between">
+                                    <div className="row d-flex justify-content-between">
                                         <div className="col-6">
-                                            <p class="pl-1 mb-0">景觀</p>
-                                            <div class="rating">
+                                            <p className="pl-1 mb-0">景觀</p>
+                                            <div className="rating">
                                                 <ReactStars {...sceneryRankingStar} />
                                             </div>
                                         </div>
@@ -676,7 +676,7 @@ function MemberMain() {
                                 <div className="col-7">
 
 
-                                    <textarea class="w-3/4 form-control"
+                                    <textarea className="w-3/4 form-control"
                                         onChange={(e) => setRankingText(e.target.value)}
                                         id="exampleFormControlTextarea1" rows="4" style={{ border: "1.5px solid black" }}
                                         onFocus={(e) => setRankingText("草皮保養的不錯，而且離溪邊很近，可以玩水！！！超讚的露營體驗，推薦大家來玩喔。")}

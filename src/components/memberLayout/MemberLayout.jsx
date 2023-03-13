@@ -48,15 +48,15 @@ const MemberLayout = () => {
 
                 <div className='col-2 bg-my_green sticky top-0 left-0 right-0 p-0 rounded-br-[70px]'>
 
-                    <nav class="h-[63px] px-2 sm:px-4 py-2.5  bg-my_black ">
+                    <nav className="h-[63px] px-2 sm:px-4 py-2.5  bg-my_black ">
                         {/* 內部控制 寬度 flex 置中 */}
-                        <div class="container flex flex-wrap items-center justify-center mx-auto">
+                        <div className="container flex flex-wrap items-center justify-center mx-auto">
 
                             {/* LOGO+文字 */}
 
-                            <div class="flex items-center h-6 sm:h-9">
-                                {/* <img src={indexLogo} class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" /> */}
-                                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Hola Camp 會員</span>
+                            <div className="flex items-center h-6 sm:h-9">
+                                {/* <img src={indexLogo} className="h-6 mr-3 sm:h-9" alt="Flowbite Logo" /> */}
+                                <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Hola Camp 會員</span>
                             </div>
 
 
@@ -110,20 +110,20 @@ const MemberLayout = () => {
 
                     {/* <Header /> 拉出來寫外元件也可以*/}
                     {/* Navbar 整體背景 沾粘不用Fixed 用 sticky  */}
-                    <nav class="px-2 sm:px-4 py-2.5  bg-my_black ">
+                    <nav className="px-2 sm:px-4 py-2.5  bg-my_black ">
                         {/* 內部控制 寬度 flex 置中 */}
-                        <div class="container flex flex-wrap items-center justify-between mx-auto">
+                        <div className="container flex flex-wrap items-center justify-between mx-auto">
 
 
                             <div className="mx-auto">
                                 <Link to="/">
-                                    <img src={indexLogo} class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
+                                    <img src={indexLogo} className="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
                                 </Link>
                             </div>
 
 
 
-                            <div class="flex  items-center">
+                            <div className="flex  items-center">
 
 
 
@@ -131,7 +131,7 @@ const MemberLayout = () => {
 
 
                                 <button onClick={handleBack} className="px-3">
-                                    <div class="flex items-center">
+                                    <div className="flex items-center">
                                         <FontAwesomeIcon className="text-white mx-1" icon={faArrowLeft} />
                                         <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">回上頁 </span>
                                     </div>
@@ -144,7 +144,7 @@ const MemberLayout = () => {
                                     setLoginStatus(false)
                                     navigate("/")
                                 }} className="px-3">
-                                    <div class="flex items-center">
+                                    <div className="flex items-center">
                                         <FontAwesomeIcon className="text-white mx-1" icon={faSignOutAlt} />
                                         <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">登出 </span>
                                     </div>

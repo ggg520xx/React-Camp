@@ -191,8 +191,8 @@ const PagePic = (props) => {
 
 
 
-                            <SwiperSlide >
-                                <img src={require(`../../../../assets/campPhoto/${id}/${item.image}`)} alt="product images" className='block h-full w-full object-cover ' />
+                            <SwiperSlide key={index}>
+                                <img  src={require(`../../../../assets/campPhoto/${id}/${item.image}`)} alt="product images" className='block h-full w-full object-cover ' />
                             </SwiperSlide>
 
 
@@ -249,7 +249,7 @@ const PagePic = (props) => {
                         {campPhoto ? campPhoto?.map((item, index) => (
 
 
-                            <SwiperSlide >
+                            <SwiperSlide key={index}>
                                 <img src={require(`../../../../assets/campPhoto/${id}/${item.image}`)} alt="product images" className='block h-full w-full object-cover ' />
                             </SwiperSlide>
 

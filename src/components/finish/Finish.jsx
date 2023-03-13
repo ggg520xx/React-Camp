@@ -18,24 +18,24 @@ function Finish() {
 
             <div className="container min-h-screen py-5">
 
-                <div class="step-wrap">
-                    <div class="checkout-step">
-                        <div class="step-list active">
-                            <div class="step-item">
-                                <div class="bar"></div>
-                                <div class="step-name">填寫訂購資料</div>
+                <div className="step-wrap">
+                    <div className="checkout-step">
+                        <div className="step-list active">
+                            <div className="step-item">
+                                <div className="bar"></div>
+                                <div className="step-name">填寫訂購資料</div>
                             </div>
                         </div>
-                        <div class="step-list active">
-                            <div class="step-item">
-                                <div class="bar"></div>
-                                <div class="step-name">填寫付款資料</div>
+                        <div className="step-list active">
+                            <div className="step-item">
+                                <div className="bar"></div>
+                                <div className="step-name">填寫付款資料</div>
                             </div>
                         </div>
-                        <div class="step-list active now">
-                            <div class="step-item">
-                                <div class="bar"></div>
-                                <div class="step-name">確認訂單成立</div>
+                        <div className="step-list active now">
+                            <div className="step-item">
+                                <div className="bar"></div>
+                                <div className="step-name">確認訂單成立</div>
                             </div>
                         </div>
                     </div>

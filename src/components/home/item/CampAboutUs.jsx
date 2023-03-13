@@ -26,7 +26,7 @@ const CampAboutUs = (props) => {
                 {/* 標題區塊 */}
 
 
-                <div class="container">
+                <div className="container">
 
                     {/* 灰區塊 內推 影片和文字 的灰區塊 */}
                     <div className='py-12 px-12 relative bg-gray-300/30'>
@@ -38,7 +38,7 @@ const CampAboutUs = (props) => {
 
                                 {/* <!-- 自適應縮放寫法  應該沒成立.. --> */}
                                 <div className="relative w-full ">
-                                    <iframe className="w-full h-[300px]" src="https://www.youtube.com/embed/7gaCnI-06fM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe className="w-full h-[300px]" src="https://www.youtube.com/embed/7gaCnI-06fM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                                 </div>
                             </div>
 

@@ -307,7 +307,7 @@ const PageReserve = (props) => {
 
 
                             // 單個
-                            <div className="row mb-2 border border-psub_color bg-white hover:shadow-xl hover:border-sub_color">
+                            <div key={index} className="row mb-2 border border-psub_color bg-white hover:shadow-xl hover:border-sub_color">
 
 
 
