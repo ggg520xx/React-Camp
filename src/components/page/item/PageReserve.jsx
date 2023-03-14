@@ -63,11 +63,6 @@ const PageReserve = (props) => {
 
 
 
-
-
-
-
-
     // 露營地預約
     function useAllCampReserve() {
 
@@ -219,12 +214,13 @@ const PageReserve = (props) => {
 
 
 
-
+    // const [startRange, setStartRange] = useState('');
+    // const [endRange, setEndRange] = useState('');
+    // const [pickReady, setPickReady] = useState(false);
 
     // 處理 a 元件 日期點擊 處理過來的 操作change的狀態改變
     // 定義一個 state 來存儲 MyDatePicker 元件的 state
     const [datePickerState, setDatePickerState] = useState();
-
 
     const [startDateChooseProp, setStartDateChooseProp] = useState();
     const [endDateChooseProp, setEndDateChooseProp] = useState();
@@ -238,11 +234,40 @@ const PageReserve = (props) => {
 
         setDatePickerState(state);
 
+
+
+        // 從選取日期氣 傳過來的 state 選取 我在這裡經由點選轉換格式 並算出區間
+        const startRangePick = format(state[0].startDate, 'yyyy-MM-dd');
+        const endRangePick = format(state[0].endDate, 'yyyy-MM-dd');
+        // 使用 new Date() 來建立兩個日期物件，分別代表開始日期和結束日期
+        const startRangeDate = new Date(startRangePick);
+        const endRangeDate = new Date(endRangePick);
+        // 使用 eachDayOfInterval 方法來產生包含兩個日期間所有日期的陣列
+        const allDates = eachDayOfInterval({ start: startRangeDate, end: endRangeDate });
+        // 最後，我們使用 map 方法和 format 函數將所有日期格式化為 'yyyy-MM-dd' 格式的字串，並存入一個新的陣列 formattedDates
+        const formattedDates = allDates.map(date => format(date, 'yyyy-MM-dd'));
+        console.log(formattedDates);
+        setPickRange(formattedDates)
+
+
+        // setStartRange(startRangePick)
+        // setEndRange(endRangePick)
+
+        // 下面這兩個是提供給用戶網頁看的格式 我這邊沒用到 僅僅是顯示這個函式的 console
+        console.log(startDateFromShow)
+        console.log(endDateFromShow)
+
     }
 
+
+
+
+
+
+    const [pickRange, setPickRange] = useState([]);
+
+
     // ---------------------------------------
-
-
     // 前往預定的按鈕判斷 如果還沒選會是UNDEFINED 
     const pageReserveBtn = () => {
 
@@ -253,9 +278,7 @@ const PageReserve = (props) => {
             alert('未登入,請先登入後使用')
             navigate("/login")
             return
-
         }
-
 
 
         if (datePickerState === undefined) {
@@ -270,6 +293,50 @@ const PageReserve = (props) => {
             return
         }
 
+
+
+
+        // ------------------------------------------
+        // 最早的版本 只告知 選取區間滿房 不曉得哪一天
+        // 判斷每個日期是否還有房間可以預訂
+        // const availableDates = pickRange.filter(date => {
+        //     return campInfo[0].reservation.some(reserve => {
+        //         return reserve.date === date && reserve.num > 1;
+        //     });
+        // });
+        // // 如果有任何一個日期沒有房間可以預訂，就顯示提示訊息
+        // if (availableDates.length !== pickRange.length) {
+        //     alert('選取日期區間已滿房');
+        //     return;
+        // }
+
+        // 第二版版本 告知哪一天已滿房 沒告知剩餘間數
+        // const fullDates = pickRange.filter(date => {
+        //     return campInfo[0].reservation.some(reserve => {
+        //         return reserve.date === date && reserve.num === 0;
+        //     });
+        // });
+        // // 如果有任何一個日期已滿房，就顯示提示訊息
+        // if (fullDates.length > 0) {
+        //     alert('以下日期已滿房: ' + fullDates.join(', '));
+        //     return;
+        // }
+
+        // 第三個版本 告知哪一天已滿房 並告知剩餘房間數量
+        const insufficientDates = pickRange.filter(date => {
+            return campInfo[0].reservation.some(reserve => {
+                return reserve.date === date && reserve.num < quantity;
+            });
+        });
+        // 如果有任何一天的房間數量不足，就顯示提示訊息
+        if (insufficientDates.length > 0) {
+            const message = insufficientDates.map(date => `${date}: 庫存不足，僅剩 ${campInfo[0].reservation.find(reserve => reserve.date === date).num} 間房間`);
+            alert(message.join('\n'));
+            return;
+        }
+        // ------------------------------------------
+
+
         // 存下點擊的時間到下一個頁面展示 和下下頁 並在最後成功預定發送api
         console.log('有選取時間');
         console.log(datePickerState);
@@ -279,9 +346,19 @@ const PageReserve = (props) => {
 
 
 
+    // 顯示平日還是假日價格
     const today = new Date().getDay();
     const isWeekday = today > 0 && today < 6; // 0 是星期日，6 是星期六
 
+
+
+
+    // 選取的房間數量
+    const [quantity, setQuantity] = useState(1);
+    function handleQuantityChange(event) {
+        setQuantity(Number(event.target.value));
+    }
+    console.log(quantity)
 
 
 
@@ -298,6 +375,13 @@ const PageReserve = (props) => {
                     <div>
                         <h5 className="font-bold text-xl">營區預定</h5>
                         <span className="text-base text-red-500">晚上7點後不可預訂今日，僅可從明日起預訂</span>
+
+                        {/* <span className="text-base text-blue-500"> 你選取{startRange}到{endRange}  </span> */}
+
+                        {/* {pickReady ? <span className="text-base text-blue-500"> 尚未選定 </span> : <span className="text-base text-blue-500"> 你選取{startRange}到{endRange} </span>} */}
+
+
+
                     </div>
 
 
@@ -400,7 +484,7 @@ const PageReserve = (props) => {
 
                                             {/* <label htmlFor="quantity">Quantity:</label> */}
 
-                                            <select id="quantity" className="w-full px-5 border border-psub_color ">
+                                            <select id="quantity" value={quantity} onChange={handleQuantityChange} className="w-full px-5 border border-psub_color ">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>

@@ -35,14 +35,15 @@ function MyDatePicker(props) {
     ]);
 
 
-    // 轉換格式  目前時間 及顯示等
+    // 轉換格式  目前時間 及顯示等 (一樣的東西 顯示簡單的日期和複雜差別)
     const startDateShow = format(state[0].startDate, 'yyyy年MM月dd日');
     const endDateShow = format(state[0].endDate, 'yyyy年MM月dd日');
-    // const FirstDateTransfer = format(state[0].startDate, 'yyyy/MM/dd');
 
     const startDateShowSimple = format(state[0].startDate, 'yyyy/MM/dd');
     const endDateShowSimple = format(state[0].endDate, 'yyyy/MM/dd');
 
+    // const startDateCompare = format(state[0].startDate, 'yyyy-MM-dd');
+    // const endDateCompare = format(state[0].endDate, 'yyyy-MM-dd');
 
 
 
