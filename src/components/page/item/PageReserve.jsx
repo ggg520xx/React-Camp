@@ -9,7 +9,7 @@ import MyDatePicker from './func/ReactDateRange';
 
 import { MyContextSearch, useMyContextSearch } from '../../../hooks/useContext/InputSearch';
 import axios from 'axios';
-import { format, eachDayOfInterval } from 'date-fns';
+import { format, eachDayOfInterval, set, isAfter } from 'date-fns';
 
 
 
@@ -295,6 +295,24 @@ const PageReserve = (props) => {
 
 
 
+        // 如果选择的日期范围包含今天，并且当前时间超过晚上7点，提示不能预定今天
+        const now = new Date();
+        const today = format(now, 'yyyy-MM-dd');
+        if (pickRange.includes(today)) {
+            const evening7pm = set(now, { hours: 19, minutes: 0, seconds: 0 });
+            if (isAfter(now, evening7pm)) {
+                alert('今日訂房時間已過晚上7點，日期無法包含今天');
+                return;
+            }
+        }
+        // 使用了 date - fns 库中的 format 和 set 函数来操作日期时间，其中 format 将一个日期时间格式化为指定格式的字符串，而 set 可以用来设置一个日期时间对象的年、月、日、时、分、秒等属性
+        // isAfter 是 date - fns 套件提供的函數之一，用於比較兩個日期的先後順序，可以判斷一個日期是否在另一個日期之後
+
+
+
+
+
+
 
         // ------------------------------------------
         // 最早的版本 只告知 選取區間滿房 不曉得哪一天
@@ -330,7 +348,7 @@ const PageReserve = (props) => {
         });
         // 如果有任何一天的房間數量不足，就顯示提示訊息
         if (insufficientDates.length > 0) {
-            const message = insufficientDates.map(date => `${date}: 庫存不足，僅剩 ${campInfo[0].reservation.find(reserve => reserve.date === date).num} 間房間`);
+            const message = insufficientDates.map(date => `${date}: 營區位置不足，僅剩 ${campInfo[0].reservation.find(reserve => reserve.date === date).num} 帳 / 間`);
             alert(message.join('\n'));
             return;
         }
@@ -516,9 +534,16 @@ const PageReserve = (props) => {
                                         </h6>
 
                                         {/* disabled={pageReserveDisable === true} */}
-                                        <button onClick={() => {
+
+
+
+
+                                        {loginStatus ? <button onClick={() => {
                                             pageReserveBtn()
-                                        }} className='w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>預訂</button>
+                                        }} className='w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>預訂</button> : <button onClick={() => {
+                                            pageReserveBtn()
+                                        }} className='w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>登入後預訂</button>}
+
 
 
                                     </div>
