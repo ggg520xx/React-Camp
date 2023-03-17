@@ -119,14 +119,6 @@ const SearchPickSide = (props) => {
                         </Link>
 
                             <Link className="block " onClick={() => { }} >
-                            <button type="button" className="border border-blue-400 rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white mx-2">基隆</button>
-                        </Link>
-
-                            <Link className="block" onClick={() => { }} >
-                            <button type="button" className="border border-blue-400 rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white mx-2">宜蘭</button>
-                        </Link>
-
-                            <Link className="block " onClick={() => { }} >
                             <button type="button" className="border border-blue-400 rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white mx-2">桃竹</button>
                         </Link> */}
 

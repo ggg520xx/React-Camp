@@ -11,8 +11,8 @@ import Layout from './components/layout/Layout'
 import Home from './components/home/Home'
 import Search from './components/search/Search'
 import Page from './components/page/Page'
-import Reserve from './components/reserve/Reserve'
-import Payment from './components/payment/Payment'
+import Process from './components/process/Process'
+// import Payment from './components/payment/Payment'
 import Finish from './components/finish/Finish'
 
 import Login from './components/login/Login'
@@ -201,9 +201,9 @@ function App() {
       navigate("/");
       setTimeout(() => {
         alert('長時間未動作,保護行程隱私,已進行登出');
-      }, 500);
+      }, 300);
 
-    }, 10000);
+    }, 600000);
   }
   // 600000   10分鐘 為了測試 登出入 我改成10秒就登出
   // 某些頁面如果 token 消失 例如10分鐘時間到 setToken 為false 等同用戶10分鐘沒操作了
@@ -695,11 +695,11 @@ function App() {
               <Route path='page/:id' element={<Page />} />
 
 
-
-              <Route path='reserve' element={<Reserve />} />
-              <Route path='payment' element={<Payment />} />
-              <Route path='finish' element={<Finish />} />
-
+           
+                <Route path='process/:id/:campinfoId' element={<Process />} />
+                {/* <Route path='payment' element={<Payment />} /> */}
+                <Route path='finish' element={<Finish />} />
+           
 
 
               <Route path='login' element={<Login />} />

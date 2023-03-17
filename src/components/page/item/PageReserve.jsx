@@ -269,7 +269,7 @@ const PageReserve = (props) => {
 
     // ---------------------------------------
     // 前往預定的按鈕判斷 如果還沒選會是UNDEFINED 
-    const pageReserveBtn = () => {
+    const pageReserveBtn = (campinfoId) => {
 
         if (loginStatus !== true) {
 
@@ -356,9 +356,11 @@ const PageReserve = (props) => {
 
 
         // 存下點擊的時間到下一個頁面展示 和下下頁 並在最後成功預定發送api
+        // 這次 我藉由 抓營區房間的id 並非營區id 到下一頁 axios抓取單一房間資訊和露營地
+
         console.log('有選取時間');
         console.log(datePickerState);
-        navigate("/reserve")
+        navigate(`/process/${id}/${campinfoId}`)
     }
 
 
@@ -391,6 +393,11 @@ const PageReserve = (props) => {
                 <div className='text-left' >
 
                     <div>
+
+
+
+
+
                         <h5 className="font-bold text-xl">營區預定</h5>
                         <span className="text-base text-red-500">晚上7點後不可預訂今日，僅可從明日起預訂</span>
 
@@ -539,7 +546,7 @@ const PageReserve = (props) => {
 
 
                                         {loginStatus ? <button onClick={() => {
-                                            pageReserveBtn()
+                                            pageReserveBtn(item.id)
                                         }} className='w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>預訂</button> : <button onClick={() => {
                                             pageReserveBtn()
                                         }} className='w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>登入後預訂</button>}
