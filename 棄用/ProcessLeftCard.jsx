@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import CreditCardInput from './func/CreditCardInput';
+import CreditCardInput from '../src/components/process/item/func/CreditCardInput';
 
 function ProcessLeftCard(props) {
 

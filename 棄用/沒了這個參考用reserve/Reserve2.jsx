@@ -7,7 +7,7 @@ import {
     solidstar,
     halfstar,
     emptystar
-} from '../../images/search/SearchMange'
+} from '../../src/images/search/SearchMange'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -26,7 +26,7 @@ import {
     faLine
 } from '@fortawesome/free-brands-svg-icons'
 
-import { indexIcon, hot1, hot2, hot3 } from '../../images/index/IndexMange'
+import { indexIcon, hot1, hot2, hot3 } from '../../src/images/index/IndexMange'
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 

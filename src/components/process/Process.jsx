@@ -2,10 +2,8 @@ import ProcessTopStep from './item/ProcessTopStep';
 import ProcessLeftReserve from './item/ProcessLeftReserve';
 import ProcessRightCamp from './item/ProcessRightCamp';
 
-import ProcessLeftCard from './item/ProcessLeftCard';
 
-
-
+import React, { useState, useEffect, useRef } from 'react';
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -24,7 +22,7 @@ function Process(props) {
 
 
 
-
+    const [turnLeft, setTurnLeft] = useState(true);
 
 
     return (
@@ -32,13 +30,12 @@ function Process(props) {
 
 
             <div className="container min-h-screen py-5">
-                <ProcessTopStep />
+                <ProcessTopStep turnStatus={turnLeft} />
 
 
                 <div className="row">
-                    <ProcessLeftReserve />
-                    <ProcessLeftCard />
 
+                    <ProcessLeftReserve turnStatus={turnLeft} setTurnSwitch={setTurnLeft} />
 
                     <ProcessRightCamp />
                 </div>
