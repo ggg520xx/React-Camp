@@ -18,30 +18,111 @@ import {
 
 import { indexIcon, hot1, hot2, hot3 } from '../../../images/index/IndexMange'
 
+
+import { useLocation } from 'react-router-dom';
+
 function ProcessRightCamp(props) {
+
+
+
+    // 使用  navigate(`/process/${id}/${campinfoId}`, { state: datePickerState }); 在此用useLocation抓出傳遞日期值
+    const { state } = useLocation();
+    console.log(state)
+
+
+
+
+    // 從上層傳遞進來
+    const { getInfo } = props;
+    const getData = getInfo ? getInfo[0] : null;
+    console.log(getData)
+
+    // 顯示紅字, 原因在於傳進來的時候 是null 在這裡下判定
+    // 因為無法讀取 null屬性 這裡有一瞬間會是null 把這裡處理一下
+
+    // 如果 getInfo 是 null 或 undefined，
+    // 可以返回一個預設的元件或 null。使用 if 或三元運算子 ?
+    if (!getData) {
+        return null;
+    }
+
+
+
+
+
+    // 欲算出幾天 幾晚平日 幾晚假日
+    // 兩個日期中間間隔的所有日期每一天 先導出一個陣列 用兩個日期 算出間隔數天的陣列
+    // 詳細可以看我的 飯店預訂 或是 使用套件 這邊我在PageReserve 已經用套件算出並藉由url傳遞state到這
+    console.log(state.everyDateGap)  //.length 就是幾天
+
+    // 然後我使用另一組state進來的日期算 getDay 總共幾個平日 幾個假日
+    const startDate = state[0].startDate;
+    const endDate = state[0].endDate;
+
+    console.log(startDate)
+    console.log(endDate)
+
+    const nights = (endDate - startDate) / (24 * 60 * 60 * 1000); // 總共幾晚
+    const weekdays = [];
+    const weekends = [];
+
+    for (let i = 0; i < nights; i++) {
+
+        const date = new Date(startDate.getTime() + i * (24 * 60 * 60 * 1000));
+        if (date.getDay() === 0 || date.getDay() === 6) {
+            weekends.push(date);
+        } else {
+            weekdays.push(date);
+        }
+    }
+    // 幾晚跑幾次迴圈 塞入陣列內的個數 去push後計算有幾個
+    console.log(`總共 ${nights} 晚，其中平日 ${weekdays.length} 晚，假日 ${weekends.length} 晚`);
+    console.log(`平日晚上日期： ${weekdays.map(d => d.toLocaleDateString()).join(', ')}`);
+    console.log(`假日晚上日期： ${weekends.map(d => d.toLocaleDateString()).join(', ')}`);
+
+    // 下面是 幾晚平日＊平日價  幾晚假日＊假日價
+    const totalWeekdaysPrice = weekdays.length * getData.price; //幾晚平日＊平日價
+    const totalWeekendsPrice = weekends.length * getData.holiday; //幾晚假日＊假日價
+    const totalPrice = totalWeekdaysPrice + totalWeekendsPrice; // 平日總價＋假日總價 就是總金額
+
+    // 但我還有 訂購者定了幾間 所以總金額要＊我選了幾間 同時預訂
+    const totalPriceFinal = totalPrice * state.roomNum;
+    
+    console.log(`平日房價總共 ${weekdays.length} 晚，共 ${totalWeekdaysPrice} 元`);
+    console.log(`假日房價總共 ${weekends.length} 晚，共 ${totalWeekendsPrice} 元`);
+    console.log(` ${totalPrice} 元 , 還未乘上住戶選購間數`);
+    console.log(`真正總計金額 共 ${totalPriceFinal} 元 `);
+
+
 
 
 
     return (
         <>
 
-
-
-
             <div className="col-5 ">
                 <div className="</div>border mb-3 w-full rounded-md border-gray-200 bg-gray-100 px-8 py-3 shadow-xl">
-
 
 
                     <div className="relative col-span-1 mt-5"
                         onClick={() => { }}>
 
-
                         <div className="text-start min-h-[30px] pb-5 text-gray-900">
                             {/* 營區名稱和地點在哪 */}
-                            <h5 className="mt-2 mb-2 text-lg font-bold tracking-wider">
-                                安可休閒露營區
-                            </h5>
+                            {getData ? (
+                                <div>
+                                    <h5 className="mt-2 mb-2 text-lg font-bold tracking-wider">
+                                        {getData?.camp?.name}
+                                    </h5>
+                                </div>
+                            ) : (
+                                <div>
+                                    <h5 className="mt-2 mb-2 text-lg font-bold tracking-wider">
+                                        無資料
+                                    </h5>
+                                </div>
+                            )}
+
 
 
 
@@ -59,19 +140,24 @@ function ProcessRightCamp(props) {
                                     <span>4.7</span>
                                     <span>(45)</span>
                                 </p>
-
-
                             </div>
 
-                            <p>
-                                <FontAwesomeIcon
-                                    icon={faMapMarkerAlt}
-                                    className="mr-2"
-                                />
-                                <span>地區：xxx</span>
-                            </p>
 
-
+                            {getData ? (
+                                <p>
+                                    <FontAwesomeIcon
+                                        icon={faMapMarkerAlt}
+                                        className="mr-2" />
+                                    <span>地點：{getData?.camp?.address}</span>
+                                </p>
+                            ) : (
+                                <p>
+                                    <FontAwesomeIcon
+                                        icon={faMapMarkerAlt}
+                                        className="mr-2" />
+                                    <span>地點：無資料</span>
+                                </p>
+                            )}
 
                         </div>
 
@@ -93,22 +179,39 @@ function ProcessRightCamp(props) {
                             <div className="py-4">
                                 <strong>入住日期</strong>
 
-                                <input className="py-2 mt-2 block bg-white w-full" value='2022 - 9 - 06' type="button" />
-
+                                {/* <input className="py-2 mt-2 block bg-white w-full" value={state[0].startDate} type="button" /> */}
+                                <input className="py-2 mt-2 block bg-white w-full" value={state.startDay} type="button" />
                             </div>
 
+
                             <hr />
+
 
                             <div className="py-4">
                                 <strong>退房日期</strong>
-                                <input className="py-2 mt-2 block bg-white w-full" value='2022 - 9 - 06' type="button" />
+
+                                {/* <input className="py-2 mt-2 block bg-white w-full" value={state[0].endDate} type="button" /> */}
+                                <input className="py-2 mt-2 block bg-white w-full" value={state.endDay} type="button" />
                             </div>
+
 
                             <hr />
 
+
+
                             <div className="py-4">
                                 <strong>選擇區域</strong>
-                                <input className="py-2 mt-2 block bg-white w-full" value='草皮A區' type="button" />
+
+                                {getData ? (
+                                    <div>
+                                        <input className="py-2 mt-2 block bg-white w-full" value={getData?.name} type="button" />
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <input className="py-2 mt-2 block bg-white w-full" value='無資料' type="button" />
+                                    </div>
+                                )}
+
                             </div>
                         </div>
 
@@ -123,15 +226,18 @@ function ProcessRightCamp(props) {
                             <div className="py-4">
                                 <strong>付款明細</strong>
 
-                                <input className="py-2 mt-2 block bg-white w-full" value='7天 , 3晚平日 , 3晚假日' type="button" />
+
+                                <input className="py-2 mt-2 block bg-white w-full"
+                                    value={`共計 ${state.everyDateGap.length} 天 ${nights} 晚 (平日 ${weekdays.length} 晚，假日 ${weekends.length} 晚)`} type="button" />
 
                             </div>
 
                             <hr />
 
+
                             <div className="py-4">
                                 <strong>帳數/間數</strong>
-                                <input className="py-2 mt-2 block bg-white w-full" value='2' type="button" />
+                                <input className="py-2 mt-2 block bg-white w-full" value={state.roomNum} type="button" />
                             </div>
 
                             <hr />
@@ -150,7 +256,7 @@ function ProcessRightCamp(props) {
                             <div className="py-4">
                                 <strong>總計金額</strong>
 
-                                <input className="py-2 mt-2 block bg-white w-full" value='12000' type="button" />
+                                <input className="py-2 mt-2 block bg-white w-full" value={totalPriceFinal} type="button" />
 
                             </div>
 

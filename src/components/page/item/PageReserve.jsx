@@ -11,7 +11,7 @@ import { MyContextSearch, useMyContextSearch } from '../../../hooks/useContext/I
 import axios from 'axios';
 import { format, eachDayOfInterval, set, isAfter } from 'date-fns';
 
-
+import ProcessRightCamp from '../../process/item/ProcessRightCamp';
 
 // http://localhost:3000/camps/4/campinfos
 // 一樣是可以抓單一id 下的 關於他連結的關連
@@ -28,19 +28,21 @@ import { format, eachDayOfInterval, set, isAfter } from 'date-fns';
 
 
 
-const PageReserve = (props) => {
-    // 首先導出id頁=id頁面 
 
-    // 全域引入的 登入 點擊後會存放全域 輸入的值
-    const { loginStatus, setLoginStatus, AllCampGet } = useMyContextSearch(MyContextSearch);
+const PageReserve = (props) => {
 
     const navigate = useNavigate();
 
 
+    // 全域引入的 登入 點擊後會存放全域 輸入的值
+    const { loginStatus, setLoginStatus, AllCampGet } = useMyContextSearch(MyContextSearch);
 
+    // 首先導出id頁=id頁面 
     // 在這裡你可以使用 id 參數來取得你想要的項目資料
     // 例如：const item = getItemById(id);
     const id = props.itemId;
+
+
 
 
     // 創建一個函式，根據傳入的id參數取得特定的項目
@@ -57,7 +59,6 @@ const PageReserve = (props) => {
     // 得到該筆項目的資訊
 
     // viewPic 是打算做營區配置圖
-
 
 
 
@@ -229,10 +230,17 @@ const PageReserve = (props) => {
     // 定義一個函數來處理 MyDatePicker 元件傳遞過來的 state
     const handleStateChange = (state, startDateFromShow, endDateFromShow) => {
 
+        // ---------------------------------------------
         setStartDateChooseProp(startDateFromShow)
         setEndDateChooseProp(endDateFromShow)
 
         setDatePickerState(state);
+        // 套件日期選取 從其他元件傳遞的 state值 及開始日期 和結束日期的點擊function, 點擊能取得該套件所選的日期, 我再經由函式計算區間, 傳遞過來後 我用幾個 set 將幾個值 設useState 
+
+        // 這裡有個問題是 我下面如果直接console 這個state的值  也就是說他往外set才藉由這個func點擊console查看會是晚一拍的值
+
+        // 可能是因為 useState 是非同步更新的，當您在點選選取日期後，React 並不會立即更新 useState 的值，而是會等到整個渲染完成後才會進行更新，所以在點選選取日期後，由於 useState 尚未更新，所以在 console.log 出來的值還是舊值，等到再次打開日期選取器選取新日期時，此時 useState 才會更新並顯示新的值
+        // ---------------------------------------------
 
 
 
@@ -257,6 +265,13 @@ const PageReserve = (props) => {
         console.log(startDateFromShow)
         console.log(endDateFromShow)
 
+
+        // ---------------------------------------------
+        // 在此函式內外抓此函式set出去的值進來 在同樣點擊當下會是舊值
+        // console.log(startDateChooseProp)
+        // console.log(endDateChooseProp)
+        // ---------------------------------------------
+
     }
 
 
@@ -268,7 +283,7 @@ const PageReserve = (props) => {
 
 
     // ---------------------------------------
-    // 前往預定的按鈕判斷 如果還沒選會是UNDEFINED 
+    // 前往結帳的預定按鈕判斷 如果還沒選會是UNDEFINED 
     const pageReserveBtn = (campinfoId) => {
 
         if (loginStatus !== true) {
@@ -307,9 +322,6 @@ const PageReserve = (props) => {
         }
         // 使用了 date - fns 库中的 format 和 set 函数来操作日期时间，其中 format 将一个日期时间格式化为指定格式的字符串，而 set 可以用来设置一个日期时间对象的年、月、日、时、分、秒等属性
         // isAfter 是 date - fns 套件提供的函數之一，用於比較兩個日期的先後順序，可以判斷一個日期是否在另一個日期之後
-
-
-
 
 
 
@@ -354,21 +366,42 @@ const PageReserve = (props) => {
         }
         // ------------------------------------------
 
-
         // 存下點擊的時間到下一個頁面展示 和下下頁 並在最後成功預定發送api
         // 這次 我藉由 抓營區房間的id 並非營區id 到下一頁 axios抓取單一房間資訊和露營地
 
         console.log('有選取時間');
         console.log(datePickerState);
-        navigate(`/process/${id}/${campinfoId}`)
+
+
+
+        // 藉由選中的此組物件傳遞
+        // newObject 就是原本 datePickerState[0] 的一個複本，同時包含了一個新的屬性 a: 1。注意，這個方法不會改變原本的 datePickerState 物件，而是會回傳一個新的物件
+        const newPickerObject = {
+            ...datePickerState,
+
+            roomNum: quantity,
+            startDay: startDateChooseProp,
+            endDay: endDateChooseProp,
+            everyDateGap: pickRange,
+
+            abc:'你好'
+        };
+        // 這樣 datePickerState[0] 物件就會新增名稱為 a、b、c 的三個屬性，分別對應到值 1、'你好'、3。這個方法同樣不會改變原本的 datePickerState 物件，而是會回傳一個新的物件
+        // datePickerState[0] = {
+        //     ...datePickerState[0],
+        //     a: 1,
+        //     b: '你好',
+        //     c: 3
+        // };
+
+
+        navigate(`/process/${id}/${campinfoId}`, { state: newPickerObject });
+
+        // 在a頁面 跳轉去其他路由 使用useNavigate 想帶上datePickerState 這值一起到b頁面用
+        // 可在 navigate 方法的第二個參數中傳遞一個 state 物件，這樣在跳轉到新頁面時，可以將這個 state 物件傳遞過去
+
+        // 在目標頁面(b 頁面) 中，您可以使用 useLocation 鉤子來獲取傳遞過來的 state 物件
     }
-
-
-
-
-    // 顯示平日還是假日價格
-    const today = new Date().getDay();
-    const isWeekday = today > 0 && today < 6; // 0 是星期日，6 是星期六
 
 
 
@@ -384,8 +417,28 @@ const PageReserve = (props) => {
 
 
 
+    // 顯示平日還是假日價格
+    const today = new Date().getDay();
+    const isWeekday = today > 0 && today < 6; // 0 是星期日，6 是星期六
+
+
+
+
+   
+
+
+
+
+
+
+
+
     return (
         <>
+
+
+
+
             <div className='mt-5 relative bg-gray-100 w-full px-8 py-5  h-full shadow-xl rounded-md border-gray-200 border' id="section-reserve">
 
 
@@ -394,7 +447,9 @@ const PageReserve = (props) => {
 
                     <div>
 
-
+                        {/* <div className="hidden">
+                            <ProcessRightCamp select={aaa} />
+                        </div> */}
 
 
 
