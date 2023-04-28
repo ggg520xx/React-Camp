@@ -24,6 +24,8 @@ function Process(props) {
 
 
 
+
+
     // 抓取使用者到這個頁面 右側可以get的營區和區域 從區域去展開營區資訊
     function useGetRightCamp() {
 
@@ -64,7 +66,7 @@ function Process(props) {
 
                 <div className="row">
 
-                    <ProcessLeftReserve turnStatus={turnLeft} setTurnSwitch={setTurnLeft} />
+                    <ProcessLeftReserve turnStatus={turnLeft} setTurnSwitch={setTurnLeft} getInfo={processRightInfo} />
 
                     <ProcessRightCamp getInfo={processRightInfo} />
                 </div>

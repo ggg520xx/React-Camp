@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Scrollspy from 'react-scrollspy'
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faFacebook, faInstagram, faTwitter, faLine } from "@fortawesome/free-brands-svg-icons"
@@ -11,12 +11,32 @@ import { faSignOutAlt, faArrowLeft, faUser } from '@fortawesome/free-solid-svg-i
 
 const PageGuide = (props) => {
 
+    // 這是從失敗訂定傳過來的
+    const { state } = useLocation();
+    console.log(state)
+
+
 
 
     const navigate = useNavigate();
     const handleBack = () => {
-        navigate(-1);
+
+        if (state) {
+            navigate("/")
+        }
+
+        else {
+            navigate(-1);
+        }
     };
+
+
+
+
+
+
+
+
 
 
     return (
@@ -29,15 +49,19 @@ const PageGuide = (props) => {
 
                     <div className="relative flex items-center justify-center">
 
-                        <button className='absolute left-0 text-white text-lg' onClick={handleBack}>   <FontAwesomeIcon className="text-white" icon={faArrowLeft} />上一頁</button>
+
+
+                        {state ? <button className='absolute left-0 text-white text-lg' onClick={handleBack}>   <FontAwesomeIcon className="text-white" icon={faArrowLeft} />出現小問題,回首頁</button> : <button className='absolute left-0 text-white text-lg' onClick={handleBack}>   <FontAwesomeIcon className="text-white" icon={faArrowLeft} />上一頁</button>}
+
+                        
+
+                  
 
 
 
+                    
 
-
-
-                        <Scrollspy items={['section-info', 'section-reserve', 'section-feedback', 'section-notice']} className="flex text-lg text-white" >
-
+                        {state ? null : <Scrollspy items={['section-info', 'section-reserve', 'section-feedback', 'section-notice']} className="flex text-lg text-white" >
 
                             <li>
                                 <a href="#section-info">
@@ -76,8 +100,8 @@ const PageGuide = (props) => {
                                     </h4>
                                 </a>
                             </li>
+                        </Scrollspy>}
 
-                        </Scrollspy>
 
                     </div>
 

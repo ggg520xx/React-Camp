@@ -53,11 +53,11 @@ function ProcessRightCamp(props) {
     // 欲算出幾天 幾晚平日 幾晚假日
     // 兩個日期中間間隔的所有日期每一天 先導出一個陣列 用兩個日期 算出間隔數天的陣列
     // 詳細可以看我的 飯店預訂 或是 使用套件 這邊我在PageReserve 已經用套件算出並藉由url傳遞state到這
-    console.log(state.everyDateGap)  //.length 就是幾天
+    console.log(state.dateRange)  //.length 就是幾天
 
     // 然後我使用另一組state進來的日期算 getDay 總共幾個平日 幾個假日
-    const startDate = state[0].startDate;
-    const endDate = state[0].endDate;
+    const startDate = state.dateStatus[0].startDate;
+    const endDate = state.dateStatus[0].endDate;
 
     console.log(startDate)
     console.log(endDate)
@@ -69,7 +69,7 @@ function ProcessRightCamp(props) {
     for (let i = 0; i < nights; i++) {
 
         const date = new Date(startDate.getTime() + i * (24 * 60 * 60 * 1000));
-        if (date.getDay() === 0 || date.getDay() === 6) {
+        if (date.getDay() === 5 || date.getDay() === 6) {
             weekends.push(date);
         } else {
             weekdays.push(date);
@@ -163,13 +163,15 @@ function ProcessRightCamp(props) {
 
 
 
-
-                        <img
+                        
+                        {getData?.camp?.showLogo ? <img className="min-h-[200px] w-full object-cover hover:opacity-80" src={require(`../../../../assets/showLogo/${getData.camp.showLogo}`)} alt="" /> : <img className="min-h-[200px] w-full object-cover hover:opacity-80" src={require('../../../images/search/collect/404.png')} alt="" />}
+                        {/* <img
                             src={hot1}
                             className="min-h-[200px] w-full object-cover hover:opacity-80"
                             alt=""
-                        />
+                        /> */}
 
+                        
 
                         {/* basic_input */}
 
@@ -180,7 +182,7 @@ function ProcessRightCamp(props) {
                                 <strong>入住日期</strong>
 
                                 {/* <input className="py-2 mt-2 block bg-white w-full" value={state[0].startDate} type="button" /> */}
-                                <input className="py-2 mt-2 block bg-white w-full" value={state.startDay} type="button" />
+                                <input className="py-2 mt-2 block bg-white w-full" value={state.start} type="button" />
                             </div>
 
 
@@ -191,7 +193,7 @@ function ProcessRightCamp(props) {
                                 <strong>退房日期</strong>
 
                                 {/* <input className="py-2 mt-2 block bg-white w-full" value={state[0].endDate} type="button" /> */}
-                                <input className="py-2 mt-2 block bg-white w-full" value={state.endDay} type="button" />
+                                <input className="py-2 mt-2 block bg-white w-full" value={state.end} type="button" />
                             </div>
 
 
@@ -228,7 +230,18 @@ function ProcessRightCamp(props) {
 
 
                                 <input className="py-2 mt-2 block bg-white w-full"
-                                    value={`共計 ${state.everyDateGap.length} 天 ${nights} 晚 (平日 ${weekdays.length} 晚，假日 ${weekends.length} 晚)`} type="button" />
+                                    value={`共計 ${state.dateRange.length} 天 ${nights} 晚 ( 平日 ${weekdays.length} 晚，假日 ${weekends.length} 晚 )`} type="button" />
+
+                            </div>
+
+                            <hr />
+
+
+                            <div className="py-4">
+                                <strong>此 區域/房型 單價</strong>
+
+                                <input className="py-2 mt-2 block bg-white w-full"
+                                    value={`平日晚單價 ${getData.price}，假日晚單價 ${getData.holiday}`} type="button" />
 
                             </div>
 

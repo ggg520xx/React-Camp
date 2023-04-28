@@ -59,7 +59,7 @@ function App() {
     const [AllCampData, setAllCampData] = useState(null);
 
     useEffect(() => {
-      axios.get(`http://localhost:3000/camps`)
+      axios.get(`http://localhost:3000/camps?_expand=owner`)
         .then(response => {
           console.log(response.data)
           setAllCampData(response.data);
@@ -628,7 +628,7 @@ function App() {
           });
         } else {
           for (let i = 0; i < 8; i++) {
-            console.log(i);
+            // console.log(i);
             reservation.shift();
 
             const datePush = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);

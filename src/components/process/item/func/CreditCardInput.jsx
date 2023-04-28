@@ -122,7 +122,8 @@ class CreditCardInput extends Component {
                                     placeholder="MM&nbsp;/&nbsp;YY"
                                     className="w-full text-my_black"
 
-                                    maxLength="5"
+                                    maxLength="4"
+                                    
                                 />
 
                             </div>

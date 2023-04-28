@@ -74,14 +74,15 @@ const Login = (props) => {
         })
             .then(function (response) {
                 console.log(response.data)
+                console.log(response.data.user)
 
                 // console.log(response.data.accessToken)
-                // console.log(response.data.user)
 
 
                 localStorage.setItem('token', response.data.accessToken);
                 localStorage.setItem('name', response.data.user.name);
                 localStorage.setItem('nickname', response.data.user.nickname);
+                localStorage.setItem('id', response.data.user.id);
 
                
                 // axios.get(`http://localhost:3000/users`)

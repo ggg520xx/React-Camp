@@ -111,7 +111,7 @@ const Register = (props) => {
                 localStorage.setItem('token', response.data.accessToken);
                 localStorage.setItem('name', response.data.user.name);
                 localStorage.setItem('nickname', response.data.user.nickname);
-
+                localStorage.setItem('id', response.data.user.id);
 
 
 
@@ -141,7 +141,7 @@ const Register = (props) => {
             })
             .catch(function (error) {
                 console.log(error.response)
-                alert(`錯誤情況${error.response.data}無法正確註冊`)
+                alert(`註冊失敗：${error.response.data}`)
             })
 
     }

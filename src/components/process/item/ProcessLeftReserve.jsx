@@ -1,15 +1,35 @@
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 
+import axios from 'axios';
 
 // 信用卡頁使用的
 import CreditCardInput from './func/CreditCardInput';
+
+import { v4 as uuidv4 } from 'uuid'; // 引入 uuid 套件
+
+import { format, eachDayOfInterval, set, isAfter } from 'date-fns';
+
+
+
+
+
+
 
 
 
 
 
 function ProcessLeftReserve(props) {
+
+
+
+    // 傳id
+    const { id, campinfoId } = useParams();
+
+
+
 
     // 通过 props.turnStatus 访问传递的 turnStatus 属性
     // 通过 props.setTurnSwitch 访问传递的 setTurnSwitch 属性
@@ -23,6 +43,29 @@ function ProcessLeftReserve(props) {
 
 
 
+
+
+
+    // 使用  navigate(`/process/${id}/${campinfoId}`, { state: datePickerState }); 在此用useLocation抓出傳遞日期值
+    const { state } = useLocation();
+    console.log(state)
+
+
+
+
+    // 從上層傳遞進來
+    const { getInfo } = props;
+    const getData = getInfo ? getInfo[0] : null;
+    console.log(getData)
+
+
+
+
+
+
+
+
+
     // useForm
     const {
         register,
@@ -32,18 +75,161 @@ function ProcessLeftReserve(props) {
     // const { register, handleSubmit, formState: { errors } } = ReactHookForm.useForm();
 
 
+
+
+
+
+    // 左頁 第一次填好的用戶資料 點擊onSubmit ReactForm導出的資料用set存進去到其他地方查看
+    // 在翻轉頁面後顯示的為 此值取用
+    // 在翻轉頁面確認資料處貼上的 value = { leftData.lastname && leftData.lastname }
+    // 使用js條件渲染 &&
+    const [leftData, setLeftData] = useState({});
+
+
     // 有點選才連到下個頁面
     const onSubmit = (data) => {
 
-        // 有抓取物件再轉換 頁面
+        // 有抓取物件再轉換成JSON格式的字串 顯示在頁面
         let formdata = JSON.stringify(data)
         alert(formdata);
+        // console.log(formdata) 物件格式Json
 
         if (formdata !== '') {
-            // navigate("/payment")
-            setTurnSwitch(false)
+
+            // 再次把它轉為物件格式 並存入外部state狀態 將值取用在翻轉頁面確認資料處
+            let parsedData = JSON.parse(formdata);
+            console.log(parsedData)
+            console.log(parsedData.pay)
+            setLeftData(parsedData)
+
+            setTurnSwitch(false)  // 翻轉頁面
+            // navigate("/payment") 本來的頁面設計 後來更改頁面排版為翻轉的想法 就捨棄跳轉元件
         }
     }
+
+
+
+
+
+
+
+
+
+    const HandleClick = async () => {
+
+        // 抓出網址帶過來的 營區id 和 區域id
+        console.log(id)
+        console.log(campinfoId)
+
+
+
+        // 抓出我登入的 記住的 使用者id
+        let userId = parseInt(localStorage.getItem('id'));
+
+
+
+        // date-fns 做出的當下訂單時間
+        const now = new Date();
+        const bookDate = format(now, 'yyyy年MM月dd日');
+        const bookTime = format(now, 'HH時mm分ss秒');
+
+
+
+
+        // 寫入哪種付款方式
+        const payWay = leftData.pay === 'payway2' ? 'credit' : 'cash';
+
+
+        // 付款成功狀態（依照寫入成功或失敗判定）
+        // 正常環境這邊應該會連結到綠界付款之類的成功扣款才寫入可以或不可以
+        // let payStatus
+
+
+
+
+
+        try {
+            const order = {
+                code: Date.now() + uuidv4(), // 將時間戳記與 UUID 結合作為訂單編號,
+                userId: userId,
+                campId: parseInt(id),
+                campinfoId: parseInt(campinfoId),
+
+                roomStart: state.start,
+                roomEnd: state.end,
+                roomRange: state.dateRange,
+
+                roomDay: state.dateRange.length,
+                roomNight: (state.dateRange.length) - 1,
+
+                roomNum: parseInt(state.roomNum),
+                bookDate: bookDate,
+                bookTime: bookTime,
+
+
+                payWay: payWay,
+                payPrice: 3200,
+
+
+                payDate: "2023年04月16日",
+                // paySucess: payStatus,
+
+
+                cardNum: 4667261508460905,
+                cardName: "LK",
+                cardExpired: "06/28",
+                cardBack: "325",
+
+
+                orderExpired: false,
+                feedback: false,
+                feedbackContent: "我喜歡這裡"
+
+
+            };
+
+            const response = await axios.post('http://localhost:3000/orders', order);
+            console.log(response.data); // 打印儲存的數據
+
+
+            const bookingInfo = {
+
+                status: true,
+                order: order,
+                camp: state.camp
+
+            };
+
+            navigate("/finish", { state: bookingInfo });
+
+
+
+
+
+        } catch (error) {
+
+            // console.error(error);
+            // console.error(error.response.data);
+
+            localStorage.setItem('prevpage', id);
+
+            const bookingInfo = {
+
+                status: false,
+                // order: order,  
+                // 失敗post 當然也沒有成立訂單發送
+                camp: state.camp
+            };
+
+            navigate("/finish", { state: bookingInfo });
+
+        }
+    };
+
+
+
+
+
 
 
 
@@ -207,7 +393,8 @@ function ProcessLeftReserve(props) {
 
                     <div>
 
-                        <CreditCardInput />
+                        {leftData.pay === 'payway2' && <CreditCardInput />}
+
 
                         {/* 要寫的 確認click執行後 要post的上 (專案內搜尋 */}
 
@@ -218,6 +405,10 @@ function ProcessLeftReserve(props) {
 
 
 
+
+                        <div>
+                            <strong className="text-white block py-5">請再次確認訂購資料後，點擊完成訂單</strong>
+                        </div>
 
 
                         <div >
@@ -233,11 +424,11 @@ function ProcessLeftReserve(props) {
 
                         <hr className=" mt-2 mb-2" style={{ border: 'none' }} />
 
-                        <div >
-                            <input onClick={() => {
-                                navigate("/finish")
-                            }}
-                                className="text-md h-[50px] w-3/4 bg-my_black py-1 px-3 font-semibold text-white  hover:bg-white hover:text-my_green"
+
+                        <div>
+                            <input
+                                onClick={HandleClick}
+                                className="text-md h-[50px] w-3/4 bg-my_black py-1 px-3 font-semibold text-white hover:bg-white hover:text-my_green"
                                 type="submit"
                                 value="完成訂單"
                             />
@@ -262,30 +453,48 @@ function ProcessLeftReserve(props) {
                                     <div className="py-4">
                                         <strong>訂購人姓氏</strong>
 
-                                        <input className="py-2 mt-2 block bg-white w-full" value='陳' type="button" />
+
+                                        {/* 使用JavaScript中的一個簡單的條件渲染寫法來避免顯示undefined，透過判斷leftData物件是否存在name屬性，若存在則顯示name，否則不顯示 */}
+
+                                        {/* 用於檢查一個變量是否存在或為真，如果是，就顯示對應的內容，否則顯示空內容或其他預設值 */}
+
+                                        {/* 在這個寫法中，leftData.lastname && leftData.lastname的意思是，如果leftData物件中存在lastname屬性且該屬性值為真，則顯示leftData.lastname的值。如果不存在lastname屬性或者該屬性值為假，則不顯示任何內容。
+
+                                            這種寫法的好處在於可以避免在變量不存在或為假的情況下產生錯誤，同時也可以避免顯示空內容或其他不必要的內容 */}
+
+                                        <input className="py-2 mt-2 block bg-white w-full" value={leftData.lastname && leftData.lastname} type="button" />
                                     </div>
 
                                     <hr />
 
                                     <div className="py-4">
                                         <strong>訂購人姓名</strong>
-                                        <input className="py-2 mt-2 block bg-white w-full" value='小寶' type="button" />
+                                        <input className="py-2 mt-2 block bg-white w-full" value={leftData.firstname && leftData.firstname} type="button" />
                                     </div>
 
                                     <hr />
 
                                     <div className="py-4">
                                         <strong>手機確認</strong>
-                                        <input className="py-2 mt-2 block bg-white w-full" value='0912345678' type="button" />
+                                        <input className="py-2 mt-2 block bg-white w-full" value={leftData.mobile && leftData.mobile} type="button" />
                                     </div>
 
                                     <div className="py-4">
                                         <strong>電子信箱</strong>
-                                        <input className="py-2 mt-2 block bg-white w-full" value='abc123@gmail.com' type="button" />
+                                        <input className="py-2 mt-2 block bg-white w-full" value={leftData.email && leftData.email} type="button" />
                                     </div>
                                     <div className="py-4">
                                         <strong>付款方式</strong>
-                                        <input className="py-2 mt-2 block bg-white w-full" value='信用卡' type="button" />
+
+
+
+                                        {leftData.pay === 'payway2' ? <input className="py-2 mt-2 block bg-white w-full" value='信用卡或簽帳金融卡' type="button" /> : <input className="py-2 mt-2 block bg-white w-full" value='入住當下憑預訂付款' type="button" />}
+
+
+
+
+
+
                                     </div>
 
                                 </div>
