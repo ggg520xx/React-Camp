@@ -408,13 +408,13 @@ const PageReserve = (props) => {
 
         // 第三個版本 告知哪一天已滿房 並告知剩餘房間數量
         const insufficientDates = datePickerState[foundIndex].dateRange.filter(date => {
-            return campInfo[0].reservation.some(reserve => {
+            return campInfo[index].reservation.some(reserve => {
                 return reserve.date === date && reserve.num < quantities[index];
             });
         });
         // 如果有任何一天的房間數量不足，就顯示提示訊息
         if (insufficientDates.length > 0) {
-            const message = insufficientDates.map(date => `${date}: 營區位置不足，僅剩 ${campInfo[0].reservation.find(reserve => reserve.date === date).num} 帳 / 間`);
+            const message = insufficientDates.map(date => `${date}: 營區位置不足，僅剩 ${campInfo[index].reservation.find(reserve => reserve.date === date).num} 帳 / 間`);
             alert(message.join('\n'));
             return;
         }

@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid'; // 引入 uuid 套件
 import { format, eachDayOfInterval, set, isAfter } from 'date-fns';
 
 
-
+// import ProcessRightCamp from './ProcessRightCamp'
 
 
 
@@ -33,8 +33,10 @@ function ProcessLeftReserve(props) {
 
     // 通过 props.turnStatus 访问传递的 turnStatus 属性
     // 通过 props.setTurnSwitch 访问传递的 setTurnSwitch 属性
+
     // 這是頁面翻轉的狀態 true false 顯示
-    const { turnStatus, setTurnSwitch } = props;
+    // totalPriceFinal 是總金額的 物件合併傳遞到資料庫
+    const { turnStatus, setTurnSwitch, totalPriceFinal } = props;
 
 
 
@@ -123,6 +125,7 @@ function ProcessLeftReserve(props) {
 
 
 
+
         // 抓出我登入的 記住的 使用者id
         let userId = parseInt(localStorage.getItem('id'));
 
@@ -147,38 +150,39 @@ function ProcessLeftReserve(props) {
 
 
 
+        const campinfoIdTrans = parseInt(campinfoId)
+        const roomNumTran = parseInt(state.roomNum)
+        const dateRangeTran = state.dateRange
+
 
         try {
             const order = {
                 code: Date.now() + uuidv4(), // 將時間戳記與 UUID 結合作為訂單編號,
                 userId: userId,
                 campId: parseInt(id),
-                campinfoId: parseInt(campinfoId),
+                campinfoId: campinfoIdTrans,
 
                 roomStart: state.start,
                 roomEnd: state.end,
-                roomRange: state.dateRange,
+                dateRange: dateRangeTran,
 
                 roomDay: state.dateRange.length,
                 roomNight: (state.dateRange.length) - 1,
 
-                roomNum: parseInt(state.roomNum),
+                roomNum: roomNumTran,
                 bookDate: bookDate,
                 bookTime: bookTime,
 
-
                 payWay: payWay,
-                payPrice: 3200,
+                payPrice: totalPriceFinal,
 
-
-                payDate: "2023年04月16日",
+                // payDate: "2023年04月16日",
                 // paySucess: payStatus,
 
-
-                cardNum: 4667261508460905,
-                cardName: "LK",
-                cardExpired: "06/28",
-                cardBack: "325",
+                cardNum: creditCardInfo.number,
+                cardName: creditCardInfo.name,
+                cardExpired: creditCardInfo.expiry,
+                cardBack: creditCardInfo.cvc,
 
 
                 orderExpired: false,
@@ -192,8 +196,27 @@ function ProcessLeftReserve(props) {
             console.log(response.data); // 打印儲存的數據
 
 
-            const bookingInfo = {
 
+        
+            const patchData = getData.reservation.map((r) => {
+                const date = r.date;
+                const originalNum = r.num;
+                let num = originalNum;
+                if (state.dateRange.includes(date)) {
+                    num -= parseInt(state.roomNum);
+                }
+                return { date, num };
+            });
+
+            const patchResponse = await axios.patch(`http://localhost:3000/campinfos/${campinfoIdTrans}`, {
+                reservation: patchData,
+            });
+            console.log(patchResponse.data);
+
+            
+
+
+            const bookingInfo = {
                 status: true,
                 order: order,
                 camp: state.camp
@@ -227,7 +250,35 @@ function ProcessLeftReserve(props) {
     };
 
 
+    // const [creditNum, setCreditNum] = useState('')
 
+    // const handleCreditChange = (e) => {
+    //     setCreditNum(e.target.value)
+    //     console.log(e.target.value)
+    //     console.log('成功')
+    // }
+
+
+
+    // ------------------------------------------------
+    // 首先 這邊只是 建立一個useState 作為物件creditCardInfo提供位置
+
+    // 物件包含四個屬性：name、number、expiry 和 cvc。handleCreditCardChange 函式用來更新 creditCardInfo 物件
+    // 下面會抓取..其餘的去添加  從信用卡子元件傳遞來的 添加進去 組成可看的物件 
+    const [creditCardInfo, setCreditCardInfo] = useState({
+        name: '',
+        number: '',
+        expiry: '',
+        cvc: ''
+    });
+
+    // 從信用卡元件 creditcardinput傳遞過來的 並用useState的空值建立可post的物件
+    // 子元件 CreditCardInput 改變時，父元件就會調用這個函式
+
+    // 我們使用 ES6 的物件展開語法 ...來創建一個新物件，其中舊的 creditCardInfo 物件被展開，同時在新物件中添加更新過的欄位值
+    const handleCreditCardChange = (updatedField) => {
+        setCreditCardInfo({ ...creditCardInfo, ...updatedField });
+    };
 
 
 
@@ -393,7 +444,13 @@ function ProcessLeftReserve(props) {
 
                     <div>
 
-                        {leftData.pay === 'payway2' && <CreditCardInput />}
+                        {leftData.pay === 'payway2' && <CreditCardInput onChange={handleCreditCardChange} />}
+                        {/* <p>Number: {creditCardInfo.number}</p>
+                            <p>Name: {creditCardInfo.name}</p>
+                            <p>Expiry: {creditCardInfo.expiry}</p>
+                            <p>CVC: {creditCardInfo.cvc}</p> */}
+
+
 
 
                         {/* 要寫的 確認click執行後 要post的上 (專案內搜尋 */}

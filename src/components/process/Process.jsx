@@ -17,6 +17,10 @@ import axios from 'axios';
 function Process(props) {
 
 
+    // 右側計算好的金額傳遞給左元件 變成可發送 post物件包給資料庫
+    const [totalPriceFinal, setTotalPriceFinal] = useState(0);
+
+
 
     // 傳id
     const { id, campinfoId } = useParams();
@@ -46,9 +50,9 @@ function Process(props) {
         }, []);
         return Data;
     }
-    const processRightInfo = useGetRightCamp();  
+    const processRightInfo = useGetRightCamp();
 
-    
+
     console.log(processRightInfo)
 
 
@@ -66,9 +70,9 @@ function Process(props) {
 
                 <div className="row">
 
-                    <ProcessLeftReserve turnStatus={turnLeft} setTurnSwitch={setTurnLeft} getInfo={processRightInfo} />
+                    <ProcessLeftReserve turnStatus={turnLeft} setTurnSwitch={setTurnLeft} getInfo={processRightInfo} totalPriceFinal={totalPriceFinal} />
 
-                    <ProcessRightCamp getInfo={processRightInfo} />
+                    <ProcessRightCamp getInfo={processRightInfo} setTotalPriceFinal={setTotalPriceFinal} />
                 </div>
 
             </div>

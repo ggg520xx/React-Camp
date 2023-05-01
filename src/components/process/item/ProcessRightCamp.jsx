@@ -21,6 +21,12 @@ import { indexIcon, hot1, hot2, hot3 } from '../../../images/index/IndexMange'
 
 import { useLocation } from 'react-router-dom';
 
+
+
+
+
+
+
 function ProcessRightCamp(props) {
 
 
@@ -32,8 +38,8 @@ function ProcessRightCamp(props) {
 
 
 
-    // 從上層傳遞進來
-    const { getInfo } = props;
+    // getInfo從上層傳遞進來使用的資料  setTotalPriceFinal則是要把做好的金額帶出去給左側的元件
+    const { getInfo, setTotalPriceFinal } = props;
     const getData = getInfo ? getInfo[0] : null;
     console.log(getData)
 
@@ -87,6 +93,7 @@ function ProcessRightCamp(props) {
 
     // 但我還有 訂購者定了幾間 所以總金額要＊我選了幾間 同時預訂
     const totalPriceFinal = totalPrice * state.roomNum;
+    setTotalPriceFinal(totalPriceFinal)
     
     console.log(`平日房價總共 ${weekdays.length} 晚，共 ${totalWeekdaysPrice} 元`);
     console.log(`假日房價總共 ${weekends.length} 晚，共 ${totalWeekendsPrice} 元`);

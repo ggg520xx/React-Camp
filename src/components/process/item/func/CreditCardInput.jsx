@@ -4,10 +4,6 @@ import './CreditCardInputStyle.css';
 
 
 
-
-
-
-
 class CreditCardInput extends Component {
 
     constructor(props) {
@@ -30,10 +26,26 @@ class CreditCardInput extends Component {
         });
     }
 
+
+
+
+    // -------------------------------
+    // 我們在CreditCardInput 元件中可以使用以下程式碼來發送更新到父元件
     handleInputChange = (e) => {
         const { name, value } = e.target;
         this.setState({ [name]: value });
+
+
+        // 這會將更改的欄位值作為物件傳遞給父元件，並在父元件中更新 creditCardInfo 物件
+        if (this.props.onChange) {
+            this.props.onChange({ [name]: value });
+            // 傳入更新過的欄位值作為物件
+        }
     }
+    // 當使用者在 CreditCardInput 元件中輸入值時，父元件就會收到這些值並更新 creditCardInfo 物件。你可以在父元件中顯示該物件中的值，以檢查它是否正確地更新了
+
+
+
 
 
 
@@ -41,11 +53,7 @@ class CreditCardInput extends Component {
     render() {
         return (
             <>
-
-
                 <div id="PaymentForm" className="row mb-4">
-
-
                     <div className="col-12" style={{ objectFit: "fill" }}>
                         <Cards
                             cvc={this.state.cvc}
@@ -58,10 +66,6 @@ class CreditCardInput extends Component {
                     </div>
 
 
-
-
-
-
                     <div >
 
                         <h4 className="mb-3 text-left text-2xl font-bold text-white">
@@ -70,10 +74,7 @@ class CreditCardInput extends Component {
 
                         <hr />
 
-
                         <div className="row py-4 ">
-
-
 
                             <div className="col-6 text-left text-lg font-semibold text-white">
                                 信用卡卡號
@@ -90,7 +91,6 @@ class CreditCardInput extends Component {
                                 />
                             </div>
 
-
                             <div className="col-6 text-left text-lg font-semibold text-white">
                                 持卡人姓名
                                 <input
@@ -103,15 +103,11 @@ class CreditCardInput extends Component {
 
                             </div>
 
-
-                       
                         </div>
 
 
 
-
                         <div className="row py-4 ">
-
                             <div className="col-6 text-left text-lg font-semibold text-white">
                                 卡片有效期限
                                 <input
@@ -123,7 +119,7 @@ class CreditCardInput extends Component {
                                     className="w-full text-my_black"
 
                                     maxLength="4"
-                                    
+
                                 />
 
                             </div>
