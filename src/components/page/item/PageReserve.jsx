@@ -288,16 +288,13 @@ const PageReserve = (props) => {
 
 
 
-
-
-
-
         // setStartRange(startRangePick)
         // setEndRange(endRangePick)
 
         // 下面這兩個是提供給用戶網頁看的格式 我這邊沒用到 僅僅是顯示這個函式的 console
         console.log(startDateFromShow)
         console.log(endDateFromShow)
+        console.log(newDates)
 
 
         // ---------------------------------------------
@@ -434,14 +431,14 @@ const PageReserve = (props) => {
         const newPickerObject = {
             ...datePickerState[foundIndex],
 
-            // quantities[index]
-            roomNum: quantities[index],
 
+            roomNum: quantities[index],
             // startDay: datePickerState[foundIndex].start,
             // endDay: datePickerState[foundIndex].end,
             // everyDateGap: datePickerState[foundIndex].dateRange,
             camp: item
         };
+
         // 這樣 datePickerState[0] 物件就會新增名稱為 a、b、c 的三個屬性，分別對應到值 1、'你好'、3。這個方法同樣不會改變原本的 datePickerState 物件，而是會回傳一個新的物件
         // datePickerState[0] = {
         //     ...datePickerState[0],

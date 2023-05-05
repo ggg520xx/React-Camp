@@ -15,6 +15,11 @@ import axios from 'axios';
 
 import { MyContextSearch, useMyContextSearch } from '../../hooks/useContext/InputSearch';
 
+// 登入在這就去進行個人訂單的更新
+import { parse, isSameDay, subDays, isBefore } from 'date-fns';
+
+
+
 const Login = (props) => {
 
     // 全域引入的 登入 點擊後會存放全域 輸入的值
@@ -49,7 +54,7 @@ const Login = (props) => {
         }
 
 
-        
+
 
     }, []);
 
@@ -58,87 +63,109 @@ const Login = (props) => {
     // post/signin
     // 登入只要帶兩個欄位
 
-    const onSubmit = (data) => {
-        // 輸入後彈現導向
+
+
+    const onSubmit = async (data) => {
         // 有抓取物件再轉換 頁面
         console.log(data);
         let formdata = JSON.stringify(data)
         console.log(formdata);
 
+        try {
+            const response = await axios.post(`http://localhost:3000/login`, {
+                "email": `${data.login_email}`,
+                "password": `${data.login_password}`
+            });
+            console.log(response.data)
+            console.log(response.data.user)
+            console.log(response.data.accessToken)
 
-        axios.post(`http://localhost:3000/login`, {
+            localStorage.setItem('token', response.data.accessToken);
+            localStorage.setItem('name', response.data.user.name);
+            localStorage.setItem('nickname', response.data.user.nickname);
+            localStorage.setItem('id', response.data.user.id);
 
-            "email": `${data.login_email}`,
-            "password": `${data.login_password}`
+            // 我的登入使用者id 我要patch他的訂單 是否過期 做更新
+            const userPatchOrder = response.data.user.id
 
-        })
-            .then(function (response) {
-                console.log(response.data)
-                console.log(response.data.user)
-
-                // console.log(response.data.accessToken)
-
-
-                localStorage.setItem('token', response.data.accessToken);
-                localStorage.setItem('name', response.data.user.name);
-                localStorage.setItem('nickname', response.data.user.nickname);
-                localStorage.setItem('id', response.data.user.id);
-
-               
-                // axios.get(`http://localhost:3000/users`)
-                //     .then(response => {
-
-                //         const allusers = response.data
-
-                //         const singleUsers = allusers?.filter(newItem => newItem.email == response.data.login_email);
-
-                //         console.log(singleUsers)
-
-                //     })
-                //     .catch(error => {
-                //         console.log(error);
-                //     });
-
-                if (localStorage.getItem('prevpage')) {
-
-                    setLoginStatus(true)
-
-                    let id = localStorage.getItem('prevpage');
-                    alert('登入成功,將導向至先前頁面')
-                    navigate(`/page/${id}`)
-                    localStorage.removeItem('prevpage');
-
-                }
-
-                else {
-
-                    setLoginStatus(true)
-
-                    alert('登入成功,將導向至會員頁面')
-                    navigate("/member")
-                }
+            if (localStorage.getItem('prevpage')) {
+                setLoginStatus(true)
+                let id = localStorage.getItem('prevpage');
+                alert('登入成功,將導向至先前頁面')
 
 
-            })
-            .catch(function (error) {
-                console.log(error.response)
-                console.log(error.response.data)
-                alert(`帳號密碼有誤,無法正確登入`)
-            })
+                // ----------------------------------
+                // 定義取得資料的函式 等待取得資料後再繼續往下執行
+                const userOrder = await getUserOrder(userPatchOrder);
+                console.log(userOrder)
+                // ----------------------------------
 
+                 // 進行get後的patch
+                await processOrders(userOrder);
+
+                navigate(`/page/${id}`)
+                localStorage.removeItem('prevpage');
+            }
+            else {
+                setLoginStatus(true)
+                // alert('登入成功,將導向至會員頁面')
+
+
+                // ----------------------------------
+                // 定義取得資料的函式 等待取得資料後再繼續往下執行
+                const userOrder = await getUserOrder(userPatchOrder);
+                console.log(userOrder)
+                // ----------------------------------
+
+                // 進行get後的patch
+                await processOrders(userOrder);
+
+                  navigate("/member")
+            }
+
+        } catch (error) {
+            console.log(error.response)
+            console.log(error.response.data)
+            alert(`帳號密碼有誤,無法正確登入`)
+        }
+    };
+
+    const getUserOrder = async (userPatchOrder) => {
+        const response = await axios.get(`http://localhost:3000/orders?userId=${userPatchOrder}&orderExpired=false`);
+        return response.data;
     }
 
+    const processOrders = async (userOrder) => {
 
-
-
-
-  
-
-
-
-
-
-
+        const today = new Date();
+        // 遍歷每筆訂單資料，檢查是否逾期
+        // 這樣就能避免使用 await 在 forEach 迴圈中而產生的錯誤
+        for (const item of userOrder) {
+            console.log(item);
+            // 這是這個特定用戶的最後一天解析成js格式 用它來和今天的日期比較
+            const orderEndDate = parse(item.roomEnd, "yyyy年MM月dd日", new Date());
+            console.log(orderEndDate);
+            if (isSameDay(orderEndDate, today)) {
+                console.log('同天日期');
+            } else if (isBefore(orderEndDate, today)) {
+                try {
+                    await axios.patch(`http://localhost:3000/orders/${item.id}`, { orderExpired: true });
+                    console.log("patch成功");
+                } catch (error) {
+                    console.log("patch失敗，進行第二次patch");
+                    try {
+                        await axios.patch(`http://localhost:3000/orders/${item.id}`, { orderExpired: true });
+                        console.log("第二次patch成功");
+                    } catch (error) {
+                        console.log("第二次patch失敗");
+                    }
+                }
+                console.log('過去日期');
+            } else {
+                console.log('未來日期');
+            }
+        }
+    }
 
 
 
@@ -155,9 +182,6 @@ const Login = (props) => {
     //         )
     //     }
     // }
-
-
-
 
 
 

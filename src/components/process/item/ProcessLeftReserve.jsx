@@ -186,6 +186,7 @@ function ProcessLeftReserve(props) {
 
 
                 orderExpired: false,
+                orderCancel:false,
                 feedback: false,
                 feedbackContent: "我喜歡這裡"
 

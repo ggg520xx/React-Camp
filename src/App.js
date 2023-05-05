@@ -18,12 +18,13 @@ import Finish from './components/finish/Finish'
 import Login from './components/login/Login'
 import Register from './components/register/Register'
 
+
+
 import MemberLayout from './components/memberLayout/MemberLayout'
-import MemberMain from './components/memberMain/MemberMain'
 
-
-import MemberOrder from './components/memberOrder/MemberOrder'
-import MemberLike from './components/memberLike/MemberLike'
+import MemberMain from './components/member/MemberMain'
+import MemberOrder from './components/member/MemberOrder'
+import MemberLike from './components/member/MemberLike'
 
 
 
@@ -742,7 +743,6 @@ function App() {
           </Routes>
 
         </MyTagShowHide.Provider>
-
       </MyContextSearch.Provider>
 
 
