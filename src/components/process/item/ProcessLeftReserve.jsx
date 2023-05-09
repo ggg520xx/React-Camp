@@ -12,8 +12,6 @@ import { v4 as uuidv4 } from 'uuid'; // 引入 uuid 套件
 import { format, eachDayOfInterval, set, isAfter } from 'date-fns';
 
 
-// import ProcessRightCamp from './ProcessRightCamp'
-
 
 
 
@@ -22,6 +20,10 @@ import { format, eachDayOfInterval, set, isAfter } from 'date-fns';
 
 
 function ProcessLeftReserve(props) {
+
+
+
+
 
 
 
@@ -36,7 +38,7 @@ function ProcessLeftReserve(props) {
 
     // 這是頁面翻轉的狀態 true false 顯示
     // totalPriceFinal 是總金額的 物件合併傳遞到資料庫
-    const { turnStatus, setTurnSwitch, totalPriceFinal } = props;
+    const { turnStatus, setTurnSwitch, totalPriceFinal, discountPublicTrans, setDiscountPublicTrans } = props;
 
 
 
@@ -44,6 +46,43 @@ function ProcessLeftReserve(props) {
     const navigate = useNavigate();
 
 
+
+
+
+
+
+
+    const userId = localStorage.getItem('id')
+    const [userData, setUserData] = useState({ discount: [] });
+
+
+    async function getUserData() {
+        try {
+            const response = await axios.get(`http://localhost:3000/users/${userId}`);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        async function fetchData() {
+            const data = await getUserData();
+            setUserData(data);
+        }
+        fetchData();
+    }, []);
+
+
+
+
+
+
+    // 轉為 優惠券 數字為中文的一二三數字樣子
+    const numberToChinese = (number) => {
+        const digits = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+        return number.toLocaleString('zh-Hans', { minimumIntegerDigits: 1 }).replace(/\d/g, (match) => digits[match]);
+    }
 
 
 
@@ -81,12 +120,13 @@ function ProcessLeftReserve(props) {
 
 
 
+
+
     // 左頁 第一次填好的用戶資料 點擊onSubmit ReactForm導出的資料用set存進去到其他地方查看
     // 在翻轉頁面後顯示的為 此值取用
     // 在翻轉頁面確認資料處貼上的 value = { leftData.lastname && leftData.lastname }
     // 使用js條件渲染 &&
     const [leftData, setLeftData] = useState({});
-
 
     // 有點選才連到下個頁面
     const onSubmit = (data) => {
@@ -143,6 +183,7 @@ function ProcessLeftReserve(props) {
         const payWay = leftData.pay === 'payway2' ? 'credit' : 'cash';
 
 
+
         // 付款成功狀態（依照寫入成功或失敗判定）
         // 正常環境這邊應該會連結到綠界付款之類的成功扣款才寫入可以或不可以
         // let payStatus
@@ -153,6 +194,7 @@ function ProcessLeftReserve(props) {
         const campinfoIdTrans = parseInt(campinfoId)
         const roomNumTran = parseInt(state.roomNum)
         const dateRangeTran = state.dateRange
+        const discountPublicTransNumber = Number(discountPublicTrans);
 
 
         try {
@@ -173,8 +215,17 @@ function ProcessLeftReserve(props) {
                 bookDate: bookDate,
                 bookTime: bookTime,
 
+
+                bookName: leftData.lastname.toString() + leftData.firstname.toString(),
+                bookPhone: leftData.mobile,
+                bookEmail: leftData.email,
+
+
+                bonusUse: discountPublicTransNumber,
+
                 payWay: payWay,
                 payPrice: totalPriceFinal,
+                // 左側的totalPriceFinal值 是右側計算後的結果 因此我只要把折扣方式 從父層帶給右側更動右邊這個共通變數 我post出去就會是正確的計算結果
 
                 // payDate: "2023年04月16日",
                 // paySucess: payStatus,
@@ -186,19 +237,19 @@ function ProcessLeftReserve(props) {
 
 
                 orderExpired: false,
-                orderCancel:false,
+                orderCancel: false,
                 feedback: false,
-                feedbackContent: "我喜歡這裡"
-
-
+                feedbackContent: ""
             };
 
+            // 存入訂單
             const response = await axios.post('http://localhost:3000/orders', order);
             console.log(response.data); // 打印儲存的數據
+            // -----------------------------
 
 
 
-        
+            // 減除選中日子的 所選間數
             const patchData = getData.reservation.map((r) => {
                 const date = r.date;
                 const originalNum = r.num;
@@ -208,25 +259,49 @@ function ProcessLeftReserve(props) {
                 }
                 return { date, num };
             });
-
+            // 並將新的減除patch進去
             const patchResponse = await axios.patch(`http://localhost:3000/campinfos/${campinfoIdTrans}`, {
                 reservation: patchData,
             });
             console.log(patchResponse.data);
 
-            
 
 
+
+
+            // 訂單發送後patch如果有使用優惠的話 拿掉該張優惠券
+            async function removeDiscount(userId, discount) {
+                try {
+                    const user = await axios.get(`http://localhost:3000/users/${userId}`);
+                    const updatedDiscount = user.data.discount.filter((d) => d !== discount);
+                    await axios.patch(`http://localhost:3000/users/${userId}`, {
+                        discount: updatedDiscount,
+                    });
+                    // 更新本地端的使用者資料
+                    setUserData((prevUserData) => ({
+                        ...prevUserData,
+                        discount: updatedDiscount,
+                    }));
+                    console.log(`Removed ${discount * 100}% off discount for user ${userId}.`);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            removeDiscount(userId, discountPublicTransNumber);
+
+
+
+
+
+
+            // 把此訂單 訂購是成功資訊給下一頁看看並呈現
             const bookingInfo = {
                 status: true,
                 order: order,
                 camp: state.camp
 
             };
-
             navigate("/finish", { state: bookingInfo });
-
-
 
 
 
@@ -251,13 +326,8 @@ function ProcessLeftReserve(props) {
     };
 
 
-    // const [creditNum, setCreditNum] = useState('')
 
-    // const handleCreditChange = (e) => {
-    //     setCreditNum(e.target.value)
-    //     console.log(e.target.value)
-    //     console.log('成功')
-    // }
+
 
 
 
@@ -288,6 +358,10 @@ function ProcessLeftReserve(props) {
     return (
         <>
             <div className="col-7 mb-3 h-full w-full rounded-md border border-gray-200 bg-my_green px-8 py-8 shadow-xl">
+
+
+
+
 
 
                 {turnStatus ? (
@@ -381,9 +455,11 @@ function ProcessLeftReserve(props) {
 
                         <hr />
 
+
                         <h4 className="mt-3 mb-3 text-left text-2xl font-bold text-white">
                             付款及優惠
                         </h4>
+
 
                         <div className="row py-4 ">
                             <div className="col-6 text-left text-lg font-semibold text-white">
@@ -405,25 +481,44 @@ function ProcessLeftReserve(props) {
                                 </div>
                             </div>
 
+
+
+
                             <div className="col-6 text-left text-lg font-semibold text-white">
                                 優惠券折扣：
                                 <select
                                     className="w-full text-my_black"
                                     name="bonus"
-                                    id=""
-                                    {...register('bonus', {
-                                        required: true,
-                                        message: '此欄位必填寫'
-                                    })}
+
+                                    onChange={(e) => { setDiscountPublicTrans(e.target.value) }}
+
+                                // 這編寫React form 存進的 Submit 會影響 onChange
+                                // id=""
+                                // {...register('bonus', {
+                                //     required: true,
+                                //     message: '此欄位必填寫'
+                                // })}
                                 >
-                                    <option value="bonus_none">無</option>
-                                    {/* <option value="option2">刷卡金流功能待開發</option> */}
+                                    {/* <option value="1">無</option> */}
+                                    {/* <option value="0.8">八折券-20% off</option>
+                                    <option value="0.7">七折券-30% off</option> */}
+
+
+                                    <option selected value="1">無</option>
+
+                                    {userData.discount.map((discount, index) => (
+                                        <option key={index} value={discount}>{numberToChinese(discount * 10)}折券 - {((1 - discount) * 100).toFixed(0)}% off</option>
+                                    ))}
                                 </select>
-                                <div className="min-h-[30px] text-red-500">
+                                {/* <div className="min-h-[30px] text-red-500">
                                     {errors.bonus && <span>此欄位必填</span>}
-                                </div>
+                                </div> */}
                             </div>
+
                         </div>
+
+
+
 
                         <div>
                             <input

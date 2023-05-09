@@ -39,7 +39,12 @@ function ProcessRightCamp(props) {
 
 
     // getInfo從上層傳遞進來使用的資料  setTotalPriceFinal則是要把做好的金額帶出去給左側的元件
-    const { getInfo, setTotalPriceFinal } = props;
+    const { getInfo, setTotalPriceFinal, discountPublicTrans } = props;
+
+    
+    // let discount = parseFloat(leftData.bonus) || 1;
+    // 當 parseFloat(leftData.bonus) 為 NaN 或是 undefined 或是 null，它會被判斷成 false，所以會回傳後面的 1，否則就會回傳轉換後的浮點數
+
     const getData = getInfo ? getInfo[0] : null;
     console.log(getData)
 
@@ -92,13 +97,20 @@ function ProcessRightCamp(props) {
     const totalPrice = totalWeekdaysPrice + totalWeekendsPrice; // 平日總價＋假日總價 就是總金額
 
     // 但我還有 訂購者定了幾間 所以總金額要＊我選了幾間 同時預訂
-    const totalPriceFinal = totalPrice * state.roomNum;
+    const totalPriceRoom = totalPrice * state.roomNum;
+    
+    // 總計金額再乘上折扣優惠
+    const totalPriceFinal = totalPriceRoom * discountPublicTrans;
     setTotalPriceFinal(totalPriceFinal)
+
+
+   
     
     console.log(`平日房價總共 ${weekdays.length} 晚，共 ${totalWeekdaysPrice} 元`);
     console.log(`假日房價總共 ${weekends.length} 晚，共 ${totalWeekendsPrice} 元`);
-    console.log(` ${totalPrice} 元 , 還未乘上住戶選購間數`);
-    console.log(`真正總計金額 共 ${totalPriceFinal} 元 `);
+    console.log(` ${totalPrice} 元 , 僅選取房型房間日期 還未乘上住戶選購間數`);
+    console.log(` ${totalPriceRoom} 元 , 總金額 , 選取房型房間日期 乘上住戶間數 , 但未乘上折扣`);
+    console.log(`真正總計金額(乘上折扣) 共 ${totalPriceFinal} 元 `);
 
 
 
@@ -264,7 +276,7 @@ function ProcessRightCamp(props) {
 
                             <div className="py-4">
                                 <strong>折扣金額</strong>
-                                <input className="py-2 mt-2 block bg-white w-full" value='0' type="button" />
+                                <input className="py-2 mt-2 block bg-white w-full" value={totalPriceRoom-totalPriceFinal} type="button" />
                             </div>
                         </div>
 

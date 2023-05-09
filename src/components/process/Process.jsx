@@ -59,6 +59,16 @@ function Process(props) {
 
     // 用戶填寫介面的狀態傳入翻轉判定
     const [turnLeft, setTurnLeft] = useState(true);
+    
+
+    
+    // 抓選取到的折扣value是哪個
+    const [discountPublicTrans, setDiscountPublicTrans] = useState(1);
+
+
+
+ 
+
 
     return (
         <>
@@ -70,9 +80,9 @@ function Process(props) {
 
                 <div className="row">
 
-                    <ProcessLeftReserve turnStatus={turnLeft} setTurnSwitch={setTurnLeft} getInfo={processRightInfo} totalPriceFinal={totalPriceFinal} />
+                    <ProcessLeftReserve turnStatus={turnLeft} setTurnSwitch={setTurnLeft} getInfo={processRightInfo} totalPriceFinal={totalPriceFinal} discountPublicTrans={discountPublicTrans} setDiscountPublicTrans={setDiscountPublicTrans} />
 
-                    <ProcessRightCamp getInfo={processRightInfo} setTotalPriceFinal={setTotalPriceFinal} />
+                    <ProcessRightCamp getInfo={processRightInfo} setTotalPriceFinal={setTotalPriceFinal} discountPublicTrans={discountPublicTrans} />
                 </div>
 
             </div>

@@ -692,9 +692,9 @@ const PageReserve = (props) => {
 
                     </div>
 
-                    <p className="text-right text-base text-red-700">（ 禮拜五、六 ）當日至隔日為假日價格，除外日期當日至隔日為平日價格</p>
+                    <p className="mt-3 font-bold text-right text-base text-red-500">（ 禮拜五、六 ）當日至隔日為假日價格，除外日期當日至隔日為平日價格</p>
 
-                    <p className="text-right text-base text-red-700">晚上7點後不可預訂今日，僅可從明日起預訂</p>
+                    <p className="mt-3 font-bold text-right text-base text-red-500">晚上7點後不可預訂今日，僅可從明日起預訂</p>
                 </div>
             </div>
         </>

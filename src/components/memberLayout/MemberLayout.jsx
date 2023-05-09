@@ -52,6 +52,21 @@ const MemberLayout = () => {
 
 
 
+    // 登出函式 和 前台頁面的登出一樣
+    async function handleLogout() {
+        try {
+            // 同時執行多個非同步操作
+            const [response1, response2] = await Promise.all([
+                navigate("/"),
+                localStorage.clear(),
+            ]);
+            // 在所有操作完成後再執行下一步程式碼
+            setLoginStatus(false);
+            alert('已進行登出');
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 
 
@@ -204,11 +219,7 @@ const MemberLayout = () => {
 
                                     <hr className="border h-[20px]" />
 
-                                    <button onClick={() => {
-                                        localStorage.clear()
-                                        setLoginStatus(false)
-                                        navigate("/")
-                                    }} className="px-3">
+                                    <button onClick={handleLogout} className="px-3">
                                         <div className="flex items-center">
                                             <FontAwesomeIcon className="text-white mx-1" icon={faSignOutAlt} />
                                             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">登出 </span>

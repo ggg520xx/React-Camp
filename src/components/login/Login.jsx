@@ -100,7 +100,7 @@ const Login = (props) => {
                 console.log(userOrder)
                 // ----------------------------------
 
-                 // 進行get後的patch
+                // 進行get後的patch
                 await processOrders(userOrder);
 
                 navigate(`/page/${id}`)
@@ -120,7 +120,7 @@ const Login = (props) => {
                 // 進行get後的patch
                 await processOrders(userOrder);
 
-                  navigate("/member")
+                navigate("/member")
             }
 
         } catch (error) {
@@ -234,8 +234,8 @@ const Login = (props) => {
                                             }
                                         })} style={{ letterSpacing: 1 }} onChange={(e) => {
                                             setMemberEmail(e.target.value);
-                                        }} onFocus={(e) => setMemberEmail("kokomi@gmail.com")} value={memberEmail} />
-
+                                            }} onFocus={(e) => setMemberEmail("kokomi@gmail.com")} value={memberEmail} />
+                                        {/* onFocus={(e) => setMemberEmail("rurumi@gmail.com")} */}
                                         {/* required */}
                                     </div>
                                 </div>
@@ -264,7 +264,8 @@ const Login = (props) => {
                                             }
                                         })} style={{ letterSpacing: 1 }} onChange={(e) => {
                                             setMemberPassword(e.target.value)
-                                        }} onFocus={(e) => setMemberPassword("Kokomi123456")} value={memberPassword} />
+                                            }} onFocus={(e) => setMemberPassword("Kokomi123456")} value={memberPassword} />
+                                        {/* onFocus={(e) => setMemberPassword("Rurumi123456")} */}
                                         {/* required */}
 
                                     </div>

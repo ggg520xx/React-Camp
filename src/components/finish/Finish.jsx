@@ -189,15 +189,17 @@ function Finish() {
                         <div className="row pt-5">
 
                             <div className="col-6 ">
-
-
+                                
                                 {/* hover:opacity-80 */}
 
-                                <img
+                                {/* <img
                                     src={hot1}
                                     className="min-h-[200px] w-full object-cover"
                                     alt=""
-                                />
+                                /> */}
+
+                                {state?.camp?.showLogo ? <img className="min-h-[200px] w-full object-cover" src={require(`../../../assets/showLogo/${state.camp.showLogo}`)} alt="" /> : <img className="min-h-[200px] w-full object-cover" src={require('../../images/search/collect/404.png')} alt="" />}
+
                             </div>
 
 

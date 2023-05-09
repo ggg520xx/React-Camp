@@ -99,7 +99,8 @@ const Register = (props) => {
             "name": `${data.register_name}`,
             "nickname": `${data.register_nickname}`,
             "email": `${data.register_email}`,
-            "password": `${data.register_checkpassword}`
+            "password": `${data.register_checkpassword}`,
+            "discount": [0.6]
 
         })
             .then(function (response) {
@@ -202,6 +203,8 @@ const Register = (props) => {
 
                         <div className="py-5">
                             <h2 className="font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>會員註冊</h2>
+                            
+                            <p className="mt-3 font-bold text-sm text-red-400">首次註冊成功送六折優惠券</p>
                         </div>
 
 

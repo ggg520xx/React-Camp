@@ -29,6 +29,7 @@ import { MyContextSearch, useMyContextSearch } from '../../hooks/useContext/Inpu
 
 
 
+
 function Layout() {
 
     // 全域引入的 登入 點擊後會存放全域 輸入的值
@@ -49,6 +50,32 @@ function Layout() {
 
     // 一定要這段
     const navigate = useNavigate();
+
+
+
+
+
+
+
+
+
+    // 登出函式 和 會員頁面的登出一樣
+    async function handleLogout() {
+        try {
+            // 同時執行多個非同步操作
+            const [response1, response2] = await Promise.all([
+                navigate("/"),
+                localStorage.clear(),
+            ]);
+            // 在所有操作完成後再執行下一步程式碼
+            setLoginStatus(false);
+            alert('已進行登出');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
 
 
     return (
@@ -99,16 +126,9 @@ function Layout() {
                                             <Link to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">成為營主</Link>
                                         </li>
 
-                                        <li>
-                                            <Link onClick={() => {
-                                                localStorage.clear()
-                                                setLoginStatus(false)
-                                                
-                                                alert('已進行登出')
-                                                // navigate("/")
-
-
-                                            }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">登出</Link>
+                                        {/* 這裡要用button 用Link登出會出錯 沒辦法寫行內函式 或執行函式 */}
+                                        <li >
+                                            <button onClick={handleLogout} className="mx-auto w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">登出</button>
                                         </li>
                                     </ul>
                                 </div>

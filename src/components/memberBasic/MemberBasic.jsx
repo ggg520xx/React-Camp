@@ -10,17 +10,28 @@ import { faFacebook, faInstagram, faTwitter, faLine } from "@fortawesome/free-br
 import { Link } from "react-router-dom";
 
 
-
-
-
-
-
 // import { indexLogo, FbSvgComp, InsSvgComp, TwiSvgComp, LineSvgComp } from '../../images/layout/LayoutMange';
 import ReactStars from "react-rating-stars-component";
 
 
-function MemberBasic() {
 
+
+
+
+
+
+
+
+
+
+
+// 這是呈現的版型 資料集結構相同 資料流進來後所擺放 只有日期是否已過的區別
+const MemberBasic = function (props) {
+
+
+
+    const { getdata } = props; // 從 props 取得 data
+    console.log(getdata)
 
     // 本來寫在 func 但 return 部分是頁面的兩個區塊位置 不好拆 就乾脆寫在元件內了
     const [expanded, setExpanded] = useState(false);
@@ -145,19 +156,19 @@ function MemberBasic() {
     return (
         <>
 
-            <div className="mt-5 row border border-psub_color bg-white hover:shadow-xl hover:border-sub_color w-4/5 mx-auto">
+            <div className="row border border-psub_color bg-white hover:shadow-xl hover:border-sub_color w-4/5 mx-auto">
 
 
                 <div className="col-3 py-3.5 border-r">
 
-                    <strong className='bg-p_color block text-white mb-2'>訂單編號：<span>2022120301</span></strong>
+                    <strong className='bg-p_color block text-white mb-2'>訂單編號：<span>{}</span></strong>
 
                     <img className='h-[160px] w-full object-cover' src={searchDemo} alt="" />
                 </div>
 
 
 
-                <div className="col-4  relative ">
+                <div className="col-4 relative ">
 
                     <div className="flex flex-col justify-between items-start h-full py-3">
 
