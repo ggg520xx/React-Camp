@@ -22,16 +22,13 @@ import axios from 'axios';
 function MemberMain() {
 
 
-
-
     let userIdOrder = localStorage.getItem('id');
-    
     console.log(userIdOrder)
 
     function useData() {
         const [Data, setData] = useState(null);
         useEffect(() => {
-            axios.get(`http://localhost:3000/orders?userId=${userIdOrder}&orderExpired=false`)
+            axios.get(`http://localhost:3000/orders?userId=${userIdOrder}&orderExpired=false&orderCancel=false&_expand=camp&_expand=campinfo`)
                 .then(response => {
 
                     const userOrder = response.data
@@ -51,18 +48,12 @@ function MemberMain() {
 
 
 
-
-
-
-
-
-
     return (
         <>
             <DivContentZone className="py-5 bg-soft_color ">
 
                 <div className='h-[70px]'>
-                    <h2 className="text-xl font-bold">歡迎，您尚有 <span className="text-blue-500">1</span> 筆 行程待進行或進行中</h2>
+                    <h2 className="text-xl font-bold">歡迎，您尚有 <span className="text-blue-500">{dataIng && dataIng.length}</span> 筆 行程待進行或進行中</h2>
                     <strong>準備好開始您的行程了嗎</strong>
                 </div>
 
@@ -70,10 +61,7 @@ function MemberMain() {
 
 
 
-
-
-
-
+                {!dataIng || dataIng.length === 0 ? <div>當前並無行程</div> : null}
 
 
 

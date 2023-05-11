@@ -40,19 +40,19 @@ function MemberLike() {
 
                 <div className='h-[70px]'>
                     <button className={`border border-sub_color rounded-sm py-2 px-3 text-md font-semibold hover:bg-p_color hover:text-white ${likeTab === 1 && 'bg-my_green text-white'
-                            }`} onClick={() => handleLikeTabChange(1)}>北部營區</button>
+                        }`} onClick={() => handleLikeTabChange(1)}>北部營區</button>
 
                     <button className={`border border-sub_color rounded-sm py-2 px-3 text-md font-semibold hover:bg-p_color hover:text-white ${likeTab === 2 && 'bg-my_green text-white'
-                            }`} onClick={() => handleLikeTabChange(2)}>中部營區</button>
+                        }`} onClick={() => handleLikeTabChange(2)}>中部營區</button>
 
                     <button className={`border border-sub_color rounded-sm py-2 px-3 text-md font-semibold hover:bg-p_color hover:text-white ${likeTab === 3 && 'bg-my_green text-white'
-                            }`} onClick={() => handleLikeTabChange(3)}>南部營區</button>
+                        }`} onClick={() => handleLikeTabChange(3)}>南部營區</button>
 
                     <button className={`border border-sub_color rounded-sm py-2 px-3 text-md font-semibold hover:bg-p_color hover:text-white ${likeTab === 4 && 'bg-my_green text-white'
-                            }`} onClick={() => handleLikeTabChange(4)}>東部營區</button>
+                        }`} onClick={() => handleLikeTabChange(4)}>東部營區</button>
 
                     <button className={`border border-sub_color rounded-sm py-2 px-3 text-md font-semibold hover:bg-p_color hover:text-white ${likeTab === 5 && 'bg-my_green text-white'
-                            }`} onClick={() => handleLikeTabChange(5)}>外島營區</button>
+                        }`} onClick={() => handleLikeTabChange(5)}>外島營區</button>
                 </div>
 
 
@@ -75,7 +75,7 @@ function MemberLike() {
 
 
 
-                            <div className="col-3">
+                            <div className="col-3 mb-4">
                                 <div className="relative bg-white h-full" onClick={() => { }}>
 
 
@@ -182,7 +182,7 @@ function MemberLike() {
 
 
 
-                            <div className="col-3">
+                            <div className="col-3 mb-4">
                                 <div className="relative bg-white h-full" onClick={() => { }}>
 
 
@@ -289,6 +289,7 @@ function MemberLike() {
 
 
 
+                            
 
 
 

@@ -215,6 +215,7 @@ function ProcessLeftReserve(props) {
                 bookDate: bookDate,
                 bookTime: bookTime,
 
+                ownerName: state.ownerName,
 
                 bookName: leftData.lastname.toString() + leftData.firstname.toString(),
                 bookPhone: leftData.mobile,

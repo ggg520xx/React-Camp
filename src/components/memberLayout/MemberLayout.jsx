@@ -126,7 +126,7 @@ const MemberLayout = () => {
 
                 </div> : <div className="row h-screen " >
 
-                    <div className='col-2 bg-my_green sticky top-0 left-0 right-0 p-0 rounded-br-[70px]'>
+                    <div className='h-full col-2 bg-my_green sticky top-0 left-0 right-0 p-0 rounded-br-[70px]'>
 
                         <nav className="h-[63px] px-2 sm:px-4 py-2.5  bg-my_black ">
                             {/* 內部控制 寬度 flex 置中 */}

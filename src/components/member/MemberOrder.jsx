@@ -18,14 +18,59 @@ import axios from 'axios';
 
 function MemberOrder() {
 
-    // const data = [/* 陣列物件資料 */];
-    const dataPast = 2;
-    const dataCancel = 3;
-
-
 
     // 過去和取消的選取
     const [uiTurn, setUiTurn] = useState(null);
+
+
+
+
+
+    let userIdOrder = localStorage.getItem('id');
+    console.log(userIdOrder)
+
+
+    function useDataPast() {
+        const [Data, setData] = useState(null);
+        useEffect(() => {
+            axios.get(`http://localhost:3000/orders?userId=${userIdOrder}&orderExpired=true&orderCancel=false&_expand=camp&_expand=campinfo`)
+                .then(response => {
+
+                    const userOrder = response.data
+                    console.log(userOrder)
+                    setData(userOrder);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }, []);
+        return Data;
+    }
+    const dataPast = useDataPast();
+
+
+
+
+
+
+    function useDataCancel() {
+        const [Data, setData] = useState(null);
+        useEffect(() => {
+            axios.get(`http://localhost:3000/orders?userId=${userIdOrder}&orderCancel=true&_expand=camp&_expand=campinfo`)
+                .then(response => {
+
+                    const userOrder = response.data
+                    console.log(userOrder)
+                    setData(userOrder);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }, []);
+        return Data;
+    }
+    const dataCancel = useDataCancel();
+
 
 
 
@@ -69,7 +114,6 @@ function MemberOrder() {
 
                     {/* <h2 className="text-xl font-bold">以下是你的 <span className="text-blue-500">1</span> 筆 訂單記錄</h2>
                     <strong>準備好開始您的行程了嗎</strong> */}
-
 
                     <button onClick={() => setUiTurn(true)}
                         className={`border border-sub_color rounded-sm py-2 px-3 text-md font-semibold hover:bg-p_color hover:text-white ${uiTurn && 'bg-my_green text-white'
