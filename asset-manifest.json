@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/React-Camp/static/css/main.8147bcd0.css",
-    "main.js": "/React-Camp/static/js/main.8d6e0d64.js",
+    "main.js": "/React-Camp/static/js/main.fd29aad1.js",
     "static/js/787.5480e000.chunk.js": "/React-Camp/static/js/787.5480e000.chunk.js",
     "static/media/p1.jpg": "/React-Camp/static/media/p1.aec1162c53d1bb2d7c0f.jpg",
     "static/media/p2.jpg": "/React-Camp/static/media/p2.e8423a8c1116c1fcbe2b.jpg",
@@ -65,11 +65,11 @@
     "static/media/star-empty.svg": "/React-Camp/static/media/star-empty.9e7df284fbf8e345a5b15afafc8a6376.svg",
     "static/media/star-solid.svg": "/React-Camp/static/media/star-solid.b3b862741db241e07bbe92949e0eb2da.svg",
     "main.8147bcd0.css.map": "/React-Camp/static/css/main.8147bcd0.css.map",
-    "main.8d6e0d64.js.map": "/React-Camp/static/js/main.8d6e0d64.js.map",
+    "main.fd29aad1.js.map": "/React-Camp/static/js/main.fd29aad1.js.map",
     "787.5480e000.chunk.js.map": "/React-Camp/static/js/787.5480e000.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8147bcd0.css",
-    "static/js/main.8d6e0d64.js"
+    "static/js/main.fd29aad1.js"
   ]
 }
