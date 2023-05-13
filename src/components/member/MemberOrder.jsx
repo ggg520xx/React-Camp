@@ -108,7 +108,7 @@ function MemberOrder() {
 
     return (
         <>
-            <DivContentZone className="py-5 bg-soft_color">
+            <DivContentZone className="py-5">
 
                 <div className='h-[70px]'>
 

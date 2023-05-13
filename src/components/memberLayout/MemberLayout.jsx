@@ -18,7 +18,7 @@ import React, { useState, useEffect } from "react";
 
 
 // 突然想放背景圖 來包裹所有元件
-import { indexBottomBg } from '../../images/search/SearchMange';
+// import { indexBottomBg } from '../../images/search/SearchMange';
 
 import { MyContextSearch, useMyContextSearch } from '../../hooks/useContext/InputSearch';
 

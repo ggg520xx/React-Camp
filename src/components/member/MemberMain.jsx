@@ -50,7 +50,7 @@ function MemberMain() {
 
     return (
         <>
-            <DivContentZone className="py-5 bg-soft_color ">
+            <DivContentZone className="py-5">
 
                 <div className='h-[70px]'>
                     <h2 className="text-xl font-bold">歡迎，您尚有 <span className="text-blue-500">{dataIng && dataIng.length}</span> 筆 行程待進行或進行中</h2>

@@ -204,7 +204,7 @@ const MemberBasic = function (props) {
                     <div className="row border border-psub_color bg-white hover:shadow-xl hover:border-sub_color w-11/12 mx-auto">
 
 
-                        <div className="col-4 py-3.5 border-r">
+                        <div className="col-3 py-3.5 border-r">
 
                             <strong className='py-2 bg-p_color block text-white mb-2'>訂單編號：<span>{item.code}</span></strong>
 
@@ -347,6 +347,8 @@ const MemberBasic = function (props) {
                         </div>
 
 
+
+                        <div className="col-1 bg-red-500"></div>
 
                         {expandedList[index] && (
                             <div className=" bg-gray-100 w-full py-2 px-2">
@@ -538,7 +540,7 @@ const MemberBasic = function (props) {
 
                                 <h4 className="text-xl font-bold">訂單反饋</h4>
 
-                                <div className='px-5 flex flex-col justify-around' style={{ height: "90%" }}>
+                                <div className='py-5 px-5 flex flex-col justify-around' style={{ height: "100%" }}>
 
                                     <div className="py-5 row items-start bg-white">
                                         <div className="col-5">

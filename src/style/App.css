@@ -1,6 +1,7 @@
 /* 一個body下的wrap大元件設定 */
 .App {
   text-align: center;
+  overflow-x: hidden;
 }
 /* --------- 以上用於全頁面使用 App class 作為wrapper  ------------ */
 

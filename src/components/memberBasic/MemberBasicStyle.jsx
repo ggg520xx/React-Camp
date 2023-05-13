@@ -1,10 +1,21 @@
 import styled from 'styled-components'
+import { indexBottomBg } from '../../images/search/SearchMange';
+
 
 
 const DivContentZone = styled.div`
-  min-height: 95%;
-  width: 90%;
-  margin: 0 auto;
+  // min-height: 95%;
+  // width: 90%;
+  // margin: 0 auto;
+
+  
+  width: 100%;
+  height: auto;
+  background-image: url(${indexBottomBg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 `;
 
 
@@ -18,7 +29,7 @@ const DivCoverStyled = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  height: 60vh;
+  // height: 60vh;
 `;
 
 
