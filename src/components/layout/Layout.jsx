@@ -90,8 +90,8 @@ function Layout() {
                     {/* LOGO+文字 */}
 
                     {/* <Link to="/about">About</Link> */}
-                    <Link to="/" className="flex items-center">
-                        <img src={indexLogo} className="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
+                    <Link to="/" id="menu-item-home" className="flex items-center">
+                        <img src={indexLogo} className="h-6 mx-3 sm:h-9" alt="Flowbite Logo" />
                         <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Hola Camp</span>
                     </Link>
 
@@ -177,12 +177,13 @@ function Layout() {
 
                             <div className="flex justify-around text-lg text-white">
 
-                                <h4 className=' p-2 hover:border-b'>
-
-                                    <span className=' p-2'>首頁資訊</span>
+                                <h4 id="menu-item-home" className=' p-2 hover:border-b'>
+                                    <span className='p-2'>首頁資訊</span>
                                 </h4>
+
                                 <hr className="border h-auto" />
 
+                                
                                 <h4 className=' p-2 hover:border-b'>
                                     <span className=' p-2'>營區搜尋</span>
                                 </h4>

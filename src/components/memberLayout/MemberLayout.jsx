@@ -135,7 +135,7 @@ const MemberLayout = () => {
                                 {/* LOGO+文字 */}
 
                                 <div className="flex items-center h-6 sm:h-9">
-                                    {/* <img src={indexLogo} className="h-6 mr-3 sm:h-9" alt="Flowbite Logo" /> */}
+                                    {/* <img src={indexLogo} className="h-6 mx-3 sm:h-9" alt="Flowbite Logo" /> */}
                                     <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Hola Camp 會員</span>
                                 </div>
 
@@ -196,8 +196,8 @@ const MemberLayout = () => {
 
 
                                 <div className="mx-auto">
-                                    <Link to="/">
-                                        <img src={indexLogo} className="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
+                                    <Link to="/" id="menu-item-home">
+                                        <img src={indexLogo} className="h-6 mx-3 sm:h-9" alt="Flowbite Logo" />
                                     </Link>
                                 </div>
 
