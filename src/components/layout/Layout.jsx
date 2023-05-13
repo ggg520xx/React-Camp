@@ -212,10 +212,17 @@ function Layout() {
 
                                 {/* 以 Component 的方式匯入至 Template，可以保留 SVG 的特性，直接使用 stroke 來改變圖形外觀 或是 參入 style comp
                                  */}
-                                <FbSvgComp></FbSvgComp>
-                                <InsSvgComp></InsSvgComp>
-                                <TwiSvgComp ></TwiSvgComp>
-                                <LineSvgComp></LineSvgComp>
+
+
+
+
+                                 {/* 這邊的className是綁live2d的對話程式 */}
+                                <FbSvgComp className="need-share-button_facebook"></FbSvgComp>
+                                <InsSvgComp className="need-share-button_ig"></InsSvgComp>
+                                <TwiSvgComp className="need-share-button_twitter"></TwiSvgComp>
+                                <LineSvgComp className="need-share-button_line"></LineSvgComp>
+
+
                             </div>
                         </div>
 

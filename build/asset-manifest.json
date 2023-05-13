@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/React-Camp/static/css/main.f0cbe0de.css",
-    "main.js": "/React-Camp/static/js/main.7eb7742e.js",
+    "main.css": "/React-Camp/static/css/main.8147bcd0.css",
+    "main.js": "/React-Camp/static/js/main.8d6e0d64.js",
     "static/js/787.5480e000.chunk.js": "/React-Camp/static/js/787.5480e000.chunk.js",
     "static/media/p1.jpg": "/React-Camp/static/media/p1.aec1162c53d1bb2d7c0f.jpg",
     "static/media/p2.jpg": "/React-Camp/static/media/p2.e8423a8c1116c1fcbe2b.jpg",
@@ -61,15 +61,15 @@
     "static/media/fb.svg": "/React-Camp/static/media/fb.4abfcb5355e33829d534cb637cccec8c.svg",
     "static/media/logo.svg": "/React-Camp/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "static/media/star-half.svg": "/React-Camp/static/media/star-half.be529ee58cbe1ec9bf66343d08a4c31f.svg",
+    "index.html": "/React-Camp/index.html",
     "static/media/star-empty.svg": "/React-Camp/static/media/star-empty.9e7df284fbf8e345a5b15afafc8a6376.svg",
     "static/media/star-solid.svg": "/React-Camp/static/media/star-solid.b3b862741db241e07bbe92949e0eb2da.svg",
-    "index.html": "/React-Camp/index.html",
-    "main.f0cbe0de.css.map": "/React-Camp/static/css/main.f0cbe0de.css.map",
-    "main.7eb7742e.js.map": "/React-Camp/static/js/main.7eb7742e.js.map",
+    "main.8147bcd0.css.map": "/React-Camp/static/css/main.8147bcd0.css.map",
+    "main.8d6e0d64.js.map": "/React-Camp/static/js/main.8d6e0d64.js.map",
     "787.5480e000.chunk.js.map": "/React-Camp/static/js/787.5480e000.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f0cbe0de.css",
-    "static/js/main.7eb7742e.js"
+    "static/css/main.8147bcd0.css",
+    "static/js/main.8d6e0d64.js"
   ]
 }
