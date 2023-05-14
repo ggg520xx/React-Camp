@@ -61,7 +61,7 @@ const PageGuide = (props) => {
 
                     
 
-                        {state ? null : <Scrollspy items={['section-info', 'section-reserve', 'section-feedback', 'section-notice']} className="flex text-lg text-white" >
+                        {state ? null : <Scrollspy id="ul-link" items={['section-info', 'section-reserve', 'section-feedback', 'section-notice']} className="flex text-lg text-white" >
 
                             <li>
                                 <a href="#section-info">
