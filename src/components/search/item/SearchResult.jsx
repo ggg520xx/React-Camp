@@ -192,7 +192,7 @@ const SearchResult = (props) => {
                 {campDataResult ? campDataResult?.map((item, index) => (
 
                     // 連結中使用帶參數的連結
-                    <Link id="" to={`/page/${item.id}`} key={item.id} className="block mb-5">
+                    <Link id="search_result" to={`/page/${item.id}`} key={item.id} className="block mb-5">
 
                         <div className="row min-h-[210px] border-psub_color bg-white hover:shadow-xl border  hover:border-sub_color">
 

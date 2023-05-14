@@ -96,14 +96,14 @@ function Layout() {
                     </Link>
 
                     {/* 編排該區塊的順位 order:2 */}
-                    <div id="need-share-button_member" className="relative flex md:order-2">
+                    <div className="relative flex md:order-2">
 
 
 
 
                         {loginStatus ? <div>
                             {/* 大畫面時的 頭像按鈕 */}
-                            <button onClick={() => setIsOpen(!isOpen)} type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" >
+                            <button id="need-share-button_member" onClick={() => setIsOpen(!isOpen)} type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" >
                                 <img className='rounded-2xl' src="https://avatar2.bahamut.com.tw/avataruserpic/f/8/f853853/f853853_s.png?v=1669060152382" alt="" />
                             </button>
 
@@ -178,19 +178,25 @@ function Layout() {
                             <div className="flex justify-around text-lg text-white">
 
                                 <h4 id="menu-item-home" className=' p-2 hover:border-b'>
-                                    <span className='p-2'>首頁資訊</span>
+                                    <Link to="/">
+                                        <span className='p-2'>首頁資訊</span>
+                                    </Link>
                                 </h4>
 
                                 <hr className="border h-auto" />
 
                                 
-                                <h4 className=' p-2 hover:border-b'>
-                                    <span className=' p-2'>營區搜尋</span>
+                                <h4 id="menu-item-search" className=' p-2 hover:border-b'>
+                                    <Link to="/search">
+                                        <span className=' p-2'>營區搜尋</span>
+                                    </Link>
                                 </h4>
                                 <hr className="border h-auto" />
 
                                 <h4 id="need-share-button_member" className=' p-2 hover:border-b'>
-                                    <span className=' p-2'>會員專區</span>
+                                    <Link to="/member">
+                                        <span className=' p-2'>會員專區</span>
+                                    </Link>
                                 </h4>
                                 <hr className="border h-auto" />
 

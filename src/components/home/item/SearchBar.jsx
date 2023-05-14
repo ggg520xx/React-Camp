@@ -176,7 +176,7 @@ function SearchBar(props) {
                                 <input id="input_search" value={inputChange} onChange={(e) => { setInputChange(e.target.value) }} type="text" placeholder="立即開啟你的行程，這次想去哪呢？(e.g. 地區、任一關鍵字或相關活動)" className="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none" />
 
                                 {/* 點擊後執行寫入 瞬間把input值 拿去使用 */}
-                                <button disabled={inputChange === ''} className="bg-p_color text-white rounded-full font-semibold px-8 py-4 hover:bg-my_green focus:bg-sub_color focus:outline-none" onClick={() => {
+                                <button id="menu-item-search" disabled={inputChange === ''} className="bg-p_color text-white rounded-full font-semibold px-8 py-4 hover:bg-my_green focus:bg-sub_color focus:outline-none" onClick={() => {
 
                                     setAreaChooseId(null)
                                     setAreaChoose(null)
