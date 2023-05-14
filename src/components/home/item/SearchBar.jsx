@@ -171,9 +171,9 @@ function SearchBar(props) {
                         {/* 彩色邊框 的外型內推 搜尋框*/}
                         <div className="overflow-hidden z-0 rounded-full relative p-1">
 
-                            {/* 最中間白色搜尋框樣式 */}
+                            {/* 最中間白色搜尋框樣式  input_search 這是live2d對話用*/}
                             <form action="" className="relative flex z-50 bg-white rounded-full">
-                                <input value={inputChange} onChange={(e) => { setInputChange(e.target.value) }} type="text" placeholder="立即開啟你的行程，這次想去哪呢？(e.g. 地區、任一關鍵字或相關活動)" className="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none" />
+                                <input id="input_search" value={inputChange} onChange={(e) => { setInputChange(e.target.value) }} type="text" placeholder="立即開啟你的行程，這次想去哪呢？(e.g. 地區、任一關鍵字或相關活動)" className="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none" />
 
                                 {/* 點擊後執行寫入 瞬間把input值 拿去使用 */}
                                 <button disabled={inputChange === ''} className="bg-p_color text-white rounded-full font-semibold px-8 py-4 hover:bg-my_green focus:bg-sub_color focus:outline-none" onClick={() => {

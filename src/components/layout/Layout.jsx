@@ -96,7 +96,7 @@ function Layout() {
                     </Link>
 
                     {/* 編排該區塊的順位 order:2 */}
-                    <div className="relative flex md:order-2">
+                    <div id="need-share-button_member" className="relative flex md:order-2">
 
 
 
@@ -189,7 +189,7 @@ function Layout() {
                                 </h4>
                                 <hr className="border h-auto" />
 
-                                <h4 className=' p-2 hover:border-b'>
+                                <h4 id="need-share-button_member" className=' p-2 hover:border-b'>
                                     <span className=' p-2'>會員專區</span>
                                 </h4>
                                 <hr className="border h-auto" />

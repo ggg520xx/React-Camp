@@ -302,7 +302,7 @@ const Register = (props) => {
 
                                     {/* 8-16個字符，至少1個大寫字母，1個小寫字母和1個數字，其他可以是任意字符 */}
                                     <div>
-                                        <input className="border-transparent" type="password" placeholder="請輸入密碼" {...register('register_password', {
+                                        <input id="input_password" className="border-transparent" type="password" placeholder="請輸入密碼" {...register('register_password', {
                                             required: { value: true, message: '此欄位必填寫' },
                                             pattern: {
                                                 value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/g,
@@ -327,7 +327,7 @@ const Register = (props) => {
                                     </div>
 
                                     <div>
-                                        <input className="border-transparent" type="password" placeholder="再確認密碼" {...register('register_checkpassword', { required: true, maxLength: 20, validate: value => value === password })} style={{ letterSpacing: 1 }} />
+                                        <input id="input_repassword" className="border-transparent" type="password" placeholder="再確認密碼" {...register('register_checkpassword', { required: true, maxLength: 20, validate: value => value === password })} style={{ letterSpacing: 1 }} />
                                         {/* required */}
                                     </div>
                                 </div>

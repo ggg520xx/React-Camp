@@ -256,7 +256,7 @@ const Login = (props) => {
                                     </div>
 
                                     <div>
-                                        <input className="border-transparent" type="password" placeholder="請輸入密碼" {...register('login_password', {
+                                        <input id="input_password" className="border-transparent" type="password" placeholder="請輸入密碼" {...register('login_password', {
                                             required: { value: true, message: '此欄位必填寫' },
                                             pattern: {
                                                 value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/g,

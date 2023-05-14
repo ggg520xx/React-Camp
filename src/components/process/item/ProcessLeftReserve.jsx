@@ -522,7 +522,7 @@ function ProcessLeftReserve(props) {
 
 
                         <div>
-                            <input
+                            <input id="need-share-process_info"
                                 className="text-md h-[50px] w-3/4  bg-my_black py-1 px-3 font-semibold text-white  hover:bg-white hover:text-my_green"
                                 type="submit"
                                 value="填寫結帳"
@@ -580,7 +580,7 @@ function ProcessLeftReserve(props) {
 
 
                         <div>
-                            <input
+                                <input id="need-share-process_post"
                                 onClick={HandleClick}
                                 className="text-md h-[50px] w-3/4 bg-my_black py-1 px-3 font-semibold text-white hover:bg-white hover:text-my_green"
                                 type="submit"

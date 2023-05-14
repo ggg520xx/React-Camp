@@ -88,7 +88,7 @@ function Finish() {
 
 
 
-                {state.status ? (<div className="mb-3 h-full w-full rounded-md border border-gray-200 bg-my_green px-8 py-8 shadow-xl">
+                {state.status ? (<div id="need-process_sucess" className="mb-3 h-full w-full rounded-md border border-gray-200 bg-my_green px-8 py-8 shadow-xl">
 
 
 
@@ -131,7 +131,7 @@ function Finish() {
                     :
 
 
-                    (<div className="mb-3 h-full w-full rounded-md border border-gray-200 bg-my_green px-8 py-8 shadow-xl">
+                    (<div id="need-process_fail" className="mb-3 h-full w-full rounded-md border border-gray-200 bg-my_green px-8 py-8 shadow-xl">
 
 
 

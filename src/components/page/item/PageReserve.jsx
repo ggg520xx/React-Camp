@@ -675,7 +675,7 @@ const PageReserve = (props) => {
 
 
 
-                                        {loginStatus ? <button onClick={() => {
+                                        {loginStatus ? <button id="need-share-reserve" onClick={() => {
                                             pageReserveBtn(item.id, index)
                                         }} className='w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>預訂</button> : <button onClick={() => {
                                             pageReserveBtn(item.id, index)
