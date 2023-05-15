@@ -3,7 +3,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 
 // import indexLogo from '../../images/index/logo.png';
 import { indexLogo, FbSvgComp, InsSvgComp, TwiSvgComp, LineSvgComp } from '../../images/layout/LayoutMange';
-import "./LayoutStyle.css";
+
 import React, { useState } from 'react';
 
 
@@ -12,6 +12,9 @@ import { faSignOutAlt, faArrowLeft, faUser } from '@fortawesome/free-solid-svg-i
 
 
 import { MyContextSearch, useMyContextSearch } from '../../hooks/useContext/InputSearch';
+
+import ScrollLogo from './item/ScrollLogo';
+
 
 
 // ---------------------------------------------------------------------------
@@ -50,6 +53,13 @@ function Layout() {
 
     // 一定要這段
     const navigate = useNavigate();
+
+
+
+
+
+
+
 
 
 
@@ -109,7 +119,7 @@ function Layout() {
 
 
                             {isOpen && (
-                                <div className="dropdown_position w-[160px] z-50 absolute my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
+                                <div className="translate-x-[-58px] w-[160px] z-50 absolute my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
                                     <div className="px-4 py-3">
                                         <strong className="block text-md text-gray-900 dark:text-white">{name}</strong>
                                         <span className="block text-sm text-gray-900 dark:text-white">{nickname}</span>
@@ -185,7 +195,7 @@ function Layout() {
 
                                 <hr className="border h-auto" />
 
-                                
+
                                 <h4 id="menu-item-search" className=' p-2 hover:border-b'>
                                     <Link to="/search">
                                         <span className=' p-2'>營區搜尋</span>
@@ -223,7 +233,7 @@ function Layout() {
 
 
 
-                                 {/* 這邊的className是綁live2d的對話程式 */}
+                                {/* 這邊的className是綁live2d的對話程式 */}
                                 <FbSvgComp className="need-share-button_facebook"></FbSvgComp>
                                 <InsSvgComp className="need-share-button_ig"></InsSvgComp>
                                 <TwiSvgComp className="need-share-button_twitter"></TwiSvgComp>
@@ -244,9 +254,8 @@ function Layout() {
 
 
 
-
-
-
+            {/* 滾動到頁面頂端的 旋轉彈跳跳動球 */}
+            <ScrollLogo id="btnup_ball" />
 
             {/* <div className="footer">表尾2288544</div> */}
             {/* <Footer /> 拉出來寫外元件也可以*/}

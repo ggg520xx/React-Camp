@@ -8,7 +8,7 @@ const DivContentZone = styled.div`
   // width: 90%;
   // margin: 0 auto;
 
-  
+  min-height: 85vh;
   width: 100%;
   height: auto;
   background-image: url(${indexBottomBg});
