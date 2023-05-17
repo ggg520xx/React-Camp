@@ -1,5 +1,6 @@
 import indexLogo from './collect/logo.png';
 import jumpBall from './collect/ball.png';
+import avatar from './collect/avatar.png';
 
 
 
@@ -18,4 +19,4 @@ import { ReactComponent as LineSvgComp } from './collect/line.svg';
 
 
 
-export { indexLogo, FbSvgComp, InsSvgComp, TwiSvgComp, LineSvgComp, jumpBall }
+export { indexLogo, FbSvgComp, InsSvgComp, TwiSvgComp, LineSvgComp, jumpBall, avatar }

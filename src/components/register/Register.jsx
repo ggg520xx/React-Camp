@@ -100,7 +100,8 @@ const Register = (props) => {
             "nickname": `${data.register_nickname}`,
             "email": `${data.register_email}`,
             "password": `${data.register_checkpassword}`,
-            "discount": [0.6]
+            "discount": [0.6],
+            // "renege": 0  本來想再增加未履約項目 想到我並沒有做出營主管理頁 這就可有可無了
 
         })
             .then(function (response) {

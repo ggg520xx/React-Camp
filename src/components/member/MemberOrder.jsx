@@ -8,7 +8,7 @@ import { DivContentZone, DivCoverStyled } from '../memberBasic/MemberBasicStyle'
 import MemberBasic from '../memberBasic/MemberBasic'
 import axios from 'axios';
 
-
+import { campOrder } from '../../images/member/MemberMange';
 
 
 
@@ -130,10 +130,14 @@ function MemberOrder() {
 
 
 
-                {uiTurn === null && <p>請選擇一個想查看</p>}
+                {uiTurn === null &&
+                    <div className='py-10'>
+                        <h3 className="mb-3 font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>請選擇一個想查看的紀錄</h3>
+                        <img className='mx-auto rounded-[40px]' src={campOrder} alt="" />
+                    </div>}
 
-                {uiTurn === true && <MemberBasic getdata={dataPast} />}
-                {uiTurn === false && <MemberBasic getdata={dataCancel} />}
+                {uiTurn === true && <MemberBasic getdata={dataPast} status='past' />}
+                {uiTurn === false && <MemberBasic getdata={dataCancel} status='cancel' />}
 
                 {/* {uiTurn ? <MemberBasic getdata={dataPast} /> : <MemberBasic getdata={dataCancel} />} */}
 

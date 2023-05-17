@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 import { indexIcon, hot1, hot2, hot3 } from '../../images/index/IndexMange';
 
-
+import { campLike } from '../../images/member/MemberMange';
 
 
 function MemberLike() {
@@ -59,7 +59,11 @@ function MemberLike() {
 
                 <div>
 
-                    {likeTab === 0 && <p>請選擇一個想查看</p>}
+                    {likeTab === 0 &&
+                        <div className='py-10'>
+                            <h3 className="mb-3 font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>請選擇一個想查看的紀錄</h3>
+                            <img className='mx-auto rounded-[40px]' src={campLike} alt="" />
+                        </div>}
 
 
 

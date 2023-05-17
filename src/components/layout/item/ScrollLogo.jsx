@@ -33,7 +33,7 @@ const ScrollLogo = () => {
     return (
         <>
             {/* 彈跳 跳動的 球 */}
-            <ScrollLogoStyle className={`scroll-logo${isActive ? ' up-active' : ''}`} onClick={scrollToTop}>
+            <ScrollLogoStyle id="btnup_ball" className={`scroll-logo${isActive ? ' up-active' : ''}`} onClick={scrollToTop}>
                 <img src="" alt="btn-up" />
             </ScrollLogoStyle>
         </>

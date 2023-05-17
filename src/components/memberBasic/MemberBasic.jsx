@@ -15,7 +15,7 @@ import ReactStars from "react-rating-stars-component";
 
 
 
-
+import MemberEmptyStyle from './item/MemberEmptyStyle'
 
 
 
@@ -30,8 +30,9 @@ const MemberBasic = function (props) {
 
 
 
-    const { getdata } = props; // 從 props 取得 data
+    const { getdata, status } = props; // 從 props 取得 data
     console.log(getdata)
+    console.log(status)
 
 
 
@@ -40,7 +41,7 @@ const MemberBasic = function (props) {
 
 
     // 開啟評價窗 禁止畫面滾動
-    const [screenStop, setScreenStop] = useState(false); 
+    const [screenStop, setScreenStop] = useState(false);
     useEffect(() => {
         if (screenStop) {
             // 禁止滾動
@@ -348,7 +349,17 @@ const MemberBasic = function (props) {
 
 
 
-                        <div className="col-1 bg-red-500"></div>
+                        <div className="col-1 bg-red-500">
+
+
+
+
+                        </div>
+
+
+
+
+
 
                         {expandedList[index] && (
                             <div className=" bg-gray-100 w-full py-2 px-2">
@@ -759,8 +770,35 @@ const MemberBasic = function (props) {
 
             )) : null}
 
-            
 
+
+
+
+
+            {/* 沒有行程記錄會顯示下面這個 */}
+            {/* 首先檢查 getdata 是否為陣列且有值，如果是的話就顯示第一個 <div>，否則顯示第二個 NULL。這樣可以避免當 getdata 為 null 或 undefined 時引發錯誤 */}
+            {Array.isArray(getdata) && getdata.length === 0 ? (
+                <div className='py-10'>
+                    <MemberEmptyStyle />
+                    <h3 className="mt-3 font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>
+                        {(() => {
+                            switch (status) {
+                                case 'ing':
+                                    return '當前無預定行程';
+                                case 'past':
+                                    return '過去無訂定紀錄';
+                                case 'cancel':
+                                    return '過去無取消紀錄';
+                                // case '':  
+                                //     return '';
+                                // 根據你的需求補充空字串的情況
+                                default:
+                                    return '未知狀況紀錄，出現此訊息請來電告知';
+                            }
+                        })()}
+                    </h3>
+                </div>
+            ) : null}
 
 
 

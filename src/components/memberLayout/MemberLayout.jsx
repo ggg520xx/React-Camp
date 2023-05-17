@@ -98,7 +98,7 @@ const MemberLayout = () => {
                                 <div className="bar"></div>
                                 <div className="bar"></div>
                                 <div className="bar"></div>
-                              
+
 
                             </div>
 
@@ -119,7 +119,7 @@ const MemberLayout = () => {
                             </div>
 
 
-                            
+
                         </div>
 
                     </div>
@@ -238,6 +238,7 @@ const MemberLayout = () => {
                 </div>}
 
 
+          
 
 
 

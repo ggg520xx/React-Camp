@@ -2,7 +2,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 // import indexLogo from '../../images/index/logo.png';
-import { indexLogo, FbSvgComp, InsSvgComp, TwiSvgComp, LineSvgComp } from '../../images/layout/LayoutMange';
+import { indexLogo, FbSvgComp, InsSvgComp, TwiSvgComp, LineSvgComp, avatar } from '../../images/layout/LayoutMange';
 
 import React, { useState } from 'react';
 
@@ -114,7 +114,7 @@ function Layout() {
                         {loginStatus ? <div>
                             {/* 大畫面時的 頭像按鈕 */}
                             <button id="need-share-button_member" onClick={() => setIsOpen(!isOpen)} type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" >
-                                <img className='rounded-2xl' src="https://avatar2.bahamut.com.tw/avataruserpic/f/8/f853853/f853853_s.png?v=1669060152382" alt="" />
+                                <img className='rounded-2xl w-[40px] h-[40px]' src={avatar} alt="" />
                             </button>
 
 
@@ -255,7 +255,7 @@ function Layout() {
 
 
             {/* 滾動到頁面頂端的 旋轉彈跳跳動球 */}
-            <ScrollLogo id="btnup_ball" />
+            <ScrollLogo />
 
             {/* <div className="footer">表尾2288544</div> */}
             {/* <Footer /> 拉出來寫外元件也可以*/}

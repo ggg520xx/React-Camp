@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/React-Camp/static/css/main.5723c63e.css",
-    "main.js": "/React-Camp/static/js/main.e68cb8ff.js",
+    "main.css": "/React-Camp/static/css/main.9b6a25bf.css",
+    "main.js": "/React-Camp/static/js/main.5146c326.js",
     "static/js/787.5480e000.chunk.js": "/React-Camp/static/js/787.5480e000.chunk.js",
     "static/media/p1.jpg": "/React-Camp/static/media/p1.aec1162c53d1bb2d7c0f.jpg",
     "static/media/p2.jpg": "/React-Camp/static/media/p2.e8423a8c1116c1fcbe2b.jpg",
@@ -31,6 +31,7 @@
     "static/media/camp12.png": "/React-Camp/static/media/camp12.f950196863706531085b.png",
     "static/media/camp7.png": "/React-Camp/static/media/camp7.5135c4f3ed78dd653a38.png",
     "static/media/p2.png": "/React-Camp/static/media/p2.841ad2eb95976650d46d.png",
+    "static/media/ball.png": "/React-Camp/static/media/ball.0956da794d347e5f8674.png",
     "static/media/camp8.png": "/React-Camp/static/media/camp8.987e9ca8cc0900fa1bd7.png",
     "static/media/camp9.png": "/React-Camp/static/media/camp9.b70176c3f138195dcbe0.png",
     "static/media/camp6.png": "/React-Camp/static/media/camp6.83e59f8ece941f1dc3d2.png",
@@ -64,12 +65,12 @@
     "index.html": "/React-Camp/index.html",
     "static/media/star-empty.svg": "/React-Camp/static/media/star-empty.9e7df284fbf8e345a5b15afafc8a6376.svg",
     "static/media/star-solid.svg": "/React-Camp/static/media/star-solid.b3b862741db241e07bbe92949e0eb2da.svg",
-    "main.5723c63e.css.map": "/React-Camp/static/css/main.5723c63e.css.map",
-    "main.e68cb8ff.js.map": "/React-Camp/static/js/main.e68cb8ff.js.map",
+    "main.9b6a25bf.css.map": "/React-Camp/static/css/main.9b6a25bf.css.map",
+    "main.5146c326.js.map": "/React-Camp/static/js/main.5146c326.js.map",
     "787.5480e000.chunk.js.map": "/React-Camp/static/js/787.5480e000.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5723c63e.css",
-    "static/js/main.e68cb8ff.js"
+    "static/css/main.9b6a25bf.css",
+    "static/js/main.5146c326.js"
   ]
 }

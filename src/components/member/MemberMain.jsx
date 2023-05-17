@@ -1,8 +1,5 @@
 // 這個是管理 主右側的內容 左側是外資料夾的 Layout
 // 目前這裡的 content 又分為 上下層分開的路徑 版面寫法  這個裡面 main like mange 只管理 右側下半內容而已 其他不會控制到
-
-// 目前這個的路徑是 無分 其他的則是細部
-
 import React, { useState, useEffect } from "react";
 
 
@@ -12,10 +9,7 @@ import MemberBasic from '../memberBasic/MemberBasic'
 import axios from 'axios';
 
 
-
-
-
-
+// import MemberEmptyStyle from './MemberStyle'
 
 
 
@@ -47,6 +41,8 @@ function MemberMain() {
   
 
 
+    let status = 'ing'
+
 
     return (
         <>
@@ -61,12 +57,19 @@ function MemberMain() {
 
 
 
-                {!dataIng || dataIng.length === 0 ? <div>當前並無行程</div> : null}
+                {/* 我把沒有行程記錄 的相關顯示 也寫在統一模版 這樣可以寫一次就好 */}
+                {/* {!dataIng || dataIng.length === 0 ?
+                    <div className='py-10'>
+                        <MemberEmptyStyle  />
+                        <h3 className="mt-3 font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>當前並無行程
+                        </h3>  
+                    </div>
+                    : null} */}
 
 
 
 
-                <MemberBasic getdata={dataIng} />
+                <MemberBasic getdata={dataIng} status='ing' />
 
 
 
