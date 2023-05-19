@@ -72,7 +72,7 @@ const MemberUsePast = (props) => {
 
             {userTalkInfo && userTalkInfo[0]?.hitokoto}
 
-           
+           {/* 1 */}
 
 
             <div className="py-3">
