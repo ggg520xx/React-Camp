@@ -18,6 +18,11 @@ import ReactStars from "react-rating-stars-component";
 import MemberEmptyStyle from './item/MemberEmptyStyle'
 
 
+import MemberUseIng from './item/MemberUseIng'
+import MemberUsePast from './item/MemberUsePast'
+import MemberUseCancel from './item/MemberUseCancel'
+
+
 
 
 
@@ -104,6 +109,13 @@ const MemberBasic = function (props) {
 
 
 
+
+
+    const numberToChinese = (number) => {
+        const digits = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+        return number.toLocaleString('zh-Hans', { minimumIntegerDigits: 1 }).replace(/\d/g, (match) => digits[match]);
+    }
+
     // const bathroomRankingStar = {
     //     size: 20,
     //     count: 5,
@@ -187,10 +199,7 @@ const MemberBasic = function (props) {
 
 
     // 轉為 優惠券 數字為中文的一二三數字樣子
-    const numberToChinese = (number) => {
-        const digits = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
-        return number.toLocaleString('zh-Hans', { minimumIntegerDigits: 1 }).replace(/\d/g, (match) => digits[match]);
-    }
+
 
 
     return (
@@ -218,7 +227,7 @@ const MemberBasic = function (props) {
 
 
 
-                        <div className="col-4 relative ">
+                        <div className="col-5 relative ">
 
                             <div className="flex flex-col justify-between items-start h-full py-3">
 
@@ -349,12 +358,7 @@ const MemberBasic = function (props) {
 
 
 
-                        <div className="col-1 bg-red-500">
 
-
-
-
-                        </div>
 
 
 
@@ -369,7 +373,7 @@ const MemberBasic = function (props) {
 
 
                                     {/* 詳細的左邊 */}
-                                    <div className="col-7 ">
+                                    <div className="col-5 ">
 
                                         <h4 className="py-4 text-xl font-bold text-left">營區資訊</h4>
 
@@ -530,6 +534,31 @@ const MemberBasic = function (props) {
 
 
                                     </div>
+
+
+
+                                    <div className="col-2 bg-soft_color">
+
+                                        <div className="py-3 h-full">
+                                            <strong className="text-xl font-bold">訂單操作</strong>
+
+                                            <div className="py-5">
+
+
+                                                {status === 'ing' && <MemberUseIng />}
+
+                                                {status === 'past' && <MemberUsePast transmit={item.live2dMessage} orderId={ item.id } />}
+                                                
+                                           
+                                                {status === 'cancel' && <MemberUseCancel />}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
 
 
 

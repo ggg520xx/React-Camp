@@ -41,7 +41,6 @@ function MemberMain() {
   
 
 
-    let status = 'ing'
 
 
     return (

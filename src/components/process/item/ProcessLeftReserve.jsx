@@ -240,7 +240,8 @@ function ProcessLeftReserve(props) {
                 orderExpired: false,
                 orderCancel: false,
                 feedback: false,
-                feedbackContent: ""
+                feedbackContent: "",
+                live2dMessage: false,
             };
 
             // 存入訂單

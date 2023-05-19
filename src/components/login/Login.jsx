@@ -234,7 +234,7 @@ const Login = (props) => {
                                             }
                                         })} style={{ letterSpacing: 1 }} onChange={(e) => {
                                             setMemberEmail(e.target.value);
-                                            }} onFocus={(e) => setMemberEmail("rurumi@gmail.com")} value={memberEmail} />
+                                            }} onFocus={(e) => setMemberEmail("kokomi@gmail.com")} value={memberEmail} />
                                         {/* onFocus={(e) => setMemberEmail("rurumi@gmail.com")} */}
                                         {/* required */}
                                     </div>
@@ -264,7 +264,7 @@ const Login = (props) => {
                                             }
                                         })} style={{ letterSpacing: 1 }} onChange={(e) => {
                                             setMemberPassword(e.target.value)
-                                            }} onFocus={(e) => setMemberPassword("Rurumi123456")} value={memberPassword} />
+                                            }} onFocus={(e) => setMemberPassword("Kokomi123456")} value={memberPassword} />
                                         {/* onFocus={(e) => setMemberPassword("Rurumi123456")} */}
                                         {/* required */}
 
