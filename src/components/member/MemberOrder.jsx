@@ -139,34 +139,6 @@ function MemberOrder() {
                 {uiTurn === true && <MemberBasic getdata={dataPast} status='past' />}
                 {uiTurn === false && <MemberBasic getdata={dataCancel} status='cancel' />}
 
-                {/* {uiTurn ? <MemberBasic getdata={dataPast} /> : <MemberBasic getdata={dataCancel} />} */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                {/* {activeTab === 1 ?<MemberBasic getdata={data} /> : <div> 無記錄 </div>} */}
-                {/* {activeTab === 2 ? <div> 有取消 </div> : <div> 目前並無記錄 </div>} */}
-
-
-
-
 
 
 

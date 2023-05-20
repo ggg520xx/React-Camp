@@ -14,7 +14,8 @@ const PageOverview = (props) => {
 
                 <div className='text-left'>
 
-                    <h5 className="font-bold text-xl">營區配置圖</h5>
+                    {/* <h5 className="font-bold text-xl">營區配置圖</h5> */}
+                    <h5 className="font-bold text-xl">營區要點須知</h5>
 
 
                     <div className="pt-6">

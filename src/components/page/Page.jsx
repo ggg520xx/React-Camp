@@ -72,10 +72,10 @@ function Page(props) {
             <div className="container wrapper py-5">
                 <PagePic itemId={id} />
                 <PageInfo itemId={id} />
-                <PageOverview itemId={id} />
                 <PageReserve itemId={id} />
                 <PageFeedback itemId={id} />
-                <PageNotice itemId={id} />
+                <PageOverview itemId={id} />
+                {/* <PageNotice itemId={id} /> */}
             </div>
         </>
     );

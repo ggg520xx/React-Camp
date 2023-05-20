@@ -51,14 +51,21 @@ const CampAboutUs = (props) => {
 
                                     <h4 className="mb-6">
 
-                                        <strong className='text-my_green font-bold text-2xl'>關於我們</strong>
+                                        <strong className='text-my_green font-bold text-xl'>關於我們</strong>
 
 
                                     </h4>
 
 
-                                    <p className="text-left text-lg">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ullam porro eveniet ipsam quos perspiciatis, nemo quia? Quae consequuntur assumenda sit aliquam asperiores. Dolore natus molestiae nobis sit explicabo distinctio?
+                                    
+                                    <p className="text-left text-md">
+                                        現在全球目前疫情穩定控制的情況下，國內外旅遊也逐漸回溫，在這大家出遊意願提升的時候，露營是不少人考慮的選項。
+
+                                        <br />
+                                        <br />
+                                        台灣仍有營主是自己經營，使用傳統訂位及金流，往往耗時不方便且需時刻專注在回應詢問及需求上。以平台數位化後，只需從後台了解客戶下訂資訊及額外備註，便可大大節約人力
+
+                                        我是露營地業者或營主，便能使用平台輕鬆上架放置圖片及露營資訊供消費者用戶，向更廣大的潛在群體推廣露營樂趣。
                                     </p>
 
                                 </div>
