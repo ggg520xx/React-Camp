@@ -12,27 +12,29 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Layout from './components/layout/Layout'
 // import Home from './components/home/Home'
 import Search from './components/search/Search'
-import Page from './components/page/Page'
-import Process from './components/process/Process'
-// import Payment from './components/payment/Payment'
-import Finish from './components/finish/Finish'
+// import Page from './components/page/Page'
+// import Process from './components/process/Process'
+// import Finish from './components/finish/Finish'
 
-import Login from './components/login/Login'
-import Register from './components/register/Register'
+// import Login from './components/login/Login'
+// import Register from './components/register/Register'
 
 
 
 import MemberLayout from './components/memberLayout/MemberLayout'
 
-import MemberMain from './components/member/MemberMain'
-import MemberOrder from './components/member/MemberOrder'
-import MemberLike from './components/member/MemberLike'
+// import MemberMain from './components/member/MemberMain'
+// import MemberOrder from './components/member/MemberOrder'
+// import MemberLike from './components/member/MemberLike'
 
 
-
+import NotFound from './components/NotFound'
 
 import Demo from './components/demo/demo'
-import NotFound from './components/NotFound'
+// import Payment from './components/payment/Payment'
+
+
+
 // import 就能使用 那個函式頁面(擁有這個函式功能) 來自於這裡(順利吃到外部元件)
 // 同時該頁面也要記得 export 並給予路徑和設定該路徑顯示元件
 // 我們會將元件路徑寫在App.js 該頁面的使用元件 則會寫在外面 使用import引入到這裡 一一載入使用
@@ -51,7 +53,6 @@ import { MyTagShowHide } from './hooks/useContext/TagShowHide';
 
 
 
-import { withQuicklink } from 'quicklink/dist/react/hoc.js';
 
 
 function App() {
@@ -685,31 +686,43 @@ function App() {
 
 
 
-
   // Route-Split Components
   const loading = () => <div>Loading...</div>;
   const load = loader => Loadable({ loader, loading });
-  
 
 
 
   // Our Lazy-loaded Page Components
+  // const Layout = load(() => import('./components/layout/Layout'));
   const Home = load(() => import('./components/home/Home'));
+
+  // const Search = load(() => import('./components/search/Search'));
+
+  const Page = load(() => import('./components/page/Page'));
+  const Process = load(() => import('./components/process/Process'));
+  const Finish = load(() => import('./components/finish/Finish'));
+  const Login = load(() => import('./components/login/Login'));
+  const Register = load(() => import('./components/register/Register'));
+  
+  // const MemberLayout = load(() => import('./components/memberLayout/MemberLayout'));
+  
+  const MemberMain = load(() => import('./components/member/MemberMain'));
+  const MemberOrder = load(() => import('./components/member/MemberOrder'));
+  const MemberLike = load(() => import('./components/member/MemberLike'));
+
+
 
 
   // const options = {
   //   origins: []
   // };
 
+
+
+
+
+
   return (
-
-
-
-    // <Suspense fallback={<div>Loading...</div>}>
-
-
-
-    
     <div onClick={handleUserActivity} className="App wrapper">
       {/* <div className="header_public">App這邊可以設計一處共用全路由共用的表頭表尾 或是純粹用Layout階層去設計也可以</div> */}
 
@@ -719,19 +732,14 @@ function App() {
         <MyTagShowHide.Provider value={{ buildWood, setBuildWood, buildTruck, setBuildTruck, buildOther, setBuildOther, buildNone, setBuildNone, providShower, setProvidShower, providPlay, setProvidPlay, providRentEquip, setProvidRentEquip, providMeal, setProvidMeal, providGuide, setProvidGuide, providPool, setProvidPool, providSpring, setProvidSpring, providRainCover, setProvidRainCover, providCarArea, setProvidCarArea, viewHigh, setViewHigh, viewForest, setViewForest, viewGrass, setViewGrass, viewKawa, setViewKawa, viewCloudSea, setViewCloudSea, viewSunrise, setviewSunrise, areaChoose, setAreaChoose, areaChooseId, setAreaChooseId, locationStatus, setlocationStatus, locationFilter, setlocationFilter, campDataFilter, setcampDataFilter, tagvalues, setTagValues, campDataResult, setcampDataResult, startFilters, campDataNum, setcampDataNum, campDataPrice, setcampDataPrice }}>
 
 
-          
-
-          {/* exact是一個布林屬性，用於確定路由匹配時是否需要完全匹配 */}
-          {/* 有些不完全匹配也渲染比較好 */}
-          {/* 使用exact屬性可以避免不必要的組件渲染，並確保只有在URL完全匹配路徑時才進行渲染。 */}
 
           <Routes>
-            <Route path='/' element={<Layout />} >
+            <Route path='/' exact element={<Layout />} >
 
 
 
               <Route index exact element={<Home />} />
-              <Route path='search' element={<Search />} />
+              <Route path='search' exact element={<Search />} />
 
               <Route path='page/:id' element={<Page />} />
 
@@ -739,16 +747,16 @@ function App() {
            
                 <Route path='process/:id/:campinfoId' element={<Process />} />
                 {/* <Route path='payment' element={<Payment />} /> */}
-                <Route path='finish' element={<Finish />} />
+              <Route path='finish' exact element={<Finish />} />
            
 
 
-              <Route path='login' element={<Login />} />
-              <Route path='register' element={<Register />} />
+              <Route path='login' exact element={<Login />} />
+              <Route path='register' exact element={<Register />} />
 
 
 
-              <Route path='demo' element={<Demo />} />
+              <Route path='demo' exact element={<Demo />} />
               <Route path="*" element={<NotFound />} />
             </Route>
 
@@ -760,13 +768,13 @@ function App() {
 
             {/* 如果要設計後台的話 */}
             {/* 可能會寫 那個元件 必須登入權限為何才可以造訪頁面 */}
-            <Route path='member' element={<MemberLayout />} >
+            <Route path='member' exact element={<MemberLayout />} >
 
 
 
-              <Route index element={<MemberMain />} />
-              <Route path='order' element={<MemberOrder />} />
-              <Route path='like' element={<MemberLike />} />
+              <Route index exact element={<MemberMain />} />
+              <Route path='order' exact element={<MemberOrder />} />
+              <Route path='like' exact element={<MemberLike />} />
 
 
 
@@ -789,12 +797,6 @@ function App() {
 
       {/* <div className="footer_public">App這邊可以設計一處共用全路由共用的表頭表尾 或是純粹用Layout階層去設計也可以</div> */}
     </div>
-
-
-    
-    // </Suspense >
-    
-    
   );
 }
 
