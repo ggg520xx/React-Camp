@@ -10,7 +10,7 @@ import Loadable from 'react-loadable';
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Layout from './components/layout/Layout'
-// import Home from './components/home/Home'
+import Home from './components/home/Home'
 import Search from './components/search/Search'
 // import Page from './components/page/Page'
 // import Process from './components/process/Process'
@@ -19,19 +19,19 @@ import Search from './components/search/Search'
 // import Login from './components/login/Login'
 // import Register from './components/register/Register'
 
-
-
 import MemberLayout from './components/memberLayout/MemberLayout'
-
 // import MemberMain from './components/member/MemberMain'
 // import MemberOrder from './components/member/MemberOrder'
 // import MemberLike from './components/member/MemberLike'
 
 
 import NotFound from './components/NotFound'
-
 import Demo from './components/demo/demo'
 // import Payment from './components/payment/Payment'
+
+
+
+import { withQuicklink } from 'quicklink/dist/react/hoc.js';
 
 
 
@@ -694,18 +694,24 @@ function App() {
 
   // Our Lazy-loaded Page Components
   // const Layout = load(() => import('./components/layout/Layout'));
-  const Home = load(() => import('./components/home/Home'));
+  // const Home = load(() => import('./components/home/Home'));
+  const HomeComponentWithQuicklink = withQuicklink(Home);
+
 
   // const Search = load(() => import('./components/search/Search'));
 
   const Page = load(() => import('./components/page/Page'));
+
+  
   const Process = load(() => import('./components/process/Process'));
+
+  
   const Finish = load(() => import('./components/finish/Finish'));
   const Login = load(() => import('./components/login/Login'));
   const Register = load(() => import('./components/register/Register'));
   
   // const MemberLayout = load(() => import('./components/memberLayout/MemberLayout'));
-  
+
   const MemberMain = load(() => import('./components/member/MemberMain'));
   const MemberOrder = load(() => import('./components/member/MemberOrder'));
   const MemberLike = load(() => import('./components/member/MemberLike'));
@@ -713,9 +719,9 @@ function App() {
 
 
 
-  // const options = {
-  //   origins: []
-  // };
+  const options = {
+    origins: []
+  };
 
 
 
@@ -738,7 +744,7 @@ function App() {
 
 
 
-              <Route index exact element={<Home />} />
+              <Route index exact element={<HomeComponentWithQuicklink />} />
               <Route path='search' exact element={<Search />} />
 
               <Route path='page/:id' element={<Page />} />
