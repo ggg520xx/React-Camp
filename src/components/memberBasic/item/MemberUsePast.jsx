@@ -123,7 +123,7 @@ const MemberUsePast = (props) => {
                 .catch(error => {
                     console.log(error);
                 });
-        }, []);
+        }, [transmit]);
         return Data;
     }
     const userTalkInfo = useData();

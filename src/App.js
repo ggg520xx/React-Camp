@@ -5,10 +5,12 @@
 
 import './style/App.css';
 // import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef } from 'react';
+import Loadable from 'react-loadable';
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Layout from './components/layout/Layout'
-import Home from './components/home/Home'
+// import Home from './components/home/Home'
 import Search from './components/search/Search'
 import Page from './components/page/Page'
 import Process from './components/process/Process'
@@ -38,7 +40,7 @@ import NotFound from './components/NotFound'
 
 
 
-import React, { useState, useEffect, useRef } from 'react';
+
 import axios from 'axios';
 
 import { format, eachDayOfInterval } from 'date-fns';
@@ -47,6 +49,9 @@ import { MyContextSearch } from './hooks/useContext/InputSearch';
 import { MyTagShowHide } from './hooks/useContext/TagShowHide';
 // import { MyAllCamps } from './hooks/useContext/AllCamp-停用';
 
+
+
+import { withQuicklink } from 'quicklink/dist/react/hoc.js';
 
 
 function App() {
@@ -678,7 +683,33 @@ function App() {
 
 
 
+
+
+
+  // Route-Split Components
+  const loading = () => <div>Loading...</div>;
+  const load = loader => Loadable({ loader, loading });
+  
+
+
+
+  // Our Lazy-loaded Page Components
+  const Home = load(() => import('./components/home/Home'));
+
+
+  // const options = {
+  //   origins: []
+  // };
+
   return (
+
+
+
+    // <Suspense fallback={<div>Loading...</div>}>
+
+
+
+    
     <div onClick={handleUserActivity} className="App wrapper">
       {/* <div className="header_public">App這邊可以設計一處共用全路由共用的表頭表尾 或是純粹用Layout階層去設計也可以</div> */}
 
@@ -688,13 +719,18 @@ function App() {
         <MyTagShowHide.Provider value={{ buildWood, setBuildWood, buildTruck, setBuildTruck, buildOther, setBuildOther, buildNone, setBuildNone, providShower, setProvidShower, providPlay, setProvidPlay, providRentEquip, setProvidRentEquip, providMeal, setProvidMeal, providGuide, setProvidGuide, providPool, setProvidPool, providSpring, setProvidSpring, providRainCover, setProvidRainCover, providCarArea, setProvidCarArea, viewHigh, setViewHigh, viewForest, setViewForest, viewGrass, setViewGrass, viewKawa, setViewKawa, viewCloudSea, setViewCloudSea, viewSunrise, setviewSunrise, areaChoose, setAreaChoose, areaChooseId, setAreaChooseId, locationStatus, setlocationStatus, locationFilter, setlocationFilter, campDataFilter, setcampDataFilter, tagvalues, setTagValues, campDataResult, setcampDataResult, startFilters, campDataNum, setcampDataNum, campDataPrice, setcampDataPrice }}>
 
 
+          
+
+          {/* exact是一個布林屬性，用於確定路由匹配時是否需要完全匹配 */}
+          {/* 有些不完全匹配也渲染比較好 */}
+          {/* 使用exact屬性可以避免不必要的組件渲染，並確保只有在URL完全匹配路徑時才進行渲染。 */}
 
           <Routes>
             <Route path='/' element={<Layout />} >
 
 
 
-              <Route index element={<Home />} />
+              <Route index exact element={<Home />} />
               <Route path='search' element={<Search />} />
 
               <Route path='page/:id' element={<Page />} />
@@ -753,6 +789,12 @@ function App() {
 
       {/* <div className="footer_public">App這邊可以設計一處共用全路由共用的表頭表尾 或是純粹用Layout階層去設計也可以</div> */}
     </div>
+
+
+    
+    // </Suspense >
+    
+    
   );
 }
 
