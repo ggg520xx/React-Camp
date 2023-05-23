@@ -3,14 +3,15 @@
 
 // css範圍大概是 body下的一個大wrap元件
 
+// React 中實現 Lazy Loading 可以使用 React 提供的 React.lazy 和 Suspense 組件。這兩個組件使得動態載入組件成為可能，而不需要一次性將所有組件載入到頁面
 import './style/App.css';
 // import { Link, useNavigate } from "react-router-dom";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import Loadable from 'react-loadable';
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Layout from './components/layout/Layout'
-import Home from './components/home/Home'
+// import Home from './components/home/Home'
 import Search from './components/search/Search'
 // import Page from './components/page/Page'
 // import Process from './components/process/Process'
@@ -24,11 +25,12 @@ import MemberLayout from './components/memberLayout/MemberLayout'
 // import MemberOrder from './components/member/MemberOrder'
 // import MemberLike from './components/member/MemberLike'
 
+// import NotFound from './components/NotFound'
 
-import NotFound from './components/NotFound'
-import Demo from './components/demo/demo'
+
+
 // import Payment from './components/payment/Payment'
-
+// import Demo from './components/demo/demo'
 
 
 import { withQuicklink } from 'quicklink/dist/react/hoc.js';
@@ -685,37 +687,19 @@ function App() {
 
 
 
+  // 加快載入存取------------------------------------
+  // 不是每個頁面都適用 load 和 Quicklink
 
   // Route-Split Components
-  const loading = () => <div>Loading...</div>;
+  const loading = () => (
+    <div className="h-screen bg-white flex justify-center items-center">
+      <div className="animate-fade-in">
+        <h2 className="font-bold text-3xl text-my_green" style={{ letterSpacing: 2 }}>Loading...</h2>
+      </div>
+
+    </div>
+  );
   const load = loader => Loadable({ loader, loading });
-
-
-
-  // Our Lazy-loaded Page Components
-  // const Layout = load(() => import('./components/layout/Layout'));
-  // const Home = load(() => import('./components/home/Home'));
-  const HomeComponentWithQuicklink = withQuicklink(Home);
-
-
-  // const Search = load(() => import('./components/search/Search'));
-
-  const Page = load(() => import('./components/page/Page'));
-
-  
-  const Process = load(() => import('./components/process/Process'));
-
-  
-  const Finish = load(() => import('./components/finish/Finish'));
-  const Login = load(() => import('./components/login/Login'));
-  const Register = load(() => import('./components/register/Register'));
-  
-  // const MemberLayout = load(() => import('./components/memberLayout/MemberLayout'));
-
-  const MemberMain = load(() => import('./components/member/MemberMain'));
-  const MemberOrder = load(() => import('./components/member/MemberOrder'));
-  const MemberLike = load(() => import('./components/member/MemberLike'));
-
 
 
 
@@ -723,6 +707,48 @@ function App() {
     origins: []
   };
 
+  // Our Lazy-loaded Page Components
+
+
+  // const Layout = load(() => import('./components/layout/Layout'));
+  const Home = load(() => import('./components/home/Home')); // 首頁用load體感比較快
+  const HomeComponentWithQuicklink = withQuicklink(Home, options);
+
+  // const Search = React.lazy(() => import('./components/search/Search'));
+
+  const Page = React.lazy(() => import('./components/page/Page'));
+  const PageComponentWithQuicklink = withQuicklink(Page, options);
+
+  const Process = React.lazy(() => import('./components/process/Process'));
+  const ProcessComponentWithQuicklink = withQuicklink(Process, options);
+
+  const Finish = React.lazy(() => import('./components/finish/Finish'));
+  const FinishComponentWithQuicklink = withQuicklink(Finish, options);
+
+
+  const Login = React.lazy(() => import('./components/login/Login'));
+  const LoginComponentWithQuicklink = withQuicklink(Login, options);
+
+
+  const Register = React.lazy(() => import('./components/register/Register'));
+  const RegisterComponentWithQuicklink = withQuicklink(Register, options);
+
+  // const MemberLayout = load(() => import('./components/memberLayout/MemberLayout'));
+
+  const MemberMain = React.lazy(() => import('./components/member/MemberMain'));
+  const MemberMainComponentWithQuicklink = withQuicklink(MemberMain, options);
+  const MemberOrder = React.lazy(() => import('./components/member/MemberOrder'));
+  const MemberOrderComponentWithQuicklink = withQuicklink(MemberOrder, options);
+  const MemberLike = React.lazy(() => import('./components/member/MemberLike'));
+  const MemberLikeComponentWithQuicklink = withQuicklink(MemberLike, options);
+
+  const NotFound = React.lazy(() => import('./components/NotFound'));
+  const NotFoundComponentWithQuicklink = withQuicklink(NotFound, options);
+
+
+  // React.lazy() 是 React 提供的原生方式，用於實現組件的延遲加載。它內置於 React，無需額外安裝任何庫或套件。使用 React.lazy() 需要配合 < Suspense > 使用。這是 React 官方推薦的方式
+
+  // load() 是第三方庫 react - loadable 提供的方式，用於實現組件的延遲加載。使用 load() 需要引入 react - loadable 库並進行相應的配置。它提供了更多自定義的功能和選項
 
 
 
@@ -738,63 +764,74 @@ function App() {
         <MyTagShowHide.Provider value={{ buildWood, setBuildWood, buildTruck, setBuildTruck, buildOther, setBuildOther, buildNone, setBuildNone, providShower, setProvidShower, providPlay, setProvidPlay, providRentEquip, setProvidRentEquip, providMeal, setProvidMeal, providGuide, setProvidGuide, providPool, setProvidPool, providSpring, setProvidSpring, providRainCover, setProvidRainCover, providCarArea, setProvidCarArea, viewHigh, setViewHigh, viewForest, setViewForest, viewGrass, setViewGrass, viewKawa, setViewKawa, viewCloudSea, setViewCloudSea, viewSunrise, setviewSunrise, areaChoose, setAreaChoose, areaChooseId, setAreaChooseId, locationStatus, setlocationStatus, locationFilter, setlocationFilter, campDataFilter, setcampDataFilter, tagvalues, setTagValues, campDataResult, setcampDataResult, startFilters, campDataNum, setcampDataNum, campDataPrice, setcampDataPrice }}>
 
 
+          
+          <Suspense fallback={<div className="h-screen bg-white flex justify-center items-center">
+            <div className="animate-fade-in">
+              <h2 className="font-bold text-3xl text-my_green" style={{ letterSpacing: 2 }}>Loading...</h2>
+            </div>
 
-          <Routes>
-            <Route path='/' exact element={<Layout />} >
-
-
-
-              <Route index exact element={<HomeComponentWithQuicklink />} />
-              <Route path='search' exact element={<Search />} />
-
-              <Route path='page/:id' element={<Page />} />
+          </div>}>
 
 
-           
-                <Route path='process/:id/:campinfoId' element={<Process />} />
+            <Routes>
+              <Route path='/' exact element={<Layout />} >
+
+
+
+                <Route index exact element={<HomeComponentWithQuicklink />} />
+                <Route path='search' exact element={<Search />} />
+
+                <Route path='page/:id' element={<PageComponentWithQuicklink />} />
+
+                <Route path='process/:id/:campinfoId' element={<ProcessComponentWithQuicklink />} />
                 {/* <Route path='payment' element={<Payment />} /> */}
-              <Route path='finish' exact element={<Finish />} />
-           
-
-
-              <Route path='login' exact element={<Login />} />
-              <Route path='register' exact element={<Register />} />
+                <Route path='finish' exact element={<FinishComponentWithQuicklink />} />
 
 
 
-              <Route path='demo' exact element={<Demo />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
+                <Route path='login' exact element={<LoginComponentWithQuicklink />} />
+                <Route path='register' exact element={<RegisterComponentWithQuicklink />} />
 
 
 
+                {/* <Route path='demo' exact element={<Demo />} /> */}
+                <Route path="*" element={<NotFoundComponentWithQuicklink />} />
+              </Route>
 
 
 
 
-            {/* 如果要設計後台的話 */}
-            {/* 可能會寫 那個元件 必須登入權限為何才可以造訪頁面 */}
-            <Route path='member' exact element={<MemberLayout />} >
 
 
 
-              <Route index exact element={<MemberMain />} />
-              <Route path='order' exact element={<MemberOrder />} />
-              <Route path='like' exact element={<MemberLike />} />
+              {/* 如果要設計後台的話 */}
+              {/* 可能會寫 那個元件 必須登入權限為何才可以造訪頁面 */}
+              <Route path='member' exact element={<MemberLayout />} >
 
 
 
-            </Route>
+                <Route index exact element={<MemberMainComponentWithQuicklink />} />
+                <Route path='order' exact element={<MemberOrderComponentWithQuicklink />} />
+                <Route path='like' exact element={<MemberLikeComponentWithQuicklink />} />
 
 
-            {/* <Route path='reserve' element={<Reserve />} >
+
+              </Route>
+
+
+              {/* <Route path='reserve' element={<Reserve />} >
           </Route> */}
 
-            {/* <Route path="member" element={<member />} />
+              {/* <Route path="member" element={<member />} />
           <Route path="task" element={<task />} /> */}
-            {/* <Route path="*" element={<NotFound />} /> */}
-            {/* </Route> */}
-          </Routes>
+              {/* <Route path="*" element={<NotFound />} /> */}
+              {/* </Route> */}
+            </Routes>
+
+
+          </Suspense>
+
+          
 
         </MyTagShowHide.Provider>
       </MyContextSearch.Provider>
@@ -802,7 +839,7 @@ function App() {
 
 
       {/* <div className="footer_public">App這邊可以設計一處共用全路由共用的表頭表尾 或是純粹用Layout階層去設計也可以</div> */}
-    </div>
+    </div >
   );
 }
 

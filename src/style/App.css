@@ -3,7 +3,72 @@
   text-align: center;
   overflow-x: hidden;
 }
+
+@keyframes fade-in {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 2s infinite ease-in-out alternate;
+}
+
+
+
+/* .loading {
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loader {
+  font-size: 48px;
+  color: #38470B;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  position: relative;
+}
+
+.loader:after {
+  content: "";
+  height: 4px;
+  width: 0%;
+  display: block;
+  background: #949C7C;
+  -webkit-animation: 5s lineGrow linear infinite;
+          animation: 5s lineGrow linear infinite;
+}
+
+@-webkit-keyframes lineGrow {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes lineGrow {
+  to {
+    width: 100%;
+  }
+} */
+
+/* # sourceMappingURL=all.css.map */
+
 /* --------- 以上用於全頁面使用 App class 作為wrapper  ------------ */
+
+
+
+
 
 /* ------------------- 以下僅用於demo頁面  ---------------------- */
 
