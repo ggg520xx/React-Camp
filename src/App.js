@@ -688,9 +688,13 @@ function App() {
 
 
   // 加快載入存取------------------------------------
-  // 不是每個頁面都適用 load 和 Quicklink
+  // 不是每個頁面都適用 load 和 Quicklink 本來使用 loadable 後來全改寫 react lazy
+  // 把下面註解打開 下面寫成load() 就可以了
+
+
 
   // Route-Split Components
+
   const loading = () => (
     <div className="h-screen bg-white flex justify-center items-center">
       <div className="animate-fade-in">
@@ -711,7 +715,9 @@ function App() {
 
 
   // const Layout = load(() => import('./components/layout/Layout'));
-  const Home = load(() => import('./components/home/Home')); // 首頁用load體感比較快
+  
+  const Home = React.lazy(() => import('./components/home/Home'));
+  // const Home = load(() => import('./components/home/Home')); // load首頁體感比較快
   const HomeComponentWithQuicklink = withQuicklink(Home, options);
 
   // const Search = React.lazy(() => import('./components/search/Search'));
