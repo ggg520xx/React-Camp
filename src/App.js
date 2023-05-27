@@ -14,18 +14,18 @@ import Layout from './components/layout/Layout'
 // import Home from './components/home/Home'
 import Search from './components/search/Search'
 // import Page from './components/page/Page'
-// import Process from './components/process/Process'
-// import Finish from './components/finish/Finish'
+import Process from './components/process/Process'
+import Finish from './components/finish/Finish'
 
-// import Login from './components/login/Login'
-// import Register from './components/register/Register'
+import Login from './components/login/Login'
+import Register from './components/register/Register'
 
 import MemberLayout from './components/memberLayout/MemberLayout'
 // import MemberMain from './components/member/MemberMain'
 // import MemberOrder from './components/member/MemberOrder'
 // import MemberLike from './components/member/MemberLike'
 
-// import NotFound from './components/NotFound'
+import NotFound from './components/NotFound'
 
 
 
@@ -206,15 +206,16 @@ function App() {
     }
 
     timeoutRef.current = setTimeout(() => {
+
+      navigate("/");
+
       localStorage.removeItem('token');
       localStorage.clear()
       setLoginStatus(false);
 
-
-      navigate("/");
       setTimeout(() => {
         alert('長時間未動作,保護行程隱私,已進行登出');
-      }, 300);
+      }, 1500);
 
     }, 600000);
   }
@@ -714,42 +715,19 @@ function App() {
   // Our Lazy-loaded Page Components
 
 
-  // const Layout = load(() => import('./components/layout/Layout'));
-  
   const Home = React.lazy(() => import('./components/home/Home'));
-  // const Home = load(() => import('./components/home/Home')); // load首頁體感比較快
   const HomeComponentWithQuicklink = withQuicklink(Home, options);
-
-  // const Search = React.lazy(() => import('./components/search/Search'));
 
   const Page = React.lazy(() => import('./components/page/Page'));
   const PageComponentWithQuicklink = withQuicklink(Page, options);
 
-  const Process = React.lazy(() => import('./components/process/Process'));
-  const ProcessComponentWithQuicklink = withQuicklink(Process, options);
-
-  const Finish = React.lazy(() => import('./components/finish/Finish'));
-  const FinishComponentWithQuicklink = withQuicklink(Finish, options);
-
-
-  const Login = React.lazy(() => import('./components/login/Login'));
-  const LoginComponentWithQuicklink = withQuicklink(Login, options);
-
-
-  const Register = React.lazy(() => import('./components/register/Register'));
-  const RegisterComponentWithQuicklink = withQuicklink(Register, options);
-
-  // const MemberLayout = load(() => import('./components/memberLayout/MemberLayout'));
-
-  const MemberMain = React.lazy(() => import('./components/member/MemberMain'));
+  // 用load畫面的閃動感會降低 放在這個頻繁切換的比較好
+  const MemberMain = load(() => import('./components/member/MemberMain'));
   const MemberMainComponentWithQuicklink = withQuicklink(MemberMain, options);
-  const MemberOrder = React.lazy(() => import('./components/member/MemberOrder'));
+  const MemberOrder = load(() => import('./components/member/MemberOrder'));
   const MemberOrderComponentWithQuicklink = withQuicklink(MemberOrder, options);
-  const MemberLike = React.lazy(() => import('./components/member/MemberLike'));
+  const MemberLike = load(() => import('./components/member/MemberLike'));
   const MemberLikeComponentWithQuicklink = withQuicklink(MemberLike, options);
-
-  const NotFound = React.lazy(() => import('./components/NotFound'));
-  const NotFoundComponentWithQuicklink = withQuicklink(NotFound, options);
 
 
   // React.lazy() 是 React 提供的原生方式，用於實現組件的延遲加載。它內置於 React，無需額外安裝任何庫或套件。使用 React.lazy() 需要配合 < Suspense > 使用。這是 React 官方推薦的方式
@@ -789,19 +767,17 @@ function App() {
 
                 <Route path='page/:id' element={<PageComponentWithQuicklink />} />
 
-                <Route path='process/:id/:campinfoId' element={<ProcessComponentWithQuicklink />} />
+                <Route path='process/:id/:campinfoId' element={<Process />} />
                 {/* <Route path='payment' element={<Payment />} /> */}
-                <Route path='finish' exact element={<FinishComponentWithQuicklink />} />
+                <Route path='finish' exact element={<Finish />} />
 
-
-
-                <Route path='login' exact element={<LoginComponentWithQuicklink />} />
-                <Route path='register' exact element={<RegisterComponentWithQuicklink />} />
+                <Route path='login' exact element={<Login />} />
+                <Route path='register' exact element={<Register />} />
 
 
 
                 {/* <Route path='demo' exact element={<Demo />} /> */}
-                <Route path="*" element={<NotFoundComponentWithQuicklink />} />
+                <Route path="*" element={<NotFound />} />
               </Route>
 
 

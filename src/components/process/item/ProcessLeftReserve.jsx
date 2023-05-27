@@ -239,6 +239,7 @@ function ProcessLeftReserve(props) {
 
                 orderExpired: false,
                 orderCancel: false,
+                orderCancelReason: "",
                 feedback: false,
                 feedbackContent: "",
                 live2dMessage: false,

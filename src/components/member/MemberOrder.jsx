@@ -37,8 +37,10 @@ function MemberOrder() {
                 .then(response => {
 
                     const userOrder = response.data
-                    console.log(userOrder)
-                    setData(userOrder);
+                    const sortedOrder = userOrder.sort((a, b) => b.id - a.id); // 根据id排序，由大到小
+                   
+                    console.log(sortedOrder)
+                    setData(sortedOrder);
                 })
                 .catch(error => {
                     console.log(error);
@@ -60,8 +62,10 @@ function MemberOrder() {
                 .then(response => {
 
                     const userOrder = response.data
-                    console.log(userOrder)
-                    setData(userOrder);
+                    const sortedOrder = userOrder.sort((a, b) => b.id - a.id); // 根据id排序，由大到小
+                   
+                    console.log(sortedOrder)
+                    setData(sortedOrder);
                 })
                 .catch(error => {
                     console.log(error);
@@ -132,7 +136,8 @@ function MemberOrder() {
 
                 {uiTurn === null &&
                     <div className='py-10'>
-                        <h3 className="mb-3 font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>請選擇一個想查看的紀錄</h3>
+                        <h3 className="mb-3 font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>請選擇一個想查看的紀錄 （近期訂單會呈現於最上方）</h3>
+                        
                         <img className='mx-auto rounded-[40px]' src={campOrder} alt="" />
                     </div>}
 

@@ -92,12 +92,11 @@ const MemberBasic = function (props) {
     };
 
 
-    // 下拉選單
+    // 評價窗口的名字 選單
     const [selectedValue, setSelectedValue] = useState("");
     const handleChange = (e) => {
         setSelectedValue(e.target.value);
     }
-
 
     // 星級評比 memberordercomment.    memberorder
     const [bathroomRanking, setBathroomRanking] = useState("")
@@ -110,11 +109,13 @@ const MemberBasic = function (props) {
 
 
 
-
+    // 轉為 優惠券 數字為中文的一二三數字樣子
     const numberToChinese = (number) => {
         const digits = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
         return number.toLocaleString('zh-Hans', { minimumIntegerDigits: 1 }).replace(/\d/g, (match) => digits[match]);
     }
+
+
 
     // const bathroomRankingStar = {
     //     size: 20,
@@ -198,7 +199,7 @@ const MemberBasic = function (props) {
     // };
 
 
-    // 轉為 優惠券 數字為中文的一二三數字樣子
+
 
 
 
@@ -545,12 +546,12 @@ const MemberBasic = function (props) {
                                             <div className="py-5">
 
 
-                                                {status === 'ing' && <MemberUseIng />}
+                                                {status === 'ing' && <MemberUseIng orderId={item.id} />}
 
                                                 {status === 'past' && <MemberUsePast transmit={item.live2dMessage} orderId={ item.id } />}
                                                 
                                            
-                                                {status === 'cancel' && <MemberUseCancel />}
+                                                {status === 'cancel' && <MemberUseCancel reason={item.orderCancelReason} />}
 
                                             </div>
                                         </div>

@@ -46,7 +46,7 @@ const Register = (props) => {
         }
 
 
-    
+
 
     }, []);
 
@@ -101,7 +101,12 @@ const Register = (props) => {
             "email": `${data.register_email}`,
             "password": `${data.register_checkpassword}`,
             "discount": [0.6],
-            // "renege": 0  本來想再增加未履約項目 想到我並沒有做出營主管理頁 這就可有可無了
+            "cancel": 0,
+
+            "renege": 0, // 未履約指的是 並未先取消 也未到場 但這個功能目前沒做
+            // 本來想再增加未履約項目 想到我並沒有做出營主管理頁 這就可有可無了
+
+            "like": []
 
         })
             .then(function (response) {
@@ -204,7 +209,7 @@ const Register = (props) => {
 
                         <div className="py-5">
                             <h2 className="font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>會員註冊</h2>
-                            
+
                             <p className="mt-3 font-bold text-sm text-red-400">首次註冊成功送六折優惠券</p>
                         </div>
 
