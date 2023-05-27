@@ -33,8 +33,6 @@ import NotFound from './components/NotFound'
 // import Demo from './components/demo/demo'
 
 
-import { withQuicklink } from 'quicklink/dist/react/hoc.js';
-
 
 
 // import 就能使用 那個函式頁面(擁有這個函式功能) 來自於這裡(順利吃到外部元件)
@@ -708,26 +706,19 @@ function App() {
 
 
 
-  const options = {
-    origins: []
-  };
 
   // Our Lazy-loaded Page Components
 
 
   const Home = React.lazy(() => import('./components/home/Home'));
-  const HomeComponentWithQuicklink = withQuicklink(Home, options);
-
   const Page = React.lazy(() => import('./components/page/Page'));
-  const PageComponentWithQuicklink = withQuicklink(Page, options);
+ 
 
   // 用load畫面的閃動感會降低 放在這個頻繁切換的比較好
   const MemberMain = load(() => import('./components/member/MemberMain'));
-  const MemberMainComponentWithQuicklink = withQuicklink(MemberMain, options);
   const MemberOrder = load(() => import('./components/member/MemberOrder'));
-  const MemberOrderComponentWithQuicklink = withQuicklink(MemberOrder, options);
   const MemberLike = load(() => import('./components/member/MemberLike'));
-  const MemberLikeComponentWithQuicklink = withQuicklink(MemberLike, options);
+
 
 
   // React.lazy() 是 React 提供的原生方式，用於實現組件的延遲加載。它內置於 React，無需額外安裝任何庫或套件。使用 React.lazy() 需要配合 < Suspense > 使用。這是 React 官方推薦的方式
@@ -762,10 +753,10 @@ function App() {
 
 
 
-                <Route index exact element={<HomeComponentWithQuicklink />} />
+                <Route index exact element={<Home />} />
                 <Route path='search' exact element={<Search />} />
 
-                <Route path='page/:id' element={<PageComponentWithQuicklink />} />
+                <Route path='page/:id' element={<Page />} />
 
                 <Route path='process/:id/:campinfoId' element={<Process />} />
                 {/* <Route path='payment' element={<Payment />} /> */}
@@ -792,9 +783,9 @@ function App() {
 
 
 
-                <Route index exact element={<MemberMainComponentWithQuicklink />} />
-                <Route path='order' exact element={<MemberOrderComponentWithQuicklink />} />
-                <Route path='like' exact element={<MemberLikeComponentWithQuicklink />} />
+                <Route index exact element={<MemberMain />} />
+                <Route path='order' exact element={<MemberOrder />} />
+                <Route path='like' exact element={<MemberLike />} />
 
 
 
