@@ -4,7 +4,7 @@ import PageInfo from './item/PageInfo';
 import PageOverview from './item/PageOverview';
 import PageReserve from './item/PageReserve';
 import PageFeedback from './item/PageFeedback';
-import PageNotice from './item/PageNotice';
+import PageNotice from './item/(未使用了)PageNotice';
 
 
 

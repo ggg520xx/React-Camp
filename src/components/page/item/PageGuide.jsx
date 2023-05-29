@@ -61,7 +61,7 @@ const PageGuide = (props) => {
 
                     
 
-                        {state ? null : <Scrollspy id="ul-link" items={['section-info', 'section-reserve', 'section-feedback', 'section-notice']} className="flex text-lg text-white" >
+                        {state ? null : <Scrollspy id="ul-link" items={['section-info', 'section-reserve', 'section-feedback', 'section-overview']} className="flex text-lg text-white" >
 
                             <li>
                                 <a href="#section-info">
@@ -94,7 +94,7 @@ const PageGuide = (props) => {
                             <hr className="border h-auto" />
 
                             <li>
-                                <a href="#section-notice">
+                                <a href="#section-overview">
                                     <h4 className=' p-2 hover:border-b'>
                                         <span className='p-2'>營區須知</span>
                                     </h4>

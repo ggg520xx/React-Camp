@@ -222,7 +222,7 @@ const MemberBasic = function (props) {
 
 
                             {/* <img className='h-[160px] w-full object-cover' src={searchDemo} alt="" /> */}
-                            {item?.camp?.showLogo ? <img className='h-[190px] w-full object-cover' src={require(`../../../assets/showLogo/${item.camp.showLogo}`)} alt="" /> : <img className='h-[160px] w-full object-cover' src={require('../../images/search/collect/404.png')} alt="" />}
+                            {item?.camp?.showLogo ? <img className='h-[200px] w-full object-cover' src={require(`../../../assets/showLogo/${item.camp.showLogo}`)} alt="" /> : <img className='h-[200px] w-full object-cover' src={require('../../images/search/collect/404.png')} alt="" />}
 
                         </div>
 
@@ -245,7 +245,6 @@ const MemberBasic = function (props) {
                                 <div className='text-left py-2  flex flex-wrap'>
 
                                     {item.camp.tag['小木屋營區類'] && <span className="mr-1 mt-2 rounded-xl bg-psub_color py-1 px-2.5 text-sm font-bold text-my-green">小木屋營區類</span>}
-
                                     {item.camp.tag['露營車營區類'] && <span className="mr-1 mt-2 rounded-xl bg-psub_color py-1 px-2.5 text-sm font-bold text-my-green">露營車營區類</span>}
                                     {item.camp.tag['其他遮蔽建物'] && <span className="mr-1 mt-2 rounded-xl bg-psub_color py-1 px-2.5 text-sm font-bold text-my-green">其他遮蔽建物</span>}
                                     {item.camp.tag['僅提供營地類'] && <span className="mr-1 mt-2 rounded-xl bg-psub_color py-1 px-2.5 text-sm font-bold text-my-green">僅提供營地類</span>}

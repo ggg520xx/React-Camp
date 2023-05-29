@@ -711,7 +711,7 @@ function App() {
 
 
   const Home = React.lazy(() => import('./components/home/Home'));
-  const Page = React.lazy(() => import('./components/page/Page'));
+  const Page = load(() => import('./components/page/Page'));
  
 
   // 用load畫面的閃動感會降低 放在這個頻繁切換的比較好
