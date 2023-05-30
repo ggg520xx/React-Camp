@@ -59,21 +59,12 @@ function Layout() {
 
 
 
-
-
-
-
-
-
-
-
-
-
     // 登出函式 和 會員頁面的登出一樣
     async function handleLogout() {
         try {
             // 同時執行多個非同步操作
-            const [response1, response2] = await Promise.all([
+            // const [response1, response2] = await Promise.all([
+            await Promise.all([
                 navigate("/"),
                 localStorage.clear(),
             ]);

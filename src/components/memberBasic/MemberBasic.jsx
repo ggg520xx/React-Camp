@@ -222,7 +222,7 @@ const MemberBasic = function (props) {
 
 
                             {/* <img className='h-[160px] w-full object-cover' src={searchDemo} alt="" /> */}
-                            {item?.camp?.showLogo ? <img className='h-[200px] w-full object-cover' src={require(`../../../assets/showLogo/${item.camp.showLogo}`)} alt="" /> : <img className='h-[200px] w-full object-cover' src={require('../../images/search/collect/404.png')} alt="" />}
+                            {item?.camp?.showLogo ? <img className='h-[220px] w-full object-cover' src={require(`../../../assets/showLogo/${item.camp.showLogo}`)} alt="" /> : <img className='h-[220px] w-full object-cover' src={require('../../images/search/collect/404.png')} alt="" />}
 
                         </div>
 

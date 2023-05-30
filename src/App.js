@@ -8,7 +8,7 @@ import './style/App.css';
 // import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import Loadable from 'react-loadable';
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
 import Layout from './components/layout/Layout'
 // import Home from './components/home/Home'
@@ -712,7 +712,7 @@ function App() {
 
   const Home = React.lazy(() => import('./components/home/Home'));
   const Page = load(() => import('./components/page/Page'));
- 
+
 
   // 用load畫面的閃動感會降低 放在這個頻繁切換的比較好
   const MemberMain = load(() => import('./components/member/MemberMain'));
@@ -739,7 +739,7 @@ function App() {
         <MyTagShowHide.Provider value={{ buildWood, setBuildWood, buildTruck, setBuildTruck, buildOther, setBuildOther, buildNone, setBuildNone, providShower, setProvidShower, providPlay, setProvidPlay, providRentEquip, setProvidRentEquip, providMeal, setProvidMeal, providGuide, setProvidGuide, providPool, setProvidPool, providSpring, setProvidSpring, providRainCover, setProvidRainCover, providCarArea, setProvidCarArea, viewHigh, setViewHigh, viewForest, setViewForest, viewGrass, setViewGrass, viewKawa, setViewKawa, viewCloudSea, setViewCloudSea, viewSunrise, setviewSunrise, areaChoose, setAreaChoose, areaChooseId, setAreaChooseId, locationStatus, setlocationStatus, locationFilter, setlocationFilter, campDataFilter, setcampDataFilter, tagvalues, setTagValues, campDataResult, setcampDataResult, startFilters, campDataNum, setcampDataNum, campDataPrice, setcampDataPrice }}>
 
 
-          
+
           <Suspense fallback={<div className="h-screen bg-white flex justify-center items-center">
             <div className="animate-fade-in">
               <h2 className="font-bold text-3xl text-my_green" style={{ letterSpacing: 2 }}>Loading...</h2>
@@ -747,69 +747,48 @@ function App() {
 
           </div>}>
 
-
             <Routes>
               <Route path='/' exact element={<Layout />} >
 
-
-
                 <Route index exact element={<Home />} />
                 <Route path='search' exact element={<Search />} />
-
                 <Route path='page/:id' element={<Page />} />
 
-                <Route path='process/:id/:campinfoId' element={<Process />} />
+                
+                {/* 未登入的用戶直接造訪網頁url的話 ,將他們導向到login */}
+                <Route path='process/:id/:campinfoId' element={loginStatus ? <Process /> : <Navigate to="/login" replace />} />
+                <Route path='finish' exact element={loginStatus ? <Finish /> : <Navigate to="/login" replace />} />
                 {/* <Route path='payment' element={<Payment />} /> */}
-                <Route path='finish' exact element={<Finish />} />
 
+                
                 <Route path='login' exact element={<Login />} />
                 <Route path='register' exact element={<Register />} />
-
-
-
-                {/* <Route path='demo' exact element={<Demo />} /> */}
                 <Route path="*" element={<NotFound />} />
+                {/* <Route path='demo' exact element={<Demo />} /> */}
               </Route>
-
-
-
-
 
 
 
               {/* 如果要設計後台的話 */}
-              {/* 可能會寫 那個元件 必須登入權限為何才可以造訪頁面 */}
-              <Route path='member' exact element={<MemberLayout />} >
+              {/* 必須登入權限為何才可以造訪頁面 */}
 
-
-
-                <Route index exact element={<MemberMain />} />
-                <Route path='order' exact element={<MemberOrder />} />
-                <Route path='like' exact element={<MemberLike />} />
-
-
-
-              </Route>
-
-
-              {/* <Route path='reserve' element={<Reserve />} >
-          </Route> */}
-
-              {/* <Route path="member" element={<member />} />
-          <Route path="task" element={<task />} /> */}
-              {/* <Route path="*" element={<NotFound />} /> */}
-              {/* </Route> */}
+              {/* 未登入的用戶直接造訪網頁url的話 ,將他們導向到login */}
+              {loginStatus ? (
+                <Route path="member" element={<MemberLayout />}>
+                  <Route index element={<MemberMain />} />
+                  <Route path="order" element={<MemberOrder />} />
+                  <Route path="like" element={<MemberLike />} />
+                </Route>
+              ) : (
+                <Route path="member/*" element={<Navigate to="/login" replace />} />
+              )}
             </Routes>
-
 
           </Suspense>
 
-          
 
         </MyTagShowHide.Provider>
       </MyContextSearch.Provider>
-
-
 
       {/* <div className="footer_public">App這邊可以設計一處共用全路由共用的表頭表尾 或是純粹用Layout階層去設計也可以</div> */}
     </div >

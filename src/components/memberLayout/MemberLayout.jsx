@@ -36,6 +36,14 @@ const MemberLayout = () => {
     };
 
 
+    
+
+
+    // 檢查 localStorage 中的值
+    // 如果這個項目存在，則 hasSeenLoading 的值將是該項目的值；如果項目不存在，則 hasSeenLoading 的值將是 null
+    const hasSeenLoading = localStorage.getItem('hasSeenLoading');
+
+
 
     // ----------------------------------
     // 元件中定義一個狀態，表示是否載入完成
@@ -45,6 +53,8 @@ const MemberLayout = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoaded(false);
+            // 將 hasSeenLoading 設置為 true，表示使用者已經看過 loading 頁面
+            localStorage.setItem('hasSeenLoading', 'true');
         }, 3000);
         return () => clearTimeout(timer);
     }, []);
@@ -55,12 +65,19 @@ const MemberLayout = () => {
     // 登出函式 和 前台頁面的登出一樣
     async function handleLogout() {
         try {
-            // 同時執行多個非同步操作
-            const [response1, response2] = await Promise.all([
+
+            // await Promise.all() 是用於同時執行多個非同步操作
+            // 表示在進行這兩個操作時，程式碼將等待它們都完成後才繼續執行下一步
+
+
+            // response1 和 response2 是用來接收各個操作的結果，但在您的程式碼中並沒有使用到這些變數。如果您沒有使用這些變數的計劃，您可以移除它
+            // const [response1, response2] = await Promise.all([
+            
+            await Promise.all([
                 navigate("/"),
                 localStorage.clear(),
             ]);
-            // 在所有操作完成後再執行下一步程式碼
+            // 在以上所有操作完成後再執行下一步程式碼
             setLoginStatus(false);
             alert('已進行登出');
         } catch (error) {
@@ -78,7 +95,7 @@ const MemberLayout = () => {
 
 
 
-            {isLoaded ?
+            {!hasSeenLoading && isLoaded ?
 
                 <div className="h-screen container relative">
 
@@ -238,7 +255,7 @@ const MemberLayout = () => {
                 </div>}
 
 
-          
+
 
 
 
