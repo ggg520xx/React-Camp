@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/React-Camp/static/css/main.194d4aab.css",
-    "main.js": "/React-Camp/static/js/main.da779d03.js",
+    "main.css": "/React-Camp/static/css/main.7e33290e.css",
+    "main.js": "/React-Camp/static/js/main.07b5ab82.js",
     "static/css/813.19a1b8fe.chunk.css": "/React-Camp/static/css/813.19a1b8fe.chunk.css",
     "static/js/813.54067d60.chunk.js": "/React-Camp/static/js/813.54067d60.chunk.js",
     "static/css/479.ea6a4c93.chunk.css": "/React-Camp/static/css/479.ea6a4c93.chunk.css",
@@ -79,8 +79,8 @@
     "static/media/star-half.svg": "/React-Camp/static/media/star-half.be529ee58cbe1ec9bf66343d08a4c31f.svg",
     "static/media/star-empty.svg": "/React-Camp/static/media/star-empty.9e7df284fbf8e345a5b15afafc8a6376.svg",
     "static/media/star-solid.svg": "/React-Camp/static/media/star-solid.b3b862741db241e07bbe92949e0eb2da.svg",
-    "main.194d4aab.css.map": "/React-Camp/static/css/main.194d4aab.css.map",
-    "main.da779d03.js.map": "/React-Camp/static/js/main.da779d03.js.map",
+    "main.7e33290e.css.map": "/React-Camp/static/css/main.7e33290e.css.map",
+    "main.07b5ab82.js.map": "/React-Camp/static/js/main.07b5ab82.js.map",
     "813.19a1b8fe.chunk.css.map": "/React-Camp/static/css/813.19a1b8fe.chunk.css.map",
     "813.54067d60.chunk.js.map": "/React-Camp/static/js/813.54067d60.chunk.js.map",
     "479.ea6a4c93.chunk.css.map": "/React-Camp/static/css/479.ea6a4c93.chunk.css.map",
@@ -94,7 +94,7 @@
     "703.c2a91ca4.chunk.js.map": "/React-Camp/static/js/703.c2a91ca4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.194d4aab.css",
-    "static/js/main.da779d03.js"
+    "static/css/main.7e33290e.css",
+    "static/js/main.07b5ab82.js"
   ]
 }
