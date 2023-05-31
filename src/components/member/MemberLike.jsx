@@ -31,7 +31,7 @@ function MemberLike() {
     console.log(userId)
 
     function useData() {
-        const [Data, setData] = useState(null);  // 本來用 現在不需要
+        const [Data, setData] = useState(null); 
         useEffect(() => {
             axios.get(`http://localhost:3000/users/${userId}`)
 
