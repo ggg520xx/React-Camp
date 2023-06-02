@@ -7,22 +7,41 @@ import MemberBasicLike from '../memberBasicLike/MemberBasicLike'
 
 
 function MemberLike() {
-
     // ------------------------------------------------
     // 初始為0的頁面 藉由按鈕去更新值 和點擊的tab值狀態
-    const [likeTab, setLikeTab] = useState(0); 
-    
+    const [likeTab, setLikeTab] = useState(0);
+
     // 點擊抓到值 去set 改變 likeTab 便可以提供顯示的元件
-    const handleLikeTabChange = (tabIndex) => {   
+    const handleLikeTabChange = (tabIndex) => {
         setLikeTab(tabIndex); // 更新活動的 tab
     };
     // ------------------------------------------------
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+    // 控制重新抓取get的按鈕開關 給useEffect綁定 這個的set設定給 收藏按鈕上 他會去點擊開關 並執行對應的陣列抓取push或移除 然後patch
+    const [conswitch, setConSwitch] = useState(true);
+    // 如果這個設成全頁面狀態管理的話 可以點擊同時控制到所有的頁面重新get
+    // MemberLike的寫法 和 searchResult . pagePic 有些微不一樣
+    // 有 setLikeArray(likeArray) 傳到元件內使用 
+
+
+    // 這是抓取後設定的用戶喜歡的數字陣列 這個數字陣列會拿去跟當前跑出來的campId做比較 判斷是否為喜歡的收藏
+    const [likeArray, setLikeArray] = useState([]);
+
+
+
     // ------------------------------------------------
     // 1.抓出這個userId 進行用戶資料抓出來 他裡面有個like的陣列例如[1, 3, 7, 8, 12]是用戶訂閱喜歡的營區   我藉由userLike = userInfo.like; 將他擺放到這個變數上
-    
+
     // 2.然後我去抓營區資料, 藉由includ只抓出用戶喜歡的那幾個營區組為一個新陣列likedCamps
     // 這裡面的幾個營區就是用戶喜歡的
 
@@ -31,7 +50,7 @@ function MemberLike() {
     console.log(userId)
 
     function useData() {
-        const [Data, setData] = useState(null); 
+        const [Data, setData] = useState(null);
         useEffect(() => {
             axios.get(`http://localhost:3000/users/${userId}`)
 
@@ -44,6 +63,9 @@ function MemberLike() {
                     // 如果有值
                     if (userData && userData.name && userData.like) {
                         const likeArray = userData.like
+
+                        setLikeArray(likeArray)
+
                         return likeArray
                         // setData(userData.like);   // 本來用 現在不需要
                     } else {
@@ -75,8 +97,8 @@ function MemberLike() {
                     console.log(error);
                 });
 
-        }, []);
-        return Data; 
+        }, [conswitch]);
+        return Data;
     }
     const dataLike = useData();
     // ------------------------------------------------
@@ -120,11 +142,11 @@ function MemberLike() {
 
 
 
-                    {likeTab === 1 && <MemberBasicLike sortItem={dataLike} num={1} />}
-                    {likeTab === 2 && <MemberBasicLike sortItem={dataLike} num={2} />}
-                    {likeTab === 3 && <MemberBasicLike sortItem={dataLike} num={3} />}
-                    {likeTab === 4 && <MemberBasicLike sortItem={dataLike} num={4} />}
-                    {likeTab === 5 && <MemberBasicLike sortItem={dataLike} num={5} />}
+                    {likeTab === 1 && <MemberBasicLike sortItem={dataLike} num={1} conCollect={conswitch} setCollect={setConSwitch} likeArray={likeArray} userId={userId} />}
+                    {likeTab === 2 && <MemberBasicLike sortItem={dataLike} num={2} conCollect={conswitch} setCollect={setConSwitch} likeArray={likeArray} userId={userId} />}
+                    {likeTab === 3 && <MemberBasicLike sortItem={dataLike} num={3} conCollect={conswitch} setCollect={setConSwitch} likeArray={likeArray} userId={userId} />}
+                    {likeTab === 4 && <MemberBasicLike sortItem={dataLike} num={4} conCollect={conswitch} setCollect={setConSwitch} likeArray={likeArray} userId={userId} />}
+                    {likeTab === 5 && <MemberBasicLike sortItem={dataLike} num={5} conCollect={conswitch} setCollect={setConSwitch} likeArray={likeArray} userId={userId} />}
 
 
 

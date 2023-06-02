@@ -298,12 +298,8 @@ const MemberBasic = function (props) {
 
                             </div>
 
-
-
                             {/* 圓形周圍空白 包裹愛心flex just. 及位置調整absolute*/}
                             {/* <div className="rounded-full bg-gray-300 w-9 h-9 flex justify-center items-center absolute top-2 right-2 z-10" onClick={() => { }}> */}
-
-
 
                             {/* 是否為最愛 是的話顯示 否的話顯示另一段 有色無色 */}
                             {/* <FontAwesomeIcon icon={faBookmark} className="text-lg" /> */}
@@ -312,7 +308,6 @@ const MemberBasic = function (props) {
                             <FontAwesomeIcon icon={faHeart} className="" style={{ fontSize: 16, color: 'gray', cursor: "pointer" }} />
                         } */}
                             {/* </div> */}
-
 
 
                         </div>

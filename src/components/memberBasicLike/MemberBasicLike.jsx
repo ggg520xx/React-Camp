@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBolt, faHeart, faMapMarkerAlt, faCaretRight, faBookmark } from '@fortawesome/free-solid-svg-icons';
 
 import { indexIcon, hot1, hot2, hot3 } from '../../images/index/IndexMange';
-
+import axios from 'axios';
 
 
 
@@ -15,7 +15,7 @@ import { indexIcon, hot1, hot2, hot3 } from '../../images/index/IndexMange';
 const MemberBasicLike = function (props) {
 
     // 從MemberLike的父元件所傳遞給子元件使用
-    const { sortItem, num } = props;
+    const { sortItem, num, conCollect, setCollect, likeArray, userId } = props;
 
     // 未篩選分類營地的狀態
     console.log(sortItem)
@@ -23,6 +23,53 @@ const MemberBasicLike = function (props) {
 
     const filteredCamps = sortItem.filter(camp => camp.areaId === num);
     console.log(filteredCamps)
+
+
+
+
+
+    const handleClick = (campId, event) => {
+
+        event.preventDefault(); //防止觸發父層
+        // event.stopPropagation();  //這還是會觸發父層元素的冒泡
+
+        console.log(campId)
+
+        if (likeArray.includes(campId)) {
+            // 如果陣列中已經有 campId，則從陣列中移出
+            const updatedLikeArray = likeArray.filter((id) => id !== campId);
+            // 使用 axios.patch 將更新後的陣列傳送至伺服器
+            axios.patch(`http://localhost:3000/users/${userId}`, { like: updatedLikeArray })
+                .then((response) => {
+                    console.log('喜歡的營區已更新', response.data);
+                    // 在此處執行適當的操作，例如更新狀態或重新載入資料等
+                    // setLikeArray(updatedLikeArray);
+                    setCollect(!conCollect) //開關讓他重新get畫面 並即時判斷要不要顯示收藏與否的開關
+                })
+                .catch((error) => {
+                    console.log('更新喜歡的營區時發生錯誤', error);
+                });
+        } else {
+            // 如果陣列中沒有 campId，則將其加入陣列
+            const updatedLikeArray = [...likeArray, campId];
+            // 使用 axios.patch 將更新後的陣列傳送至伺服器
+            axios.patch(`http://localhost:3000/users/${userId}`, { like: updatedLikeArray })
+                .then((response) => {
+                    console.log('喜歡的營區已更新', response.data);
+                    // 在此處執行適當的操作，例如更新狀態或重新載入資料等
+                    // setLikeArray(updatedLikeArray);
+                    setCollect(!conCollect) //開關讓他重新get畫面 並即時判斷要不要顯示收藏與否的開關
+                })
+                .catch((error) => {
+                    console.log('更新喜歡的營區時發生錯誤', error);
+                });
+        }
+    }
+
+
+
+
+
 
 
     return (
@@ -122,31 +169,20 @@ const MemberBasicLike = function (props) {
                                             {item.tag['觀雲海'] && <span className="mr-1 mt-2 rounded-xl bg-psub_color py-1 px-2.5 text-sm font-bold text-my-green">觀雲海</span>}
                                             {item.tag['看日出'] && <span className="mr-1 mt-2 rounded-xl bg-psub_color py-1 px-2.5 text-sm font-bold text-my-green">看日出</span>}
                                         </div>
-
-
                                     </div>
-
                                 </div>
-
                             </Link>
 
 
-
-
-                            {/* 連結點擊外的地方有愛心收藏 */}
+                            
 
                             {/* 圓形周圍空白 包裹愛心flex just. 及位置調整absolute*/}
-                            <div className="rounded-full bg-white w-9 h-9 flex justify-center items-center absolute top-2 right-2 z-10" onClick={() => { }}>
-
-
-
-                                {/* 是否為最愛 是的話顯示 否的話顯示另一段 有色無色 */}
-                                <FontAwesomeIcon icon={faBookmark} className="text-lg" />
-                                {/* {favorite ?
-                            <FontAwesomeIcon icon={faHeart} className="" style={{ fontSize: 16, color: 'var(--heartColor)', cursor: "pointer" }} /> :
-                            <FontAwesomeIcon icon={faHeart} className="" style={{ fontSize: 16, color: 'gray', cursor: "pointer" }} />
-                        } */}
+                            <div className="rounded-full bg-gray-200 w-9 h-9 flex justify-center items-center absolute top-2 right-2 z-10" onClick={(event) => handleClick(item.id, event)}>
+                                {/* { item.id} */}
+                                <FontAwesomeIcon icon={faBookmark} className="text-lg text-my_yellow" style={{ cursor: "pointer" }} />
                             </div>
+
+                            
 
 
                         </div>

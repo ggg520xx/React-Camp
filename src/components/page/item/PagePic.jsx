@@ -31,11 +31,105 @@ import axios from 'axios';
 const PagePic = (props) => {
 
 
+    // 控制重新抓取get的按鈕開關 給useEffect綁定 這個的set設定給 收藏按鈕上 他會去點擊開關 並執行對應的陣列抓取push或移除 然後patch
+    const [conswitch, setConSwitch] = useState(true);
+    // 如果這個設成全頁面狀態管理的話 可以點擊同時控制到所有的頁面重新get
+
+    // 這是抓取後設定的用戶喜歡的數字陣列 這個數字陣列會拿去跟當前跑出來的campId做比較 判斷是否為喜歡的收藏
+    const [likeArray, setLikeArray] = useState([]);
+
+    // 抓出用戶登入的id
+    let userId = localStorage.getItem('id');
+    const useUserData = () => {
+        // const [Data, setData] = useState([]);
+        useEffect(() => {
+            if (userId) {
+                console.log('有登入');
+                axios.get(`http://localhost:3000/users/${userId}`)
+                    .then((response) => {
+
+                        const userData = response.data;
+                        console.log(userData);
+
+                        if (userData && userData.name && userData.like) {
+                            const likeArray = userData.like;
+                            console.log(likeArray);
+                            // setData(likeArray)
+                            setLikeArray(likeArray)
+
+                        } else {
+                            console.log('Something is not available');
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            } else {
+                console.log('無登入');
+            }
+        }, [conswitch]); // 將 conswitch 加入作為 useEffect 的相依 點擊收藏的開關
+        // return Data; 如果需要回傳值，可以在這裡回傳
+        return null;
+    };
+    // 在組件渲染時調用 useUserData 賦予給他
+    // const userLikeData = useUserData();
+    useUserData(); //改成執行一次
+
+
+
+
+    const handleClick = (campId, event) => {
+
+        event.preventDefault(); //防止觸發父層
+        // event.stopPropagation();  //這還是會觸發父層元素的冒泡
+
+        if (loginStatus) {
+            if (likeArray.includes(campId)) {
+                // 如果陣列中已經有 campId，則從陣列中移出
+                const updatedLikeArray = likeArray.filter((id) => id !== campId);
+                // 使用 axios.patch 將更新後的陣列傳送至伺服器
+                axios.patch(`http://localhost:3000/users/${userId}`, { like: updatedLikeArray })
+                    .then((response) => {
+                        console.log('喜歡的營區已更新', response.data);
+                        // 在此處執行適當的操作，例如更新狀態或重新載入資料等
+                        // setLikeArray(updatedLikeArray);
+                        setConSwitch(!conswitch) //開關讓他重新get畫面 並即時判斷要不要顯示收藏與否的開關
+                    })
+                    .catch((error) => {
+                        console.log('更新喜歡的營區時發生錯誤', error);
+                    });
+            } else {
+                // 如果陣列中沒有 campId，則將其加入陣列
+                const updatedLikeArray = [...likeArray, campId];
+                // 使用 axios.patch 將更新後的陣列傳送至伺服器
+                axios.patch(`http://localhost:3000/users/${userId}`, { like: updatedLikeArray })
+                    .then((response) => {
+                        console.log('喜歡的營區已更新', response.data);
+                        // 在此處執行適當的操作，例如更新狀態或重新載入資料等
+                        // setLikeArray(updatedLikeArray);
+                        setConSwitch(!conswitch) //開關讓他重新get畫面 並即時判斷要不要顯示收藏與否的開關
+                    })
+                    .catch((error) => {
+                        console.log('更新喜歡的營區時發生錯誤', error);
+                    });
+            }
+        }
+    };
+
+
+
+
+
+
+
+
+
+
 
     // 首先導出id頁=id頁面 
 
     // 全域引入的 新增輸入搜尋 點擊後會存放全域 輸入的值
-    const { AllCampGet } = useMyContextSearch(MyContextSearch);
+    const { AllCampGet, loginStatus } = useMyContextSearch(MyContextSearch);
 
     // 在這裡你可以使用 id 參數來取得你想要的項目資料
     // 例如：const item = getItemById(id);
@@ -51,6 +145,7 @@ const PagePic = (props) => {
     // 使用 == 才抓的到資料   使用恆等運算子 === 導致結果為 undefined
     // 可能是因為您的陣列中的元素的 id 欄位的資料類型與您指定的搜尋值的資料類型不同
     const item = getItemById(id);
+    console.log(item)
 
 
 
@@ -153,18 +248,41 @@ const PagePic = (props) => {
                 </div>
 
 
+                
+               
+
+
                 {/* 圓形周圍空白 包裹愛心flex just. 及位置調整absolute*/}
-                <div className="rounded-full bg-gray-300 w-9 h-9 flex justify-center items-center absolute top-2 right-2 z-10" onClick={() => { }}>
+                <div className="rounded-full bg-gray-200 w-9 h-9 flex justify-center items-center absolute top-2 right-2 z-10" onClick={(event) => handleClick(item.id, event)}>
 
 
 
-                    {/* 是否為最愛 是的話顯示 否的話顯示另一段 有色無色 */}
-                    <FontAwesomeIcon icon={faBookmark} className="text-lg" />
-                    {/* {favorite ?
-                            <FontAwesomeIcon icon={faHeart} className="" style={{ fontSize: 16, color: 'var(--heartColor)', cursor: "pointer" }} /> :
-                            <FontAwesomeIcon icon={faHeart} className="" style={{ fontSize: 16, color: 'gray', cursor: "pointer" }} />
-                        } */}
+                    {/* 有登入的話 再來進行 是不是喜歡的喜歡的為黃色 不是喜歡的灰色 */}
+                    {/* 有登入的狀態 點擊觸發 變換 */}
+                    {loginStatus ? (
+                        <>
+                            {likeArray.includes(item.id) ? (
+                                <FontAwesomeIcon icon={faBookmark} className="text-lg text-my_yellow" style={{ cursor: "pointer" }} />
+                            ) : (
+                                <FontAwesomeIcon icon={faBookmark} className="text-lg text-soft_color" style={{ cursor: "pointer" }} />
+                            )}
+                        </>
+                    ) : (
+                        // 而未登入一律全跑灰色
+                        <FontAwesomeIcon icon={faBookmark} className="text-lg text-soft_color" style={{ cursor: "pointer" }} />
+                    )}
+
+
+
+
                 </div>
+
+
+
+
+
+
+                
 
 
                 <div className="h-[800px]">

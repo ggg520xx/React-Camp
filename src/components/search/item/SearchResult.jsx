@@ -11,8 +11,6 @@ import axios from 'axios';
 
 import { MyContextSearch, useMyContextSearch } from '../../../hooks/useContext/InputSearch';
 
-
-
 import { MyTagShowHide, useMyTagShowHide } from '../../../hooks/useContext/TagShowHide';
 
 
@@ -29,10 +27,10 @@ const SearchResult = (props) => {
 
     // 控制重新抓取get的按鈕開關 給useEffect綁定 這個的set設定給 收藏按鈕上 他會去點擊開關 並執行對應的陣列抓取push或移除 然後patch
     const [conswitch, setConSwitch] = useState(true);
+     // 如果這個設成全頁面狀態管理的話 可以點擊同時控制到所有的頁面重新get
 
     // 這是抓取後設定的用戶喜歡的數字陣列 這個數字陣列會拿去跟當前跑出來的campId做比較 判斷是否為喜歡的收藏
     const [likeArray, setLikeArray] = useState([]);
-
 
     // 抓出用戶登入的id
     let userId = localStorage.getItem('id');
@@ -361,7 +359,7 @@ const SearchResult = (props) => {
 
 
                                 {/* 圓形周圍空白 包裹愛心flex just. 及位置調整absolute*/}
-                                <div className="rounded-full bg-gray-300 w-9 h-9 flex justify-center items-center absolute top-2 right-2 z-10" onClick={(event) => handleClick(item.id, event)}>
+                                <div className="rounded-full bg-gray-200 w-9 h-9 flex justify-center items-center absolute top-2 right-2 z-10" onClick={(event) => handleClick(item.id, event)}>
 
 
 
