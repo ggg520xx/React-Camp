@@ -20,14 +20,12 @@ import { MyTagShowHide, useMyTagShowHide } from '../../../hooks/useContext/TagSh
 
 
 
-
-
 const SearchResult = (props) => {
 
 
     // 控制重新抓取get的按鈕開關 給useEffect綁定 這個的set設定給 收藏按鈕上 他會去點擊開關 並執行對應的陣列抓取push或移除 然後patch
     const [conswitch, setConSwitch] = useState(true);
-     // 如果這個設成全頁面狀態管理的話 可以點擊同時控制到所有的頁面重新get
+    // 如果這個設成全頁面狀態管理的話 可以點擊同時控制到所有的頁面重新get
 
     // 這是抓取後設定的用戶喜歡的數字陣列 這個數字陣列會拿去跟當前跑出來的campId做比較 判斷是否為喜歡的收藏
     const [likeArray, setLikeArray] = useState([]);
@@ -125,7 +123,7 @@ const SearchResult = (props) => {
     const { inputGlobal, setInputGlobal, loginStatus } = useMyContextSearch(MyContextSearch);
 
     // 全域引入的 新增輸入搜尋 點擊後會存放全域 輸入的值
-    const { areaChoose, setAreaChoose, areaChooseId, setAreaChooseId, locationStatus, setlocationStatus, locationFilter, setlocationFilter, campDataFilter, setcampDataFilter, campDataResult, setcampDataResult, tagvalues, setTagValues, startFilters } = useMyTagShowHide(MyTagShowHide);
+    const { areaChoose, setAreaChoose, areaChooseId, setAreaChooseId, locationStatus, setlocationStatus, locationFilter, setlocationFilter, campDataFilter, setcampDataFilter, campDataResult, setcampDataResult, tagvalues, setTagValues, startFilters, searchResultFeedbackCon, setSearchResultFeedbackCon } = useMyTagShowHide(MyTagShowHide);
 
 
 
@@ -224,9 +222,92 @@ const SearchResult = (props) => {
     // 最後才使用 篩選結果跑result
     // campDataResult, setcampDataResult
     // 結果 藉由執行搜尋 傳過來了
-    console.log(campData)
-    console.log(campDataResult)
 
+    // console.log(campData)
+    // console.log(campDataResult)
+
+    // if (campDataResult) {
+    //     campDataResult.map((item, index) => {
+    //         console.log(item)
+    //         console.log(item.id)
+    //     })
+    // }
+
+
+
+    useEffect(() => {
+        const fetchFeedbackData = async (campId) => {
+            try {
+                const response = await axios.get(`http://localhost:3000/feedbacks?campId=${campId}`);
+                return response.data;
+            } catch (error) {
+                console.error(`Error fetching feedback data for campId ${campId}:`, error);
+                return [];
+            }
+        };
+
+        const getFeedbackDataForCamp = async () => {
+            if (campDataResult && campDataResult.length > 0) {
+                const feedbackDataPromises = campDataResult.map((campItem) =>
+                    fetchFeedbackData(campItem.id)
+                );
+                const feedbackDataArray = await Promise.all(feedbackDataPromises);
+
+                const campDataWithFeedback = campDataResult.map((campItem, index) => {
+                    const feedbackDataForCamp = feedbackDataArray[index] || [];
+
+                    const scores = feedbackDataForCamp.map((feedbackItem) => feedbackItem.totalScore);
+
+                    const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+                    const totalAverageScore = scores.length > 0 ? (totalScore / (scores.length * 5)).toFixed(1) : 0;
+                    // toFixed(1); //只顯示到小數點後一位
+                    const scoreNum = scores.length
+                    // const averageScore = totalScore / scores.length;
+
+
+                    return {
+                        ...campItem,
+                        totalScore,
+                        totalAverageScore,
+                        scoreNum,
+                    };
+                });
+
+                console.log(campDataWithFeedback)
+                setcampDataResult(campDataWithFeedback);
+                // 或者根據您的需求，將結果存儲在其他狀態中
+            }
+        };
+
+        getFeedbackDataForCamp();
+    }, [searchResultFeedbackCon]);
+
+
+
+    // 跑星星的函式 可放到外部func引入來元件內  在渲染處使用
+    const renderStars = (averageScore) => {
+        const fullStars = Math.floor(averageScore); // 完整實星數量
+        const halfStar = averageScore - fullStars >= 0.5; // 是否有半星
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // 空心星星數量
+        const stars = [];
+
+        // 根據完整實星數量添加實星圖片
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(<img key={i} className="h-4" src={solidstar} alt="" />);
+        }
+
+        // 如果有半星，添加半星圖片
+        if (halfStar) {
+            stars.push(<img key={fullStars} className="h-4" src={halfstar} alt="" />);
+        }
+
+        // 添加空心星星圖片
+        for (let i = 0; i < emptyStars; i++) {
+            stars.push(<img key={fullStars + i + 1} className="h-4" src={emptystar} alt="" />);
+        }
+
+        return stars;
+    };
 
 
     return (
@@ -294,7 +375,7 @@ const SearchResult = (props) => {
 
                                     <p>
                                         <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
-                                        <span>地點：{item.address}</span>
+                                        <span className="text-sm font-bold">地點：{item.address}</span>
                                     </p>
 
 
@@ -327,22 +408,28 @@ const SearchResult = (props) => {
                                     </div>
 
 
+                                    {/* <span>{item.totalScore}</span>
+                                    <span>{item.scoreNum}</span> */}
+
 
                                     {/* 星星和價格 用flex共排 用老師的星星評價map*/}
                                     <div className='flex items-center justify-between w-full'>
 
-                                        <div className="text-md flex items-center ">
+                                        <div className="flex items-center font-bold">
 
+                                            
                                             {/* star 星星的map計算引入匯出 現在就用img */}
+                                            <strong className="text-xl px-2">{item.totalAverageScore !== undefined ? item.totalAverageScore :'No data'}</strong>
 
-                                            <img className="h-4" src={solidstar} alt="" />
-                                            <img className="h-4" src={solidstar} alt="" />
-                                            <img className="h-4" src={solidstar} alt="" />
-                                            <img className="h-4" src={solidstar} alt="" />
-                                            <img className="h-4" src={solidstar} alt="" />
+                                            {renderStars(item.totalAverageScore)}
+                                            {/* 多少分數 星星就跑幾顆樣子 */}
+                                         
+                                      
+                                            <span className="text-sm">{item.scoreNum === 0 ? "(無資料)" : `(${item.scoreNum}筆)`}</span>
+                                            {/* 有幾筆評價回饋抓feedbacks 用條件篩選抓 相關於id的筆數 同時平均值也能抓出來 */}
 
-                                            <span>4.7</span>
-                                            <span>(45)</span>
+
+
                                         </div>
 
                                         <div>

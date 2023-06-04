@@ -23,7 +23,7 @@ import MemberUsePast from './item/MemberUsePast'
 import MemberUseCancel from './item/MemberUseCancel'
 
 
-
+import axios from 'axios';
 
 
 
@@ -35,7 +35,7 @@ const MemberBasic = function (props) {
 
 
 
-    const { getdata, status } = props; // 從 props 取得 data
+    const { getdata, status, reGetFeedback, setReGetFeedback, userId } = props; // 從 props 取得 data
     console.log(getdata)
     console.log(status)
 
@@ -79,34 +79,25 @@ const MemberBasic = function (props) {
 
 
 
+    const [chooseCampFeebackId, setChooseCampFeebackId] = useState(null);
 
     // 點擊觸發顯示及隱藏區塊
     const [visibleList, setVisibleList] = useState(getdata ? Array.from({ length: getdata.length }, () => false) : []);
     // 如果您想在 B 組件中使用這個 visible 值，您可以將它作為 prop 傳遞給 B 組件，然後在 B 組件內部使用它。
-    const handleVisible = (index) => {
+    const handleVisible = (index, chooseFeedbackId) => {
         const newVisibleList = [...visibleList];
         newVisibleList[index] = !newVisibleList[index];
         setVisibleList(newVisibleList);
         setScreenStop(!screenStop)
         // 使用時 就禁止畫面滾動
+
+        // 關掉紅字
+        setShowIncompleteMessage(false);
+
+        setChooseCampFeebackId(chooseFeedbackId)
+        console.log(chooseFeedbackId)
+        // 我點到哪個 我才能發送push
     };
-
-
-    // 評價窗口的名字 選單
-    const [selectedValue, setSelectedValue] = useState("");
-    const handleChange = (e) => {
-        setSelectedValue(e.target.value);
-    }
-
-    // 星級評比 memberordercomment.    memberorder
-    const [bathroomRanking, setBathroomRanking] = useState("")
-    const [transportRanking, setTransportRanking] = useState("")
-    const [facilityRanking, setFacilityRanking] = useState("")
-    const [serviceRanking, setServiceRanking] = useState("")
-    const [sceneryRanking, setSceneryRanking] = useState("")
-    const [rankingText, setRankingText] = useState("")
-
-
 
 
     // 轉為 優惠券 數字為中文的一二三數字樣子
@@ -117,86 +108,162 @@ const MemberBasic = function (props) {
 
 
 
-    // const bathroomRankingStar = {
-    //     size: 20,
-    //     count: 5,
-    //     isHalf: false,
-    //     value: 0,
-    //     color: "gray",
-    //     activeColor: "#eec749",
-    //     // a11y: true,
-    //     emptyIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     halfIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     filledIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     onChange: newValue => {
-    //         setBathroomRanking(newValue);
-    //         console.log(`setBathroomRanking: new value is ${newValue}`);
-    //     }
-    // };
 
-    // const transportRankingStar = {
-    //     size: 20,
-    //     count: 5,
-    //     isHalf: false,
-    //     value: 0,
-    //     color: "gray",
-    //     activeColor: "#eec749",
-    //     emptyIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     halfIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     filledIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     onChange: newValue => {
-    //         setTransportRanking(newValue);
-    //         console.log(`setTransportRanking: new value is ${newValue}`);
-    //     }
-    // };
 
-    // const facilityRankingStar = {
-    //     size: 20,
-    //     count: 5,
-    //     isHalf: false,
-    //     value: 0,
-    //     color: "gray",
-    //     activeColor: "#eec749",
-    //     emptyIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     halfIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     filledIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     onChange: newValue => {
-    //         setFacilityRanking(newValue);
-    //         console.log(`setFacilityRanking: new value is ${newValue}`);
-    //     }
-    // };
 
-    // const serviceRankingStar = {
-    //     size: 20,
-    //     count: 5,
-    //     isHalf: false,
-    //     value: 0,
-    //     color: "gray",
-    //     activeColor: "#eec749",
-    //     emptyIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     halfIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     filledIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     onChange: newValue => {
-    //         setServiceRanking(newValue);
-    //         console.log(`setServiceRanking: new value is ${newValue}`);
-    //     }
-    // };
 
-    // const sceneryRankingStar = {
-    //     size: 20,
-    //     count: 5,
-    //     isHalf: false,
-    //     value: 0,
-    //     color: "gray",
-    //     activeColor: "#eec749",
-    //     emptyIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     halfIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     filledIcon: <FontAwesomeIcon icon={["fas", "star"]} />,
-    //     onChange: newValue => {
-    //         setSceneryRanking(newValue)
-    //         console.log(`setSceneryRanking: new value is ${newValue}`);
-    //     }
-    // };
+
+    let userNickName = localStorage.getItem('nickname');
+
+    const [chooseName, setChooseName] = useState('匿名'); // Default value: Anonymous
+
+    const [serviceRating, setServiceRating] = useState(0);
+    const [sceneryRating, setSceneryRating] = useState(0);
+    const [facilityRating, setFacilityRating] = useState(0);
+    const [sanitationRating, setSanitationRating] = useState(0);
+    const [transportRating, setTransportRating] = useState(0);
+
+    const [userTextArea, setUserTextArea] = useState('');
+
+    const [showIncompleteMessage, setShowIncompleteMessage] = useState(false);
+
+
+
+    const selectName = (e) => {
+        setChooseName(e.target.value);
+    };
+
+
+    const handleRatingChange = (value, category) => {
+        if (category === 'service') {
+            setServiceRating(value);
+        } else if (category === 'scenery') {
+            setSceneryRating(value);
+        } else if (category === 'facility') {
+            setFacilityRating(value);
+        } else if (category === 'sanitation') {
+            setSanitationRating(value);
+        } else if (category === 'transport') {
+            setTransportRating(value);
+        }
+    };
+
+    // 禁用 textarea 元素的 Enter 鍵換行行為
+    // 使用 enter 去換行斷行會增加很多無謂空白, 導致輸入到資料庫內異常
+    // 該函式攔截該事件並呼叫 event.preventDefault() 阻止預設行為，從而禁用了 Enter 鍵的換行
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+        }
+    };
+
+    const handleSubmit = () => {
+        if (
+            serviceRating === 0 ||
+            sceneryRating === 0 ||
+            facilityRating === 0 ||
+            sanitationRating === 0 ||
+            transportRating === 0 ||
+            userTextArea.trim() === ''
+        ) {
+            setShowIncompleteMessage(true);
+        } else {
+            setShowIncompleteMessage(false);
+            const totalScore =
+                serviceRating + sceneryRating + facilityRating + sanitationRating + transportRating;
+            const totalAverage = totalScore / 5;
+
+            console.log('使用名稱:', chooseName);
+            console.log('服務:', serviceRating);
+            console.log('景觀:', sceneryRating);
+            console.log('設施:', facilityRating);
+            console.log('衛生:', sanitationRating);
+            console.log('交通:', transportRating);
+            console.log('總分:', totalScore);
+            console.log('總分平均:', totalAverage);
+            console.log('留下評語:', userTextArea);
+
+
+
+            // ---------------------------------------------
+            // post用的時間格式 生成
+            const jsDate = Date.now();
+
+            const currentDate = new Date();
+            const year = currentDate.getFullYear();
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+            const day = String(currentDate.getDate()).padStart(2, '0');
+            const commentDate = `${year}-${month}-${day}`;
+
+
+            const feedbackStar = [serviceRating, sceneryRating, facilityRating, sanitationRating, transportRating];
+
+
+            // 在個人頁面秀出來給自己看的 營區訂單
+            axios.patch(`http://localhost:3000/orders/${chooseCampFeebackId}`, { feedback: true, feedbackName: chooseName, feedbackStar: feedbackStar, feedbackContent: userTextArea })
+                .then(response => {
+                    console.log('已改動訂單的評價回饋')
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+
+
+            // 在營區的評價回饋 抓取的
+            axios.post('http://localhost:3000/feedbacks', {
+
+                campId: chooseCampFeebackId,
+                userId: userId,
+
+                name: chooseName,
+
+                giveservice: serviceRating,
+                giveview: sceneryRating,
+                givedevice: facilityRating,
+                giveclean: sanitationRating,
+                givetraffic: transportRating,
+
+                totalScore: totalScore,
+                totalAverage: totalAverage,
+
+                comment: userTextArea,
+
+                jsDate: jsDate,
+                commentDate: commentDate
+            })
+
+                .then(response => {
+                    // 處理成功回應
+                })
+                .catch(error => {
+                    // 處理錯誤
+                });
+
+
+
+
+            // 發送 push patch出去要把填寫好的清空啦 不然他會一直認為我有填寫 可以繼續加入更多的付款方式
+            // 然後鎖定 星級 和 名字切換 以及 填寫的
+            alert(`已使用${chooseName}完成訂單評價`)
+
+
+            // 上面成功patch完 要把設定清空 否則點下一個 會出現原本的
+            setServiceRating(0)
+            setSceneryRating(0)
+            setFacilityRating(0)
+            setSanitationRating(0)
+            setTransportRating(0)
+
+            setUserTextArea('')
+
+
+
+            // 這個是 useEffect的重新抓取開關 也就是push完後會重新抓取 開關  然後抓到訂單true回饋過 把這筆鎖定
+            setReGetFeedback(!reGetFeedback)
+        }
+    };
+
 
 
 
@@ -205,12 +272,7 @@ const MemberBasic = function (props) {
 
     return (
         <>
-
-
             {getdata ? getdata?.map((item, index) => (
-
-
-
                 <div key={index} className="mb-4">
                     <div className="row border border-psub_color bg-white hover:shadow-xl hover:border-sub_color w-11/12 mx-auto">
 
@@ -522,7 +584,21 @@ const MemberBasic = function (props) {
                                                 <strong className='block mb-2'>評價回饋：</strong>
                                             </div>
                                             <div className='col-7 text-left'>
-                                                <strong className='block mb-2'><button onClick={() => handleVisible(index)}>操作-三元判斷顯示以留言並patch 後disable按鈕 未留言就可以點開</button></strong>
+                                                <strong className='block mb-2'>
+
+                                                    <button onClick={() => handleVisible(index, item.id)} disabled={status === 'ing' || status === 'cancel'}>
+                                                        {status === 'ing' && '尚未完成住宿，暫不可使用評價'}
+
+
+                                                        {(status === 'past' && item.feedback === false) ? '點擊使用評價，將顯示於營區頁' : null}
+                                                        {(status === 'past' && item.feedback === true) ? '已完成此評價，點擊可查看評價' : null}
+
+
+
+                                                        {status === 'cancel' && '該筆住宿取消，已不可使用評價'}
+                                                    </button>
+
+                                                </strong>
                                             </div>
                                         </div>
 
@@ -542,9 +618,9 @@ const MemberBasic = function (props) {
 
                                                 {status === 'ing' && <MemberUseIng orderId={item.id} />}
 
-                                                {status === 'past' && <MemberUsePast transmit={item.live2dMessage} orderId={ item.id } />}
-                                                
-                                           
+                                                {status === 'past' && <MemberUsePast transmit={item.live2dMessage} orderId={item.id} />}
+
+
                                                 {status === 'cancel' && <MemberUseCancel reason={item.orderCancelReason} />}
 
                                             </div>
@@ -567,224 +643,367 @@ const MemberBasic = function (props) {
                     </div>
 
                     {visibleList[index] && (
+                        <>
 
 
-                        <DivBlackCoverOutfit>
+                            {item.feedback ?
 
-                            <DivCoverStyled className="py-5 px-5 z-50 mx-auto rounded-xl bg-gray-200 hover:shadow-2xl">
+                                <DivBlackCoverOutfit>
+                                    <DivCoverStyled className="py-5 px-5 z-50 mx-auto rounded-xl bg-gray-200 hover:shadow-2xl">
 
-                                <h4 className="text-xl font-bold">訂單反饋</h4>
+                                        <h4 className="text-xl font-bold">訂單反饋</h4>
 
-                                <div className='py-5 px-5 flex flex-col justify-around' style={{ height: "100%" }}>
+                                        <div className='py-5 px-5 flex flex-col justify-around' style={{ height: "100%" }}>
 
-                                    <div className="py-5 row items-start bg-white">
-                                        <div className="col-5">
-                                            <strong>評價名稱</strong>
-                                        </div>
-                                        <div className="col-7">
-
-                                            <div>
-                                                <select className="w-3/4 " onChange={(e) => handleChange(e)}>
-                                                    <option value="A">匿名</option>
-                                                    <option value="B">個人名稱</option>
-                                                </select>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-
-                                    <div className="py-5 row items-start bg-white">
-                                        <div className="col-5">
-                                            <strong>營區評價</strong>
-                                        </div>
-
-                                        <div className="col-7">
-
-
-
-                                            {/* <span>服務</span>
-                                <span>景觀</span>
-                                <span>設施</span>
-                                <span>交通</span> */}
-
-
-
-                                            <div className='row items-center mb-1'>
+                                            <div className="py-5 row items-start bg-white">
                                                 <div className="col-5">
-                                                    <span>衛生</span>
-
+                                                    <strong>使用名稱</strong>
                                                 </div>
+                                                <div className="col-7">
 
-                                                <div className="col-7 flex">
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
+                                                    <div>
+                                                        <strong>{item.feedbackName}</strong>
+                                                    </div>
+
+
                                                 </div>
                                             </div>
-                                            <div className='row items-center mb-1'>
+
+
+                                            <div className="py-5 row items-start bg-white">
                                                 <div className="col-5">
-                                                    <span>衛生</span>
-
+                                                    <strong>營區評價</strong>
                                                 </div>
 
-                                                <div className="col-7 flex">
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
+                                                <div className="col-7">
+
+
+
+                                                    <div className='row items-center mb-1'>
+                                                        <div className="col-5">
+                                                            <span>服務</span>
+                                                        </div>
+
+                                                        <div className="col-7 flex">
+
+                                                            {[1, 2, 3, 4, 5].map((_, index) => (
+                                                                <img
+                                                                    key={index}
+                                                                    className="h-4"
+                                                                    src={index < item.feedbackStar[0] ? solidstar : emptystar}
+                                                                    alt=""
+                                                                />
+                                                            ))}
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div className='row items-center mb-1'>
+                                                        <div className="col-5">
+                                                            <span>景觀</span>
+                                                        </div>
+
+                                                        <div className="col-7 flex">
+
+                                                            {[1, 2, 3, 4, 5].map((_, index) => (
+                                                                <img
+                                                                    key={index}
+                                                                    className="h-4"
+                                                                    src={index < item.feedbackStar[1] ? solidstar : emptystar}
+                                                                    alt=""
+                                                                />
+                                                            ))}
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div className="row items-center mb-1">
+                                                        <div className="col-5">
+                                                            <span>設施</span>
+                                                        </div>
+                                                        <div className="col-7 flex">
+                                                            {[1, 2, 3, 4, 5].map((_, index) => (
+                                                                <img
+                                                                    key={index}
+                                                                    className="h-4"
+                                                                    src={index < item.feedbackStar[2] ? solidstar : emptystar}
+                                                                    alt=""
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="row items-center mb-1">
+                                                        <div className="col-5">
+                                                            <span>衛生</span>
+                                                        </div>
+                                                        <div className="col-7 flex">
+                                                            {[1, 2, 3, 4, 5].map((_, index) => (
+                                                                <img
+                                                                    key={index}
+                                                                    className="h-4"
+                                                                    src={index < item.feedbackStar[3] ? solidstar : emptystar}
+                                                                    alt=""
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="row items-center mb-1">
+                                                        <div className="col-5">
+                                                            <span>交通</span>
+                                                        </div>
+                                                        <div className="col-7 flex">
+                                                            {[1, 2, 3, 4, 5].map((_, index) => (
+                                                                <img
+                                                                    key={index}
+                                                                    className="h-4"
+                                                                    src={index < item.feedbackStar[4] ? solidstar : emptystar}
+                                                                    alt=""
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+
+                                                    {/* <button onClick={logRating}>顯示評分</button> */}
+
                                                 </div>
                                             </div>
-                                            <div className='row items-center mb-1'>
+
+
+                                            <div className="py-5 row items-start bg-white">
                                                 <div className="col-5">
-                                                    <span>衛生</span>
-
+                                                    <strong>給予評價</strong>
                                                 </div>
 
-                                                <div className="col-7 flex">
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
+                                                <div className="col-7">
+
+                                                    {/* <strong>{item.feedbackContent}</strong> */}
+
+                                                    <textarea className="w-3/4 form-control border border-gray-300 rounded-lg" disabled={true} value={item.feedbackContent}
+                                                        maxLength={50} id="exampleFormControlTextarea1" rows="4" style={{ maxHeight: '120px', overflow: 'hidden' }}
+                                                    ></textarea>
+                                                    {/* <textarea className="w-3/4 form-control border border-gray-300 rounded-lg" onKeyDown={handleKeyDown}
+                                                        onChange={(e) => setUserTextArea(e.target.value)}
+                                                        maxLength={50} id="exampleFormControlTextarea1" rows="4" style={{ maxHeight: '120px', overflow: 'hidden' }}
+                                                    ></textarea> */}
+
+
+                                                    {/* onFocus={(e) => setRankingText("草皮保養的不錯，而且離溪邊很近，可以玩水！！！超讚的露營體驗，推薦大家來玩喔。")} */}
+
+
                                                 </div>
                                             </div>
-                                            <div className='row items-center mb-1'>
+
+
+                                            <div className="h-5 mt-2">
+                                                {/* {showIncompleteMessage && <p className="text-red-500 h-5">請填寫完整</p>} */}
+                                            </div>
+
+                                        </div>
+
+
+                                        <div className='row justify-around'>
+
+                                            {/* <button onClick={handleSubmit} className='col-4   my-1 border border-blue-800 rounded-sm py-1 px-3 text-md font-semibold hover:bg-my_blue hover:text-white'>送出評價</button> */}
+
+                                            <button onClick={() => handleVisible(index)} className='col-4   my-1 border border-red-400 rounded-sm py-1 px-3 text-md font-semibold hover:bg-red-800 hover:text-white'>取消離開</button>
+
+                                        </div>
+
+
+
+
+
+
+                                    </DivCoverStyled>
+
+                                </DivBlackCoverOutfit>
+
+                                :
+
+
+                                <DivBlackCoverOutfit>
+                                    <DivCoverStyled className="py-5 px-5 z-50 mx-auto rounded-xl bg-gray-200 hover:shadow-2xl">
+
+                                        <h4 className="text-xl font-bold">訂單反饋</h4>
+
+                                        <div className='py-5 px-5 flex flex-col justify-around' style={{ height: "100%" }}>
+
+                                            <div className="py-5 row items-start bg-white">
                                                 <div className="col-5">
-                                                    <span>衛生</span>
-
+                                                    <strong>使用名稱</strong>
                                                 </div>
+                                                <div className="col-7">
 
-                                                <div className="col-7 flex">
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
+                                                    <div>
+                                                        <select className="w-3/4 border-gray-300 rounded-lg" onChange={selectName}>
+                                                            <option value="匿名">匿名</option>
+                                                            <option value={userNickName}>{userNickName}</option>
+                                                        </select>
+                                                    </div>
+
+
                                                 </div>
                                             </div>
-                                            <div className='row items-center mb-1'>
+
+
+                                            <div className="py-5 row items-start bg-white">
                                                 <div className="col-5">
-                                                    <span>衛生</span>
-
+                                                    <strong>營區評價</strong>
                                                 </div>
 
-                                                <div className="col-7 flex">
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
-                                                    <img className="h-4" src={solidstar} alt="" />
+                                                <div className="col-7">
+
+
+
+                                                    <div className='row items-center mb-1'>
+                                                        <div className="col-5">
+                                                            <span>服務</span>
+                                                        </div>
+
+                                                        <div className="col-7 flex">
+                                                            {[1, 2, 3, 4, 5].map((value) => (
+                                                                <img
+                                                                    key={value}
+                                                                    className="h-4 cursor-pointer"
+                                                                    src={value <= serviceRating ? solidstar : emptystar}
+                                                                    alt=""
+                                                                    onClick={() => handleRatingChange(value, 'service')}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className='row items-center mb-1'>
+                                                        <div className="col-5">
+                                                            <span>景觀</span>
+                                                        </div>
+
+                                                        <div className="col-7 flex">
+                                                            {[1, 2, 3, 4, 5].map((value) => (
+                                                                <img
+                                                                    key={value}
+                                                                    className="h-4 cursor-pointer"
+                                                                    src={value <= sceneryRating ? solidstar : emptystar}
+                                                                    alt=""
+                                                                    onClick={() => handleRatingChange(value, 'scenery')}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div className="row items-center mb-1">
+                                                        <div className="col-5">
+                                                            <span>設施</span>
+                                                        </div>
+                                                        <div className="col-7 flex">
+                                                            {[1, 2, 3, 4, 5].map((value) => (
+                                                                <img
+                                                                    key={value}
+                                                                    className="h-4 cursor-pointer"
+                                                                    src={value <= facilityRating ? solidstar : emptystar}
+                                                                    alt=""
+                                                                    onClick={() => handleRatingChange(value, 'facility')}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="row items-center mb-1">
+                                                        <div className="col-5">
+                                                            <span>衛生</span>
+                                                        </div>
+                                                        <div className="col-7 flex">
+                                                            {[1, 2, 3, 4, 5].map((value) => (
+                                                                <img
+                                                                    key={value}
+                                                                    className="h-4 cursor-pointer"
+                                                                    src={value <= sanitationRating ? solidstar : emptystar}
+                                                                    alt=""
+                                                                    onClick={() => handleRatingChange(value, 'sanitation')}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="row items-center mb-1">
+                                                        <div className="col-5">
+                                                            <span>交通</span>
+                                                        </div>
+                                                        <div className="col-7 flex">
+                                                            {[1, 2, 3, 4, 5].map((value) => (
+                                                                <img
+                                                                    key={value}
+                                                                    className="h-4 cursor-pointer"
+                                                                    src={value <= transportRating ? solidstar : emptystar}
+                                                                    alt=""
+                                                                    onClick={() => handleRatingChange(value, 'transport')}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+
+                                                    {/* <button onClick={logRating}>顯示評分</button> */}
+
                                                 </div>
                                             </div>
 
 
+                                            <div className="py-5 row items-start bg-white">
+                                                <div className="col-5">
+                                                    <strong>給予評價</strong>
+                                                </div>
+
+                                                <div className="col-7">
 
 
+                                                    <textarea className="w-3/4 form-control border border-gray-300 rounded-lg" onKeyDown={handleKeyDown}
+                                                        onChange={(e) => setUserTextArea(e.target.value)}
+                                                        value={userTextArea}
+                                                        maxLength={50} id="exampleFormControlTextarea1" rows="4" style={{ maxHeight: '120px', overflow: 'hidden' }}
+
+                                                    ></textarea>
 
 
+                                                    {/* onFocus={(e) => setRankingText("草皮保養的不錯，而且離溪邊很近，可以玩水！！！超讚的露營體驗，推薦大家來玩喔。")} */}
 
 
-
-                                            {/* <div >
-                                    <div className="">
-
-                                        <div className="col-6">
-                                            <p className="pl-1 mb-0">浴廁</p>
-                                            <div className="rating">
-                                                <ReactStars {...bathroomRankingStar} />
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div className="col-6">
-                                            <p className="pl-1 mb-0">設施</p>
-                                            <div className="rating">
-                                                <ReactStars {...facilityRankingStar} />
+
+                                            <div className="h-5 mt-2">
+                                                {showIncompleteMessage && <p className="text-red-500">請填寫完整</p>}
                                             </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div className="row d-flex justify-content-between">
-                                        <div className="col-6">
-                                            <p className="pl-1 mb-0">服務</p>
-                                            <div className="rating">
-                                                <ReactStars {...serviceRankingStar} />
-                                            </div>
-                                        </div>
-
-                                        <div className="col-6">
-                                            <p className="pl-1 mb-0">交通</p>
-                                            <div className="rating">
-                                                <ReactStars {...transportRankingStar} />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="row d-flex justify-content-between">
-                                        <div className="col-6">
-                                            <p className="pl-1 mb-0">景觀</p>
-                                            <div className="rating">
-                                                <ReactStars {...sceneryRankingStar} />
-                                            </div>
-                                        </div>
-                                        <div className="col-6">
 
                                         </div>
-                                    </div>
-                                </div> */}
 
 
+                                        <div className='row justify-around'>
 
+                                            <button onClick={handleSubmit} className='col-4   my-1 border border-blue-800 rounded-sm py-1 px-3 text-md font-semibold hover:bg-my_blue hover:text-white'>送出評價</button>
 
-
-
-                                        </div>
-                                    </div>
-                                    <div className="py-5 row items-start bg-white">
-                                        <div className="col-5">
-                                            <strong>給予評價</strong>
-                                        </div>
-
-                                        <div className="col-7">
-
-
-                                            <textarea className="w-3/4 form-control"
-                                                onChange={(e) => setRankingText(e.target.value)}
-                                                id="exampleFormControlTextarea1" rows="4" style={{ border: "1.5px solid black" }}
-                                                onFocus={(e) => setRankingText("草皮保養的不錯，而且離溪邊很近，可以玩水！！！超讚的露營體驗，推薦大家來玩喔。")}
-                                            ></textarea>
-
-
+                                            <button onClick={() => handleVisible(index)} className='col-4   my-1 border border-red-400 rounded-sm py-1 px-3 text-md font-semibold hover:bg-red-800 hover:text-white'>取消離開</button>
 
                                         </div>
-                                    </div>
-                                </div>
-
-
-                                <div className='row justify-around'>
-
-                                    <button className='col-4   my-1 border border-blue-800 rounded-sm py-1 px-3 text-md font-semibold hover:bg-my_blue hover:text-white'>送出評價</button>
-
-                                    <button onClick={() => handleVisible(index)} className='col-4   my-1 border border-red-400 rounded-sm py-1 px-3 text-md font-semibold hover:bg-red-800 hover:text-white'>取消離開</button>
-
-                                </div>
 
 
 
 
 
 
-                            </DivCoverStyled>
+                                    </DivCoverStyled>
 
-                        </DivBlackCoverOutfit>
+                                </DivBlackCoverOutfit>}
 
 
 
+                        </>
                     )}
 
                 </div>

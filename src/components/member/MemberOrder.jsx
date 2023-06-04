@@ -21,8 +21,10 @@ function MemberOrder() {
 
     // 過去和取消的選取
     const [uiTurn, setUiTurn] = useState(null);
-
-
+    
+    
+    // 發送評價後的馬上刷新
+    const [finFeedback, setFinFeedback] = useState(false);
 
 
 
@@ -45,7 +47,7 @@ function MemberOrder() {
                 .catch(error => {
                     console.log(error);
                 });
-        }, []);
+        }, [finFeedback]);
         return Data;
     }
     const dataPast = useDataPast();
@@ -141,7 +143,8 @@ function MemberOrder() {
                         <img className='mx-auto rounded-[40px]' src={campOrder} alt="" />
                     </div>}
 
-                {uiTurn === true && <MemberBasic getdata={dataPast} status='past' />}
+                {uiTurn === true && <MemberBasic getdata={dataPast} status='past' reGetFeedback={finFeedback} setReGetFeedback={setFinFeedback} userId={userIdOrder} />}
+
                 {uiTurn === false && <MemberBasic getdata={dataCancel} status='cancel' />}
 
 

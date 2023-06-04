@@ -240,8 +240,12 @@ function ProcessLeftReserve(props) {
                 orderExpired: false,
                 orderCancel: false,
                 orderCancelReason: "",
+
                 feedback: false,
+                feedbackName: "",
+                feedbackStar: [],
                 feedbackContent: "",
+
                 live2dMessage: false,
             };
 
