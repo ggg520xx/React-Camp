@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 
 
-import { DivContentZone } from '../memberBasic/MemberBasicStyle'
+import { DivContentZone } from '../../src/components/memberBasic/MemberBasicStyle'
 
-import MemberBasic from '../memberBasic/MemberBasic'
+import MemberBasic from '../../src/components/memberBasic/MemberBasic'
 import axios from 'axios';
 
 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { DivContentZone } from '../memberBasic/MemberBasicStyle'
-import { campLike } from '../../images/member/MemberMange';
+import { DivContentZone } from '../../src/components/memberBasic/MemberBasicStyle'
+import { campLike } from '../../src/images/member/MemberMange';
 
 import axios from 'axios';
-import MemberBasicLike from '../memberBasicLike/MemberBasicLike'
+import MemberBasicLike from '../../src/components/memberBasicLike/MemberBasicLike'
 
 
 function MemberLike() {

@@ -16,6 +16,31 @@ const PageFeedback = (props) => {
     console.log(feebackArrayInfo)
 
 
+    // 跑星星的函式 可放到外部func引入來元件內  在渲染處使用
+    const renderStars = (averageScore) => {
+        const fullStars = Math.floor(averageScore); // 完整實星數量
+        const halfStar = averageScore - fullStars >= 0.5; // 是否有半星
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // 空心星星數量
+        const stars = [];
+
+        // 根據完整實星數量添加實星圖片
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(<img key={i} className="h-4" src={solidstar} alt="" />);
+        }
+
+        // 如果有半星，添加半星圖片
+        if (halfStar) {
+            stars.push(<img key={fullStars} className="h-4" src={halfstar} alt="" />);
+        }
+
+        // 添加空心星星圖片
+        for (let i = 0; i < emptyStars; i++) {
+            stars.push(<img key={fullStars + i + 1} className="h-4" src={emptystar} alt="" />);
+        }
+        return stars;
+    };
+
+
     return (
         <>
             <div className='mt-5 relative bg-gray-100 w-full px-8 py-5  h-full shadow-xl rounded-md border-gray-200 border' id="section-feedback">
@@ -31,7 +56,7 @@ const PageFeedback = (props) => {
 
 
 
-                        <div className="row min-h-[600px] ">
+                        <div className="row min-h-[660px] ">
 
 
 
@@ -41,7 +66,7 @@ const PageFeedback = (props) => {
                                 <div className="h-2/5 bg-soft_color p-8 flex justify-around items-center flex-col">
 
 
-                                    <div className='dark:bg-gray-700 h-[60px] w-[70px] text-white rounded-xl flex justify-center items-center'><strong className='text-3xl'>3.8</strong><sub>/5</sub></div>
+                                    <div className='dark:bg-gray-700 h-[60px] w-[70px] text-white rounded-xl flex justify-center items-center'><strong className='text-2xl'>{feedbackStar.totalAverageScore}</strong><sub>&nbsp;/&nbsp;5</sub></div>
 
 
                                     {/* 星星和價格 用flex共排 用老師的星星評價map*/}
@@ -50,15 +75,12 @@ const PageFeedback = (props) => {
 
                                             {/* star 星星的map計算引入匯出 現在就用img */}
 
-                                            <img className="h-4" src={solidstar} alt="" />
-                                            <img className="h-4" src={solidstar} alt="" />
-                                            <img className="h-4" src={solidstar} alt="" />
-                                            <img className="h-4" src={halfstar} alt="" />
-                                            <img className="h-4" src={emptystar} alt="" />
+                                            {renderStars(feedbackStar.totalAverageScore)}
+                                            {/* 多少分數 星星就跑幾顆樣子 */}
                                         </div>
                                     </div>
 
-                                    <strong>共<span className="text-2xl text-blue-500 mx-1">4</span>則評價</strong>
+                                    <strong>共<span className="text-2xl text-blue-500 mx-1">{feedbackStar.scoreNum}</span>則評價</strong>
 
 
 
@@ -67,130 +89,112 @@ const PageFeedback = (props) => {
 
                                 <div className="h-3/5 bg-white p-8 flex justify-around items-center flex-col">
 
-                                    <div className='text-center'>
-                                        <strong>衛生</strong>
-                                        <div className='flex items-center justify-center w-full'>
-                                            <div className="text-md flex items-center ">
 
-                                                {/* star 星星的map計算引入匯出 現在就用img */}
 
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={halfstar} alt="" />
-                                                <img className="h-4" src={emptystar} alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div className='text-center'>
+
                                         <strong>服務</strong>
+                                        <strong className="text-md px-2">{feedbackStar.giveservice}</strong>
+
                                         <div className='flex items-center justify-center w-full'>
                                             <div className="text-md flex items-center ">
 
+
+                                               
+                                                
                                                 {/* star 星星的map計算引入匯出 現在就用img */}
 
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={halfstar} alt="" />
-                                                <img className="h-4" src={emptystar} alt="" />
+                                                {renderStars(feedbackStar.giveservice)}
+                                                {/* 多少分數 星星就跑幾顆樣子 */}
                                             </div>
                                         </div>
                                     </div>
+
+
                                     <div className='text-center'>
+
                                         <strong>景觀</strong>
+                                        <strong className="text-md px-2">{feedbackStar.giveview}</strong>
+
                                         <div className='flex items-center justify-center w-full'>
                                             <div className="text-md flex items-center ">
 
                                                 {/* star 星星的map計算引入匯出 現在就用img */}
 
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={halfstar} alt="" />
-                                                <img className="h-4" src={emptystar} alt="" />
+                                                {renderStars(feedbackStar.giveview)}
+                                                {/* 多少分數 星星就跑幾顆樣子 */}
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                   
+                                   
                                     <div className='text-center'>
+
                                         <strong>設施</strong>
+                                        <strong className="text-md px-2">{feedbackStar.givedevice}</strong>
+
                                         <div className='flex items-center justify-center w-full'>
                                             <div className="text-md flex items-center ">
 
                                                 {/* star 星星的map計算引入匯出 現在就用img */}
 
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={halfstar} alt="" />
-                                                <img className="h-4" src={emptystar} alt="" />
+                                                {renderStars(feedbackStar.givedevice)}
+                                                {/* 多少分數 星星就跑幾顆樣子 */}
                                             </div>
                                         </div>
                                     </div>
+
                                     <div className='text-center'>
-                                        <strong>交通</strong>
+
+                                        <strong>衛生</strong>
+                                        <strong className="text-md px-2">{feedbackStar.giveclean}</strong>
+
                                         <div className='flex items-center justify-center w-full'>
                                             <div className="text-md flex items-center ">
 
                                                 {/* star 星星的map計算引入匯出 現在就用img */}
 
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={solidstar} alt="" />
-                                                <img className="h-4" src={halfstar} alt="" />
-                                                <img className="h-4" src={emptystar} alt="" />
+                                                {renderStars(feedbackStar.giveclean)}
+                                                {/* 多少分數 星星就跑幾顆樣子 */}
                                             </div>
                                         </div>
                                     </div>
 
 
 
+                                    <div className='text-center'>
 
+                                        <strong>交通</strong>
+                                        <strong className="text-md px-2">{feedbackStar.givetraffic}</strong>
+
+                                        <div className='flex items-center justify-center w-full'>
+                                            <div className="text-md flex items-center ">
+
+                                                {/* star 星星的map計算引入匯出 現在就用img */}
+
+                                                {renderStars(feedbackStar.givetraffic)}
+                                                {/* 多少分數 星星就跑幾顆樣子 */}
+                                            </div>
+                                        </div>
+                                    </div>
 
 
                                 </div>
-
-
-
-
                             </div>
 
 
 
-
-
-
-                            {/* <div className="h-5/6 bg-green-800 w-full flex justify-around items-center flex-col">
-                                <div className='bg-gray-100 rounded-2xl h-1/4 mb-2 w-full'>12</div>
-                                <div className='bg-gray-100 rounded-2xl h-1/4 mb-2 w-full'>33</div>
-                                <div className='bg-gray-100 rounded-2xl h-1/4 mb-2 w-full'>55</div>
-                                <div className='bg-gray-100 rounded-2xl h-1/4 mb-2 w-full'>66</div>
-                            </div>
-
-                            <div className="h-1/6 bg-red-800 w-full">
-                            </div> */}
-
-
-
-                            <div className="col-9  p-8 flex justify-around items-center flex-col bg-white">
-
-
-
-
+                            <div className="col-9  p-8 flex justify-start items-center flex-col bg-white">
                                 {feebackArrayInfo ? feebackArrayInfo?.map((item, index) => (
-
                                     <div className='bg-gray-100 rounded-2xl mb-2 w-full p-5'>
-
                                         <div className='row'>
                                             <div className="col-10">
-
-                                                <strong className="text-xl pl-3 text-white bg-my_green rounded-xl py-1 mb-2 block">
+                                                <strong className="text-xl px-3 py-2  text-white bg-my_green rounded-xl  block">
                                                     {item.name}
                                                 </strong>
 
-                                                <p>{item.comment}</p>
-                                               
-
+                                                <p className="px-4 pt-4 text-md font-bold">{item.comment}</p>
                                             </div>
 
                                             <div className="col-2">
@@ -202,11 +206,11 @@ const PageFeedback = (props) => {
 
                                                     <div className='dark:bg-gray-700 h-[30px] w-[50px] text-white rounded-xl flex justify-center items-center'>
 
-                                                        <strong className='text-md'>4</strong>
+                                                        <strong className='text-md'>{item.totalAverage}</strong>
 
                                                     </div>
 
-                                                    <strong>2022-12-02</strong>
+                                                    <strong>{item.commentDate}</strong>
 
                                                 </div>
 

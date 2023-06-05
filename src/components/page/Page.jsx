@@ -61,7 +61,7 @@ function Page(props) {
 
 
     const [feebackArrayInfo, setFeebackArrayInfo] = useState([]);
-    
+
 
 
     function useFeedbackStarGet() {
@@ -78,7 +78,23 @@ function Page(props) {
 
                     console.log(response.data);
                     const result = response.data;
-                    setFeebackArrayInfo(result)
+
+                    // 抓出裡面的排列 越新的越前面
+                    const sortedResult = result.sort((a, b) => b.jsDate - a.jsDate);
+                    setFeebackArrayInfo(sortedResult)
+                    // 賦值給他後 讓他設定 直接傳給我要用的評價 多人的評價陣列
+
+
+
+                    // 計算各項目的平均值
+                    const averages = ['giveservice', 'giveview', 'givedevice', 'giveclean', 'givetraffic'].reduce((acc, key) => {
+                        const values = sortedResult.map((item) => item[key]);
+                        const sum = values.reduce((total, value) => total + value, 0);
+                        const average = values.length > 0 ? (sum / values.length) : 0;
+                        acc[key] = average.toFixed(1);
+                        return acc;
+                    }, {});
+
 
                     const scores = result.map((feedbackItem) => feedbackItem.totalScore);
                     console.log(scores); //遍歷結果
@@ -91,6 +107,7 @@ function Page(props) {
                         totalScore,
                         totalAverageScore,
                         scoreNum,
+                        ...averages, // 將各項目的平均值加入 data 物件中
                     });
                 } catch (error) {
                     console.error('Error:', error);
