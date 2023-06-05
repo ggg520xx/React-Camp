@@ -32,82 +32,196 @@ function MemberOrder() {
     console.log(userIdOrder)
 
 
+    const [statusPast, setStatusPast] = useState(false);
+
+    
+
+
+
+
+
+
+
+    const [campDataResultPast, setCampDataResultPast] = useState([]);
+    
+    // 額外控制 當我完成評價後 也得馬上合併一次資料 否則會跳為抓不到資料
+    const [otherCon, setOtherCon] = useState(false);
+
+
     function useDataPast() {
-        const [Data, setData] = useState(null);
+        // const [Data, setData] = useState(null);
         useEffect(() => {
             axios.get(`http://localhost:3000/orders?userId=${userIdOrder}&orderExpired=true&orderCancel=false&_expand=camp&_expand=campinfo`)
                 .then(response => {
 
                     const userOrder = response.data
                     const sortedOrder = userOrder.sort((a, b) => b.id - a.id); // 根据id排序，由大到小
-                   
+
                     console.log(sortedOrder)
-                    setData(sortedOrder);
+                    // setData(sortedOrder);
+                    setCampDataResultPast(sortedOrder)
+
+                    setOtherCon(!otherCon)
+                 
                 })
                 .catch(error => {
                     console.log(error);
                 });
         }, [finFeedback]);
-        return Data;
+        // return Data;
     }
     const dataPast = useDataPast();
 
 
+    useEffect(() => {
 
+        const fetchFeedbackData = async (campId) => {
+            try {
+                const response = await axios.get(`http://localhost:3000/feedbacks?campId=${campId}`);
+                return response.data;
+            } catch (error) {
+                console.error(`Error fetching feedback data for campId ${campId}:`, error);
+                return [];
+            }
+        };
+
+        const getFeedbackDataForCamp = async () => {
+            if (campDataResultPast && campDataResultPast.length > 0) {
+                const feedbackDataPromises = campDataResultPast.map((campItem) =>
+                    fetchFeedbackData(campItem.campId)
+                );
+                const feedbackDataArray = await Promise.all(feedbackDataPromises);
+
+                const campDataWithFeedback = campDataResultPast.map((campItem, index) => {
+                    const feedbackDataForCamp = feedbackDataArray[index] || [];
+
+                    const scores = feedbackDataForCamp.map((feedbackItem) => feedbackItem.totalScore);
+
+                    const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+                    const totalAverageScore = scores.length > 0 ? (totalScore / (scores.length * 5)).toFixed(1) : 0;
+                    // toFixed(1); //只顯示到小數點後一位
+                    const scoreNum = scores.length
+                    // const averageScore = totalScore / scores.length;
+
+
+                    return {
+                        ...campItem,
+                        totalScore,
+                        totalAverageScore,
+                        scoreNum,
+                    };
+                });
+
+                console.log(campDataWithFeedback)
+                setCampDataResultPast(campDataWithFeedback);
+                // 或者根據您的需求，將結果存儲在其他狀態中
+            }
+        };
+
+        getFeedbackDataForCamp();
+    }, [statusPast, otherCon]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const [campDataResultCancel, setCampDataResultCancel] = useState([]);
 
 
 
     function useDataCancel() {
-        const [Data, setData] = useState(null);
+        // const [Data, setData] = useState(null);
         useEffect(() => {
             axios.get(`http://localhost:3000/orders?userId=${userIdOrder}&orderCancel=true&_expand=camp&_expand=campinfo`)
                 .then(response => {
 
                     const userOrder = response.data
                     const sortedOrder = userOrder.sort((a, b) => b.id - a.id); // 根据id排序，由大到小
-                   
+
                     console.log(sortedOrder)
-                    setData(sortedOrder);
+                    // setData(sortedOrder);
+                    setCampDataResultCancel(sortedOrder)
                 })
                 .catch(error => {
                     console.log(error);
                 });
         }, []);
-        return Data;
+        // return Data;
     }
     const dataCancel = useDataCancel();
 
 
 
+    useEffect(() => {
+
+        const fetchFeedbackData = async (campId) => {
+            try {
+                const response = await axios.get(`http://localhost:3000/feedbacks?campId=${campId}`);
+                return response.data;
+            } catch (error) {
+                console.error(`Error fetching feedback data for campId ${campId}:`, error);
+                return [];
+            }
+        };
+
+        const getFeedbackDataForCamp = async () => {
+            if (campDataResultCancel && campDataResultCancel.length > 0) {
+                const feedbackDataPromises = campDataResultCancel.map((campItem) =>
+                    fetchFeedbackData(campItem.campId)
+                );
+                const feedbackDataArray = await Promise.all(feedbackDataPromises);
+
+                const campDataWithFeedback = campDataResultCancel.map((campItem, index) => {
+                    const feedbackDataForCamp = feedbackDataArray[index] || [];
+
+                    const scores = feedbackDataForCamp.map((feedbackItem) => feedbackItem.totalScore);
+
+                    const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+                    const totalAverageScore = scores.length > 0 ? (totalScore / (scores.length * 5)).toFixed(1) : 0;
+                    // toFixed(1); //只顯示到小數點後一位
+                    const scoreNum = scores.length
+                    // const averageScore = totalScore / scores.length;
 
 
-    // const { user, start, end, campAmount } = props;
+                    return {
+                        ...campItem,
+                        totalScore,
+                        totalAverageScore,
+                        scoreNum,
+                    };
+                });
 
-    // const [dataT, setDataT] = useState({
-    //     orders: [],
-    //     orderCampTag: [],
-    //     orderRanking: [],
-    //     orderCampPhoto: [],
-    //     pastOrders: [],
-    //     pastOrderCampTag: [],
-    //     pastOrderRanking: [],
-    //     pastOrderCampPhoto: [],
-    //     pastOrderCampRanked: [],
-    // })
+                console.log(campDataWithFeedback)
+                setCampDataResultCancel(campDataWithFeedback);
+                // 或者根據您的需求，將結果存儲在其他狀態中
+            }
+        };
 
-
-
-
-
-    // const [activeTab, setActiveTab] = useState(1); // 初始化活動的 tab
-    // // 藉由按鈕去更新 值狀態
-    // const handleTabChange = (tabIndex) => {
-    //     setActiveTab(tabIndex); // 更新活動的 tab
-    // };
+        getFeedbackDataForCamp();
+    }, [statusPast]);
 
 
 
-    // 用戶填寫介面的狀態傳入翻轉判定
+
+
+
+
+
+
+
+
+
 
 
 
@@ -143,9 +257,9 @@ function MemberOrder() {
                         <img className='mx-auto rounded-[40px]' src={campOrder} alt="" />
                     </div>}
 
-                {uiTurn === true && <MemberBasic getdata={dataPast} status='past' reGetFeedback={finFeedback} setReGetFeedback={setFinFeedback} userId={userIdOrder} />}
+                {uiTurn === true && <MemberBasic getdata={campDataResultPast} status="past" reGetCon={statusPast} setReGetCon={setStatusPast} reGetFeedback={finFeedback} setReGetFeedback={setFinFeedback} userId={userIdOrder}  />}
 
-                {uiTurn === false && <MemberBasic getdata={dataCancel} status='cancel' />}
+                {uiTurn === false && <MemberBasic getdata={campDataResultCancel} status="cancel" reGetCon={statusPast} setReGetCon={setStatusPast} />}
 
 
 

@@ -30,6 +30,12 @@ import axios from 'axios';
 
 const PagePic = (props) => {
 
+    const { feedbackStar } = props;
+    console.log(feedbackStar)
+  
+
+
+
 
     // 控制重新抓取get的按鈕開關 給useEffect綁定 這個的set設定給 收藏按鈕上 他會去點擊開關 並執行對應的陣列抓取push或移除 然後patch
     const [conswitch, setConSwitch] = useState(true);
@@ -192,12 +198,40 @@ const PagePic = (props) => {
 
 
 
+   
+
+
+
+
+    // 跑星星的函式 可放到外部func引入來元件內  在渲染處使用
+    const renderStars = (averageScore) => {
+        const fullStars = Math.floor(averageScore); // 完整實星數量
+        const halfStar = averageScore - fullStars >= 0.5; // 是否有半星
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // 空心星星數量
+        const stars = [];
+
+        // 根據完整實星數量添加實星圖片
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(<img key={i} className="h-4" src={solidstar} alt="" />);
+        }
+
+        // 如果有半星，添加半星圖片
+        if (halfStar) {
+            stars.push(<img key={fullStars} className="h-4" src={halfstar} alt="" />);
+        }
+
+        // 添加空心星星圖片
+        for (let i = 0; i < emptyStars; i++) {
+            stars.push(<img key={fullStars + i + 1} className="h-4" src={emptystar} alt="" />);
+        }
+        return stars;
+    };
 
 
 
 
 
-
+    // 應該是圖片輪播
     const [thumbsSwiper, setThumbsSwiper] = useState();
 
     return (
@@ -214,42 +248,44 @@ const PagePic = (props) => {
                         <strong>地點：{item.address}</strong>
                     </p>
 
-
+                    {/* feedbackStar */}
 
 
                     {/* 星星和價格 用flex共排 用老師的星星評價map*/}
                     <div className='flex items-center justify-between w-full'>
 
+                        <div className="flex items-center font-bold">
 
-                        <div className="text-md flex items-center ">
 
                             {/* star 星星的map計算引入匯出 現在就用img */}
+                            <strong className="text-xl px-2">{feedbackStar.totalAverageScore !== undefined ? feedbackStar.totalAverageScore : 'No data'}</strong>
 
-                            <img className="h-4" src={solidstar} alt="" />
-                            <img className="h-4" src={solidstar} alt="" />
-                            <img className="h-4" src={solidstar} alt="" />
-                            <img className="h-4" src={solidstar} alt="" />
-                            <img className="h-4" src={solidstar} alt="" />
+                            {renderStars(feedbackStar.totalAverageScore)}
+                            {/* 多少分數 星星就跑幾顆樣子 */}
 
-                            <span>4.7</span>
-                            <span>(45)</span>
+
+                            <span className="text-sm">{feedbackStar.scoreNum === 0 ? "(無資料)" : `(${feedbackStar.scoreNum}筆)`}</span>
+                            {/* 有幾筆評價回饋抓feedbacks 用條件篩選抓 相關於id的筆數 同時平均值也能抓出來 */}
+
+
+
                         </div>
 
-                        {/* <div>
+                        <div>
 
                             <h6 className="">
-                                <span className='text-p_color text-3xl font-bold'>$1300</span>
-                                <span className='font-bold'>/ 晚</span>
+                                <span className='text-p_color text-3xl font-bold'>${item.showLowPrice}</span>
+                                <span className='font-bold'> 起  /  每晚</span>
                             </h6>
 
-                        </div> */}
+                        </div>
                     </div>
 
                 </div>
 
 
-                
-               
+
+
 
 
                 {/* 圓形周圍空白 包裹愛心flex just. 及位置調整absolute*/}
@@ -282,7 +318,7 @@ const PagePic = (props) => {
 
 
 
-                
+
 
 
                 <div className="h-[800px]">
@@ -310,7 +346,7 @@ const PagePic = (props) => {
 
 
                             <SwiperSlide key={index}>
-                                <img  src={require(`../../../../assets/campPhoto/${id}/${item.image}`)} alt="product images" className='block h-full w-full object-cover ' />
+                                <img src={require(`../../../../assets/campPhoto/${id}/${item.image}`)} alt="product images" className='block h-full w-full object-cover ' />
                             </SwiperSlide>
 
 

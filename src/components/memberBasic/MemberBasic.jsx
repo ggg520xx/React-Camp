@@ -35,11 +35,31 @@ const MemberBasic = function (props) {
 
 
 
-    const { getdata, status, reGetFeedback, setReGetFeedback, userId } = props; // 從 props 取得 data
+
+    const { getdata, status, reGetFeedback, setReGetFeedback, userId, reGetCon, setReGetCon } = props; // 從 props 取得 data
     console.log(getdata)
     console.log(status)
 
 
+    // 評價的重新獲取 否則抓不到資料 因為非同步的關係
+    useEffect(() => {
+        if (status === "past") {
+            setTimeout(() => {
+                setReGetCon(!reGetCon)
+            }, 300);
+            return
+        }
+        if (status === "cancel") {
+            setTimeout(() => {
+                setReGetCon(!reGetCon)
+            }, 300);
+            return
+        }
+        setTimeout(() => {
+            setReGetCon(!reGetCon)
+        }, 500);
+
+    }, []);
 
 
 
@@ -268,6 +288,32 @@ const MemberBasic = function (props) {
 
 
 
+    // 跑星星的函式 可放到外部func引入來元件內  在渲染處使用
+    const renderStars = (averageScore) => {
+        const fullStars = Math.floor(averageScore); // 完整實星數量
+        const halfStar = averageScore - fullStars >= 0.5; // 是否有半星
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // 空心星星數量
+        const stars = [];
+
+        // 根據完整實星數量添加實星圖片
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(<img key={i} className="h-4" src={solidstar} alt="" />);
+        }
+
+        // 如果有半星，添加半星圖片
+        if (halfStar) {
+            stars.push(<img key={fullStars} className="h-4" src={halfstar} alt="" />);
+        }
+
+        // 添加空心星星圖片
+        for (let i = 0; i < emptyStars; i++) {
+            stars.push(<img key={fullStars + i + 1} className="h-4" src={emptystar} alt="" />);
+        }
+
+        return stars;
+    };
+
+
 
 
     return (
@@ -336,18 +382,17 @@ const MemberBasic = function (props) {
                                 <div className='flex items-center justify-between w-full'>
 
 
-                                    <div className="text-md flex items-center ">
+                                    <div className="flex items-center font-bold">
 
                                         {/* star 星星的map計算引入匯出 現在就用img */}
+                                        <strong className="text-xl px-2">{item.totalAverageScore !== undefined ? item.totalAverageScore : 'No data'}</strong>
 
-                                        <img className="h-4" src={solidstar} alt="" />
-                                        <img className="h-4" src={solidstar} alt="" />
-                                        <img className="h-4" src={solidstar} alt="" />
-                                        <img className="h-4" src={solidstar} alt="" />
-                                        <img className="h-4" src={solidstar} alt="" />
+                                        {renderStars(item.totalAverageScore)}
+                                        {/* 多少分數 星星就跑幾顆樣子 */}
 
-                                        <span>4.7</span>
-                                        <span>(45)</span>
+
+                                        <span className="text-sm">{item.scoreNum === 0 ? "(無資料)" : `(${item.scoreNum}筆)`}</span>
+                                        {/* 有幾筆評價回饋抓feedbacks 用條件篩選抓 相關於id的筆數 同時平均值也能抓出來 */}
                                     </div>
 
 

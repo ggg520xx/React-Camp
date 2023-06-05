@@ -23,13 +23,13 @@ function MemberMain() {
 
 
 
-    const [statusIng, setStatusIng] = useState(false);
     const [campDataResult, setCampDataResult] = useState([]);
+    const [feedbackData, setFeedbackData] = useState([]);
 
     function useData() {
-        // 包函式抓不到是因為並沒有開關讓他重啟抓取
-        useEffect(() => {
 
+
+        useEffect(() => {
 
             const fetchCampData = async () => {
                 try {
@@ -43,12 +43,10 @@ function MemberMain() {
             };
 
 
-
             // 取得回饋資料
             const fetchFeedbackData = async (campId) => {
                 try {
                     const response = await axios.get(`http://localhost:3000/feedbacks?campId=${campId}`);
-      
                     return response.data;
                 } catch (error) {
                     console.error(`Error fetching feedback data for campId ${campId}:`, error);
@@ -56,47 +54,55 @@ function MemberMain() {
                 }
             };
 
+
+            // 獲取回饋資料並設定至 state
             const getFeedbackDataForCamp = async () => {
                 if (campDataResult && campDataResult.length > 0) {
                     const feedbackDataPromises = campDataResult.map((campItem) =>
-                        // 這裡的跟搜尋頁的營區id抓取不一樣 這是訂單的所以依照訂單的 async fetch的物件格式來取得campId資料
                         fetchFeedbackData(campItem.campId)
                     );
                     const feedbackDataArray = await Promise.all(feedbackDataPromises);
-
-                    const campDataWithFeedback = campDataResult.map((campItem, index) => {
-                        const feedbackDataForCamp = feedbackDataArray[index] || [];
-
-                        const scores = feedbackDataForCamp.map((feedbackItem) => feedbackItem.totalScore);
-
-                        const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
-                        const totalAverageScore = scores.length > 0 ? (totalScore / (scores.length * 5)).toFixed(1) : 0;
-                        // toFixed(1); //只顯示到小數點後一位
-                        const scoreNum = scores.length
-                        // const averageScore = totalScore / scores.length;
-
-
-                        return {
-                            ...campItem,
-                            totalScore,
-                            totalAverageScore,
-                            scoreNum,
-                        };
-                    });
-
-                    console.log(campDataWithFeedback)
-                    setCampDataResult(campDataWithFeedback);
-                    // 或者根據您的需求，將結果存儲在其他狀態中
+                    setFeedbackData(feedbackDataArray);
+                    
                 }
             };
-            fetchCampData()
+
+            fetchCampData();
             getFeedbackDataForCamp();
 
-            
-        }, [statusIng]);
 
+        }, []);
+
+        console.log(campDataResult);
+        console.log(feedbackData);
+
+        const campDataWithFeedback = campDataResult.map((campItem, index) => {
+            const feedbackDataForCamp = feedbackData[index] || [];
+
+
+
+            const scores = feedbackDataForCamp.map((feedbackItem) => feedbackItem.totalScore);
+
+            const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+            const totalAverageScore = scores.length > 0 ? (totalScore / (scores.length * 5)).toFixed(1) : 0;
+            // toFixed(1); //只顯示到小數點後一位
+            const scoreNum = scores.length
+            // const averageScore = totalScore / scores.length;
+
+            return {
+                ...campItem,
+                totalScore,
+                totalAverageScore,
+                scoreNum,
+
+            };
+        });
+        return campDataWithFeedback
     }
-    useData()
+
+    const dataIng = useData();
+
+
 
 
 
@@ -107,7 +113,7 @@ function MemberMain() {
             <DivContentZone className="py-5">
 
                 <div className='h-[70px]'>
-                    <h2 className="text-xl font-bold">歡迎，您尚有 <span className="text-blue-500">{campDataResult && campDataResult.length}</span> 筆 行程待進行或進行中</h2>
+                    <h2 className="text-xl font-bold">歡迎，您尚有 <span className="text-blue-500">{dataIng && dataIng.length}</span> 筆 行程待進行或進行中</h2>
                     <strong>準備好開始您的行程了嗎</strong>
                 </div>
 
@@ -125,10 +131,9 @@ function MemberMain() {
                     : null} */}
 
 
-                
 
 
-                <MemberBasic getdata={campDataResult} status="ing" reGetCon={statusIng} setReGetCon={setStatusIng} />
+                <MemberBasic getdata={dataIng} status='ing' />
 
 
 

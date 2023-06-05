@@ -60,6 +60,62 @@ function Page(props) {
 
 
 
+    const [feebackArrayInfo, setFeebackArrayInfo] = useState([]);
+    
+
+
+    function useFeedbackStarGet() {
+        const [data, setData] = useState({
+            totalScore: 0,
+            totalAverageScore: 0,
+            scoreNum: 0,
+        });
+
+        useEffect(() => {
+            const fetchData = async () => {
+                try {
+                    const response = await axios.get(`http://localhost:3000/feedbacks?campId=${id}`);
+
+                    console.log(response.data);
+                    const result = response.data;
+                    setFeebackArrayInfo(result)
+
+                    const scores = result.map((feedbackItem) => feedbackItem.totalScore);
+                    console.log(scores); //遍歷結果
+
+                    const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+                    const totalAverageScore = scores.length > 0 ? (totalScore / (scores.length * 5)).toFixed(1) : 0;
+                    const scoreNum = scores.length;
+
+                    setData({
+                        totalScore,
+                        totalAverageScore,
+                        scoreNum,
+                    });
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            };
+            fetchData();
+        }, []);
+
+        return data;
+    }
+    const feedbackStar = useFeedbackStarGet();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <>
@@ -70,10 +126,10 @@ function Page(props) {
             <PageGuide />
 
             <div className="container wrapper py-5">
-                <PagePic itemId={id} />
+                <PagePic itemId={id} feedbackStar={feedbackStar} />
                 <PageInfo itemId={id} />
                 <PageReserve itemId={id} />
-                <PageFeedback itemId={id} />
+                <PageFeedback itemId={id} feedbackStar={feedbackStar} feebackArrayInfo={feebackArrayInfo} />
                 <PageOverview itemId={id} />
                 {/* <PageNotice itemId={id} /> */}
             </div>

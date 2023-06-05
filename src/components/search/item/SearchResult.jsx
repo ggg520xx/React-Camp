@@ -209,15 +209,12 @@ const SearchResult = (props) => {
 
         return data;
     }
-
     // 如果你希望在 inputGlobal 发生变化时才调用 useData 函数，你可以将第二个参数设置为 [inputGlobal]
     // [inputGlobal] 当 inputGlobal 发生变化时，才会调用 useData 函数并发送 HTTP 请求
 
-
     let campData = useData();
-
-    // 將上面跑完判斷的 設為filter 值 去跑 特點挑選 回傳需要的組陣列結果
     setcampDataFilter(campData);
+    // 將上面跑完判斷的 設為filter 值 去跑 特點挑選 回傳需要的組陣列結果
 
     // 最後才使用 篩選結果跑result
     // campDataResult, setcampDataResult
@@ -234,8 +231,13 @@ const SearchResult = (props) => {
     // }
 
 
-
+    // 抓取的id合併feedback的分數
     useEffect(() => {
+
+        // 因為這裡本來就是有獲取陣列 傳進來使用 因此沒有多get 如果是其他例如訂單頁面membermain order like那邊 我把它合併 get全部和回饋資料
+
+
+        // 取得回饋資料
         const fetchFeedbackData = async (campId) => {
             try {
                 const response = await axios.get(`http://localhost:3000/feedbacks?campId=${campId}`);
@@ -417,14 +419,14 @@ const SearchResult = (props) => {
 
                                         <div className="flex items-center font-bold">
 
-                                            
+
                                             {/* star 星星的map計算引入匯出 現在就用img */}
-                                            <strong className="text-xl px-2">{item.totalAverageScore !== undefined ? item.totalAverageScore :'No data'}</strong>
+                                            <strong className="text-xl px-2">{item.totalAverageScore !== undefined ? item.totalAverageScore : 'No data'}</strong>
 
                                             {renderStars(item.totalAverageScore)}
                                             {/* 多少分數 星星就跑幾顆樣子 */}
-                                         
-                                      
+
+
                                             <span className="text-sm">{item.scoreNum === 0 ? "(無資料)" : `(${item.scoreNum}筆)`}</span>
                                             {/* 有幾筆評價回饋抓feedbacks 用條件篩選抓 相關於id的筆數 同時平均值也能抓出來 */}
 

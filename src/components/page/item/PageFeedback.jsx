@@ -10,7 +10,10 @@ import "./itemStyle/PageFeedbackStyle.css";
 
 const PageFeedback = (props) => {
 
+    const { feedbackStar, feebackArrayInfo } = props;
 
+    console.log(feedbackStar)
+    console.log(feebackArrayInfo)
 
 
     return (
@@ -174,135 +177,53 @@ const PageFeedback = (props) => {
 
 
 
+                                {feebackArrayInfo ? feebackArrayInfo?.map((item, index) => (
 
-                                <div className='bg-gray-100 rounded-2xl mb-2 w-full p-5'>
+                                    <div className='bg-gray-100 rounded-2xl mb-2 w-full p-5'>
 
-                                    <div className='row'>
-                                        <div className="col-10">
+                                        <div className='row'>
+                                            <div className="col-10">
 
-                                            <strong className="text-xl pl-3 text-white bg-my_green rounded-xl py-1 mb-2 block">匿名</strong>
-                                            <p>新留言需要排序自動為最上.</p>
-                                            <p>新留言需要排序自動為最上.</p>
+                                                <strong className="text-xl pl-3 text-white bg-my_green rounded-xl py-1 mb-2 block">
+                                                    {item.name}
+                                                </strong>
 
-                                        </div>
-
-                                        <div className="col-2">
-
-
-                                            <div className='flex flex-col justify-between 0 h-full items-center'>
-
-
-
-                                                <div className='dark:bg-gray-700 h-[30px] w-[50px] text-white rounded-xl flex justify-center items-center'>
-
-                                                    <strong className='text-md'>4</strong>
-
-                                                </div>
-
-                                                <strong>2022-12-02</strong>
+                                                <p>{item.comment}</p>
+                                               
 
                                             </div>
 
-                                        </div>
-                                    </div>
-
-                                </div>
+                                            <div className="col-2">
 
 
-
-                                <div className='bg-gray-100 rounded-2xl mb-2 w-full p-5'>
-
-                                    <div className='row'>
-                                        <div className="col-10">
-
-                                            <strong className="text-xl pl-3 text-white bg-my_green rounded-xl py-1 mb-2 block">賽特</strong>
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae amet ipsum expedita ad quisquam odit voluptatem repellendus soluta explicabo voluptatum laudantium vitae, ratione itaque a reiciendis inventore minus ea recusandae esse eum! Itaque corrupti quo amet tempora quia eos corporis?</p>
-
-                                        </div>
-
-                                        <div className="col-2">
-
-
-                                            <div className='flex flex-col justify-between 0 h-full items-center'>
+                                                <div className='flex flex-col justify-between 0 h-full items-center'>
 
 
 
-                                                <div className='dark:bg-gray-700 h-[30px] w-[50px] text-white rounded-xl flex justify-center items-center'>
+                                                    <div className='dark:bg-gray-700 h-[30px] w-[50px] text-white rounded-xl flex justify-center items-center'>
 
-                                                    <strong className='text-md'>4.5</strong>
+                                                        <strong className='text-md'>4</strong>
+
+                                                    </div>
+
+                                                    <strong>2022-12-02</strong>
 
                                                 </div>
 
-                                                <strong>2022-12-01</strong>
-
                                             </div>
-
                                         </div>
+
                                     </div>
 
-                                </div>
-                                <div className='bg-gray-100 rounded-2xl mb-2 w-full p-5'>
-
-                                    <div className='row'>
-                                        <div className="col-10">
-
-                                            <strong className="text-xl pl-3 text-white bg-my_green rounded-xl py-1 mb-2 block">米哈遊</strong>
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt ratione maxime aperiam earum officia aliquid cumque culpa, eligendi tempore atque saepe reiciendis beatae nisi voluptatibus dolores deleniti. Itaque, eaque nesciunt.</p>
-
-                                        </div>
-
-                                        <div className="col-2">
-
-
-                                            <div className='flex flex-col justify-between 0 h-full items-center'>
+                                )) : null}
 
 
 
-                                                <div className='dark:bg-gray-700 h-[30px] w-[50px] text-white rounded-xl flex justify-center items-center'>
-
-                                                    <strong className='text-md'>4</strong>
-
-                                                </div>
-
-                                                <strong>2022-11-28</strong>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div className='bg-gray-100 rounded-2xl mb-2 w-full p-5'>
-
-                                    <div className='row'>
-                                        <div className="col-10">
-
-                                            <strong className="text-xl pl-3 text-white bg-my_green rounded-xl py-1 mb-2 block">匿名</strong>
-                                            <p>orem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt ratione maxime aperiam earum officia aliquid cumque culpa, eligendi tempore atque saepe reiciendis beatae nisi voluptatibus dolores deleniti. Itaque, eaque nesciunt.</p>
-
-                                        </div>
-
-                                        <div className="col-2">
-
-
-                                            <div className='flex flex-col justify-between 0 h-full items-center'>
 
 
 
-                                                <div className='dark:bg-gray-700 h-[30px] w-[50px] text-white rounded-xl flex justify-center items-center'>
 
-                                                    <strong className='text-md'>4</strong>
 
-                                                </div>
-
-                                                <strong>2022-11-25</strong>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
 
 
 
