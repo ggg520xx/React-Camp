@@ -10,7 +10,7 @@ import MyDatePicker from './func/ReactDateRange';
 import { MyContextSearch, useMyContextSearch } from '../../../hooks/useContext/InputSearch';
 import axios from 'axios';
 import { format, eachDayOfInterval, set, isAfter } from 'date-fns';
-
+import Swal from 'sweetalert2'
 
 // http://localhost:3000/camps/4/campinfos
 // 一樣是可以抓單一id 下的 關於他連結的關連
@@ -330,7 +330,33 @@ const PageReserve = (props) => {
 
             localStorage.setItem('prevpage', id);
 
-            alert('未登入,請先登入後使用')
+            // alert('未登入,請先登入後使用')
+
+            // Swal.fire({
+            //     title: '用戶未登入',
+            //     text: '請先登入後使用',
+            //     icon: 'info',
+            //     confirmButtonText: '好的'
+            // })
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'info',
+                title: '用戶未登入，請先登入後使用'
+            })
+
+
+
             navigate("/login")
             return
         }
@@ -338,21 +364,77 @@ const PageReserve = (props) => {
 
         if (datePickerState === undefined) {
             console.log('不正確時間或尚未選取');
-            alert('不正確時間或尚未選取')
+
+
+            // alert('不正確時間或尚未選取')
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'warning',
+                title: '不正確時間或尚未選取'
+            })
+
+
             return
         }
 
         const foundIndex = datePickerState.findIndex(item => item.id === index); // 尋找 datePickerState 中是否已經有 id 為 index 的物件
         if (foundIndex === -1) {
+
             console.log('沒有輸入日期');
-            alert('沒有輸入日期');
+
+
+            // alert('沒有輸入日期');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'warning',
+                title: '沒有輸入日期'
+            })
+
             return;
         }
 
 
         else if (datePickerState[foundIndex].start === datePickerState[foundIndex].end) {
             console.log('時間重複或未正確選取');
-            alert('時間重複或未正確選取');
+
+            // alert('時間重複或未正確選取');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'warning',
+                title: '時間重複或未正確選取'
+            })
+
+
             return;
         }
 
@@ -367,7 +449,25 @@ const PageReserve = (props) => {
         if (datePickerState[foundIndex].dateRange.includes(today)) {
             const evening7pm = set(now, { hours: 19, minutes: 0, seconds: 0 });
             if (isAfter(now, evening7pm)) {
-                alert('今日訂房時間已過晚上7點，日期無法包含今天');
+
+                // alert('今日訂房時間已過晚上7點，日期無法包含今天');
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'error',
+                    title: '今日訂房時間已過晚上7點，日期無法包含今天'
+                })
+
+
                 return;
             }
         }
@@ -412,7 +512,13 @@ const PageReserve = (props) => {
         // 如果有任何一天的房間數量不足，就顯示提示訊息
         if (insufficientDates.length > 0) {
             const message = insufficientDates.map(date => `${date}: 營區位置不足，僅剩 ${campInfo[index].reservation.find(reserve => reserve.date === date).num} 帳 / 間`);
-            alert(message.join('\n'));
+
+
+
+            // alert(message.join('\n'));
+            Swal.fire(message.join('\n'))
+
+
             return;
         }
         // ------------------------------------------

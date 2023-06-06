@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -72,6 +72,95 @@ const MemberBasicLike = function (props) {
 
 
 
+    const [campDataResult, setCampDataResult] = useState([]);
+
+
+
+
+    useEffect(() => {
+        // 取得回饋資料
+        const fetchFeedbackData = async (campId) => {
+            try {
+                const response = await axios.get(`http://localhost:3000/feedbacks?campId=${campId}`);
+                return response.data;
+            } catch (error) {
+                console.error(`Error fetching feedback data for campId ${campId}:`, error);
+                return [];
+            }
+        };
+
+        const getFeedbackDataForCamp = async () => {
+            if (filteredCamps && filteredCamps.length > 0) {
+                const feedbackDataPromises = filteredCamps.map((campItem) =>
+                    fetchFeedbackData(campItem.id)
+                );
+                const feedbackDataArray = await Promise.all(feedbackDataPromises);
+
+                const campDataWithFeedback = filteredCamps.map((campItem, index) => {
+                    const feedbackDataForCamp = feedbackDataArray[index] || [];
+
+                    const scores = feedbackDataForCamp.map((feedbackItem) => feedbackItem.totalScore);
+
+                    const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+                    const totalAverageScore = scores.length > 0 ? (totalScore / (scores.length * 5)).toFixed(1) : 0;
+                    // toFixed(1); //只顯示到小數點後一位
+                    const scoreNum = scores.length
+                    // const averageScore = totalScore / scores.length;
+
+
+                    return {
+                        ...campItem,
+                        totalScore,
+                        totalAverageScore,
+                        scoreNum,
+                    };
+                });
+
+                console.log(campDataWithFeedback)
+                setCampDataResult(campDataWithFeedback);
+                // 或者根據您的需求，將結果存儲在其他狀態中
+            }
+        };
+
+        getFeedbackDataForCamp();
+    }, [filteredCamps]);
+
+
+
+    // 跑星星的函式 可放到外部func引入來元件內  在渲染處使用
+    const renderStars = (averageScore) => {
+        const fullStars = Math.floor(averageScore); // 完整實星數量
+        const halfStar = averageScore - fullStars >= 0.5; // 是否有半星
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // 空心星星數量
+        const stars = [];
+
+        // 根據完整實星數量添加實星圖片
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(<img key={i} className="h-4" src={solidstar} alt="" />);
+        }
+
+        // 如果有半星，添加半星圖片
+        if (halfStar) {
+            stars.push(<img key={fullStars} className="h-4" src={halfstar} alt="" />);
+        }
+
+        // 添加空心星星圖片
+        for (let i = 0; i < emptyStars; i++) {
+            stars.push(<img key={fullStars + i + 1} className="h-4" src={emptystar} alt="" />);
+        }
+
+        return stars;
+    };
+
+
+
+
+
+
+
+
+
+
     return (
         <>
 
@@ -79,7 +168,7 @@ const MemberBasicLike = function (props) {
 
 
 
-                {filteredCamps ? filteredCamps?.map((item, index) => (
+                {campDataResult ? campDataResult?.map((item, index) => (
 
 
 
@@ -112,16 +201,20 @@ const MemberBasicLike = function (props) {
 
                                             <div className='col-6 p-0'>
 
+
                                                 {/* 星星和價格 用flex共排 用老師的星星評價map*/}
-                                                <div className='flex items-center justify-end'>
-                                                    <p className="text-md flex">
-                                                        {/* star 星星的map計算引入匯出 現在就用img */}
-                                                        <img className="h-3.5" src={solidstar} alt="" />
-                                                        <img className="h-3.5" src={solidstar} alt="" />
-                                                        <img className="h-3.5" src={solidstar} alt="" />
-                                                        <img className="h-3.5" src={solidstar} alt="" />
-                                                        <img className="h-3.5" src={solidstar} alt="" />
-                                                    </p>
+                                                <div className='flex items-center justify-end w-full'>
+                                                    <div className="text-md flex items-center font-bold">
+
+                                                        <strong className="text-xl px-2">{item.totalAverageScore !== undefined ? item.totalAverageScore : 'No data'}</strong>
+
+                                                        {renderStars(item.totalAverageScore)}
+                                                        {/* 多少分數 星星就跑幾顆樣子 */}
+
+
+                                                        <span className="text-sm">{item.scoreNum === 0 ? "(無資料)" : `(${item.scoreNum}筆)`}</span>
+                                                        {/* 有幾筆評價回饋抓feedbacks 用條件篩選抓 相關於id的筆數 同時平均值也能抓出來 */}
+                                                    </div>
 
                                                 </div>
                                             </div>

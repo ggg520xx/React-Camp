@@ -35,7 +35,19 @@ function MemberMain() {
                 try {
                     const response = await axios.get(`http://localhost:3000/orders?userId=${userIdOrder}&orderExpired=false&orderCancel=false&_expand=camp&_expand=campinfo`)
 
-                    setCampDataResult(response.data);
+                    const result = response.data;
+                    console.log(result)
+                    
+                    const sortedResult = result.sort((a, b) => {
+                        const today = Date.now();
+                        const diffA = Math.abs(today - a.jsDate);
+                        const diffB = Math.abs(today - b.jsDate);
+                        return diffA - diffB;
+                    });
+
+
+
+                    setCampDataResult(sortedResult);
 
                 } catch (error) {
                     console.error('Error fetching camp data:', error);

@@ -15,7 +15,7 @@ import { MyContextSearch, useMyContextSearch } from '../../hooks/useContext/Inpu
 
 import ScrollLogo from './item/ScrollLogo';
 
-
+import Swal from 'sweetalert2'
 
 // ---------------------------------------------------------------------------
 
@@ -70,7 +70,29 @@ function Layout() {
             ]);
             // 在所有操作完成後再執行下一步程式碼
             setLoginStatus(false);
-            alert('已進行登出');
+            setIsOpen(false);
+
+
+            // alert('已進行登出');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: '用戶已進行登出'
+            })
+            
+
+
+
         } catch (error) {
             console.log(error);
         }

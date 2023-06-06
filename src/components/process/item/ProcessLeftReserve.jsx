@@ -131,10 +131,16 @@ function ProcessLeftReserve(props) {
     // 有點選才連到下個頁面
     const onSubmit = (data) => {
 
+
+
         // 有抓取物件再轉換成JSON格式的字串 顯示在頁面
         let formdata = JSON.stringify(data)
-        alert(formdata);
         // console.log(formdata) 物件格式Json
+
+
+        // alert(formdata);
+        // 彈跳顯示輸入的資料 
+
 
         if (formdata !== '') {
 
@@ -199,6 +205,8 @@ function ProcessLeftReserve(props) {
 
         try {
             const order = {
+
+                jsDate: Date.now(),
                 code: Date.now() + uuidv4(), // 將時間戳記與 UUID 結合作為訂單編號,
                 userId: userId,
                 campId: parseInt(id),

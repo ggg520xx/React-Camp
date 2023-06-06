@@ -3,12 +3,12 @@
 
 import React, { useState, useEffect } from "react";
 
-import { DivContentZone, DivCoverStyled } from '../memberBasic/MemberBasicStyle'
+import { DivContentZone, DivCoverStyled } from '../../src/components/memberBasic/MemberBasicStyle'
 
-import MemberBasic from '../memberBasic/MemberBasic'
+import MemberBasic from '../../src/components/memberBasic/MemberBasic'
 import axios from 'axios';
 
-import { campOrder } from '../../images/member/MemberMange';
+import { campOrder } from '../../src/images/member/MemberMange';
 
 
 

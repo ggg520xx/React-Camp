@@ -17,7 +17,7 @@ import { MyContextSearch, useMyContextSearch } from '../../hooks/useContext/Inpu
 
 // 登入在這就去進行個人訂單的更新
 import { parse, isSameDay, subDays, isBefore } from 'date-fns';
-
+import Swal from 'sweetalert2'
 
 
 const Login = (props) => {
@@ -91,7 +91,47 @@ const Login = (props) => {
             if (localStorage.getItem('prevpage')) {
                 setLoginStatus(true)
                 let id = localStorage.getItem('prevpage');
-                alert('登入成功,將導向至先前頁面')
+
+
+
+                // alert('登入成功,將導向至先前頁面')
+                // Swal.fire({
+                //     title: '登入成功',
+                //     text: '即將導向至先前頁面',
+                //     icon: 'success',
+                //     confirmButtonText: '好的'
+                // })
+
+
+
+                let timerInterval
+                Swal.fire({
+                    title: '登入成功',
+                    html: '<b></b> 即將導向至先前頁面',
+                    timer: 2000,
+                    timerProgressBar: true,
+
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+
+                }).then((result) => {
+
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                        // console.log('I was closed by the timer')
+                        navigate(`/page/${id}`)
+                        localStorage.removeItem('prevpage');
+                    }
+                })
 
 
                 // ----------------------------------
@@ -100,11 +140,10 @@ const Login = (props) => {
                 console.log(userOrder)
                 // ----------------------------------
 
-                // 進行get後的patch
+                // 進行get後的patch 用戶資料的更新
                 await processOrders(userOrder);
 
-                navigate(`/page/${id}`)
-                localStorage.removeItem('prevpage');
+               
             }
             else {
                 setLoginStatus(true)
