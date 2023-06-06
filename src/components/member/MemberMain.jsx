@@ -9,8 +9,6 @@ import MemberBasic from '../memberBasic/MemberBasic'
 import axios from 'axios';
 
 
-// import MemberEmptyStyle from './MemberStyle'
-
 
 
 function MemberMain() {
