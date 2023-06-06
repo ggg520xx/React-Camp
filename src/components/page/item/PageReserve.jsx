@@ -332,13 +332,6 @@ const PageReserve = (props) => {
 
             // alert('未登入,請先登入後使用')
 
-            // Swal.fire({
-            //     title: '用戶未登入',
-            //     text: '請先登入後使用',
-            //     icon: 'info',
-            //     confirmButtonText: '好的'
-            // })
-
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -371,7 +364,7 @@ const PageReserve = (props) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 5000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -398,7 +391,7 @@ const PageReserve = (props) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 5000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -406,8 +399,8 @@ const PageReserve = (props) => {
                 }
             })
             Toast.fire({
-                icon: 'warning',
-                title: '沒有輸入日期'
+                icon: 'question',
+                title: '用戶是否未輸入日期'
             })
 
             return;
@@ -422,7 +415,7 @@ const PageReserve = (props) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 5000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -463,7 +456,7 @@ const PageReserve = (props) => {
                     }
                 })
                 Toast.fire({
-                    icon: 'error',
+                    icon: 'warning',
                     title: '今日訂房時間已過晚上7點，日期無法包含今天'
                 })
 

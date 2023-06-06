@@ -95,14 +95,6 @@ const Login = (props) => {
 
 
                 // alert('登入成功,將導向至先前頁面')
-                // Swal.fire({
-                //     title: '登入成功',
-                //     text: '即將導向至先前頁面',
-                //     icon: 'success',
-                //     confirmButtonText: '好的'
-                // })
-
-
 
                 let timerInterval
                 Swal.fire({
@@ -143,13 +135,30 @@ const Login = (props) => {
                 // 進行get後的patch 用戶資料的更新
                 await processOrders(userOrder);
 
-               
+
             }
             else {
                 setLoginStatus(true)
+
                 // alert('登入成功,將導向至會員頁面')
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'success',
+                    title: "登入成功，即將導向至會員頁面"
+                })
+                navigate("/member")
 
-
+                
                 // ----------------------------------
                 // 定義取得資料的函式 等待取得資料後再繼續往下執行
                 const userOrder = await getUserOrder(userPatchOrder);
@@ -158,14 +167,28 @@ const Login = (props) => {
 
                 // 進行get後的patch
                 await processOrders(userOrder);
-
-                navigate("/member")
             }
 
         } catch (error) {
             console.log(error.response)
             console.log(error.response.data)
-            alert(`帳號密碼有誤,無法正確登入`)
+
+            // alert(`帳號密碼有誤,無法正確登入`)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: '帳號密碼有誤，無法正確登入'
+            })
         }
     };
 
@@ -174,7 +197,7 @@ const Login = (props) => {
         return response.data;
     }
 
-    
+
     const processOrders = async (userOrder) => {
 
         const today = new Date();
@@ -274,7 +297,7 @@ const Login = (props) => {
                                             }
                                         })} style={{ letterSpacing: 1 }} onChange={(e) => {
                                             setMemberEmail(e.target.value);
-                                            }} onFocus={(e) => setMemberEmail("kokomi@gmail.com")} value={memberEmail} />
+                                        }} onFocus={(e) => setMemberEmail("kokomi@gmail.com")} value={memberEmail} />
                                         {/* onFocus={(e) => setMemberEmail("rurumi@gmail.com")} */}
                                         {/* required */}
                                     </div>
@@ -304,7 +327,7 @@ const Login = (props) => {
                                             }
                                         })} style={{ letterSpacing: 1 }} onChange={(e) => {
                                             setMemberPassword(e.target.value)
-                                            }} onFocus={(e) => setMemberPassword("Kokomi123456")} value={memberPassword} />
+                                        }} onFocus={(e) => setMemberPassword("Kokomi123456")} value={memberPassword} />
                                         {/* onFocus={(e) => setMemberPassword("Rurumi123456")} */}
                                         {/* required */}
 

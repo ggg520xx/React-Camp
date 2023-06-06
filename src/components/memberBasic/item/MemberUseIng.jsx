@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const MemberUseIng = (props) => {
     // 一定要這段
@@ -34,7 +35,24 @@ const MemberUseIng = (props) => {
     // 確定取消 抓取選擇送出
     const handleSubmit = () => {
         if (selectedOption && selectedOption !== '') {
-            alert(`已送出${selectedOption}此選項`);
+
+            // alert(`已送出${selectedOption}此選項取消訂單`);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: `已送出 " ${selectedOption} " ，以此選項取消訂單`
+            })
+
 
             axios.patch(`http://localhost:3000/orders/${orderId}`, { orderCancel: true, orderCancelReason: selectedOption })
                 .then(response => {
@@ -72,7 +90,25 @@ const MemberUseIng = (props) => {
 
 
         } else {
-            alert('請選擇一個選項');
+
+            // alert('請選擇一個選項');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'question',
+                title: '請選擇一個選項'
+            })
+
+
         }
     };
 

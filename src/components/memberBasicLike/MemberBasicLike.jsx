@@ -9,7 +9,7 @@ import { faBolt, faHeart, faMapMarkerAlt, faCaretRight, faBookmark } from '@fort
 import { indexIcon, hot1, hot2, hot3 } from '../../images/index/IndexMange';
 import axios from 'axios';
 
-
+import Swal from 'sweetalert2'
 
 
 const MemberBasicLike = function (props) {
@@ -42,6 +42,24 @@ const MemberBasicLike = function (props) {
             axios.patch(`http://localhost:3000/users/${userId}`, { like: updatedLikeArray })
                 .then((response) => {
                     console.log('喜歡的營區已更新', response.data);
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        icon: 'info',
+                        title: "已從收藏清單中移除"
+                    })
+                        
+                    
                     // 在此處執行適當的操作，例如更新狀態或重新載入資料等
                     // setLikeArray(updatedLikeArray);
                     setCollect(!conCollect) //開關讓他重新get畫面 並即時判斷要不要顯示收藏與否的開關
@@ -56,6 +74,24 @@ const MemberBasicLike = function (props) {
             axios.patch(`http://localhost:3000/users/${userId}`, { like: updatedLikeArray })
                 .then((response) => {
                     console.log('喜歡的營區已更新', response.data);
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        icon: 'info',
+                        title: "已將此加入收藏清單"
+                    })
+
+                    
                     // 在此處執行適當的操作，例如更新狀態或重新載入資料等
                     // setLikeArray(updatedLikeArray);
                     setCollect(!conCollect) //開關讓他重新get畫面 並即時判斷要不要顯示收藏與否的開關

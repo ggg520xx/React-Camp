@@ -14,7 +14,7 @@ import { faSignOutAlt, faArrowLeft, faUser } from '@fortawesome/free-solid-svg-i
 
 import React, { useState, useEffect } from "react";
 // import MemberMain from '../memberMain/MemberMain'
-
+import Swal from 'sweetalert2'
 
 
 // 突然想放背景圖 來包裹所有元件
@@ -79,7 +79,28 @@ const MemberLayout = () => {
             ]);
             // 在以上所有操作完成後再執行下一步程式碼
             setLoginStatus(false);
-            alert('已進行登出');
+
+
+
+            // alert('已進行登出');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: '用戶已進行登出'
+            })
+
+            
+
         } catch (error) {
             console.log(error);
         }

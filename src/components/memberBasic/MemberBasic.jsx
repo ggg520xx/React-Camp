@@ -24,7 +24,7 @@ import MemberUseCancel from './item/MemberUseCancel'
 
 
 import axios from 'axios';
-
+import Swal from 'sweetalert2'
 
 
 
@@ -265,7 +265,23 @@ const MemberBasic = function (props) {
 
             // 發送 push patch出去要把填寫好的清空啦 不然他會一直認為我有填寫 可以繼續加入更多的付款方式
             // 然後鎖定 星級 和 名字切換 以及 填寫的
-            alert(`已使用${chooseName}完成訂單評價`)
+            // alert(`已使用${chooseName}完成訂單評價`)
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: `已使用${chooseName}完成訂單評價`
+            })
 
 
             // 上面成功patch完 要把設定清空 否則點下一個 會出現原本的

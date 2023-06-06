@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import Swal from 'sweetalert2'
 
 const MemberUsePast = (props) => {
 
@@ -50,7 +51,24 @@ const MemberUsePast = (props) => {
                     axios.patch(`http://localhost:3000/orders/${orderId}`, { "live2dMessage": true })
                         .then(response => {
                             setResponseStatus(!responseStatus);
-                            alert(`已送出${nickname}的留言，看板娘將隨機呈現於其他用戶查看`);
+
+                            // alert(`已送出${nickname}的留言，看板娘將隨機呈現於其他用戶查看`);
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 5000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+                            Toast.fire({
+                                icon: 'success',
+                                title: `已送出${nickname}的留言，看板娘將隨機呈現於其他用戶查看`
+                            })
+
                             
                         })
                         .catch(error => {

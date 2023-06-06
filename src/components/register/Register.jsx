@@ -14,6 +14,8 @@ import axios from 'axios';
 
 import { MyContextSearch, useMyContextSearch } from '../../hooks/useContext/InputSearch';
 
+import Swal from 'sweetalert2'
+
 const Register = (props) => {
 
     // const { onLogin, loginAlert, role, msgReg, setMsgReg } = props;
@@ -129,17 +131,66 @@ const Register = (props) => {
                     setLoginStatus(true)
 
                     let id = localStorage.getItem('prevpage');
-                    alert('註冊成功,將導向至先前頁面')
-                    navigate(`/page/${id}`)
-                    localStorage.removeItem('prevpage');
+
+
+                    // alert('註冊成功,將導向至先前頁面')
+                    let timerInterval
+                    Swal.fire({
+                        title: '註冊成功',
+                        html: '<b></b> 即將導向至先前頁面',
+                        timer: 2000,
+                        timerProgressBar: true,
+
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                b.textContent = Swal.getTimerLeft()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+
+                    }).then((result) => {
+
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+
+                            // console.log('I was closed by the timer')
+                            navigate(`/page/${id}`)
+                            localStorage.removeItem('prevpage');
+                        }
+                    })
+
+                   
+                 
                 }
 
                 else {
 
                     setLoginStatus(true)
 
-                    alert('註冊成功,將導向至會員頁面')
+
+
+                    // alert('註冊成功,將導向至會員頁面')
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        icon: 'success',
+                        title: "註冊成功，即將導向至會員頁面"
+                    })
                     navigate("/member")
+
                 }
 
 
@@ -147,8 +198,25 @@ const Register = (props) => {
 
             })
             .catch(function (error) {
+
                 console.log(error.response)
-                alert(`註冊失敗：${error.response.data}`)
+
+                // alert(`註冊失敗：${error.response.data}`)
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'error',
+                    title: `註冊失敗：${error.response.data}`
+                })
             })
 
     }

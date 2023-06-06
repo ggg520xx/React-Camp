@@ -42,7 +42,7 @@ import NotFound from './components/NotFound'
 
 
 
-
+import Swal from 'sweetalert2'
 import axios from 'axios';
 
 import { format, eachDayOfInterval } from 'date-fns';
@@ -208,13 +208,16 @@ function App() {
 
       navigate("/");
 
-      localStorage.removeItem('token');
-      localStorage.clear()
-      setLoginStatus(false);
 
       setTimeout(() => {
-        alert('長時間未動作,保護行程隱私,已進行登出');
-      }, 1500);
+
+        localStorage.removeItem('token');
+        localStorage.clear()
+        setLoginStatus(false);
+
+        Swal.fire('長時間未動作，保護行程隱私，已進行登出')
+
+      }, 2000);
 
     }, 600000);
   }
