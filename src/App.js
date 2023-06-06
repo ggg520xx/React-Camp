@@ -151,6 +151,10 @@ function App() {
   const [tagvalues, setTagValues] = useState([]);
 
 
+// 訂購完成後禁止回訪上頁 訂購頁到填寫資料到完成 禁止返回上一頁 都訂定完成了還返回上頁幹嘛
+  const [canUsePageStatus, setCanUsePageStatus] = useState(true);
+
+
 
   // -----------------------------------------
   // 登入狀態
@@ -751,7 +755,7 @@ function App() {
     <div onClick={handleUserActivity} className="App wrapper">
       {/* <div className="header_public">App這邊可以設計一處共用全路由共用的表頭表尾 或是純粹用Layout階層去設計也可以</div> */}
 
-      <MyContextSearch.Provider value={{ inputGlobal, setInputGlobal, AllCampGet, loginStatus, setLoginStatus }}>
+      <MyContextSearch.Provider value={{ inputGlobal, setInputGlobal, AllCampGet, loginStatus, setLoginStatus, canUsePageStatus, setCanUsePageStatus }}>
 
 
         <MyTagShowHide.Provider value={{ buildWood, setBuildWood, buildTruck, setBuildTruck, buildOther, setBuildOther, buildNone, setBuildNone, providShower, setProvidShower, providPlay, setProvidPlay, providRentEquip, setProvidRentEquip, providMeal, setProvidMeal, providGuide, setProvidGuide, providPool, setProvidPool, providSpring, setProvidSpring, providRainCover, setProvidRainCover, providCarArea, setProvidCarArea, viewHigh, setViewHigh, viewForest, setViewForest, viewGrass, setViewGrass, viewKawa, setViewKawa, viewCloudSea, setViewCloudSea, viewSunrise, setviewSunrise, areaChoose, setAreaChoose, areaChooseId, setAreaChooseId, locationStatus, setlocationStatus, locationFilter, setlocationFilter, campDataFilter, setcampDataFilter, tagvalues, setTagValues, campDataResult, setcampDataResult, startFilters, campDataNum, setcampDataNum, campDataPrice, setcampDataPrice, searchResultFeedbackCon, setSearchResultFeedbackCon }}>
@@ -774,7 +778,25 @@ function App() {
 
                 
                 {/* 未登入的用戶直接造訪網頁url的話 ,將他們導向到login */}
-                <Route path='process/:id/:campinfoId' element={loginStatus ? <Process /> : <Navigate to="/login" replace />} />
+
+
+                {/* <Route path='process/:id/:campinfoId' element={loginStatus ? <Process /> : <Navigate to="/login" replace />} /> */}
+                <Route
+                  path='process/:id/:campinfoId'
+                  element={
+                    loginStatus ? (
+                      canUsePageStatus ? (
+                        <Process />
+                      ) : (
+                        <Navigate to="/member" replace />
+                      )
+                    ) : (
+                      <Navigate to="/login" replace />
+                    )
+                  }
+                />
+
+
                 <Route path='finish' exact element={loginStatus ? <Finish /> : <Navigate to="/login" replace />} />
                 {/* <Route path='payment' element={<Payment />} /> */}
 

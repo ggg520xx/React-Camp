@@ -1,11 +1,66 @@
 import { underDemo } from '../../../images/search/SearchMange';
 import { Link, useNavigate } from "react-router-dom";
 
+import { MyContextSearch, useMyContextSearch } from '../../../hooks/useContext/InputSearch';
+
+import Swal from 'sweetalert2'
 
 const SearchUnderSlogan = (props) => {
     // 一定要這段
     const navigate = useNavigate();
 
+
+    // 全域引入的 登入 點擊後會存放全域 輸入的值
+    const { loginStatus, setLoginStatus } = useMyContextSearch(MyContextSearch);
+
+
+    const handleRegisterClick = () => {
+
+        if (loginStatus === true) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'warning',
+                title: '用戶已登入'
+            })
+        }
+        else {
+            navigate('/register');
+        }
+    };
+
+    const handleLoginClick = () => {
+
+        if (loginStatus === true) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'warning',
+                title: '用戶已登入'
+            })
+        }
+        else {
+            navigate('/login');
+        }
+    };
 
     return (
 
@@ -54,13 +109,11 @@ const SearchUnderSlogan = (props) => {
 
                                 <div className='w-full text-left text-white'>
 
-                                    <button onClick={() => {
-                                        navigate("/register")
-                                    }} className='font-semibold bg-my_black hover:bg-white hover:text-my_green w-3/4 h-[50px]'>註冊</button>
+                                    <button onClick={handleRegisterClick} className='font-semibold bg-my_black hover:bg-white hover:text-my_green w-3/4 h-[50px]'>註冊</button>
 
 
                                     <p className='text-lg mt-3'>或已是會員？
-                                        <Link to='/Login' className="hover:text-p_color">登入</Link>
+                                        <button onClick={handleLoginClick} className="hover:text-p_color">登入</button>
                                     </p>
                                 </div>
                             </div>

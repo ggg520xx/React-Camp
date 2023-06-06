@@ -23,7 +23,8 @@ function MemberMain() {
 
 
 
-    const [statusIng, setStatusIng] = useState(false);
+    const [delayGetStar, setDelayGetStar] = useState(false);
+
     const [campDataResult, setCampDataResult] = useState([]);
 
     function useData() {
@@ -105,7 +106,7 @@ function MemberMain() {
             getFeedbackDataForCamp();
 
             
-        }, [statusIng]);
+        }, [delayGetStar]);
 
     }
     useData()
@@ -140,7 +141,7 @@ function MemberMain() {
                 
 
 
-                <MemberBasic getdata={campDataResult} status="ing" reGetCon={statusIng} setReGetCon={setStatusIng} />
+                <MemberBasic getdata={campDataResult} status="ing" delayGetStar={delayGetStar} setDelayGetStar={setDelayGetStar} />
 
 
 

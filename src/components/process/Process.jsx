@@ -9,13 +9,12 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
 
-
+import { MyContextSearch, useMyContextSearch } from '../../hooks/useContext/InputSearch';
 
 
 
 
 function Process(props) {
-
 
     // 右側計算好的金額傳遞給左元件 變成可發送 post物件包給資料庫
     const [totalPriceFinal, setTotalPriceFinal] = useState(0);
@@ -59,15 +58,15 @@ function Process(props) {
 
     // 用戶填寫介面的狀態傳入翻轉判定
     const [turnLeft, setTurnLeft] = useState(true);
-    
 
-    
+
+
     // 抓選取到的折扣value是哪個
     const [discountPublicTrans, setDiscountPublicTrans] = useState(1);
 
 
 
- 
+
 
 
     return (

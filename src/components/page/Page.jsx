@@ -19,13 +19,20 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-
+import { MyContextSearch, useMyContextSearch } from '../../hooks/useContext/InputSearch';
 
 
 
 function Page(props) {
 
 
+
+    // 全域引入的 登入 點擊後會存放全域 輸入的值
+    const { canUsePageStatus, setCanUsePageStatus } = useMyContextSearch(MyContextSearch);
+    console.log(canUsePageStatus)
+    setCanUsePageStatus(true)
+
+    // console.log(canUsePageStatus)
 
     const { id } = useParams();
     // 在這裡你可以使用 id 參數來取得你想要的項目資料

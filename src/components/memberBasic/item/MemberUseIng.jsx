@@ -3,12 +3,15 @@ import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 
+
+
+
 const MemberUseIng = (props) => {
     // 一定要這段
     const navigate = useNavigate();
 
-    // 父層的位置 元件傳遞抓到的 值 告知是否此訂單留言過
-    const { orderId } = props;
+    // 父層的位置 元件傳遞抓到的 值 告知是否此訂單留言過   campInfoId要用來補回取消的帳棚位置
+    const { orderId, campInfoId } = props;
 
     // 抓出當前登入帳戶的
     let userId = localStorage.getItem('id');
@@ -56,9 +59,6 @@ const MemberUseIng = (props) => {
 
             axios.patch(`http://localhost:3000/orders/${orderId}`, { orderCancel: true, orderCancelReason: selectedOption })
                 .then(response => {
-
-
-
                     axios.get(`http://localhost:3000/users/${userId}`)
                         .then(response => {
 
@@ -76,6 +76,7 @@ const MemberUseIng = (props) => {
                                     console.error('更新用戶取消次數時出錯:', userError);
                                 });
                         })
+
                         .catch(error => {
                             console.error('獲取用户資料進行更新出現問題:', error);
                         });
@@ -86,6 +87,55 @@ const MemberUseIng = (props) => {
                     console.log(error);
                 });
 
+
+
+
+            
+            // 取消訂單按鈕按下 會將此訂單的帳棚位置數量補回去
+            // 獲取訂單資訊
+            axios.get(`http://localhost:3000/orders/${orderId}`)
+                .then(response => {
+
+                    console.log(response.data)
+                    const { roomStart, roomEnd, dateRange, roomNum } = response.data;
+
+                    // 獲取營地資訊
+                    axios.get(`http://localhost:3000/campinfos/${campInfoId}`)
+                        .then(response => {
+                            const campInfo = response.data;
+                            console.log(campInfo)
+
+                            // 找到對應日期區間的房間數量並進行補回
+                            const reservation = campInfo.reservation.map(item => {
+                                if (dateRange.includes(item.date)) {
+                                    item.num += roomNum;
+                                }
+                                return item;
+                            });
+                            console.log(reservation)
+
+                            // // 更新營地資訊
+                            axios.patch(`http://localhost:3000/campinfos/${campInfoId}`, { reservation })
+                                .then(response => {
+                                    console.log('房間數量已成功補回！');
+                                })
+                                .catch(error => {
+                                    console.error('更新營地資訊時發生錯誤：', error);
+                                });
+                        })
+                        .catch(error => {
+                            console.error('獲取營地資訊時發生錯誤：', error);
+                        });
+                })
+                .catch(error => {
+                    console.error('獲取訂單資訊時發生錯誤：', error);
+                });
+            
+           
+            
+
+
+            
 
 
 

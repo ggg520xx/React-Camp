@@ -36,7 +36,7 @@ const MemberBasic = function (props) {
 
 
 
-    const { getdata, status, reGetFeedback, setReGetFeedback, userId, reGetCon, setReGetCon } = props; // 從 props 取得 data
+    const { getdata, status, reGetFeedback, setReGetFeedback, userId, delayGetStar, setDelayGetStar } = props; // 從 props 取得 data
     console.log(getdata)
     console.log(status)
 
@@ -45,18 +45,18 @@ const MemberBasic = function (props) {
     useEffect(() => {
         if (status === "past") {
             setTimeout(() => {
-                setReGetCon(!reGetCon)
+                setDelayGetStar(!delayGetStar)
             }, 300);
             return
         }
         if (status === "cancel") {
             setTimeout(() => {
-                setReGetCon(!reGetCon)
+                setDelayGetStar(!delayGetStar)
             }, 300);
             return
         }
         setTimeout(() => {
-            setReGetCon(!reGetCon)
+            setDelayGetStar(!delayGetStar)
         }, 500);
 
     }, []);
@@ -344,9 +344,10 @@ const MemberBasic = function (props) {
                             <strong className='py-2 bg-p_color block text-white mb-2'>訂單編號：<span>{item.code}</span></strong>
 
 
+                           
 
                             {/* <img className='h-[160px] w-full object-cover' src={searchDemo} alt="" /> */}
-                            {item?.camp?.showLogo ? <img className='h-[220px] w-full object-cover' src={require(`../../../assets/showLogo/${item.camp.showLogo}`)} alt="" /> : <img className='h-[220px] w-full object-cover' src={require('../../images/search/collect/404.png')} alt="" />}
+                            {item?.camp?.showLogo ? <img className='h-[210px] w-full object-cover' src={require(`../../../assets/showLogo/${item.camp.showLogo}`)} alt="" /> : <img className='h-[210px] w-full object-cover' src={require('../../images/search/collect/404.png')} alt="" />}
 
                         </div>
 
@@ -362,7 +363,7 @@ const MemberBasic = function (props) {
 
                                 <p>
                                     <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
-                                    <span>地區：{item.camp.address}</span>
+                                    <strong>地點：{item.camp.address}</strong>
                                 </p>
 
 
@@ -677,7 +678,7 @@ const MemberBasic = function (props) {
                                             <div className="py-5">
 
 
-                                                {status === 'ing' && <MemberUseIng orderId={item.id} />}
+                                                {status === 'ing' && <MemberUseIng orderId={item.id} campInfoId={item.campinfoId} />}
 
                                                 {status === 'past' && <MemberUsePast transmit={item.live2dMessage} orderId={item.id} />}
 

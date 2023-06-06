@@ -108,7 +108,7 @@ const MemberBasicLike = function (props) {
 
 
 
-    const [campDataResult, setCampDataResult] = useState([]);
+    const [campDataResult, setCampDataResult] = useState(null);
 
 
 
@@ -126,6 +126,13 @@ const MemberBasicLike = function (props) {
         };
 
         const getFeedbackDataForCamp = async () => {
+
+
+            // if (filteredCamps === []) {
+            //     setCampDataResult([]);
+            //     return 
+            // }
+
             if (filteredCamps && filteredCamps.length > 0) {
                 const feedbackDataPromises = filteredCamps.map((campItem) =>
                     fetchFeedbackData(campItem.id)
@@ -156,10 +163,15 @@ const MemberBasicLike = function (props) {
                 setCampDataResult(campDataWithFeedback);
                 // 或者根據您的需求，將結果存儲在其他狀態中
             }
+            else if (filteredCamps){
+                setCampDataResult([]);
+            }
+
+
         };
 
         getFeedbackDataForCamp();
-    }, [filteredCamps]);
+    }, [sortItem]);
 
 
 
@@ -267,7 +279,7 @@ const MemberBasicLike = function (props) {
 
                                         <p>
                                             <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
-                                            <strong className=''>地區：{item.address}</strong>
+                                            <strong className=''>地點：{item.address}</strong>
                                         </p>
 
 

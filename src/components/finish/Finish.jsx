@@ -12,7 +12,7 @@ import { faFacebook, faInstagram, faTwitter, faLine } from "@fortawesome/free-br
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 
-
+import { MyContextSearch, useMyContextSearch } from '../../hooks/useContext/InputSearch';
 
 
 
@@ -27,6 +27,11 @@ function Finish() {
 
     const navigate = useNavigate();
 
+
+
+    // 全域引入的 登入 點擊後會存放全域 輸入的值
+    const { canUsePageStatus, setCanUsePageStatus } = useMyContextSearch(MyContextSearch);
+    setCanUsePageStatus(false)
 
 
     // 這邊的state true false值 是決定顯示成功或失敗的 失敗的不會post

@@ -168,6 +168,8 @@ const MemberLayout = () => {
 
                         <nav className="h-[63px] px-2 sm:px-4 py-2.5  bg-my_black ">
                             {/* 內部控制 寬度 flex 置中 */}
+
+                         
                             <div className="container flex flex-wrap items-center justify-center mx-auto">
 
                                 {/* LOGO+文字 */}
@@ -230,7 +232,9 @@ const MemberLayout = () => {
                         {/* Navbar 整體背景 沾粘不用Fixed 用 sticky  */}
                         <nav className="px-2 sm:px-4 py-2.5  bg-my_black ">
                             {/* 內部控制 寬度 flex 置中 */}
-                            <div className="container flex flex-wrap items-center justify-between mx-auto">
+
+                            {/* container 這邊拿掉container 把上頁和登出放到最右邊 感覺比較好看？ */}
+                            <div className="flex flex-wrap items-center justify-between mx-auto">
 
 
                                 <div className="mx-auto">

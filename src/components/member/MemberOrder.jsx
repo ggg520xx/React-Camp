@@ -21,9 +21,9 @@ function MemberOrder() {
 
     // 過去和取消的選取
     const [uiTurn, setUiTurn] = useState(null);
-    
-    
-    // 發送評價後的馬上刷新
+
+
+    // 用於完成訂單 可以使用評價功能 的馬上刷新
     const [finFeedback, setFinFeedback] = useState(false);
 
 
@@ -32,9 +32,10 @@ function MemberOrder() {
     console.log(userIdOrder)
 
 
-    const [statusPast, setStatusPast] = useState(false);
+    // 延遲獲取星星的
+    const [delayGetStar, setDelayGetStar] = useState(false);
 
-    
+
 
 
 
@@ -43,9 +44,12 @@ function MemberOrder() {
 
 
     const [campDataResultPast, setCampDataResultPast] = useState([]);
-    
-    // 額外控制 當我完成評價後 也得馬上合併一次資料 否則會跳為抓不到資料
+
+
+    // 額外控制 訂單抓取星星 如下若我完成評價finFeedback刷新抓值 會導致星星疊不到正確id上抓不到資料 需要馬上合併一次資料 否則會跳為抓不到資料
+    // 所以用這個控制 再次抓取合併的功能 放在合併陣列內物件的監測處
     const [otherCon, setOtherCon] = useState(false);
+
 
 
     function useDataPast() {
@@ -62,7 +66,7 @@ function MemberOrder() {
                     setCampDataResultPast(sortedOrder)
 
                     setOtherCon(!otherCon)
-                 
+
                 })
                 .catch(error => {
                     console.log(error);
@@ -119,7 +123,7 @@ function MemberOrder() {
         };
 
         getFeedbackDataForCamp();
-    }, [statusPast, otherCon]);
+    }, [delayGetStar, otherCon]);
 
 
 
@@ -209,7 +213,7 @@ function MemberOrder() {
         };
 
         getFeedbackDataForCamp();
-    }, [statusPast]);
+    }, [delayGetStar]);
 
 
 
@@ -253,13 +257,13 @@ function MemberOrder() {
                 {uiTurn === null &&
                     <div className='py-10'>
                         <h3 className="mb-3 font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>請選擇一個想查看的紀錄 （近期訂單會呈現於最上方）</h3>
-                        
+
                         <img className='mx-auto rounded-[40px]' src={campOrder} alt="" />
                     </div>}
 
-                {uiTurn === true && <MemberBasic getdata={campDataResultPast} status="past" reGetCon={statusPast} setReGetCon={setStatusPast} reGetFeedback={finFeedback} setReGetFeedback={setFinFeedback} userId={userIdOrder}  />}
+                {uiTurn === true && <MemberBasic getdata={campDataResultPast} status="past" delayGetStar={delayGetStar} setDelayGetStar={setDelayGetStar} reGetFeedback={finFeedback} setReGetFeedback={setFinFeedback} userId={userIdOrder} />}
 
-                {uiTurn === false && <MemberBasic getdata={campDataResultCancel} status="cancel" reGetCon={statusPast} setReGetCon={setStatusPast} />}
+                {uiTurn === false && <MemberBasic getdata={campDataResultCancel} status="cancel" delayGetStar={delayGetStar} setDelayGetStar={setDelayGetStar} />}
 
 
 
