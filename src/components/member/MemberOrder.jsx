@@ -18,29 +18,23 @@ import { campOrder } from '../../images/member/MemberMange';
 
 function MemberOrder() {
 
+    let userIdOrder = localStorage.getItem('id');
+    console.log(userIdOrder)
+
 
     // 過去和取消的選取
     const [uiTurn, setUiTurn] = useState(null);
+
+
+
 
 
     // 用於完成訂單 可以使用評價功能 的馬上刷新
     const [finFeedback, setFinFeedback] = useState(false);
 
 
-
-    let userIdOrder = localStorage.getItem('id');
-    console.log(userIdOrder)
-
-
     // 延遲獲取星星的
     const [delayGetStar, setDelayGetStar] = useState(false);
-
-
-
-
-
-
-
 
 
     const [campDataResultPast, setCampDataResultPast] = useState([]);
@@ -52,6 +46,7 @@ function MemberOrder() {
 
 
 
+    
     function useDataPast() {
         // const [Data, setData] = useState(null);
         useEffect(() => {

@@ -297,9 +297,31 @@ const Login = (props) => {
                                             }
                                         })} style={{ letterSpacing: 1 }} onChange={(e) => {
                                             setMemberEmail(e.target.value);
-                                        }} onFocus={(e) => setMemberEmail("kokomi@gmail.com")} value={memberEmail} />
+                                            }} value={memberEmail} />
+                                        
+
+
+                                        {/* <input className="border-transparent" type="text" placeholder="請輸入信箱" {...register('login_email', {
+                                            required: { value: true, message: '此欄位必填寫' },
+                                            pattern: {
+                                                value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                                                message: 'Email 不合規則'
+                                            }
+                                        })} style={{ letterSpacing: 1 }} onChange={(e) => {
+                                            setMemberEmail(e.target.value);
+                                        }} onFocus={(e) => setMemberEmail("kokomi@gmail.com")} value={memberEmail} /> */}
+
+
+
+
                                         {/* onFocus={(e) => setMemberEmail("rurumi@gmail.com")} */}
-                                        {/* required */}
+                                        {/* onFocus={(e) => setMemberEmail("kokomi@gmail.com")} */}
+                                       
+                                        
+
+
+
+
                                     </div>
                                 </div>
 
@@ -327,9 +349,24 @@ const Login = (props) => {
                                             }
                                         })} style={{ letterSpacing: 1 }} onChange={(e) => {
                                             setMemberPassword(e.target.value)
-                                        }} onFocus={(e) => setMemberPassword("Kokomi123456")} value={memberPassword} />
+                                        }}  value={memberPassword} />
+
+
+
+                                        {/* <input id="input_password" className="border-transparent" type="password" placeholder="請輸入密碼" {...register('login_password', {
+                                            required: { value: true, message: '此欄位必填寫' },
+                                            pattern: {
+                                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/g,
+                                                message: '密碼 8-16字，至少1大寫字母，1小寫字母，1數字'
+                                            }
+                                        })} style={{ letterSpacing: 1 }} onChange={(e) => {
+                                            setMemberPassword(e.target.value)
+                                        }} onFocus={(e) => setMemberPassword("Kokomi123456")} value={memberPassword} /> */}
+
+                                        
+                                        
                                         {/* onFocus={(e) => setMemberPassword("Rurumi123456")} */}
-                                        {/* required */}
+                            
 
                                     </div>
                                 </div>

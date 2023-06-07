@@ -13,7 +13,6 @@ import axios from 'axios';
 
 function MemberMain() {
 
-
     let userIdOrder = localStorage.getItem('id');
     console.log(userIdOrder)
 
@@ -21,93 +20,201 @@ function MemberMain() {
 
 
 
+
+
+    // 用於取消訂單 可以馬上刷新
+    const [cancelOrder, setCancelOrder] = useState(false);
+
+    // 延遲獲取星星的
     const [delayGetStar, setDelayGetStar] = useState(false);
 
     const [campDataResult, setCampDataResult] = useState([]);
 
-    function useData() {
-        // 包函式抓不到是因為並沒有開關讓他重啟抓取
+    // 額外控制 訂單抓取星星 如下若我取消訂單cancelOrder刷新抓值 會導致星星疊不到正確id上抓不到資料 需要馬上合併一次資料 否則會跳為抓不到資料
+    // 所以用這個控制 再次抓取合併的功能 放在合併陣列內物件的監測處
+    const [otherCon, setOtherCon] = useState(false);
+
+
+
+    
+    function useDataIng() {
+
+        // const [Data, setData] = useState(null);
         useEffect(() => {
-
-
-            const fetchCampData = async () => {
-                try {
-                    const response = await axios.get(`http://localhost:3000/orders?userId=${userIdOrder}&orderExpired=false&orderCancel=false&_expand=camp&_expand=campinfo`)
+            axios.get(`http://localhost:3000/orders?userId=${userIdOrder}&orderExpired=false&orderCancel=false&_expand=camp&_expand=campinfo`)
+                .then(response => {
 
                     const result = response.data;
                     console.log(result)
-                    
+
                     const sortedResult = result.sort((a, b) => {
-                        const today = Date.now();
-                        const diffA = Math.abs(today - a.jsDate);
-                        const diffB = Math.abs(today - b.jsDate);
-                        return diffA - diffB;
+                        const dateA = new Date(a.roomStart);
+                        const dateB = new Date(b.roomStart);
+                        return dateA.getTime() - dateB.getTime();
                     });
-
-
 
                     setCampDataResult(sortedResult);
 
-                } catch (error) {
-                    console.error('Error fetching camp data:', error);
-                }
-            };
+                    setOtherCon(!otherCon)
 
-
-
-            // 取得回饋資料
-            const fetchFeedbackData = async (campId) => {
-                try {
-                    const response = await axios.get(`http://localhost:3000/feedbacks?campId=${campId}`);
-      
-                    return response.data;
-                } catch (error) {
-                    console.error(`Error fetching feedback data for campId ${campId}:`, error);
-                    return [];
-                }
-            };
-
-            const getFeedbackDataForCamp = async () => {
-                if (campDataResult && campDataResult.length > 0) {
-                    const feedbackDataPromises = campDataResult.map((campItem) =>
-                        // 這裡的跟搜尋頁的營區id抓取不一樣 這是訂單的所以依照訂單的 async fetch的物件格式來取得campId資料
-                        fetchFeedbackData(campItem.campId)
-                    );
-                    const feedbackDataArray = await Promise.all(feedbackDataPromises);
-
-                    const campDataWithFeedback = campDataResult.map((campItem, index) => {
-                        const feedbackDataForCamp = feedbackDataArray[index] || [];
-
-                        const scores = feedbackDataForCamp.map((feedbackItem) => feedbackItem.totalScore);
-
-                        const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
-                        const totalAverageScore = scores.length > 0 ? (totalScore / (scores.length * 5)).toFixed(1) : 0;
-                        // toFixed(1); //只顯示到小數點後一位
-                        const scoreNum = scores.length
-                        // const averageScore = totalScore / scores.length;
-
-
-                        return {
-                            ...campItem,
-                            totalScore,
-                            totalAverageScore,
-                            scoreNum,
-                        };
-                    });
-
-                    console.log(campDataWithFeedback)
-                    setCampDataResult(campDataWithFeedback);
-                    // 或者根據您的需求，將結果存儲在其他狀態中
-                }
-            };
-            fetchCampData()
-            getFeedbackDataForCamp();
-
-            
-        }, [delayGetStar]);
-
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }, [cancelOrder]);
+        // return Data;
     }
-    useData()
+
+    const dataIng = useDataIng();
+
+
+
+
+
+
+
+    useEffect(() => {
+
+        const fetchFeedbackData = async (campId) => {
+            try {
+                const response = await axios.get(`http://localhost:3000/feedbacks?campId=${campId}`);
+                return response.data;
+            } catch (error) {
+                console.error(`Error fetching feedback data for campId ${campId}:`, error);
+                return [];
+            }
+        };
+
+        const getFeedbackDataForCamp = async () => {
+            if (campDataResult && campDataResult.length > 0) {
+                const feedbackDataPromises = campDataResult.map((campItem) =>
+                    fetchFeedbackData(campItem.campId)
+                );
+                const feedbackDataArray = await Promise.all(feedbackDataPromises);
+
+                const campDataWithFeedback = campDataResult.map((campItem, index) => {
+                    const feedbackDataForCamp = feedbackDataArray[index] || [];
+
+                    const scores = feedbackDataForCamp.map((feedbackItem) => feedbackItem.totalScore);
+
+                    const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+                    const totalAverageScore = scores.length > 0 ? (totalScore / (scores.length * 5)).toFixed(1) : 0;
+                    // toFixed(1); //只顯示到小數點後一位
+                    const scoreNum = scores.length
+                    // const averageScore = totalScore / scores.length;
+
+
+                    return {
+                        ...campItem,
+                        totalScore,
+                        totalAverageScore,
+                        scoreNum,
+                    };
+                });
+
+                console.log(campDataWithFeedback)
+                setCampDataResult(campDataWithFeedback);
+                // 或者根據您的需求，將結果存儲在其他狀態中
+            }
+        };
+
+        getFeedbackDataForCamp();
+    }, [delayGetStar, otherCon]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // function useData() {
+    //     // 包函式抓不到是因為並沒有開關讓他重啟抓取
+
+    //     useEffect(() => {
+    //         const fetchCampData = async () => {
+    //             try {
+    //                 const response = await axios.get(`http://localhost:3000/orders?userId=${userIdOrder}&orderExpired=false&orderCancel=false&_expand=camp&_expand=campinfo`)
+
+    //                 const result = response.data;
+    //                 console.log(result)
+
+    //                 const sortedResult = result.sort((a, b) => {
+    //                     const today = Date.now();
+    //                     const diffA = Math.abs(today - a.jsDate);
+    //                     const diffB = Math.abs(today - b.jsDate);
+    //                     return diffA - diffB;
+    //                 });
+
+
+
+    //                 setCampDataResult(sortedResult);
+
+    //             } catch (error) {
+    //                 console.error('Error fetching camp data:', error);
+    //             }
+    //         };
+
+
+
+    //         // 取得回饋資料
+    //         const fetchFeedbackData = async (campId) => {
+    //             try {
+    //                 const response = await axios.get(`http://localhost:3000/feedbacks?campId=${campId}`);
+
+    //                 return response.data;
+    //             } catch (error) {
+    //                 console.error(`Error fetching feedback data for campId ${campId}:`, error);
+    //                 return [];
+    //             }
+    //         };
+
+    //         const getFeedbackDataForCamp = async () => {
+    //             if (campDataResult && campDataResult.length > 0) {
+    //                 const feedbackDataPromises = campDataResult.map((campItem) =>
+    //                     // 這裡的跟搜尋頁的營區id抓取不一樣 這是訂單的所以依照訂單的 async fetch的物件格式來取得campId資料
+    //                     fetchFeedbackData(campItem.campId)
+    //                 );
+    //                 const feedbackDataArray = await Promise.all(feedbackDataPromises);
+
+    //                 const campDataWithFeedback = campDataResult.map((campItem, index) => {
+    //                     const feedbackDataForCamp = feedbackDataArray[index] || [];
+
+    //                     const scores = feedbackDataForCamp.map((feedbackItem) => feedbackItem.totalScore);
+
+    //                     const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+    //                     const totalAverageScore = scores.length > 0 ? (totalScore / (scores.length * 5)).toFixed(1) : 0;
+    //                     // toFixed(1); //只顯示到小數點後一位
+    //                     const scoreNum = scores.length
+    //                     // const averageScore = totalScore / scores.length;
+
+
+    //                     return {
+    //                         ...campItem,
+    //                         totalScore,
+    //                         totalAverageScore,
+    //                         scoreNum,
+    //                     };
+    //                 });
+
+    //                 console.log(campDataWithFeedback)
+    //                 setCampDataResult(campDataWithFeedback);
+    //                 // 或者根據您的需求，將結果存儲在其他狀態中
+    //             }
+    //         };
+    //         fetchCampData()
+    //         getFeedbackDataForCamp();
+
+
+    //     }, [delayGetStar]);
+
+    // }
+    // useData()
 
 
 
@@ -136,10 +243,10 @@ function MemberMain() {
                     : null} */}
 
 
-                
 
 
-                <MemberBasic getdata={campDataResult} status="ing" delayGetStar={delayGetStar} setDelayGetStar={setDelayGetStar} />
+
+                <MemberBasic getdata={campDataResult} status="ing" delayGetStar={delayGetStar} setDelayGetStar={setDelayGetStar} cancelOrder={cancelOrder} setCancelOrder={setCancelOrder} />
 
 
 

@@ -15,7 +15,7 @@ import { faSignOutAlt, faArrowLeft, faUser } from '@fortawesome/free-solid-svg-i
 import React, { useState, useEffect } from "react";
 // import MemberMain from '../memberMain/MemberMain'
 import Swal from 'sweetalert2'
-
+import axios from 'axios';
 
 // 突然想放背景圖 來包裹所有元件
 // import { indexBottomBg } from '../../images/search/SearchMange';
@@ -27,16 +27,16 @@ const MemberLayout = () => {
     // 全域引入的 登入 點擊後會存放全域 輸入的值
     const { loginStatus, setLoginStatus } = useMyContextSearch(MyContextSearch);
 
+    // 抓出user
+    let userId = localStorage.getItem('id');
 
     const navigate = useNavigate();
     const handleBack = () => {
-
         navigate(-1);
-
     };
 
 
-    
+
 
 
     // 檢查 localStorage 中的值
@@ -72,7 +72,7 @@ const MemberLayout = () => {
 
             // response1 和 response2 是用來接收各個操作的結果，但在您的程式碼中並沒有使用到這些變數。如果您沒有使用這些變數的計劃，您可以移除它
             // const [response1, response2] = await Promise.all([
-            
+
             await Promise.all([
                 navigate("/"),
                 localStorage.clear(),
@@ -99,12 +99,26 @@ const MemberLayout = () => {
                 title: '用戶已進行登出'
             })
 
-            
+
 
         } catch (error) {
             console.log(error);
         }
     }
+
+
+
+
+    const [userCancelNum, setUserCancelNum] = useState(0);
+    const [userRenegeNum, setUserRenegeNum] = useState(0);
+
+
+    axios.get(`http://localhost:3000/users/${userId}`)
+        .then(response => {
+            console.log(response.data);
+            setUserCancelNum(response.data.cancel)
+            setUserRenegeNum(response.data.renege)
+        });
 
 
 
@@ -169,7 +183,7 @@ const MemberLayout = () => {
                         <nav className="h-[63px] px-2 sm:px-4 py-2.5  bg-my_black ">
                             {/* 內部控制 寬度 flex 置中 */}
 
-                         
+
                             <div className="container flex flex-wrap items-center justify-center mx-auto">
 
                                 {/* LOGO+文字 */}
@@ -206,9 +220,22 @@ const MemberLayout = () => {
                             </Link>
 
 
-                            {/* <Link to='mange' className="block">
-                            <div className=" text-white text-lg font-bold w-3/4 mx-auto mt-5 min-h-[50px] flex justify-center items-center border-b-2">帳號管理</div>
-                        </Link> */}
+
+
+                            <div className="py-5">
+
+                                <div className=" text-white text-sm font-bold w-3/4 mx-auto py-2 min-h-[12px] flex justify-center items-center">
+                                    <strong>用戶已取消次數：{userCancelNum}</strong>
+                                </div>
+
+                                <div className=" text-white text-sm font-bold w-3/4 mx-auto py-2 min-h-[12px] flex justify-center items-center">
+                                    <strong>用戶未履約次數：{userRenegeNum}</strong>
+                                </div>
+
+
+                            </div>
+
+
 
 
 

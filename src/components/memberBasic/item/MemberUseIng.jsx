@@ -11,7 +11,7 @@ const MemberUseIng = (props) => {
     const navigate = useNavigate();
 
     // 父層的位置 元件傳遞抓到的 值 告知是否此訂單留言過   campInfoId要用來補回取消的帳棚位置
-    const { orderId, campInfoId } = props;
+    const { orderId, campInfoId ,cancelOrder, setCancelOrder } = props;
 
     // 抓出當前登入帳戶的
     let userId = localStorage.getItem('id');
@@ -118,6 +118,16 @@ const MemberUseIng = (props) => {
                             axios.patch(`http://localhost:3000/campinfos/${campInfoId}`, { reservation })
                                 .then(response => {
                                     console.log('房間數量已成功補回！');
+
+
+
+
+                                    setTimeout(() => {
+                                        setCancelOrder(!cancelOrder)
+                                    }, 500);
+
+                                   
+
                                 })
                                 .catch(error => {
                                     console.error('更新營地資訊時發生錯誤：', error);

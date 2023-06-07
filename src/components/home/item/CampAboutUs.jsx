@@ -58,7 +58,7 @@ const CampAboutUs = (props) => {
 
 
                                     
-                                    <p className="text-left text-md">
+                                    <p className="text-left text-md font-bold" style={{ letterSpacing: 1 }}>
                                         現在全球目前疫情穩定控制的情況下，國內外旅遊也逐漸回溫，在這大家出遊意願提升的時候，露營是不少人考慮的選項。
 
                                         <br />

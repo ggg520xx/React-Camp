@@ -36,7 +36,7 @@ const MemberBasic = function (props) {
 
 
 
-    const { getdata, status, reGetFeedback, setReGetFeedback, userId, delayGetStar, setDelayGetStar } = props; // 從 props 取得 data
+    const { getdata, status, reGetFeedback, setReGetFeedback, userId, delayGetStar, setDelayGetStar, cancelOrder, setCancelOrder } = props; // 從 props 取得 data
     console.log(getdata)
     console.log(status)
 
@@ -678,7 +678,7 @@ const MemberBasic = function (props) {
                                             <div className="py-5">
 
 
-                                                {status === 'ing' && <MemberUseIng orderId={item.id} campInfoId={item.campinfoId} />}
+                                                {status === 'ing' && <MemberUseIng orderId={item.id} campInfoId={item.campinfoId} cancelOrder={cancelOrder} setCancelOrder={setCancelOrder} />}
 
                                                 {status === 'past' && <MemberUsePast transmit={item.live2dMessage} orderId={item.id} />}
 
