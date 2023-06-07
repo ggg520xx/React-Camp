@@ -27,7 +27,7 @@ const CampSearch = (props) => {
 
 
 
-            <div className='pb-8'>
+            <div className='pb-8 px-10'>
 
                 {/* onClick={() => {
                     setInputGlobal(inputChange)
@@ -44,7 +44,7 @@ const CampSearch = (props) => {
                 </div>
 
 
-                <div className="grid grid-cols-12 gap-7">
+                <div className="grid grid-cols-4 md:grid-cols-12 gap-7">
 
 
 
@@ -78,10 +78,10 @@ const CampSearch = (props) => {
                 </div>
 
 
-                <div className="grid grid-cols-12 gap-5 justify-center">
+                <div className="grid grid-cols-4 md:grid-cols-12 gap-5 justify-center">
 
 
-                    <div className="col-span-4 col-start-2 col-end-6 mt-5 "><Link className='block' to="/search" onClick={() => {
+                    <div className="col-span-4 md:col-start-2 md:col-end-6 mt-5 "><Link className='block' to="/search" onClick={() => {
                         setAreaChooseId(0)
                         setAreaChoose(null)
                         setInputGlobal('東部營區')
@@ -90,7 +90,7 @@ const CampSearch = (props) => {
                     </div>
 
 
-                    <div className="col-span-4 col-start-8 col-end-12 mt-5 ">
+                    <div className="col-span-4 md:col-start-8 md:col-end-12 mt-5 ">
                         <Link className='block' to="/search" onClick={() => {
                             setAreaChooseId(0)
                             setAreaChoose(null)

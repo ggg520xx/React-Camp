@@ -94,7 +94,6 @@ const SearchBarGlowColor4 = styled.div`top: -10%;
 
 
 const SearchBarShadow = styled.div`background-color: rgba(0, 0, 0, 0.6);
-    width: 50%;
     position: absolute;
     transform: translate(32%, 170%);
     top: 0;

@@ -163,7 +163,7 @@ function SearchBar(props) {
                 {/* ------------------------------------------------------ */}
 
                 {/* 搜尋框的陰影遮罩 外容器的75％ 及控制位置 */}
-                <SearchBarShadow className="flex flex-col justify-center">
+                <SearchBarShadow className="flex flex-col justify-center sm:w-3/5 md:w-3/5 lg:w-3/5 xl:w-7/12 2xl:w-3/5">
 
                     {/* 控制內部搜尋框 的最大大小 2xl以上範圍為 外容器的80％ 2xl:max-w-[80%]拿掉 */}
                     <div className="relative p-6 w-full  mx-auto">
@@ -176,7 +176,7 @@ function SearchBar(props) {
                                 <input id="input_search" value={inputChange} onChange={(e) => { setInputChange(e.target.value) }} type="text" placeholder="立即開啟你的行程，這次想去哪呢？(e.g. 地區、任一關鍵字或相關活動)" className="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none" />
 
                                 {/* 點擊後執行寫入 瞬間把input值 拿去使用 */}
-                                <button disabled={inputChange === ''} className="bg-p_color text-white rounded-full font-semibold px-8 py-4 hover:bg-my_green focus:bg-sub_color focus:outline-none" onClick={() => {
+                                <button disabled={inputChange === ''} className="bg-p_color text-white rounded-full font-semibold px-8 py-4 text-xs md:text-sm lg:text-md xl:text-lg hover:bg-my_green focus:bg-sub_color focus:outline-none" onClick={() => {
 
                                     setAreaChooseId(null)
                                     setAreaChoose(null)
@@ -198,7 +198,7 @@ function SearchBar(props) {
 
 
 
-                <Searchtext className="text-5xl  text-white font-extrabold">
+                <Searchtext className="text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-white font-extrabold">
                     搜尋想去的地區，直接出發吧
                 </Searchtext>
 
