@@ -55,7 +55,11 @@
   }
 
   .wrapper {
-    @apply min-h-screen w-screen;
+    @apply min-h-screen;
+
+    /* @apply min-h-screen w-screen; */
+    /* 本來有寫w-screen害我 版面一直超出找不到原因 */
+
     /* width: 100vw;
     height: 100vh; */
   }

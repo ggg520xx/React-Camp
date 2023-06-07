@@ -29,7 +29,7 @@ const CampAboutUs = (props) => {
                 <div className="container">
 
                     {/* 灰區塊 內推 影片和文字 的灰區塊 */}
-                    <div className='py-12 px-12 relative bg-gray-300/30'>
+                    <div className='md:py-12 md:px-12 py-6 px-4 relative bg-gray-300/30'>
 
 
                         <div className='row'>
@@ -47,7 +47,7 @@ const CampAboutUs = (props) => {
 
                                 {/* flex flex-col justify-around h-[300px] px-6 */}
 
-                                <div className="px-7">
+                                <div className="px-3 md:px-7">
 
                                     <h4 className="mb-6">
 

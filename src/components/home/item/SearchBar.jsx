@@ -129,7 +129,7 @@ function SearchBar(props) {
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner} alt="" className="w-full h-screen object-cover " />
+                                <img src={indexBanner} alt="" className="w-full h-[75vh] sm:h-[85vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
@@ -137,21 +137,21 @@ function SearchBar(props) {
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner2} alt="" className="w-full h-screen object-cover " />
+                                <img src={indexBanner2} alt="" className="w-full h-[75vh] sm:h-[85vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner3} alt="" className="w-full h-screen object-cover " />
+                                <img src={indexBanner3} alt="" className="w-full h-[75vh] sm:h-[85vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner4} alt="" className="w-full h-screen object-cover " />
+                                <img src={indexBanner4} alt="" className="w-full h-[75vh] sm:h-[85vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
@@ -163,7 +163,7 @@ function SearchBar(props) {
                 {/* ------------------------------------------------------ */}
 
                 {/* 搜尋框的陰影遮罩 外容器的75％ 及控制位置 */}
-                <SearchBarShadow className="flex flex-col justify-center sm:w-3/5 md:w-3/5 lg:w-3/5 xl:w-7/12 2xl:w-3/5">
+                <SearchBarShadow className="flex flex-col justify-center sm:w-3/5 md:w-3/5 lg:w-7/12 xl:w-2/4 2xl:w-2/4">
 
                     {/* 控制內部搜尋框 的最大大小 2xl以上範圍為 外容器的80％ 2xl:max-w-[80%]拿掉 */}
                     <div className="relative p-6 w-full  mx-auto">

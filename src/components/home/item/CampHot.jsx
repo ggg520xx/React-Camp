@@ -123,7 +123,7 @@ const CampHot = (props) => {
 
 
 
-            <div className='pb-8 px-10'>
+            <div className='pb-8 px-7'>
 
 
 
@@ -131,7 +131,7 @@ const CampHot = (props) => {
                     {/* <FontAwesomeIcon icon={faCoffee} className="mr-2" />
                 <FontAwesomeIcon icon={faAtom} className="w-12 h-12" /> */}
                     <img src={indexIcon} className='w-20 h-20' alt="" />
-                    <h2 className="font-semibold text-center text-4xl">熱門新增營區</h2>
+                    <h2 className="font-semibold text-center text-xl sm:text-xl md:text-2xl  2xl:text-3xl">熱門新增營區</h2>
                     <img src={indexIcon} className='w-20 h-20' alt="" />
                 </div>
 

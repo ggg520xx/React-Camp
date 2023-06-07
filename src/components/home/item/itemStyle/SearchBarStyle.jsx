@@ -98,7 +98,13 @@ const SearchBarShadow = styled.div`background-color: rgba(0, 0, 0, 0.6);
     transform: translate(32%, 170%);
     top: 0;
     left: 0;
-    border-radius: 100px;`
+    border-radius: 100px;
+    
+      @media (max-width: 576px) {
+    transform: translate(10%, 170%);
+  }
+    `
+    
 /* @apply border border-yellow-300; */
 /* flex
 justify-center */
