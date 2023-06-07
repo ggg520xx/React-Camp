@@ -93,10 +93,10 @@ const SearchUnderSlogan = (props) => {
 
 
 
-                            <div className='lg:col-8 md:col-10 mx-auto  flex flex-col justify-around items-start  pt-10 pr-10'>
+                            <div className='lg:col-8 md:col-10 mx-auto col-12 flex flex-col justify-around items-start  pt-10 pr-10'>
 
 
-                                <div className=" text-white text-left">
+                                <div className=" text-white text-center sm:text-left">
                                     <h3 className=" text-2xl xl:text-2xl  2xl:text-3xl ">還沒加入會員嗎？
                                         <br />
                                         加入會員，使用各種服務
@@ -107,7 +107,7 @@ const SearchUnderSlogan = (props) => {
 
 
 
-                                <div className='w-full text-left py-5 text-white'>
+                                <div className='w-full text-center sm:text-left py-5 text-white'>
 
                                     <button onClick={handleRegisterClick} className='font-semibold bg-my_black hover:bg-white hover:text-my_green w-3/4 h-[50px]'>註冊</button>
 

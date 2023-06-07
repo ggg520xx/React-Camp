@@ -36,6 +36,7 @@ module.exports = {
 
   theme: {
 
+
     // 加入我自己所想自訂的(客製化) --- 基本上預設就很夠用了 
     // index.css 內則是  更改基本樣式 及 包裝化樣式 而非客製化
 
@@ -64,6 +65,10 @@ module.exports = {
       //   'sans': ['Noto Sans TC', 'sans-serif']
       // },
     },
+
+
+  
+
 
   },
   plugins: [

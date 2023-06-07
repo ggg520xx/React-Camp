@@ -366,17 +366,10 @@ const SearchResult = (props) => {
                         <div className="row min-h-[210px] border-psub_color bg-white hover:shadow-xl border  hover:border-sub_color">
 
                             {/* <div className="col-4 border border-red-100"> */}
-                            <div className="col-4 pl-0">
-
-
-
-
-
+                            <div className="sm:col-4 col-12 px-0 sm:px-0">
 
 
                                 {item?.showLogo ? <img className='h-full max-h-[210px] w-full object-cover' src={require(`../../../../assets/showLogo/${item.showLogo}`)} alt="" /> : <img className='h-full max-h-[210px] w-full object-cover' src={require('../../../images/search/collect/404.png')} alt="" />}
-
-
 
 
                                 {item.hotday > 0 && <div className="rounded-r-3xl bg-white w-32 h-9 flex justify-center items-center absolute top-5 left-0 z-10" onClick={() => { }}>
@@ -407,7 +400,7 @@ const SearchResult = (props) => {
 
 
 
-                            <div className="col-8  relative">
+                            <div className="sm:col-8 col-12 relative">
 
                                 <div className="flex flex-col justify-around items-start h-full py-3">
 
@@ -453,7 +446,7 @@ const SearchResult = (props) => {
 
 
                                     {/* 星星和價格 用flex共排 用老師的星星評價map*/}
-                                    <div className='flex items-center justify-between w-full'>
+                                    <div className='sm:flex block items-center justify-between w-full'>
 
                                         <div className="flex items-center font-bold">
 
@@ -474,7 +467,7 @@ const SearchResult = (props) => {
 
                                         <div>
 
-                                            <h6 className="">
+                                            <h6 className="text-right">
                                                 <span className='text-p_color text-3xl font-bold'>${item.showLowPrice}</span>
                                                 <span className='font-bold'> 起  /  每晚</span>
                                             </h6>

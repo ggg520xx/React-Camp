@@ -195,9 +195,9 @@ const SearchPickSideRight = (props) => {
                     {/* 執行再次搜尋條件 或清除條件 */}
                     <div className='row justify-around'>
 
-                        <button onClick={startFilters} className='col-4   my-1 border border-blue-800 rounded-sm py-1 px-3 text-md font-semibold hover:bg-my_blue hover:text-white'>執行搜尋</button>
+                        <button onClick={startFilters} className='sm:col-4 col-5   my-1 border border-blue-800 rounded-sm py-1 px-3 text-md font-semibold hover:bg-my_blue hover:text-white'>執行搜尋</button>
 
-                        <button onClick={clearFilters} className='col-4   my-1 border border-red-400 rounded-sm py-1 px-3 text-md font-semibold hover:bg-red-800 hover:text-white'>清空篩選</button>
+                        <button onClick={clearFilters} className='sm:col-4 col-5   my-1 border border-red-400 rounded-sm py-1 px-3 text-md font-semibold hover:bg-red-800 hover:text-white'>清空篩選</button>
 
                     </div>
 

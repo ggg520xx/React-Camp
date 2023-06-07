@@ -78,105 +78,105 @@ const SearchPickSide = (props) => {
 
                     <div className="py-5 row">
 
-                        <div className="lg:col-12 col-3 pb-5">
+                        <div className="lg:col-12 md:col-3 col-6 pb-5">
                             <p className="my-1">北部營地區</p>
                             <div className='row'>
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(1)
                                     setAreaChoose('雙北')
-                                }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>雙北</button>
+                                }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>雙北</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(2)
-                                    setAreaChoose('基隆') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>基隆</button>
+                                    setAreaChoose('基隆') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>基隆</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(3)
-                                    setAreaChoose('宜蘭') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>宜蘭</button>
+                                    setAreaChoose('宜蘭') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>宜蘭</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(4)
-                                    setAreaChoose('桃竹') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>桃竹</button>
+                                    setAreaChoose('桃竹') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>桃竹</button>
                             </div>
                         </div>
 
-                        <div className="lg:col-12 col-3 pb-5">
+                        <div className="lg:col-12 md:col-3 col-6 pb-5">
                             <p className="my-1">中部營地區</p>
 
                             <div className='row'>
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(5)
-                                    setAreaChoose('苗栗') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>苗栗</button>
+                                    setAreaChoose('苗栗') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>苗栗</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(6)
-                                    setAreaChoose('中彰') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>中彰</button>
+                                    setAreaChoose('中彰') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>中彰</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(7)
-                                    setAreaChoose('南投') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>南投</button>
+                                    setAreaChoose('南投') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>南投</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(8)
-                                    setAreaChoose('雲林') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>雲林</button>
+                                    setAreaChoose('雲林') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>雲林</button>
                             </div>
                         </div>
 
-                        <div className="lg:col-12 col-3 pb-5">
+                        <div className="lg:col-12 md:col-3 col-6 pb-5">
                             <p className="my-1">南部營地區</p>
                             <div className='row'>
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(9)
-                                    setAreaChoose('嘉義') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>嘉義</button>
+                                    setAreaChoose('嘉義') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>嘉義</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(10)
-                                    setAreaChoose('台南') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>台南</button>
+                                    setAreaChoose('台南') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>台南</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(11)
-                                    setAreaChoose('高雄') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>高雄</button>
+                                    setAreaChoose('高雄') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>高雄</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(12)
-                                    setAreaChoose('屏東') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>屏東</button>
+                                    setAreaChoose('屏東') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>屏東</button>
                             </div>
                         </div>
 
-                        <div className="lg:col-12 col-3">
+                        <div className="lg:col-12 md:col-3 col-6">
                             <p className="my-1">東部及外島</p>
                             <div className='row'>
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(13)
-                                    setAreaChoose('花蓮') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>花蓮</button>
+                                    setAreaChoose('花蓮') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>花蓮</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(14)
-                                    setAreaChoose('台東') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>台東</button>
+                                    setAreaChoose('台東') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>台東</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(15)
-                                    setAreaChoose('澎湖') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>澎湖</button>
+                                    setAreaChoose('澎湖') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>澎湖</button>
 
                                 <button onClick={() => {
                                     setlocationStatus(true) 
                                     setAreaChooseId(16)
-                                    setAreaChoose('金馬') }} className='col-5 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>金馬</button>
+                                    setAreaChoose('金馬') }} className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>金馬</button>
                             </div>
                         </div>
 
@@ -194,67 +194,53 @@ const SearchPickSide = (props) => {
                     <div className="py-5 row">
 
 
-
-
-
-
-
-                        <div className="pb-5 lg:col-12 col-4">
+                        <div className="pb-5 lg:col-12 sm:col-4 col-12">
                             <p className="my-1">營區種類</p>
                             <div className='row'>
 
-                                <button onClick={(e) => { setBuildWood(!buildWood); handleClick(e) }} value="小木屋營區類" className='col-11  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>小木屋營區類</button>
-                                <button onClick={(e) => { setBuildTruck(!buildTruck); handleClick(e) }} value="露營車營區類" className='col-11  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>露營車營區類</button>
-                                <button onClick={(e) => { setBuildOther(!buildOther); handleClick(e) }} value="其他遮蔽建物" className='col-11  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>其他遮蔽建物</button>
-                                <button onClick={(e) => { setBuildNone(!buildNone); handleClick(e) }} value="僅提供營地類" className='col-11  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>僅提供營地類</button>
+                                <button onClick={(e) => { setBuildWood(!buildWood); handleClick(e) }} value="小木屋營區類" className='sm:col-11 col-6  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>小木屋營區類</button>
+                                <button onClick={(e) => { setBuildTruck(!buildTruck); handleClick(e) }} value="露營車營區類" className='sm:col-11 col-6  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>露營車營區類</button>
+                                <button onClick={(e) => { setBuildOther(!buildOther); handleClick(e) }} value="其他遮蔽建物" className='sm:col-11 col-6  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>其他遮蔽建物</button>
+                                <button onClick={(e) => { setBuildNone(!buildNone); handleClick(e) }} value="僅提供營地類" className='sm:col-11 col-6  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>僅提供營地類</button>
                             </div>
                         </div>
 
 
-
-
-                        <div className="pb-5 lg:col-12 col-4">
+                        <div className="pb-5 lg:col-12 sm:col-4 col-12">
                             <p className="my-1">設施服務</p>
                             <div className='row'>
-                                <button onClick={(e) => { setProvidShower(!providShower); handleClick(e) }} value="盥洗淋浴設施" className='col-11  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>盥洗淋浴設施</button>
-                                <button onClick={(e) => { setProvidPlay(!providPlay); handleClick(e) }} value="遊樂器材設施" className='col-11  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>遊樂器材設施</button>
-                                <button onClick={(e) => { setProvidRentEquip(!providRentEquip); handleClick(e) }} value="提供租借裝備" className='col-11  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>提供租借裝備</button>
+                                <button onClick={(e) => { setProvidShower(!providShower); handleClick(e) }} value="盥洗淋浴設施" className='sm:col-11 col-12  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>盥洗淋浴設施</button>
+                                <button onClick={(e) => { setProvidPlay(!providPlay); handleClick(e) }} value="遊樂器材設施" className='sm:col-11 col-12  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>遊樂器材設施</button>
+                                <button onClick={(e) => { setProvidRentEquip(!providRentEquip); handleClick(e) }} value="提供租借裝備" className='sm:col-11 col-12  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>提供租借裝備</button>
 
-                                <button onClick={(e) => { setProvidMeal(!providMeal); handleClick(e) }} value="供早或晚餐點" className='col-11 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>供早或晚餐點</button>
-                                <button onClick={(e) => { setProvidGuide(!providGuide); handleClick(e) }} value="供導覽或活動" className='col-11 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>供導覽或活動</button>
-                                <button onClick={(e) => { setProvidPool(!providPool); handleClick(e) }} value="戲水區" className='col-5 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>戲水區</button>
-                                <button onClick={(e) => { setProvidSpring(!providSpring); handleClick(e) }} value="可泡湯" className='col-5 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>可泡湯</button>
-                                <button onClick={(e) => { setProvidRainCover(!providRainCover); handleClick(e) }} value="遮雨棚" className='col-5 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>遮雨棚</button>
+                                <button onClick={(e) => { setProvidMeal(!providMeal); handleClick(e) }} value="供早或晚餐點" className='sm:col-11 col-12 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>供早或晚餐點</button>
+                                <button onClick={(e) => { setProvidGuide(!providGuide); handleClick(e) }} value="供導覽或活動" className='sm:col-11 col-12 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>供導覽或活動</button>
+                                <button onClick={(e) => { setProvidPool(!providPool); handleClick(e) }} value="戲水區" className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>戲水區</button>
+                                <button onClick={(e) => { setProvidSpring(!providSpring); handleClick(e) }} value="可泡湯" className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>可泡湯</button>
+                                <button onClick={(e) => { setProvidRainCover(!providRainCover); handleClick(e) }} value="遮雨棚" className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>遮雨棚</button>
 
-                                <button onClick={(e) => { setProvidCarArea(!providCarArea); handleClick(e) }} value="停車位" className='col-5  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>停車位</button>
+                                <button onClick={(e) => { setProvidCarArea(!providCarArea); handleClick(e) }} value="停車位" className='sm:col-5 col-6  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>停車位</button>
                             </div>
                         </div>
 
 
-
-
-
-                        <div className="lg:col-12 col-4">
+                        <div className="lg:col-12 sm:col-4 col-12">
                             <p className="my-1">特色景觀</p>
                             <div className='row'>
-                                <button onClick={(e) => { setViewHigh(!viewHigh); handleClick(e) }} value="高海拔" className='col-5 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>高海拔</button>
+                                <button onClick={(e) => { setViewHigh(!viewHigh); handleClick(e) }} value="高海拔" className='sm:col-5 col-6 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>高海拔</button>
 
-                                <button onClick={(e) => { setViewForest(!viewForest); handleClick(e) }} value="森林內" className='col-5  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>森林內</button>
+                                <button onClick={(e) => { setViewForest(!viewForest); handleClick(e) }} value="森林內" className='sm:col-5 col-6  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>森林內</button>
 
 
-                                <button onClick={(e) => { setViewGrass(!viewGrass); handleClick(e) }} value="大草皮" className='col-5  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>大草皮</button>
+                                <button onClick={(e) => { setViewGrass(!viewGrass); handleClick(e) }} value="大草皮" className='sm:col-5 col-6  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>大草皮</button>
 
-                                <button onClick={(e) => { setViewKawa(!viewKawa); handleClick(e) }} value="近溪流" className='col-5  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>近溪流</button>
+                                <button onClick={(e) => { setViewKawa(!viewKawa); handleClick(e) }} value="近溪流" className='sm:col-5 col-6  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>近溪流</button>
 
-                                <button onClick={(e) => { setViewCloudSea(!viewCloudSea); handleClick(e) }} value="觀雲海" className='col-5  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>觀雲海</button>
+                                <button onClick={(e) => { setViewCloudSea(!viewCloudSea); handleClick(e) }} value="觀雲海" className='sm:col-5 col-6  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>觀雲海</button>
 
-                                <button onClick={(e) => { setviewSunrise(!viewSunrise); handleClick(e) }} value="看日出" className='col-5  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>看日出</button>
+                                <button onClick={(e) => { setviewSunrise(!viewSunrise); handleClick(e) }} value="看日出" className='sm:col-5 col-6  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>看日出</button>
                             </div>
                         </div>
-
-
-
-
 
                     </div>
                 </div>
