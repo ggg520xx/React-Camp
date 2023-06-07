@@ -232,7 +232,7 @@ function Layout() {
 
                         </div>
 
-                        <div className="col-4 md:col-3 ">
+                        <div className="col-6 md:col-3 ">
                             <div className="flex">
                                 {/* 這是icon fontawesome引入的 */}
                                 {/* <FontAwesomeIcon icon={faFacebook} />

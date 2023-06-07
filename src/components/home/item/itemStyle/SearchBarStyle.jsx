@@ -100,9 +100,19 @@ const SearchBarShadow = styled.div`background-color: rgba(0, 0, 0, 0.6);
     left: 0;
     border-radius: 100px;
     
-      @media (max-width: 576px) {
-    transform: translate(10%, 170%);
-  }
+
+@media (max-width: 768px) {
+    transform: translate(15%, 150%);
+  };
+
+
+ @media (max-width: 576px) {
+    transform: translate(10%, 130%);
+  };
+
+      @media (max-width: 500px) {
+    transform: translate(0%, 100%);
+  };
     `
     
 /* @apply border border-yellow-300; */
@@ -127,7 +137,13 @@ justify-center */
 const Searchtext = styled.div`
     position: absolute;
     top: 45%;
-    right: 20%;`
+    right: 15%;
+    
+     @media (max-width: 576px) {
+    top: 55%;;
+    right: 10%;
+  };
+    `
     
 
 

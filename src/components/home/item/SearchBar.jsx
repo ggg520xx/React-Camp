@@ -129,7 +129,7 @@ function SearchBar(props) {
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner} alt="" className="w-full h-[75vh] sm:h-[85vh] md:h-[95vh] lg:h-screen object-cover " />
+                                <img src={indexBanner} alt="" className="w-full h-[90vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
@@ -137,21 +137,21 @@ function SearchBar(props) {
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner2} alt="" className="w-full h-[75vh] sm:h-[85vh] md:h-[95vh] lg:h-screen object-cover " />
+                                <img src={indexBanner2} alt="" className="w-full h-[90vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner3} alt="" className="w-full h-[75vh] sm:h-[85vh] md:h-[95vh] lg:h-screen object-cover " />
+                                <img src={indexBanner3} alt="" className="w-full h-[90vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner4} alt="" className="w-full h-[75vh] sm:h-[85vh] md:h-[95vh] lg:h-screen object-cover " />
+                                <img src={indexBanner4} alt="" className="w-full h-[90vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
@@ -172,7 +172,7 @@ function SearchBar(props) {
                         <div className="overflow-hidden z-0 rounded-full relative p-1">
 
                             {/* 最中間白色搜尋框樣式  input_search 這是live2d對話用*/}
-                            <form action="" className="relative flex z-50 bg-white rounded-full">
+                            <form action="" className="relative xs:block flex z-50 bg-white rounded-full">
                                 <input id="input_search" value={inputChange} onChange={(e) => { setInputChange(e.target.value) }} type="text" placeholder="立即開啟你的行程，這次想去哪呢？(e.g. 地區、任一關鍵字或相關活動)" className="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none" />
 
                                 {/* 點擊後執行寫入 瞬間把input值 拿去使用 */}
@@ -198,7 +198,7 @@ function SearchBar(props) {
 
 
 
-                <Searchtext className="text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-white font-extrabold">
+                <Searchtext className="text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-white font-extrabold">
                     搜尋想去的地區，直接出發吧
                 </Searchtext>
 
