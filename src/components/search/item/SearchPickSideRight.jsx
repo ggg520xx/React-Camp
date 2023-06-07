@@ -119,7 +119,7 @@ const SearchPickSideRight = (props) => {
             </div> */}
 
 
-            <div className="col-9">
+            <div className="lg:col-9 w-full">
 
 
 

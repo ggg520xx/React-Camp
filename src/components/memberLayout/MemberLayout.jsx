@@ -261,7 +261,7 @@ const MemberLayout = () => {
                             {/* 內部控制 寬度 flex 置中 */}
 
                             {/* container 這邊拿掉container 把上頁和登出放到最右邊 感覺比較好看？ */}
-                            <div className="flex flex-wrap items-center justify-between mx-auto">
+                            <div className="flex flex-wrap items-center justify-between  mx-auto">
 
 
                                 <div className="mx-auto">

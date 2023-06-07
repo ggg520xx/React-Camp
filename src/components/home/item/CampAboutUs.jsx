@@ -34,7 +34,7 @@ const CampAboutUs = (props) => {
 
                         <div className='row'>
 
-                            <div className='col-12 col-lg-6 p-1'>
+                            <div className='col-12 col-lg-6 py-3 lg:p-1'>
 
                                 {/* <!-- 自適應縮放寫法  應該沒成立.. --> */}
                                 <div className="relative w-full ">
@@ -42,12 +42,12 @@ const CampAboutUs = (props) => {
                                 </div>
                             </div>
 
-                            <div className='col-12 col-lg-6 p-1'>
+                            <div className='col-12 col-lg-6 py-3 lg:p-1'>
 
 
                                 {/* flex flex-col justify-around h-[300px] px-6 */}
 
-                                <div className="px-7 ">
+                                <div className="px-7">
 
                                     <h4 className="mb-6">
 

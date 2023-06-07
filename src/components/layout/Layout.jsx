@@ -193,38 +193,38 @@ function Layout() {
             <div className="bg-my_black w-full min-h-[120px]  p-5  flex items-center">
                 <div className='container'>
 
-                    <div className="row  items-center justify-between">
+                    <div className="row  items-center justify-end  xl:justify-center 2xl:justify-between">
 
 
-                        <div className="col-5">
+                        <div className="col-12 md:col-5 lg:col-6 xl:col-5">
 
-                            <div className="flex justify-around text-lg text-white">
+                            <div className="flex justify-around md:text-sm lg:text-lg  text-white">
 
-                                <h4 id="menu-item-home" className=' p-2 hover:border-b'>
+                                <h4 id="menu-item-home" className='p-1 lg:p-2 hover:border-b'>
                                     <Link to="/">
-                                        <span className='p-2'>首頁資訊</span>
+                                        <span className=' lg:p-2'>首頁資訊</span>
                                     </Link>
                                 </h4>
 
                                 <hr className="border h-auto" />
 
 
-                                <h4 id="menu-item-search" className=' p-2 hover:border-b'>
+                                <h4 id="menu-item-search" className='p-1 lg:p-2 hover:border-b'>
                                     <Link to="/search">
-                                        <span className=' p-2'>營區搜尋</span>
+                                        <span className=' lg:p-2'>營區搜尋</span>
                                     </Link>
                                 </h4>
                                 <hr className="border h-auto" />
 
-                                <h4 id="need-share-button_member" className=' p-2 hover:border-b'>
+                                <h4 id="need-share-button_member" className='p-1 lg:p-2 hover:border-b'>
                                     <Link to="/member">
-                                        <span className=' p-2'>會員專區</span>
+                                        <span className=' lg:p-2'>會員專區</span>
                                     </Link>
                                 </h4>
                                 <hr className="border h-auto" />
 
-                                <h4 className=' p-2 hover:border-b'>
-                                    <span className=' p-2'>成為營主</span>
+                                <h4 className='p-1 lg:p-2 hover:border-b'>
+                                    <span className=' lg:p-2'>成為營主</span>
                                 </h4>
 
 
@@ -232,7 +232,7 @@ function Layout() {
 
                         </div>
 
-                        <div className="col-3 ">
+                        <div className="col-4 md:col-3 ">
                             <div className="flex">
                                 {/* 這是icon fontawesome引入的 */}
                                 {/* <FontAwesomeIcon icon={faFacebook} />

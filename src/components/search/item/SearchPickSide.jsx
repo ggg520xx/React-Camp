@@ -48,9 +48,9 @@ const SearchPickSide = (props) => {
             </div> */}
 
             
-            <div className="col-3 ">
+            <div className="lg:col-3 block row">
 
-                <div className='bg-gray-100 w-full px-7 py-3 shadow-xl rounded-md mb-3 border-gray-200 border'>
+                <div className='bg-gray-100 w-full px-5 py-3 shadow-xl rounded-md mb-3 border-gray-200 border'>
 
                     <p className='font-bold text-xl pt-3'>查看全部</p>
 
@@ -72,24 +72,14 @@ const SearchPickSide = (props) => {
                 </div>
 
 
-
-
-
-
-                <div className='bg-gray-100 w-full px-7 py-3 shadow-xl rounded-md mb-3 border-gray-200 border'>
+                <div className='bg-gray-100 w-full px-5 py-3 shadow-xl rounded-md mb-3 border-gray-200 border'>
 
                     <p className='font-bold text-xl pt-3'>營區位置選擇</p>
 
-                    <div className="py-5">
+                    <div className="py-5 row">
 
-
-                
-                        
-
-
-
-                        <div className="pb-5">
-                            <p className="">北部營地區</p>
+                        <div className="lg:col-12 col-3 pb-5">
+                            <p className="my-1">北部營地區</p>
                             <div className='row'>
                                 <button onClick={() => {
                                     setlocationStatus(true) 
@@ -114,16 +104,7 @@ const SearchPickSide = (props) => {
                             </div>
                         </div>
 
-                        {/* <Link className="block" onClick={() => { }} >
-                            <button type="button" className="border border-blue-400 rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white m-2">雙北</button>
-                        </Link>
-
-                            <Link className="block " onClick={() => { }} >
-                            <button type="button" className="border border-blue-400 rounded-2xl py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white mx-2">桃竹</button>
-                        </Link> */}
-
-
-                        <div className="pb-5">
+                        <div className="lg:col-12 col-3 pb-5">
                             <p className="my-1">中部營地區</p>
 
                             <div className='row'>
@@ -149,8 +130,7 @@ const SearchPickSide = (props) => {
                             </div>
                         </div>
 
-
-                        <div className="pb-5">
+                        <div className="lg:col-12 col-3 pb-5">
                             <p className="my-1">南部營地區</p>
                             <div className='row'>
                                 <button onClick={() => {
@@ -175,10 +155,7 @@ const SearchPickSide = (props) => {
                             </div>
                         </div>
 
-
-
-
-                        <div className="">
+                        <div className="lg:col-12 col-3">
                             <p className="my-1">東部及外島</p>
                             <div className='row'>
                                 <button onClick={() => {
@@ -210,11 +187,11 @@ const SearchPickSide = (props) => {
 
 
 
-                <div className='bg-gray-100 w-full px-7 py-3  shadow-xl rounded-md mb-3 border-gray-200 border'>
+                <div className='bg-gray-100 w-full px-5 py-3  shadow-xl rounded-md mb-3 border-gray-200 border'>
 
                     <p className='font-bold text-xl pt-3'>營區特點挑選</p>
 
-                    <div className="py-5">
+                    <div className="py-5 row">
 
 
 
@@ -222,7 +199,7 @@ const SearchPickSide = (props) => {
 
 
 
-                        <div className="pb-5">
+                        <div className="pb-5 lg:col-12 col-4">
                             <p className="my-1">營區種類</p>
                             <div className='row'>
 
@@ -236,7 +213,7 @@ const SearchPickSide = (props) => {
 
 
 
-                        <div className="pb-5">
+                        <div className="pb-5 lg:col-12 col-4">
                             <p className="my-1">設施服務</p>
                             <div className='row'>
                                 <button onClick={(e) => { setProvidShower(!providShower); handleClick(e) }} value="盥洗淋浴設施" className='col-11  mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>盥洗淋浴設施</button>
@@ -257,7 +234,7 @@ const SearchPickSide = (props) => {
 
 
 
-                        <div className="">
+                        <div className="lg:col-12 col-4">
                             <p className="my-1">特色景觀</p>
                             <div className='row'>
                                 <button onClick={(e) => { setViewHigh(!viewHigh); handleClick(e) }} value="高海拔" className='col-5 mx-auto my-1 border border-sub_color rounded-sm py-1 px-3 text-md font-semibold hover:bg-p_color hover:text-white'>高海拔</button>

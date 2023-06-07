@@ -26,7 +26,7 @@ function Search() {
 
 
                 {/* 元件引用 */}
-                <div className="container pb-5">
+                <div className="container pb-5 md:px-3">
                     <SearchPath />
 
 
