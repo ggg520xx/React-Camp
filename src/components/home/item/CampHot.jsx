@@ -30,14 +30,14 @@ const CampHot = (props) => {
 
     // api get 的時間差會有延遲 且做時間較長放前面的排序
     const hotCamps = AllCampGet?.filter(item => item.hotday > 0).sort((a, b) => b.hotday - a.hotday);
- 
+
 
 
 
     const [campDataResult, setCampDataResult] = useState([]);
-  
 
-    
+
+
 
     useEffect(() => {
         // 取得回饋資料
@@ -156,7 +156,7 @@ const CampHot = (props) => {
                                     {/* <img src={hot1} className="hover:opacity-80 min-h-[200px] w-full object-cover" alt="" /> */}
 
                                     {item?.showLogo ? <img src={require(`../../../../assets/showLogo/${item.showLogo}`)} className="hover:opacity-80 h-full min-h-[200px] max-h-[210px] w-full object-cover" alt="" /> : <img className='h-full max-h-[210px] w-full object-cover' src={require('../../../images/search/collect/404.png')} alt="" />}
-                              
+
 
 
 
@@ -172,7 +172,7 @@ const CampHot = (props) => {
                                                 <h5 className="font-bold tracking-wider text-xl">{item.name}</h5>
                                             </div>
 
-                                            
+
                                             <div className='col-12  p-0'>
                                                 {/* 2xl:col-6 */}
                                                 {/* 星星和價格 用flex共排 用老師的星星評價map*/}
@@ -185,12 +185,12 @@ const CampHot = (props) => {
                                                         {/* 多少分數 星星就跑幾顆樣子 */}
 
 
-                                                        {/* 有幾筆評價回饋抓feedbacks 用條件篩選抓 相關於id的筆數 同時平均值也能抓出來 */}
                                                     </div>
 
                                                 </div>
                                                 <div className="text-right">
                                                     <span className="text-sm font-bold">{item.scoreNum === 0 ? "無資料" : `(${item.scoreNum}筆)`}</span>
+                                                    {/* 有幾筆評價回饋抓feedbacks 用條件篩選抓 相關於id的筆數 同時平均值也能抓出來 */}
                                                 </div>
 
                                             </div>

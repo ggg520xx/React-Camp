@@ -220,7 +220,7 @@ const MemberBasicLike = function (props) {
 
 
 
-                    <div key={index} className="col-3 mb-4">
+                    <div key={index} className="col-12 md:col-6 xl:col-4 2xl:col-3 mb-4">
 
                         <div className="relative bg-white h-full" onClick={() => { }}>
 
@@ -242,14 +242,12 @@ const MemberBasicLike = function (props) {
 
                                         <div className='row items-center py-2'>
 
-                                            <div className='col-6 p-0'>
+                                            <div className='col-12 p-0'>
                                                 {/* 營區名稱和地點在哪 */}
                                                 <h5 className="font-bold tracking-wider text-xl">{item.name}</h5>
                                             </div>
 
-                                            <div className='col-6 p-0'>
-
-
+                                            <div className='col-12 p-0'>
                                                 {/* 星星和價格 用flex共排 用老師的星星評價map*/}
                                                 <div className='flex items-center justify-end w-full'>
                                                     <div className="text-md flex items-center font-bold">
@@ -259,11 +257,11 @@ const MemberBasicLike = function (props) {
                                                         {renderStars(item.totalAverageScore)}
                                                         {/* 多少分數 星星就跑幾顆樣子 */}
 
-
-                                                        <span className="text-sm">{item.scoreNum === 0 ? "(無資料)" : `(${item.scoreNum}筆)`}</span>
-                                                        {/* 有幾筆評價回饋抓feedbacks 用條件篩選抓 相關於id的筆數 同時平均值也能抓出來 */}
                                                     </div>
-
+                                                </div>
+                                                <div className="text-right">
+                                                    <span className="text-sm font-bold">{item.scoreNum === 0 ? "(無資料)" : `(${item.scoreNum}筆)`}</span>
+                                                    {/* 有幾筆評價回饋抓feedbacks 用條件篩選抓 相關於id的筆數 同時平均值也能抓出來 */}
                                                 </div>
                                             </div>
 

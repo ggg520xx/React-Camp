@@ -778,7 +778,7 @@ const PageReserve = (props) => {
                                             pageReserveBtn(item.id, index)
                                         }} className='w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>預訂</button> : <button onClick={() => {
                                             pageReserveBtn(item.id, index)
-                                        }} className='w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>登入後預訂</button>}
+                                        }} className='mt-5 md:mt-0 w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>登入後預訂</button>}
 
 
 

@@ -224,7 +224,7 @@ function MemberMain() {
         <>
             <DivContentZone className="py-5">
 
-                <div className='h-[70px]'>
+                <div className='h-[100px]'>
                     <h2 className="text-xl font-bold">歡迎，您尚有 <span className="text-blue-500">{campDataResult && campDataResult.length}</span> 筆 行程待進行或進行中</h2>
                     <strong>準備好開始您的行程了嗎</strong>
                 </div>

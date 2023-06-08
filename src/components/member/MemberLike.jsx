@@ -114,7 +114,7 @@ function MemberLike() {
                 <strong>準備好開始您的行程了嗎</strong> */}
 
 
-                <div className='h-[70px]'>
+                <div className='h-[100px]'>
                     <button className={`border border-sub_color rounded-sm py-2 px-3 text-md font-semibold hover:bg-p_color hover:text-white ${likeTab === 1 && 'bg-my_green text-white'
                         }`} onClick={() => handleLikeTabChange(1)}>北部營區</button>
 
@@ -135,7 +135,7 @@ function MemberLike() {
 
                 <div>
                     {likeTab === 0 &&
-                        <div className='py-10'>
+                        <div className='py-10 px-3'>
                             <h3 className="mb-3 font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>請選擇一個想查看的紀錄</h3>
                             <img className='mx-auto rounded-[40px]' src={campLike} alt="" />
                         </div>}

@@ -207,7 +207,7 @@ const MemberUseIng = (props) => {
 
 
             {cancelClick &&
-                <div className="absolute bottom-0 left-0 w-full  flex flex-col">
+                <div className="xl:absolute bottom-0 left-0 w-full  flex flex-col">
 
                     <button className="py-2 bg-my_black w-3/4 mb-3 text-white  hover:bg-white hover:text-my_green mx-auto" onClick={closeButton}>關閉</button>
 

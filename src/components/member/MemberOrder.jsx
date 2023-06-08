@@ -229,7 +229,7 @@ function MemberOrder() {
         <>
             <DivContentZone className="py-5">
 
-                <div className='h-[70px]'>
+                <div className='h-[100px]'>
 
                     {/* <h2 className="text-xl font-bold">以下是你的 <span className="text-blue-500">1</span> 筆 訂單記錄</h2>
                     <strong>準備好開始您的行程了嗎</strong> */}
@@ -250,7 +250,7 @@ function MemberOrder() {
 
 
                 {uiTurn === null &&
-                    <div className='py-10'>
+                    <div className='py-10 px-3'>
                         <h3 className="mb-3 font-bold text-xl text-my_green" style={{ letterSpacing: 1 }}>請選擇一個想查看的紀錄 （近期訂單會呈現於最上方）</h3>
 
                         <img className='mx-auto rounded-[40px]' src={campOrder} alt="" />

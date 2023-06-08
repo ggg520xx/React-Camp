@@ -253,7 +253,7 @@ const Login = (props) => {
     return (
         <>
             {/* <!-- login_page --> */}
-            <div className="h-screen container relative">
+            <div className="min-h-screen container py-32">
 
                 <div className='h-full flex justify-center items-center'>
 

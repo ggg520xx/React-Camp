@@ -199,7 +199,7 @@ function Finish() {
 
                         <div className="row pt-5">
 
-                            <div className="col-12 sm:col-6">
+                            <div className="mb-5 sm:mb-0 col-12 sm:col-6">
                                 
                                 {/* hover:opacity-80 */}
 
@@ -215,7 +215,7 @@ function Finish() {
 
 
 
-                            <div className="col-12 sm:col-6">
+                            <div className="mb-5 sm:mb-0 col-12 sm:col-6">
 
                                 <div className="row">
                                     <div className='col-5 text-left'>

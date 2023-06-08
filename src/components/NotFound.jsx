@@ -13,7 +13,7 @@ function NotFound() {
         <>
 
 
-            <div className=''>
+            <div className='min-h-screen'>
                 {/* absolute w-full top-30 py-5 */}
                 <div className="bg-my_green text-white pb-2 pt-2 ">
                     <h2 className="text-xl font-bold mb-3">找不到該頁面, 您的網址出錯了~</h2>
@@ -22,7 +22,7 @@ function NotFound() {
                     </Link>
                 </div>
 
-                <img className='mx-auto max-h-screen' src={cantFound} alt="" />
+                <img className='mx-auto py-32' src={cantFound} alt="" />
 
 
             </div>

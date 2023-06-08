@@ -336,10 +336,13 @@ const MemberBasic = function (props) {
         <>
             {getdata ? getdata?.map((item, index) => (
                 <div key={index} className="mb-4">
+
+
+
                     <div className="row border border-psub_color bg-white hover:shadow-xl hover:border-sub_color w-11/12 mx-auto">
 
 
-                        <div className="col-3 py-3.5 border-r">
+                        <div className="col-12 md:col-6 lg:col-5 xl:col-3 py-3.5 border-r">
 
                             <strong className='py-2 bg-p_color block text-white mb-2'>訂單編號：<span>{item.code}</span></strong>
 
@@ -353,7 +356,7 @@ const MemberBasic = function (props) {
 
 
 
-                        <div className="col-5 relative ">
+                        <div className="col-12 md:col-6 lg:col-7 xl:col-5 relative ">
 
                             <div className="flex flex-col justify-between items-start h-full py-3">
 
@@ -437,7 +440,7 @@ const MemberBasic = function (props) {
                         </div>
 
 
-                        <div className="col-4 relative py-3.5">
+                        <div className="col-12 xl:col-4 relative py-3.5">
 
                             <div className="flex flex-col justify-between items-center h-full ">
 
@@ -445,7 +448,7 @@ const MemberBasic = function (props) {
                                 <div className="flex flex-col w-full">
 
                                     <div className='row'>
-                                        <div className='col-5 text-left'>
+                                        <div className='col-6 lg:col-5 text-left'>
                                             <strong className='block mb-2'>入住日期：</strong>
                                             <strong className='block mb-2'>退營日期：</strong>
                                             <strong className='block mb-2'>住營天數：</strong>
@@ -453,7 +456,7 @@ const MemberBasic = function (props) {
                                             <strong className='block mb-2'>數量：</strong>
                                         </div>
 
-                                        <div className='col-7 text-left'>
+                                        <div className='col-6 lg:col-7 text-left'>
                                             <strong className='block mb-2'>{item.roomStart}</strong>
                                             <strong className='block mb-2'>{item.roomEnd}</strong>
                                             <strong className='block mb-2'>{item.roomDay} 日 ( {item.roomNight} 晚 )</strong>
@@ -492,43 +495,43 @@ const MemberBasic = function (props) {
 
 
                                     {/* 詳細的左邊 */}
-                                    <div className="col-5 ">
+                                    <div className="col-12 lg:col-6 xl:col-5 ">
 
                                         <h4 className="py-4 text-xl font-bold text-left">營區資訊</h4>
 
 
                                         <div className="row">
-                                            <div className='col-4 text-left'>
+                                            <div className='col-6 lg:col-4 text-left'>
                                                 <strong className='block mb-2'>營區名稱：</strong>
                                             </div>
-                                            <div className='col-8 text-left'>
+                                            <div className='col-6 lg:col-8 text-left'>
                                                 <strong className='block mb-2'>{item.camp.name}</strong>
                                             </div>
                                         </div>
 
                                         <div className="row">
-                                            <div className='col-4 text-left'>
+                                            <div className='col-6 lg:col-4 text-left'>
                                                 <strong className='block mb-2'>營區主人：</strong>
                                             </div>
-                                            <div className='col-8 text-left'>
+                                            <div className='col-6 lg:col-8 text-left'>
                                                 <strong className='block mb-2'>{item.ownerName}</strong>
                                             </div>
                                         </div>
 
                                         <div className="row">
-                                            <div className='col-4 text-left'>
+                                            <div className='col-6 lg:col-4 text-left'>
                                                 <strong className='block mb-2'>營區地址：</strong>
                                             </div>
-                                            <div className='col-8 text-left'>
+                                            <div className='col-6 lg:col-8 text-left'>
                                                 <strong className='block mb-2'>{item.camp.address}</strong>
                                             </div>
                                         </div>
 
                                         <div className="row">
-                                            <div className='col-4 text-left'>
+                                            <div className='col-6 lg:col-4 text-left'>
                                                 <strong className='block mb-2'>聯絡方式：</strong>
                                             </div>
-                                            <div className='col-8 text-left'>
+                                            <div className='col-6 lg:col-8 text-left'>
                                                 {item.camp.tel.map(tel => (
                                                     <strong key={tel} className='block mb-2'>{tel}</strong>
 
@@ -537,10 +540,10 @@ const MemberBasic = function (props) {
                                         </div>
 
                                         <div className="row">
-                                            <div className='col-4 text-left'>
+                                            <div className='col-6 lg:col-4 text-left'>
                                                 <strong className='block mb-2'>其他資訊：</strong>
                                             </div>
-                                            <div className='col-8 text-left'>
+                                            <div className='col-6 lg:col-8 text-left'>
                                                 <strong className='block mb-2'> <Link to='/'>
                                                     <FontAwesomeIcon className='mr-2' icon={faFacebook} />
                                                 </Link>
@@ -566,7 +569,7 @@ const MemberBasic = function (props) {
 
 
                                     {/* 詳細的右邊 */}
-                                    <div className="col-5">
+                                    <div className="col-12 lg:col-6 xl:col-5">
 
                                         <h4 className="py-4 text-xl font-bold text-left">訂單資訊</h4>
 
@@ -575,37 +578,37 @@ const MemberBasic = function (props) {
 
 
                                         <div className="row">
-                                            <div className='col-5 text-left'>
+                                            <div className='col-6 lg:col-5 text-left'>
                                                 <strong className='block mb-2'>成立日期：</strong>
                                             </div>
-                                            <div className='col-7 text-left'>
+                                            <div className='col-6 lg:col-7 text-left'>
                                                 <strong className='block mb-2'>{item.bookDate}</strong>
                                             </div>
                                         </div>
 
                                         <div className="row">
-                                            <div className='col-5 text-left'>
+                                            <div className='col-6 lg:col-5 text-left'>
                                                 <strong className='block mb-2'>成立時間：</strong>
                                             </div>
-                                            <div className='col-7 text-left'>
+                                            <div className='col-6 lg:col-7 text-left'>
                                                 <strong className='block mb-2'>{item.bookTime}</strong>
                                             </div>
                                         </div>
 
                                         <div className="row">
-                                            <div className='col-5 text-left'>
+                                            <div className='col-6 lg:col-5 text-left'>
                                                 <strong className='block mb-2'>訂購者：</strong>
                                             </div>
-                                            <div className='col-7 text-left'>
+                                            <div className='col-6 lg:col-7 text-left'>
                                                 <strong className='block mb-2'>{item.bookName}</strong>
                                             </div>
                                         </div>
 
                                         <div className="row">
-                                            <div className='col-5 text-left'>
+                                            <div className='col-6 lg:col-5 text-left'>
                                                 <strong className='block mb-2'>付款方式：</strong>
                                             </div>
-                                            <div className='col-7 text-left'>
+                                            <div className='col-6 lg:col-7 text-left'>
                                                 <strong className='block mb-2'>
                                                     {(() => {
                                                         switch (item.payWay) {
@@ -624,28 +627,28 @@ const MemberBasic = function (props) {
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className='col-5 text-left'>
+                                            <div className='col-6 lg:col-5 text-left'>
                                                 <strong className='block mb-2'>付款金額：</strong>
                                             </div>
-                                            <div className='col-7 text-left'>
+                                            <div className='col-6 lg:col-7 text-left'>
                                                 <strong className='block mb-2'>{item.payPrice} 元</strong>
                                             </div>
                                         </div>
 
                                         <div className="row">
-                                            <div className='col-5 text-left'>
+                                            <div className='col-6 lg:col-5 text-left'>
                                                 <strong className='block mb-2'>使用折扣：</strong>
                                             </div>
-                                            <div className='col-7 text-left'>
+                                            <div className='col-6 lg:col-7 text-left'>
                                                 <strong className='block mb-2'>{item.bonusUse === 1 ? "無" : numberToChinese(item.bonusUse * 10) + "折券"}</strong>
                                             </div>
                                         </div>
 
                                         <div className="row">
-                                            <div className='col-5 text-left'>
+                                            <div className='col-6 lg:col-5 text-left'>
                                                 <strong className='block mb-2'>評價回饋：</strong>
                                             </div>
-                                            <div className='col-7 text-left'>
+                                            <div className='col-6 lg:col-7 text-left'>
                                                 <strong className='block mb-2'>
 
                                                     <button onClick={() => handleVisible(index, item.id)} disabled={status === 'ing' || status === 'cancel'}>
@@ -670,7 +673,7 @@ const MemberBasic = function (props) {
 
 
 
-                                    <div className="col-2 bg-soft_color">
+                                    <div className="col-12 xl:col-2 bg-soft_color">
 
                                         <div className="py-3 h-full">
                                             <strong className="text-xl font-bold">訂單操作</strong>
@@ -711,17 +714,17 @@ const MemberBasic = function (props) {
                             {item.feedback ?
 
                                 <DivBlackCoverOutfit>
-                                    <DivCoverStyled className="py-5 px-5 z-50 mx-auto rounded-xl bg-gray-200 hover:shadow-2xl">
+                                    <DivCoverStyled className="py-5 px-1 sm:px-5 z-50 mx-auto rounded-xl bg-gray-200 hover:shadow-2xl">
 
                                         <h4 className="text-xl font-bold">訂單反饋</h4>
 
                                         <div className='py-5 px-5 flex flex-col justify-around' style={{ height: "100%" }}>
 
                                             <div className="py-5 row items-start bg-white">
-                                                <div className="col-5">
+                                                <div className="col-6 sm:col-5">
                                                     <strong>使用名稱</strong>
                                                 </div>
-                                                <div className="col-7">
+                                                <div className="col-12 sm:col-7">
 
                                                     <div>
                                                         <strong>{item.feedbackName}</strong>
@@ -733,11 +736,11 @@ const MemberBasic = function (props) {
 
 
                                             <div className="py-5 row items-start bg-white">
-                                                <div className="col-5">
+                                                <div className="col-6 sm:col-5">
                                                     <strong>營區評價</strong>
                                                 </div>
 
-                                                <div className="col-7">
+                                                <div className="col-12 sm:col-7">
 
 
 
@@ -836,11 +839,11 @@ const MemberBasic = function (props) {
 
 
                                             <div className="py-5 row items-start bg-white">
-                                                <div className="col-5">
+                                                <div className="col-6 sm:col-5">
                                                     <strong>給予評價</strong>
                                                 </div>
 
-                                                <div className="col-7">
+                                                <div className="col-12 sm:col-7">
 
                                                     {/* <strong>{item.feedbackContent}</strong> */}
 
@@ -888,17 +891,17 @@ const MemberBasic = function (props) {
 
 
                                 <DivBlackCoverOutfit>
-                                    <DivCoverStyled className="py-5 px-5 z-50 mx-auto rounded-xl bg-gray-200 hover:shadow-2xl">
+                                    <DivCoverStyled className="py-5 px-1 sm:px-5 z-50 mx-auto rounded-xl bg-gray-200 hover:shadow-2xl">
 
                                         <h4 className="text-xl font-bold">訂單反饋</h4>
 
                                         <div className='py-5 px-5 flex flex-col justify-around' style={{ height: "100%" }}>
 
                                             <div className="py-5 row items-start bg-white">
-                                                <div className="col-5">
+                                                <div className="col-6 sm:col-5">
                                                     <strong>使用名稱</strong>
                                                 </div>
-                                                <div className="col-7">
+                                                <div className="col-12 sm:col-7">
 
                                                     <div>
                                                         <select className="w-3/4 border-gray-300 rounded-lg" onChange={selectName}>
@@ -913,11 +916,11 @@ const MemberBasic = function (props) {
 
 
                                             <div className="py-5 row items-start bg-white">
-                                                <div className="col-5">
+                                                <div className="col-6 sm:col-5">
                                                     <strong>營區評價</strong>
                                                 </div>
 
-                                                <div className="col-7">
+                                                <div className="col-12 sm:col-7">
 
 
 
@@ -1017,11 +1020,11 @@ const MemberBasic = function (props) {
 
 
                                             <div className="py-5 row items-start bg-white">
-                                                <div className="col-5">
+                                                <div className="col-6 sm:col-5">
                                                     <strong>給予評價</strong>
                                                 </div>
 
-                                                <div className="col-7">
+                                                <div className="col-12 sm:col-7">
 
 
                                                     <textarea className="w-3/4 form-control border border-gray-300 rounded-lg" onKeyDown={handleKeyDown}

@@ -24,12 +24,31 @@ const DivContentZone = styled.div`
 
 
 const DivCoverStyled = styled.div`
- position: fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
-  // height: 60vh;
+  width: 40%;
+
+  @media (max-width: 1535px) {
+    width: 50%;
+  }
+
+  @media (max-width: 1279px) {
+    width: 60%;
+  }
+
+  @media (max-width: 1023px) {
+    width: 70%;
+  }
+
+  @media (max-width: 767px) {
+    width: 90%;
+  }
+
+  @media (max-width: 639px) {
+    width: 100vw;
+  }
 `;
 
 
@@ -45,7 +64,7 @@ const DivBlackCoverOutfit = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  min-width: 1366px;
+  // min-width: 1366px;
   min-height: 768px;
   z-index: 10; 
   width: 100vw;

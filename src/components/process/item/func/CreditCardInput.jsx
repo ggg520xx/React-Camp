@@ -66,7 +66,7 @@ class CreditCardInput extends Component {
                     </div>
 
 
-                    <div >
+                    <div className="mt-5 sm:mt-0">
 
                         <h4 className="mb-3 text-left text-2xl font-bold text-white">
                             信用卡資訊

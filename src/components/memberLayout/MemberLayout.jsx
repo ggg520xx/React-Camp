@@ -178,7 +178,7 @@ const MemberLayout = () => {
 
                 </div> : <div className="row h-screen " >
 
-                    <div className='h-full col-2 bg-my_green sticky top-0 left-0 right-0 p-0 rounded-br-[70px]'>
+                    <div className='h-full hidden sm:block md:p-0 md:col-3 sm:p-0 sm:col-4 lg:col-2 lg:p-0 bg-my_green sticky top-0 left-0 right-0 p-0 rounded-br-[70px]'>
 
                         <nav className="h-[63px] px-2 sm:px-4 py-2.5  bg-my_black ">
                             {/* 內部控制 寬度 flex 置中 */}
@@ -253,7 +253,10 @@ const MemberLayout = () => {
 
 
 
-                    <div className='col-10 bg-grey-100 p-0'>
+                    <div className='col-12 md:p-0 md:col-9 sm:p-0 sm:col-8 lg:col-10 lg:p-0 bg-grey-100 p-0'>
+
+
+
 
                         {/* <Header /> 拉出來寫外元件也可以*/}
                         {/* Navbar 整體背景 沾粘不用Fixed 用 sticky  */}
@@ -264,9 +267,9 @@ const MemberLayout = () => {
                             <div className="flex flex-wrap items-center justify-between  mx-auto">
 
 
-                                <div className="mx-auto">
+                                <div className="sm:mx-auto">
                                     <Link to="/" id="menu-item-home">
-                                        <img src={indexLogo} className="h-6 mx-3 sm:h-9" alt="Flowbite Logo" />
+                                        <img src={indexLogo} className="h-8 mx-3 sm:h-9" alt="Flowbite Logo" />
                                     </Link>
                                 </div>
 
@@ -299,6 +302,48 @@ const MemberLayout = () => {
                         </nav>
 
 
+                        <div className="block sm:hidden">
+
+
+                            <div className="bg-my_green row">
+
+                                <div className="col-4">
+                                    <Link to='' className="block">
+                                        <div className="hover:bg-white hover:text-my_black rounded-xl border-t  text-white text-md sm:text-lg font-bold sm:w-3/4 w-full mx-auto mt-5 min-h-[50px] flex justify-center items-center border-b-2">會員主頁</div>
+                                    </Link>
+                                </div>
+
+                                <div className="col-4">
+                                    <Link to='order' className="block">
+                                        <div className="hover:bg-white hover:text-my_black rounded-xl border-t text-white text-md sm:text-lg font-bold sm:w-3/4 w-full mx-auto mt-5 min-h-[50px] flex justify-center items-center border-b-2">訂單記錄</div>
+                                    </Link>
+                                </div>
+
+
+                                <div className="col-4">
+                                    <Link to='like' className="block">
+                                        <div className="hover:bg-white hover:text-my_black rounded-xl border-t text-white text-md sm:text-lg font-bold sm:w-3/4 w-full mx-auto mt-5 min-h-[50px] flex justify-center items-center border-b-2">收藏清單</div>
+                                    </Link>
+                                </div>
+
+
+                                <div className="py-5 row w-full">
+                                    <div className="col-6 text-white text-sm font-bold w-full mx-auto py-2 min-h-[12px] ">
+                                        <strong>用戶已取消次數：{userCancelNum}</strong>
+                                    </div>
+
+                                    <div className="col-6 text-white text-sm font-bold w-full mx-auto py-2 min-h-[12px] ">
+                                        <strong>用戶未履約次數：{userRenegeNum}</strong>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+                        </div>
 
                         <Outlet />
 
