@@ -269,7 +269,7 @@ const Register = (props) => {
                 <div className='h-full flex justify-center items-center'>
 
 
-                    <div className="bg-soft_color w-7/12 p-0 rounded shadow-lg py-5  " >
+                    <div className="bg-soft_color w-11/12 sm:w-9/12 md:w-8/12 lg:w-7/12 p-0 rounded shadow-lg py-5  " >
                         {/* style={{ backgroundColor: "#dfe2dd" }} */}
 
 
@@ -428,7 +428,7 @@ const Register = (props) => {
 
                                 <hr className="bg-my_green h-[1px] w-8/12 mx-auto" style={{ border: 'none' }} />
 
-                                <div className="flex justify-center py-5">
+                                <div className="block sm:flexjustify-center py-5">
 
                                     <strong className="">按錯了
                                         <span className='text-sub_color mx-1'>我要回前頁</span>阿！

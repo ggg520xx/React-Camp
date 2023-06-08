@@ -73,7 +73,7 @@ function Process(props) {
         <>
 
 
-            <div className="container min-h-screen py-5">
+            <div className="container min-h-screen py-5 px-5">
                 <ProcessTopStep turnStatus={turnLeft} />
 
 

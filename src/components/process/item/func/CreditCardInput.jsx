@@ -76,7 +76,7 @@ class CreditCardInput extends Component {
 
                         <div className="row py-4 ">
 
-                            <div className="col-6 text-left text-lg font-semibold text-white">
+                            <div className="col-12 sm:col-6 text-left text-lg font-semibold text-white">
                                 信用卡卡號
 
                                 <input
@@ -91,7 +91,7 @@ class CreditCardInput extends Component {
                                 />
                             </div>
 
-                            <div className="col-6 text-left text-lg font-semibold text-white">
+                            <div className="col-12 sm:col-6 text-left text-lg font-semibold text-white">
                                 持卡人姓名
                                 <input
                                     type="text"
@@ -108,7 +108,7 @@ class CreditCardInput extends Component {
 
 
                         <div className="row py-4 ">
-                            <div className="col-6 text-left text-lg font-semibold text-white">
+                            <div className="col-12 sm:col-6 text-left text-lg font-semibold text-white">
                                 卡片有效期限
                                 <input
                                     type="text"
@@ -125,7 +125,7 @@ class CreditCardInput extends Component {
                             </div>
 
 
-                            <div className="col-6 text-left text-lg font-semibold text-white">
+                            <div className="col-12 sm:col-6 text-left text-lg font-semibold text-white">
                                 背面末三碼
 
                                 <input

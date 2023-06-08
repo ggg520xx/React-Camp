@@ -61,7 +61,7 @@ function Finish() {
     return (
         <>
 
-            <div className="container min-h-screen py-5">
+            <div className="container min-h-screen py-5 px-5">
 
                 <div className="step-wrap">
                     <div className="checkout-step">
@@ -103,23 +103,29 @@ function Finish() {
 
                     <h3 className='text-2xl font-bold text-white'>此訂單已成功預訂,非常感謝使用我們的服務</h3>
 
+                    <hr className="border w-4/5 h-auto border-white mx-auto block my-5" />
+
                     <div className='py-3'>
 
                         <div className='row justify-center'>
 
-                            <div className='col-3  text-center text-white'>
+                            <div className='col-12 md:col-6 xl:col-5   text-center text-white'>
                                 <strong className='block'>訂單成立日期</strong>
                                 <strong className='block'>訂單成立時間</strong>
                                 <strong className='block'>訂單編號</strong>
                             </div>
 
-                            <div className='col-3  text-center text-white'>
+                            <hr className="border w-4/5 h-auto border-white md:hidden mx-auto block my-5" />
+
+                            <div className='col-12 md:col-6 xl:col-5  text-center text-white'>
                                 <strong className='block'>{state.order.bookDate}</strong>
                                 <strong className='block'>{state.order.bookTime}</strong>
                                 <strong className='block'>{ state.order.code}</strong>
                             </div>
                         </div>
                     </div>
+
+                    <hr className="border w-4/5 h-auto border-white md:hidden mx-auto block my-5" />
 
                     <h3 className='text-md font-bold text-my_yellow'>若對此次訂購有疑慮，請於營業時間致電本網客服 02-2222222</h3>
 
@@ -193,7 +199,7 @@ function Finish() {
 
                         <div className="row pt-5">
 
-                            <div className="col-6 ">
+                            <div className="col-12 sm:col-6">
                                 
                                 {/* hover:opacity-80 */}
 
@@ -209,7 +215,7 @@ function Finish() {
 
 
 
-                            <div className="col-6">
+                            <div className="col-12 sm:col-6">
 
                                 <div className="row">
                                     <div className='col-5 text-left'>

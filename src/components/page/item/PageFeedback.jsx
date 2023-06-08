@@ -61,13 +61,11 @@ const PageFeedback = (props) => {
 
 
 
-                            <div className="col-3  ">
+                            <div className="md:col-3 col-12 ">
 
                                 <div className="h-2/5 bg-soft_color p-8 flex justify-around items-center flex-col">
 
-
                                     <div className='dark:bg-gray-700 h-[60px] w-[70px] text-white rounded-xl flex justify-center items-center'><strong className='text-2xl'>{feedbackStar.totalAverageScore}</strong><sub>&nbsp;/&nbsp;5</sub></div>
-
 
                                     {/* 星星和價格 用flex共排 用老師的星星評價map*/}
                                     <div className='flex items-center justify-center w-full'>
@@ -81,8 +79,6 @@ const PageFeedback = (props) => {
                                     </div>
 
                                     <strong>共<span className="text-2xl text-blue-500 mx-1">{feedbackStar.scoreNum}</span>則評價</strong>
-
-
 
                                 </div>
 
@@ -185,11 +181,11 @@ const PageFeedback = (props) => {
 
 
 
-                            <div className="col-9  p-8 flex justify-start items-center flex-col bg-white">
+                            <div className="md:col-9 col-12 p-8 flex justify-start items-center flex-col bg-white">
                                 {feebackArrayInfo ? feebackArrayInfo?.map((item, index) => (
                                     <div className='bg-gray-100 rounded-2xl mb-2 w-full p-5'>
                                         <div className='row'>
-                                            <div className="col-10">
+                                            <div className="col-12 sm:col-10">
                                                 <strong className="text-xl px-3 py-2  text-white bg-my_green rounded-xl  block">
                                                     {item.name}
                                                 </strong>
@@ -197,7 +193,9 @@ const PageFeedback = (props) => {
                                                 <p className="px-4 pt-4 text-md font-bold">{item.comment}</p>
                                             </div>
 
-                                            <div className="col-2">
+                                            <hr className="border w-4/5 h-auto border-my_green sm:hidden mx-auto block my-5" />
+
+                                            <div className="col-12 sm:col-2">
 
 
                                                 <div className='flex flex-col justify-between 0 h-full items-center'>
@@ -233,7 +231,7 @@ const PageFeedback = (props) => {
 
 
                                 {/* more */}
-                                <button className='mt-5 w-2/12 rounded-[30px] mx-auto  bg-p_color p-2 flex text-white justify-center items-center text-md text-grey-500 ' > <span className=''>看更多評價</span>   <FontAwesomeIcon icon={faCaretRight} className="ml-2" /></button>
+                                <button className='mt-5 w-4/5 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/4 rounded-[30px] mx-auto  bg-p_color p-2 flex text-white justify-center items-center text-md text-grey-500 ' > <span className=''>看更多評價</span>   <FontAwesomeIcon icon={faCaretRight} className="ml-2" /></button>
 
 
 

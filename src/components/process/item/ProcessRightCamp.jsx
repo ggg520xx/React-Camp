@@ -119,7 +119,7 @@ function ProcessRightCamp(props) {
     return (
         <>
 
-            <div className="col-5 ">
+            <div className="col-12 lg:col-5 ">
                 <div className="</div>border mb-3 w-full rounded-md border-gray-200 bg-gray-100 px-8 py-3 shadow-xl">
 
 

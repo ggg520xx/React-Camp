@@ -372,7 +372,7 @@ function ProcessLeftReserve(props) {
 
     return (
         <>
-            <div className="col-7 mb-3 h-full w-full rounded-md border border-gray-200 bg-my_green px-8 py-8 shadow-xl">
+            <div className="col-12 lg:col-7 mb-3 h-full w-full rounded-md border border-gray-200 bg-my_green px-8 py-8 shadow-xl">
 
 
 
@@ -390,7 +390,7 @@ function ProcessLeftReserve(props) {
                         <hr />
 
                         <div className="row py-4 ">
-                            <div className="col-6 text-left text-lg font-semibold text-white">
+                            <div className="col-12 sm:col-6 text-left text-lg font-semibold text-white">
                                 訂購人姓氏：
                                 <input
                                     className="w-full text-my_black"
@@ -403,7 +403,7 @@ function ProcessLeftReserve(props) {
                                 </div>
                             </div>
 
-                            <div className="col-6 text-left text-lg font-semibold text-white">
+                            <div className="col-12 sm:col-6 text-left text-lg font-semibold text-white">
                                 訂購人名字：
                                 <input
                                     className="w-full text-my_black"
@@ -477,7 +477,7 @@ function ProcessLeftReserve(props) {
 
 
                         <div className="row py-4 ">
-                            <div className="col-6 text-left text-lg font-semibold text-white">
+                            <div className="col-12 sm:col-6 text-left text-lg font-semibold text-white">
                                 付款方式：
                                 <select
                                     className="w-full text-my_black"
@@ -499,7 +499,7 @@ function ProcessLeftReserve(props) {
 
 
 
-                            <div className="col-6 text-left text-lg font-semibold text-white">
+                            <div className="col-12 sm:col-6 text-left text-lg font-semibold text-white">
                                 優惠券折扣：
                                 <select
                                     className="w-full text-my_black"
