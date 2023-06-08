@@ -111,12 +111,12 @@ const PageInfo = (props) => {
                     <div className="pt-6">
 
                         <div className="row mb-4">
-                            <div className="col-6 border-b">
+                            <div className="col-12 lg:col-6 border-b">
 
                                 <div className='row'>
-                                    <div className='col-3 font-bold text-lg'>營業時間</div>
+                                    <div className='col-5 sm:col-3 font-bold text-lg'>營業時間</div>
 
-                                    <div className='col-8'>
+                                    <div className='col-7 sm:col-8'>
                                         <div className='flex flex-wrap'>
 
                                             {item.open['平日'] && <div className="text-con">平日</div>}
@@ -137,11 +137,11 @@ const PageInfo = (props) => {
                                 </div>
                             </div>
 
-                            <div className="col-6 border-b">
+                            <div className="col-12 lg:col-6 border-b">
                                 <div className='row'>
-                                    <div className='col-3 font-bold text-lg'>營區海拔</div>
+                                    <div className='col-5 sm:col-3 font-bold text-lg'>營區海拔</div>
 
-                                    <div className='col-8'>
+                                    <div className='col-7 sm:col-8'>
                                         <div className='flex flex-wrap'>
                                             <div className="text-con" >
                                                 {campHigh}
@@ -159,10 +159,10 @@ const PageInfo = (props) => {
 
                         <div className="row mb-4">
 
-                            <div className="col-6 border-b ">
+                            <div className="col-12 lg:col-6 border-b ">
                                 <div className='row  '>
-                                    <div className='col-3 font-bold text-lg'>營區電話</div>
-                                    <div className='col-8'>
+                                    <div className='col-5 sm:col-3 font-bold text-lg'>營區電話</div>
+                                    <div className='col-7 sm:col-8'>
                                         <div className='flex flex-wrap'>
 
                                             {item.tel.map(tel => (
@@ -175,10 +175,10 @@ const PageInfo = (props) => {
                                 </div>
                             </div>
 
-                            <div className="col-6 border-b">
+                            <div className="col-12 lg:col-6 border-b">
                                 <div className='row  '>
-                                    <div className='col-3 font-bold text-lg'>營區地址</div>
-                                    <div className='col-8'>
+                                    <div className='col-5 sm:col-3 font-bold text-lg'>營區地址</div>
+                                    <div className='col-7 sm:col-8'>
                                         <div className='flex flex-wrap'>
                                             <div className="text-con">{item.address}</div>
 
@@ -196,11 +196,11 @@ const PageInfo = (props) => {
 
 
 
-                            <div className="col-6 border-b">
+                            <div className="col-12 lg:col-6 border-b">
                                 <div className='row'>
-                                    <div className='col-3 font-bold text-lg'>營區主人</div>
+                                    <div className='col-5 sm:col-3 font-bold text-lg'>營區主人</div>
 
-                                    <div className='col-8'>
+                                    <div className='col-7 sm:col-8'>
                                         <div className='flex flex-wrap'>
                                             <div className="text-con" >
                                                 {campOwner}
@@ -217,11 +217,11 @@ const PageInfo = (props) => {
 
 
 
-                            <div className="col-6 border-b">
+                            <div className="col-12 lg:col-6 border-b">
                                 <div className='row'>
-                                    <div className='col-3 font-bold text-lg'>營區特色</div>
+                                    <div className='col-5 sm:col-3 font-bold text-lg'>營區特色</div>
 
-                                    <div className='col-8'>
+                                    <div className='col-7 sm:col-8'>
                                         <div className='flex flex-wrap'>
 
                                             {item.tag['高海拔'] && <div className="text-con">高海拔</div>}
@@ -251,12 +251,12 @@ const PageInfo = (props) => {
                         <div className="row mb-4 ">
 
 
-                            <div className="col-6 border-b">
+                            <div className="col-12 lg:col-6 border-b">
 
                                 <div className='row'>
-                                    <div className='col-3 font-bold text-lg'>附屬設施</div>
+                                    <div className='col-5 sm:col-3 font-bold text-lg'>附屬設施</div>
 
-                                    <div className='col-8'>
+                                    <div className='col-7 sm:col-8'>
                                         <div className='flex flex-wrap'>
 
                                             {item.tag['戲水區'] && <div className="text-con">戲水區</div>}
@@ -274,12 +274,12 @@ const PageInfo = (props) => {
                             </div>
 
 
-                            <div className="col-6 border-b">
+                            <div className="col-12 lg:col-6 border-b">
 
                                 <div className='row'>
-                                    <div className='col-3 font-bold text-lg'>附屬服務</div>
+                                    <div className='col-5 sm:col-3 font-bold text-lg'>附屬服務</div>
 
-                                    <div className='col-8'>
+                                    <div className='col-7 sm:col-8'>
                                         <div className='flex flex-wrap'>
 
 
@@ -303,12 +303,12 @@ const PageInfo = (props) => {
 
 
 
-                            <div className="col-6 border-b">
+                            <div className="col-12 lg:col-6 border-b">
 
                                 <div className='row'>
-                                    <div className='col-3 font-bold text-lg'>攜帶寵物</div>
+                                    <div className='col-5 sm:col-3 font-bold text-lg'>攜帶寵物</div>
 
-                                    <div className='col-8'>
+                                    <div className='col-7 sm:col-8'>
                                         <div className='flex flex-wrap'>
 
 
@@ -324,12 +324,12 @@ const PageInfo = (props) => {
 
 
 
-                            <div className="col-6 border-b">
+                            <div className="col-12 lg:col-6 border-b">
 
                                 <div className='row'>
-                                    <div className='col-3 font-bold text-lg'>園區關鍵字</div>
+                                    <div className='col-5 sm:col-3 font-bold text-lg'>園區關鍵字</div>
 
-                                    <div className='col-8'>
+                                    <div className='col-7 sm:col-8'>
                                         <div className='flex flex-wrap'>
 
 

@@ -643,7 +643,7 @@ const PageReserve = (props) => {
 
                                 {/* <div className="col-4 border border-red-100"> */}
 
-                                <div className="col-3 pl-0">
+                                <div className="col-12 pr-0 sm:col-6  md:col-4 lg:col-3 pl-0">
 
                                     {/* 原本的html jsx架構路徑 */}
                                     {/* <img className='h-[160px] w-full object-cover' src={ga1} alt="" /> */}
@@ -655,12 +655,12 @@ const PageReserve = (props) => {
                                     {/* 如果創建一欄卻未傳上圖片 預設給予 default.jpg post欄位解決 */}
 
                                     {/* 這段是我一直常用的寫法 但資料夾會沒有同檔名圖片就一片空白 */}
-                                    {item?.zonePic ? <img className='h-[160px] w-full object-cover' src={require(`../../../../assets/campPhoto/${id}/zone/${item.zonePic}`)} alt="" /> : <img className='h-[160px] w-full object-cover' src={pic404} alt="" />}
+                                    {item?.zonePic ? <img className='h-full w-full object-cover' src={require(`../../../../assets/campPhoto/${id}/zone/${item.zonePic}`)} alt="" /> : <img className='h-full w-full object-cover' src={pic404} alt="" />}
 
 
                                 </div>
 
-                                <div className="col-3  relative ">
+                                <div className="col-12 pr-0 sm:col-6  md:col-3  relative ">
 
                                     <div className="flex flex-col justify-around items-start h-full py-3">
 
@@ -677,19 +677,19 @@ const PageReserve = (props) => {
 
 
                                         <div className='row items-baseline w-full'>
-                                            <div className='col-6 '>
+                                            <div className='col-12 lg:col-6 '>
                                                 <strong>地區型態：</strong>
                                             </div>
-                                            <div className='col-6 '>
+                                            <div className='col-12 lg:col-6 text-right'>
                                                 <span className='mr-2 text-my_green text-base font-bold'>{item.type.name}</span>
                                             </div>
                                         </div>
 
                                         <div className='row items-baseline  w-full'>
-                                            <div className='col-6 '>
+                                            <div className='col-12 lg:col-6 '>
                                                 <strong>今日剩餘：</strong>
                                             </div>
-                                            <div className='col-6 '>
+                                            <div className='col-12 lg:col-6 text-right'>
                                                 <span className='mr-2 text-my_green text-lg font-bold'>{item.reservation[0].num}</span>
                                                 <span className='mr-2'>帳(間)</span>
                                             </div>
@@ -698,10 +698,10 @@ const PageReserve = (props) => {
 
 
                                         <div className='row items-baseline  w-full'>
-                                            <div className='col-6 '>
+                                            <div className='col-12 lg:col-6 '>
                                                 <strong>明日剩餘：</strong>
                                             </div>
-                                            <div className='col-6 '>
+                                            <div className='col-12 lg:col-6 text-right'>
                                                 <span className='mr-2 text-my_green text-lg font-bold'>{item.reservation[1].num}</span>
                                                 <span className='mr-2'>帳(間)</span>
                                             </div>
@@ -718,7 +718,7 @@ const PageReserve = (props) => {
 
                                 </div>
 
-                                <div className="col-4  pl-0  relative ">
+                                <div className="col-12 pr-0 sm:col-6  md:col-3 lg:col-4  pl-0  relative ">
 
                                     <div className="flex flex-col justify-around items-center h-full py-3">
 
@@ -757,7 +757,7 @@ const PageReserve = (props) => {
 
                                 </div>
 
-                                <div className="col-2 relative ">
+                                <div className="col-12 pr-0 sm:col-6  md:col-2 relative ">
 
                                     <div className="flex flex-col justify-around items-center h-full py-3">
 

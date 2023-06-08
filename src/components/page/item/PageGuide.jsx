@@ -55,15 +55,12 @@ const PageGuide = (props) => {
 
                         
 
-                  
-
-
 
                     
 
-                        {state ? null : <Scrollspy id="ul-link" items={['section-info', 'section-reserve', 'section-feedback', 'section-overview']} className="flex text-lg text-white" >
+                        {state ? null : <Scrollspy id="ul-link" items={['section-info', 'section-reserve', 'section-feedback', 'section-overview']} className="block sm:flex text-md sm:text-md md:text-lg text-white" >
 
-                            <li>
+                            <li className="">
                                 <a href="#section-info">
                                     <h4 className=' p-2 hover:border-b'>
                                         <span className='p-2'>營區資訊</span>
@@ -73,7 +70,7 @@ const PageGuide = (props) => {
 
                             <hr className="border h-auto" />
 
-                            <li>
+                            <li className="">
                                 <a href="#section-reserve">
                                     <h4 className=' p-2 hover:border-b'>
                                         <span className='p-2'>營區預定</span>
@@ -83,7 +80,7 @@ const PageGuide = (props) => {
 
                             <hr className="border h-auto" />
 
-                            <li>
+                            <li className="">
                                 <a href="#section-feedback">
                                     <h4 className=' p-2 hover:border-b'>
                                         <span className='p-2'>評價回饋</span>
@@ -93,7 +90,7 @@ const PageGuide = (props) => {
 
                             <hr className="border h-auto" />
 
-                            <li>
+                            <li className="">
                                 <a href="#section-overview">
                                     <h4 className=' p-2 hover:border-b'>
                                         <span className='p-2'>營區須知</span>

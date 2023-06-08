@@ -288,7 +288,7 @@ const PagePic = (props) => {
 
 
                     {/* 星星和價格 用flex共排 用老師的星星評價map*/}
-                    <div className='flex items-center justify-between w-full'>
+                    <div className='sm:flex block  items-center justify-between w-full'>
 
                         <div className="flex items-center font-bold">
 
@@ -309,7 +309,7 @@ const PagePic = (props) => {
 
                         <div>
 
-                            <h6 className="">
+                            <h6 className="text-right">
                                 <span className='text-p_color text-3xl font-bold'>${item.showLowPrice}</span>
                                 <span className='font-bold'> 起  /  每晚</span>
                             </h6>
@@ -357,7 +357,7 @@ const PagePic = (props) => {
 
 
 
-                <div className="h-[800px]">
+                <div className="h-[360px] sm:h-[560px] md:h-[740px] lg:h-[820px] xl:h-full">
 
                     <Swiper
                         loop={true}

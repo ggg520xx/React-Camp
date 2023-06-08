@@ -106,7 +106,7 @@ function Layout() {
             {/* <Header /> 拉出來寫外元件也可以*/}
 
             {/* Navbar 整體背景 沾粘不用Fixed 用 sticky  */}
-            <nav className="z-30 min-h-[60px] px-2 sm:px-4 py-2.5  bg-my_black sticky top-0 right-0 left-0 ">
+            <nav className="z-30 min-h-[60px] py-3  bg-my_black sticky top-0 right-0 left-0 ">
                 {/* 內部控制 寬度 flex 置中 */}
                 <div className="container flex flex-wrap items-center justify-around 2xl:justify-between mx-auto">
 
