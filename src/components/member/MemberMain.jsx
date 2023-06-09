@@ -7,7 +7,7 @@ import { DivContentZone } from '../memberBasic/MemberBasicStyle'
 
 import MemberBasic from '../memberBasic/MemberBasic'
 import axios from 'axios';
-
+import { parse, compareAsc } from 'date-fns';
 
 
 
@@ -47,10 +47,11 @@ function MemberMain() {
                     const result = response.data;
                     console.log(result)
 
+                    // date - fns引入 解析原本的 年月日 格式   转换为JavaScript日期对象，然后再进行排序
                     const sortedResult = result.sort((a, b) => {
-                        const dateA = new Date(a.roomStart);
-                        const dateB = new Date(b.roomStart);
-                        return dateA.getTime() - dateB.getTime();
+                        const dateA = parse(a.roomStart, 'yyyy年MM月dd日', new Date());
+                        const dateB = parse(b.roomStart, 'yyyy年MM月dd日', new Date());
+                        return compareAsc(dateA, dateB);
                     });
 
                     setCampDataResult(sortedResult);
