@@ -428,7 +428,7 @@ const Register = (props) => {
 
                                 <hr className="bg-my_green h-[1px] w-8/12 mx-auto" style={{ border: 'none' }} />
 
-                                <div className="block sm:flexjustify-center py-5">
+                                <div className="block sm:flex justify-center py-5">
 
                                     <strong className="">按錯了
                                         <span className='text-sub_color mx-1'>我要回前頁</span>阿！
