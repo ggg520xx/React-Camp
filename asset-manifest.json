@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/React-Camp/static/css/main.61463387.css",
-    "main.js": "/React-Camp/static/js/main.0cfba85a.js",
+    "main.js": "/React-Camp/static/js/main.631db029.js",
     "static/css/813.19a1b8fe.chunk.css": "/React-Camp/static/css/813.19a1b8fe.chunk.css",
     "static/js/813.cdaa8981.chunk.js": "/React-Camp/static/js/813.cdaa8981.chunk.js",
     "static/css/479.ea6a4c93.chunk.css": "/React-Camp/static/css/479.ea6a4c93.chunk.css",
     "static/js/479.63cd1045.chunk.js": "/React-Camp/static/js/479.63cd1045.chunk.js",
-    "static/js/80.752b1754.chunk.js": "/React-Camp/static/js/80.752b1754.chunk.js",
+    "static/js/305.c2dd9570.chunk.js": "/React-Camp/static/js/305.c2dd9570.chunk.js",
     "static/js/81.a0f06685.chunk.js": "/React-Camp/static/js/81.a0f06685.chunk.js",
     "static/js/936.f3464ebc.chunk.js": "/React-Camp/static/js/936.f3464ebc.chunk.js",
     "static/js/787.5480e000.chunk.js": "/React-Camp/static/js/787.5480e000.chunk.js",
@@ -80,12 +80,12 @@
     "static/media/star-empty.svg": "/React-Camp/static/media/star-empty.9e7df284fbf8e345a5b15afafc8a6376.svg",
     "static/media/star-solid.svg": "/React-Camp/static/media/star-solid.b3b862741db241e07bbe92949e0eb2da.svg",
     "main.61463387.css.map": "/React-Camp/static/css/main.61463387.css.map",
-    "main.0cfba85a.js.map": "/React-Camp/static/js/main.0cfba85a.js.map",
+    "main.631db029.js.map": "/React-Camp/static/js/main.631db029.js.map",
     "813.19a1b8fe.chunk.css.map": "/React-Camp/static/css/813.19a1b8fe.chunk.css.map",
     "813.cdaa8981.chunk.js.map": "/React-Camp/static/js/813.cdaa8981.chunk.js.map",
     "479.ea6a4c93.chunk.css.map": "/React-Camp/static/css/479.ea6a4c93.chunk.css.map",
     "479.63cd1045.chunk.js.map": "/React-Camp/static/js/479.63cd1045.chunk.js.map",
-    "80.752b1754.chunk.js.map": "/React-Camp/static/js/80.752b1754.chunk.js.map",
+    "305.c2dd9570.chunk.js.map": "/React-Camp/static/js/305.c2dd9570.chunk.js.map",
     "81.a0f06685.chunk.js.map": "/React-Camp/static/js/81.a0f06685.chunk.js.map",
     "936.f3464ebc.chunk.js.map": "/React-Camp/static/js/936.f3464ebc.chunk.js.map",
     "787.5480e000.chunk.js.map": "/React-Camp/static/js/787.5480e000.chunk.js.map",
@@ -95,6 +95,6 @@
   },
   "entrypoints": [
     "static/css/main.61463387.css",
-    "static/js/main.0cfba85a.js"
+    "static/js/main.631db029.js"
   ]
 }
