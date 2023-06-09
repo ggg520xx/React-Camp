@@ -97,14 +97,17 @@ const MemberBasic = function (props) {
 
 
 
+    // 這個則是去抓取特定的orderId 更新patch的
+    const [chooseCampOrderId, setChooseCampOrderId] = useState(null);
 
 
+    // 這是發送feedbacks評價 set的 會去設置campId的 useState
     const [chooseCampFeebackId, setChooseCampFeebackId] = useState(null);
 
     // 點擊觸發顯示及隱藏區塊
     const [visibleList, setVisibleList] = useState(getdata ? Array.from({ length: getdata.length }, () => false) : []);
     // 如果您想在 B 組件中使用這個 visible 值，您可以將它作為 prop 傳遞給 B 組件，然後在 B 組件內部使用它。
-    const handleVisible = (index, chooseFeedbackId) => {
+    const handleVisible = (index, chooseFeedbackId, chooseCampOrderId) => {
         const newVisibleList = [...visibleList];
         newVisibleList[index] = !newVisibleList[index];
         setVisibleList(newVisibleList);
@@ -114,6 +117,12 @@ const MemberBasic = function (props) {
         // 關掉紅字
         setShowIncompleteMessage(false);
 
+
+        // 讓order patch抓正確露營的api
+        setChooseCampOrderId(chooseCampOrderId)
+        
+
+        // 讓feeback抓到正確的campId評價 post
         setChooseCampFeebackId(chooseFeedbackId)
         console.log(chooseFeedbackId)
         // 我點到哪個 我才能發送push
@@ -220,7 +229,7 @@ const MemberBasic = function (props) {
 
 
             // 在個人頁面秀出來給自己看的 營區訂單
-            axios.patch(`http://localhost:3000/orders/${chooseCampFeebackId}`, { feedback: true, feedbackName: chooseName, feedbackStar: feedbackStar, feedbackContent: userTextArea })
+            axios.patch(`http://localhost:3000/orders/${chooseCampOrderId}`, { feedback: true, feedbackName: chooseName, feedbackStar: feedbackStar, feedbackContent: userTextArea })
                 .then(response => {
                     console.log('已改動訂單的評價回饋')
                 })
@@ -347,7 +356,7 @@ const MemberBasic = function (props) {
                             <strong className='py-2 bg-p_color block text-white mb-2'>訂單編號：<span>{item.code}</span></strong>
 
 
-                           
+
 
                             {/* <img className='h-[160px] w-full object-cover' src={searchDemo} alt="" /> */}
                             {item?.camp?.showLogo ? <img className='h-[210px] w-full object-cover' src={require(`../../../assets/showLogo/${item.camp.showLogo}`)} alt="" /> : <img className='h-[210px] w-full object-cover' src={require('../../images/search/collect/404.png')} alt="" />}
@@ -651,7 +660,7 @@ const MemberBasic = function (props) {
                                             <div className='col-6 lg:col-7 text-left'>
                                                 <strong className='block mb-2'>
 
-                                                    <button onClick={() => handleVisible(index, item.id)} disabled={status === 'ing' || status === 'cancel'}>
+                                                    <button onClick={() => handleVisible(index, item.campId, item.id )} disabled={status === 'ing' || status === 'cancel'}>
                                                         {status === 'ing' && '尚未完成住宿，暫不可使用評價'}
 
 
