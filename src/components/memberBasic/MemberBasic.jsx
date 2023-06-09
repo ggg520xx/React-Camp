@@ -692,7 +692,9 @@ const MemberBasic = function (props) {
 
                                                 {status === 'ing' && <MemberUseIng orderId={item.id} campInfoId={item.campinfoId} cancelOrder={cancelOrder} setCancelOrder={setCancelOrder} />}
 
-                                                {status === 'past' && <MemberUsePast transmit={item.live2dMessage} orderId={item.id} />}
+                                                {status === 'past' && <MemberUsePast transmit={item.live2dMessage} orderId={item.id} setReGetFeedback={setReGetFeedback} reGetFeedback={reGetFeedback} />}
+
+                                                
 
 
                                                 {status === 'cancel' && <MemberUseCancel reason={item.orderCancelReason} />}

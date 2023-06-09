@@ -7,10 +7,10 @@ const MemberUsePast = (props) => {
 
 
     // 父層的位置 元件傳遞抓到的 值 告知是否此訂單留言過
-    const { transmit, orderId } = props;
+    const { transmit, orderId, reGetFeedback, setReGetFeedback } = props;
 
     // 抓值去偵測變化
-    const [responseStatus, setResponseStatus] = useState(transmit);
+    // const [responseStatus, setResponseStatus] = useState(transmit);
 
     // 抓出當前登入帳戶的
     let userId = localStorage.getItem('id');
@@ -50,7 +50,10 @@ const MemberUsePast = (props) => {
                     // post新的留言資料 就patch 更改訂單代表已使用留言
                     axios.patch(`http://localhost:3000/orders/${orderId}`, { "live2dMessage": true })
                         .then(response => {
-                            setResponseStatus(!responseStatus);
+
+
+                            // 這個是 useEffect的重新抓取開關 也就是push完後會重新抓取 開關  然後抓到訂單true回饋過 把這筆鎖定
+                            setReGetFeedback(!reGetFeedback)
 
                             // alert(`已送出${nickname}的留言，看板娘將隨機呈現於其他用戶查看`);
                             const Toast = Swal.mixin({
@@ -109,7 +112,7 @@ const MemberUsePast = (props) => {
         };
 
         fetchData();
-    }, [responseStatus, orderId]);
+    }, [transmit, orderId]);
 
 
 
@@ -156,7 +159,7 @@ const MemberUsePast = (props) => {
 
             <div className="absolute bottom-0 left-0 w-full  flex flex-col">
 
-                {responseStatus ? null : <button disabled={responseStatus} className="py-2 bg-my_black w-3/4 mb-3 text-white  hover:bg-white hover:text-my_green mx-auto" onClick={sendMessage} >發送留言</button>}
+                {transmit ? null : <button disabled={transmit} className="py-2 bg-my_black w-3/4 mb-3 text-white  hover:bg-white hover:text-my_green mx-auto" onClick={sendMessage} >發送留言</button>}
             </div>
         </>
     );
