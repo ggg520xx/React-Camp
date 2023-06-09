@@ -357,7 +357,7 @@ const PagePic = (props) => {
 
 
 
-                <div className="h-[360px] sm:h-[560px] md:h-[740px] lg:h-[820px] xl:h-full">
+                <div className="h-[360px] sm:h-[560px] md:h-[740px] lg:h-[820px] xl:h-[900px]">
 
                     <Swiper
                         loop={true}
