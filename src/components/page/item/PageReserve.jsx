@@ -757,7 +757,7 @@ const PageReserve = (props) => {
 
                                 </div>
 
-                                <div className="col-12 pr-0 sm:col-6  md:col-2 relative ">
+                                <div className="col-12 sm:col-6  md:col-2 relative ">
 
                                     <div className="flex flex-col justify-around items-center h-full py-3">
 
@@ -776,7 +776,7 @@ const PageReserve = (props) => {
 
                                         {loginStatus ? <button id="need-share-reserve" onClick={() => {
                                             pageReserveBtn(item.id, index)
-                                        }} className='w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>預訂</button> : <button onClick={() => {
+                                        }} className='mt-5 md:mt-0 w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>預訂</button> : <button onClick={() => {
                                             pageReserveBtn(item.id, index)
                                         }} className='mt-5 md:mt-0 w-full border border-psub_color rounded-3xl py-1 px-3 text-md font-semibold hover:bg-sub_color hover:text-white'>登入後預訂</button>}
 
