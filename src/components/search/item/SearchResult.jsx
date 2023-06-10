@@ -372,14 +372,14 @@ const SearchResult = (props) => {
                                 {item?.showLogo ? <img className='h-full max-h-[210px] w-full object-cover' src={require(`../../../../assets/showLogo/${item.showLogo}`)} alt="" /> : <img className='h-full max-h-[210px] w-full object-cover' src={require('../../../images/search/collect/404.png')} alt="" />}
 
 
-                                {item.hotday > 0 && <div className="rounded-r-3xl bg-white w-32 h-9 flex justify-center items-center absolute top-5 left-0 z-10" onClick={() => { }}>
+                                {item.hotday > 0 && <div className="rounded-r-3xl bg-white w-32 h-9 flex justify-center items-center absolute top-5 left-0" onClick={() => { }}>
 
                                     <strong className="  text-lg font-bold text-my-green">New<span className='ml-2 italic'>!!</span></strong>
                                 </div>}
 
 
 
-                                {item.hotday >= 60 && <div className="rounded-r-3xl bg-white w-32 h-9 flex justify-center items-center absolute top-5 left-0 z-20" onClick={() => { }}>
+                                {item.hotday >= 60 && <div className="rounded-r-3xl bg-white w-32 h-9 flex justify-center items-center absolute top-5 left-0" onClick={() => { }}>
 
 
                                     <strong className="  text-lg font-bold text-red-500">

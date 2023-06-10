@@ -264,7 +264,7 @@ const CampHot = (props) => {
 
                             {/* 圓形周圍空白 包裹愛心flex just. 及位置調整absolute*/}
                             {/* rounded-full */}
-                            {item.hotday > 0 && <div className="rounded-r-3xl bg-white w-32 h-9 flex justify-center items-center absolute top-5 left-0 z-10" onClick={() => { }}>
+                            {item.hotday > 0 && <div className="rounded-r-3xl bg-white w-32 h-9 flex justify-center items-center absolute top-5 left-0" onClick={() => { }}>
 
 
                                 <strong className="  text-lg font-bold text-my-green">New<span className='ml-2 italic'>!!</span></strong>
@@ -281,7 +281,7 @@ const CampHot = (props) => {
 
 
 
-                            {item.hotday >= 60 && <div className="rounded-r-3xl bg-white w-32 h-9 flex justify-center items-center absolute top-5 left-0 z-20" onClick={() => { }}>
+                            {item.hotday >= 60 && <div className="rounded-r-3xl bg-white w-32 h-9 flex justify-center items-center absolute top-5 left-0" onClick={() => { }}>
 
 
                                 <strong className="  text-lg font-bold text-red-500">超人氣<span className='ml-2 italic'>!!</span></strong>
