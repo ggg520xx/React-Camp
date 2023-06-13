@@ -129,7 +129,7 @@ function SearchBar(props) {
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner} alt="" className="w-full h-[90vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
+                                <img src={indexBanner} alt="" className="w-full h-[80vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
@@ -137,21 +137,21 @@ function SearchBar(props) {
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner2} alt="" className="w-full h-[90vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
+                                <img src={indexBanner2} alt="" className="w-full h-[80vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner3} alt="" className="w-full h-[90vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
+                                <img src={indexBanner3} alt="" className="w-full h-[80vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className='item'>
                             <picture>
-                                <img src={indexBanner4} alt="" className="w-full h-[90vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
+                                <img src={indexBanner4} alt="" className="w-full h-[80vh] sm:h-[90vh] md:h-[95vh] lg:h-screen object-cover " />
                             </picture>
                         </div>
                     </SwiperSlide>

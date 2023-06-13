@@ -23,7 +23,3 @@
 額外附加：看板娘Live2D互動、留言板功能
 
 ----------------
-
-
-<img src="https://i.imgur.com/q7tcqqt.png">
-
