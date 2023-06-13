@@ -37,38 +37,39 @@
 
 ----------------
 
+
 ## 使用技術
 
 <br>
 
 * React：
-  1. Router 實現頁面路由及各種 use 方法 及 Hook form
-  2. 功能元件抓取對應資料，藉由對應的 props 傳遞至頁面或切換元件路由時一同傳遞
-  3. useState , useEffect , useContext , useParms ..等
-  4. 在所需頁面引入需要的函式方法及管理全域的useContext 免去多層反覆傳遞，達成即時改變頁面內容
+- Router 實現頁面路由及各種 use 方法 及 Hook form
+- 功能元件抓取對應資料，藉由對應的 props 傳遞至頁面或切換元件路由時一同傳遞
+- useState , useEffect , useContext , useParms ..等
+- 在所需頁面引入需要的函式方法及管理全域的useContext 免去多層反覆傳遞，達成即時改變頁面內容
   
 
 <br>
 
 * 頁面外觀：
-  1. Tailwind Css
-  2. Style-Component
-  2. Css
+- Tailwind Css
+- Style-Component
+- Css
 
 <br>
 
 
 * 動畫套件：
-  1. Swiper
-  2. Sweet Alert
-  3. React Credit-Card
-  4. tsParticles
+- Swiper
+- Sweet Alert
+- React Credit-Card
+- tsParticles
 
 <br>
 
 * 其他：
-  1. Axios
-  2. date-fns
-  3. React-date-range
-  4. Json-Server
-  5. Live2D
+- Axios
+- date-fns
+- React-date-range
+- Json-Server
+- Live2D
