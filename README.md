@@ -60,13 +60,27 @@
 - Swiper
 - Sweet Alert
 - React Credit-Card
-- tsParticles
+- tsParticles 漂浮點狀特效
 
 <br>
 
 ### 其他：
 - Axios、原生Fetch
+- Restful Api
 - date-fns
 - React-date-range
 - Json-Server、Json-Server-auth 模擬後端抓取資料庫
 - Live2D
+
+<br>
+
+
+---
+
+## 未來改進項目
+
+### 程式：
+- Cra基於 Web pack 越多套件越笨重 , 試著改用 Vite
+- 開發上非同步取值的寫法
+- 頁面層 及 功能層(資料取得) 需劃分更好
+
