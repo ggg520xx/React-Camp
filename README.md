@@ -8,9 +8,9 @@
 
 一個可以方便使用搜尋功能預訂營區的平台，可以在此使用日期選取並下訂訂單，營主根據區域不同上架營地。
 
-建議先使用影片，快速瀏覽網站功能  <https://www.youtube.com/watch?v=2vXA04wdT0k&t=196s&ab_channel=KL>
+建議先使用影片，快速瀏覽網站功能 <https://www.youtube.com/watch?v=2vXA04wdT0k&t=196s&ab_channel=KL>
 
-----------------
+---
 
 搜尋功能：關鍵字搜尋、地區搜尋、條件篩選、排序方法
 
@@ -22,44 +22,41 @@
 
 會員頁面：訂單查看、訂單取消、給予星級評分及回饋、收藏及取消收藏
 
-基本頁面：全尺寸RWD
+基本頁面：全尺寸 RWD
 
-額外附加：看板娘Live2D互動、留言板功能
+額外附加：看板娘 Live2D 互動、留言板功能
 
-----------------
+---
 
 <img src="https://i.imgur.com/q7tcqqt.png">
 
-
-
 ![](https://i.imgur.com/j3ZLR2C.png)
 
-
-----------------
-
+---
 
 ## 使用技術
 
 <br>
 
-* React：
+### React：
+
 - Router 實現頁面路由及各種 use 方法 及 Hook form
 - 功能元件抓取對應資料，藉由對應的 props 傳遞至頁面或切換元件路由時一同傳遞
 - useState , useEffect , useContext , useParms ..等
-- 在所需頁面引入需要的函式方法及管理全域的useContext 免去多層反覆傳遞，達成即時改變頁面內容
-  
+- 在所需頁面引入需要的函式方法及管理全域的 useContext 免去多層反覆傳遞，達成即時改變頁面內容
 
 <br>
 
-* 頁面外觀：
+### 頁面外觀：
+
 - Tailwind Css
 - Style-Component
 - Css
 
 <br>
 
+### 動畫套件：
 
-* 動畫套件：
 - Swiper
 - Sweet Alert
 - React Credit-Card
@@ -67,9 +64,9 @@
 
 <br>
 
-* 其他：
-- Axios
+### 其他：
+- Axios、原生Fetch
 - date-fns
 - React-date-range
-- Json-Server
+- Json-Server、Json-Server-auth 模擬後端抓取資料庫
 - Live2D
