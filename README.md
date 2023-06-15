@@ -65,7 +65,9 @@
 <br>
 
 ### 其他：
-- Axios、原生Fetch
+
+- Axios、原生 Fetch
+- ESLint Prettier
 - Restful Api
 - date-fns
 - React-date-range
@@ -74,13 +76,23 @@
 
 <br>
 
-
 ---
 
 ## 未來改進項目
 
 ### 程式：
-- Cra基於 Web pack 越多套件越笨重 , 試著改用 Vite
+
+- Cra 基於 Web pack 越多套件越笨重 , 試著改用 Vite
 - 開發上非同步取值的寫法
 - 頁面層 及 功能層(資料取得) 需劃分更好
 
+---
+
+## 初期規劃
+
+- 線稿
+- 功能圖
+- 使用者故事
+- Website Wireframe ( Figma )
+
+<img src="https://i.imgur.com/J04Acgo.png">
