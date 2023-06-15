@@ -71,7 +71,7 @@
 - Restful Api
 - date-fns
 - React-date-range
-- Json-Server、Json-Server-auth 模擬後端抓取資料庫
+- Json-Server 模擬後端抓取資料庫、Json-Server-auth 基於JWT之登入驗證
 - Live2D
 
 <br>
